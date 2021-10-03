@@ -1,0 +1,21 @@
+.navItems::before{
+  content: "";
+  height: 4px;
+  width: 0;
+  display: inline-block;
+  background-color: #A5AFED;
+  position: absolute;
+  bottom: -8px;
+  left: -7px;
+  border-radius: 4;
+  /* z-index: -10; */
+  transition: all 0.2s ease-in-out;
+}
+
+.navItems:hover::before{
+  width: 120%;
+}
+
+.navItems:active::before{
+  width: 120%;
+}
