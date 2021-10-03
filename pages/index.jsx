@@ -5,6 +5,7 @@ import Navbar from './Components/navbar';
 import Headline from './Components/Headline';
 import Title from './Components/title';
 import Iframe from './Components/iframe';
+import ContainerData from './Components/containerData';
 
 export default function Home() {
   return (
@@ -25,7 +26,7 @@ export default function Home() {
         </div>
         <div
           id="background"
-          className={`h-4/5 w-full ${styles.firstSection}`}
+          className={`h-full w-full ${styles.firstSection}`}
         ></div>
       </section>
 
@@ -33,11 +34,15 @@ export default function Home() {
 
       <section
         id="second"
-        className={`flex w-100 justify-center h-screen bg-purple`}
+        className={`flex flex-col items-center w-full gap-8 pt-12 justify-center h-screen bg-purple`}
       >
-        <div className={`flex flex-col w-full justify-center items-center ${styles.mtSecondSection} h-20 gap-8`}>
-          <Title color="white">LACAK KASUS COVID</Title>
-          <Iframe />
+        <Title color="white">LACAK KASUS COVID</Title>
+        <Iframe />
+        <div className="flex justify-between w-10/12">
+          <ContainerData title="Sembuh" content="19,244 Jiwa" color="green" />
+          <ContainerData title="Positif" content="19,244 Jiwa" color="red" />
+          <ContainerData title="ODP" content="19,244 Jiwa" color="orange" />
+          <ContainerData title="Meninggal" content="19,244 Jiwa" color="dark-green" />
         </div>
       </section>
     </div>

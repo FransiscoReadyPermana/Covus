@@ -1,15 +1,25 @@
 import React from 'react';
+import Link from 'next/link';
 import Styles from './iframe.module.css'
+import Virus from '../icons/virus';
 
 export default function Iframe() {
   return (
-    <div className="flex flex-col w-10/12 h-screen">
+    <div className="flex flex-col w-10/12">
       <iframe
         src="https://peta.laporcovid19.org/"
         frameBorder="0"
-        className={`w-full ${Styles.HIframe} rounded-lg mb-5 overflow-hidden`}
+        className={`w-full ${Styles.HIframe} rounded-lg mb-5 overflow-hidden relative z-10`}
       ></iframe>
-      <button className={`bg-dark-grey text-white p-4 rounded-full font-medium text-lg ${Styles.button}`}>Lihat selengkapnya</button>
+      <div id="virus" className="bg-green justify-start">
+        <Virus className={`absolute ${Styles.virusPositionTop}`} />
+      </div>
+      <div id="virus" className="bg-green flex justify-end">
+        <Virus className={`absolute ${Styles.virusPositionBottom}`} />
+      </div>
+      <Link href="https://peta.laporcovid19.org/">
+        <button className={`bg-dark-grey text-white p-4 rounded-full font-medium text-xl ${Styles.button}`}>Lihat selengkapnya</button>
+      </Link>
     </div>
   );
 }

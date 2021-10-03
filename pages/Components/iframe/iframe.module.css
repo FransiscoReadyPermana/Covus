@@ -1,5 +1,5 @@
 .HIframe{
-  height: 25rem;
+  height: 45rem;
 }
 
 .button{
@@ -8,4 +8,15 @@
 
 .button:hover{
   background-color: #27272c;
+}
+
+.virusPositionTop{
+  top: 80rem;
+  left: 4rem;
+}
+
+.virusPositionBottom{
+  margin-top: -10rem;
+  right: 4rem;
+  z-index: 20;
 }

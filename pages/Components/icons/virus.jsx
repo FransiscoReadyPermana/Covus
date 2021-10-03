@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Virus() {
+export default function Virus({className}) {
   return (
     <svg
       width="240"
@@ -8,6 +8,7 @@ export default function Virus() {
       viewBox="0 0 240 260"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
     >
       <path
         d="M128.081 9.69327H127.965C125.552 9.82644 123.137 9.45005 120.88 8.58877C120.88 8.58877 120.88 7.46777 120.88 7.46777H127.998C127.998 7.46777 128.032 8.75362 128.081 9.69327Z"
