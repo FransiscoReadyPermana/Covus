@@ -17,7 +17,7 @@ export default function Home() {
         id="first"
         className={`flex flex-col w-100 justify-center h-screen`}
       >
-        <div className="flex justify-center items-center mt-28 h-20">
+        <div className="flex justify-center items-center mt-16 h-20">
           <div className="bg-purple w-40 h-2 "></div>
           <Headline className="mx-5 text-dark-purple">
             HEALTH <span className="text-purple">IS</span> PRECIOUS

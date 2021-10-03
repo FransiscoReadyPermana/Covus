@@ -5,15 +5,16 @@ import Virus from '../icons/virus';
 
 export default function Iframe() {
   return (
-    <div className="flex flex-col w-10/12">
+    <div className="flex flex-col w-10/12 relative">
+      <div id="virus" className={`bg-green justify-start `}>
+        <Virus className={`absolute ${Styles.virusPositionTop}`} />
+      </div>
       <iframe
         src="https://peta.laporcovid19.org/"
         frameBorder="0"
-        className={`w-full ${Styles.HIframe} rounded-lg mb-5 overflow-hidden relative z-10`}
-      ></iframe>
-      <div id="virus" className="bg-green justify-start">
-        <Virus className={`absolute ${Styles.virusPositionTop}`} />
-      </div>
+        className={`w-full ${Styles.HIframe} rounded-lg mb-5 overflow-hidden z-0`}
+      >
+      </iframe>
       <div id="virus" className="bg-green flex justify-end">
         <Virus className={`absolute ${Styles.virusPositionBottom}`} />
       </div>

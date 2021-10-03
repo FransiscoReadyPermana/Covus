@@ -1,5 +1,5 @@
 .HIframe{
-  height: 45rem;
+  height: 38rem;
 }
 
 .button{
@@ -11,12 +11,12 @@
 }
 
 .virusPositionTop{
-  top: 80rem;
-  left: 4rem;
+  margin-left: -7rem;
+  margin-top: -7rem;
 }
 
 .virusPositionBottom{
+  margin-right: -7rem;
   margin-top: -10rem;
-  right: 4rem;
   z-index: 20;
 }
