@@ -6,3 +6,14 @@
   z-index: -20;
   bottom: 0;
 }
+
+.mtThirdSection{
+  margin-top: 0rem;
+}
+
+.bgThirdSection{
+  background: url('../public/images/FirstDivider.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 0rem;
+}

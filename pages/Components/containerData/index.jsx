@@ -1,14 +1,35 @@
 import React from 'react';
 
-export default function ContainerData({title, content, color}) {
+export default function ContainerData({ title, content, color }) {
+  let colorSelect = color;
+
+  if (color === "red"){
+    colorSelect = "red";
+  }  
+  if (color === "green"){
+    colorSelect = "green";
+  }  
+  if (color === "orange"){
+    colorSelect = "orange"; 
+  } 
+  if (color === "dark-green"){
+    colorSelect = "dark-green"
+  }
+
   return (
     <div className="flex flex-col gap-4">
-        <div id="title" className={`bg-${color} font-medium text-white text-2xl py-3 text-center w-96 rounded-full `}>
-            {title}
-        </div>
-        <div id="title" className={`bg-white font-medium text-${color} text-2xl py-3 text-center w-96 rounded-full `}>
-            {content}
-        </div>
+      <div
+        id="title"
+        className={`bg-${colorSelect} font-medium text-white text-2xl py-3 text-center px-28 rounded-full `}
+      >
+        {title}
+      </div>
+      <div
+        id="title"
+        className={`bg-white font-medium text-${colorSelect} text-2xl py-3 text-center px-28  rounded-full `}
+      >
+        {content}
+      </div>
     </div>
   );
 }
