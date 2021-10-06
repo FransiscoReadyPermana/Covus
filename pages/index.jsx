@@ -7,7 +7,7 @@ import Title from './Components/title';
 import Iframe from './Components/iframe';
 import ContainerData from './Components/containerData';
 import Paragraph from './Components/paragraph';
-import Button from './Components/button'
+import Button from './Components/button';
 
 export default function Home() {
   return (
@@ -15,6 +15,7 @@ export default function Home() {
       <Navbar />
 
       {/* first section */}
+
       <section
         id="first"
         className={`flex flex-col w-100 justify-center h-screen`}
@@ -52,16 +53,16 @@ export default function Home() {
         </div>
       </section>
 
-      <section
-        id="third"
-        className={`h-screen w-full relative bg-purple ${styles.mtThirdSection}`}
-      >
+      {/* third section */}
+
+      <section id="third" className={`h-screen w-full relative bg-purple `}>
         <div
-          className={`${styles.bgThirdSection} bg-purple mt-20 h-48 w-full absolute`}
+          id="divider"
+          className={`${styles.bgThirdSection} h-52 w-full absolute`}
         />
         <div
           id="content"
-          className="flex gap-24 h-full px-20 pt-32 bg-white items-center"
+          className="flex gap-24 h-full px-20 pb-28 pt-32 bg-white items-center"
         >
           <div className="relative w-1/2 h-5/6 pl-40  ">
             <Image
@@ -83,6 +84,83 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* fourth section */}
+
+      <section
+        id="fourth"
+        className={`${styles.section} w-full relative bg-purple ${styles.mtThirdSection}`}
+      >
+        <div
+          id="divider"
+          className={`${styles.secondBGThirdSection} h-52 w-full absolute -top-40`}
+        />
+        <div
+          id="content"
+          className="flex gap-16 h-full px-52 pt-32 bg-purple items-center"
+        >
+          <div id="text" className="flex flex-col gap-12 items-start w-1/2">
+            <Title color="white">
+              EDUKASI <br /> SEPUTAR COVID 19
+            </Title>
+            <Paragraph size="2xl" color="white">
+              Apa itu COVID-19, apa saja gejalanya dan bagaimana cara
+              pencegahanya? Berikut ini mari kita lihat penjelasanya secara
+              lengkap.
+            </Paragraph>
+            <Button color="dark-grey">Lihat Selengkapnya</Button>
+          </div>
+          <div className="relative w-1/2 h-5/6 pl-40  ">
+            <Image
+              src="/images/doctorAndNurse.svg"
+              alt="reading-book-image"
+              layout="fill"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* fifth section */}
+
+      <section
+        id="fourth"
+        className={`${styles.section} w-full relative bg-purple ${styles.mtThirdSection}`}
+      >
+        <div
+          id="divider"
+          className={`${styles.bgFourthSection} h-52 w-full absolute top-0`}
+        />
+        <div
+          id="content"
+          className="flex gap-16 h-full px-52 pt-32 bg-white items-center"
+        >
+          <div id="text" className="flex flex-col gap-12 items-start w-1/2">
+            <Title color="dark-grey">
+              EDUKASI <br /> SEPUTAR COVID 19
+            </Title>
+            <Paragraph size="2xl" color="dark-grey">
+              Apa itu COVID-19, apa saja gejalanya dan bagaimana cara
+              pencegahanya? Berikut ini mari kita lihat penjelasanya secara
+              lengkap.
+            </Paragraph>
+            <Button color="dark-grey">Lihat Selengkapnya</Button>
+          </div>
+          <div className="relative w-1/2 h-5/6 pl-40  ">
+            <Image
+              src="/images/doctorAndNurse 2.svg"
+              alt="reading-book-image"
+              layout="fill"
+            />
+          </div>
+        </div>
+      </section>
+      <footer className={` relative bg-purple ${styles.mtThirdSection}`}>
+        <div
+          id="divider"
+          className={`${styles.secondBGFourthSection} h-10  w-full absolute -top-10`}
+        />
+        <p className="text-center text-white font-normal text-xl py-9">Copyright. Covus 2021. All Rights Reserved.</p>
+      </footer>
     </div>
   );
 }

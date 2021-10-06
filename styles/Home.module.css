@@ -1,4 +1,8 @@
-.firstSection{
+.section {
+  height: 85vh;
+}
+
+.firstSection {
   background-image: url('../public/images/UseMask.png');
   background-size: cover;
   background-repeat: no-repeat;
@@ -7,13 +11,32 @@
   bottom: 0;
 }
 
-.mtThirdSection{
+.mtThirdSection {
   margin-top: 0rem;
 }
 
-.bgThirdSection{
-  background: url('../public/images/FirstDivider.svg');
+.bgThirdSection {
+  background: url('../public/images/firstDivider.svg');
   background-repeat: no-repeat;
   background-size: cover;
-  margin-top: 0rem;
 }
+
+.secondBGThirdSection {
+  background: url('../public/images/secondDivider.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bgFourthSection {
+  background: url('../public/images/thirdDivider.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.secondBGFourthSection {
+  background: url('../public/images/fourthDivider.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+

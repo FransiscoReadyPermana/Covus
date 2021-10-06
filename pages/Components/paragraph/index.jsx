@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Paragraph({ children, color, size }) {
+export default function Paragraph({ children, color, size, className }) {
   let colorSelect;
   let sizeSelect;
   if (color === 'dark-grey') {
@@ -17,5 +17,5 @@ export default function Paragraph({ children, color, size }) {
     sizeSelect = '2xl'
   }
 
-  return <p className={`font-semibold text-${colorSelect} text-${sizeSelect} w-4/5`}>{children}</p>;
+  return <p className={`font-semibold text-${colorSelect} text-${sizeSelect} w-4/5 ${className}`}>{children}</p>;
 }
