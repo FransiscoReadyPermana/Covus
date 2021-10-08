@@ -17,5 +17,11 @@ export default function Paragraph({ children, color, size, className }) {
     sizeSelect = '2xl'
   }
 
-  return <p className={`font-semibold text-${colorSelect} text-${sizeSelect} w-4/5 ${className}`}>{children}</p>;
+  return (
+    <p
+      className={`font-semibold text-${colorSelect} text-${sizeSelect} w-4/5 ${className} leading-relaxed`}
+    >
+      {children}
+    </p>
+  );
 }

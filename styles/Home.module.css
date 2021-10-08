@@ -1,5 +1,17 @@
 .section {
-  height: 85vh;
+  height: 90vh;
+}
+
+.section3 {
+  height: 110vh;
+}
+
+.section4 {
+  height: 80vh;
+}
+
+.section5 {
+  height: 100vh;
 }
 
 .firstSection {
@@ -11,9 +23,6 @@
   bottom: 0;
 }
 
-.mtThirdSection {
-  margin-top: 0rem;
-}
 
 .bgThirdSection {
   background: url('../public/images/firstDivider.svg');

@@ -19,7 +19,7 @@ export default function Iframe() {
         <Virus className={`absolute ${Styles.virusPositionBottom}`} />
       </div>
       <Link href="https://peta.laporcovid19.org/">
-        <button className={`bg-dark-grey text-white p-4 rounded-full font-medium text-xl ${Styles.button}`}>Lihat selengkapnya</button>
+        <button className={`bg-dark-grey text-white p-4 rounded-full font-medium text-2xl ${Styles.button}`}>Lihat selengkapnya</button>
       </Link>
     </div>
   );

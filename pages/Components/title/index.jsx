@@ -19,5 +19,11 @@ export default function Title({children, color, className}) {
     colorSelect = 'white '
   }
 
-  return <h1 className={`font-bold text-4xl text-${colorSelect} ${className}`}>{children}</h1>;
+  return (
+    <h1
+      className={`font-bold text-4xl leading-relaxed text-${colorSelect} ${className}`}
+    >
+      {children}
+    </h1>
+  );
 }
