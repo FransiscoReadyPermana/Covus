@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
-import Navbar from './Components/navbar';
 import Headline from './Components/Headline';
 import Title from './Components/title';
 import Iframe from './Components/iframe';
@@ -12,7 +11,6 @@ import Button from './Components/button';
 export default function Home() {
   return (
     <div className="">
-      <Navbar />
 
       {/* first section */}
 
@@ -158,18 +156,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* footer */}
-
-      <footer className={`relative bg-purple`}>
-        <div
-          id="divider"
-          className={`${styles.secondBGFourthSection} h-10  w-full absolute -top-10`}
-        />
-        <p className="text-center text-white font-normal text-xl py-9">
-          Copyright. Covus 2021. All Rights Reserved.
-        </p>
-      </footer>
     </div>
   );
 }

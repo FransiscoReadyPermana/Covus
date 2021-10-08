@@ -12,5 +12,5 @@ export default function Button({ children, color }) {
   if (color === 'dark-grey') {
     colorSelect = 'dark-grey';
   }
-  return <button className={`px-40 py-5 text-white text-2xl bg-${colorSelect} ${Styles.button} 4 rounded-full`}>{children}</button>;
+  return <button className={`w-2/3 py-5 text-white text-2xl bg-${colorSelect} ${Styles.button} 4 rounded-full`}>{children}</button>;
 }

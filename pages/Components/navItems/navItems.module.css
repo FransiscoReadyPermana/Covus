@@ -16,6 +16,7 @@
   width: 120%;
 }
 
-.navItems:active::before{
+.navItemsActive::before{
   width: 120%;
+  font-weight: bold;
 }

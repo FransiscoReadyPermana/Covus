@@ -19,7 +19,7 @@ export default function Paragraph({ children, color, size, className }) {
 
   return (
     <p
-      className={`font-semibold text-${colorSelect} text-${sizeSelect} w-4/5 ${className} leading-relaxed`}
+      className={`font-semibold text-${colorSelect} text-${sizeSelect} w-full ${className} leading-relaxed`}
     >
       {children}
     </p>
