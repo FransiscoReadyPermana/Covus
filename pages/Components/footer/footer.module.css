@@ -1,0 +1,12 @@
+.footerDividerPurple {
+  background: url('../../../public/images/fourthDivider.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.footerDividerWhite {
+  background: url('../../../public/images/footerDivider.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+

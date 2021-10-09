@@ -5,6 +5,7 @@ import Paragraph from '../Components/paragraph';
 import Button from '../Components/button';
 import Title from '../Components/title';
 import Card from '../Components/card';
+import Footer from '../Components/footer';
 
 export default function Edukasi() {
   return (
@@ -183,11 +184,11 @@ export default function Edukasi() {
       >
         <div
           id="divider"
-          className={`${styles.bgFourthSection} h-52 w-full absolute -top-12 -z-20`}
+          className={`${styles.bgFourthSection} h-52 w-full absolute -top-24 -z-20`}
         />
         <div
           id="content"
-          className="flex gap-12 h-full px-52 pt-32 bg-green items-center"
+          className="flex gap-12 h-full px-52 pt-32 bg-purple item-center"
         >
           <div id="text" className="flex flex-col gap-8 items-center w-full">
             <Title color="dark-grey">
@@ -258,9 +259,7 @@ export default function Edukasi() {
                     layout="fill"
                   />
                 </div>
-                <p
-                  className="text-center font-semibold text-2xl text-dark-grey"
-                >
+                <p className="text-center font-semibold text-2xl text-dark-grey">
                   Jaga Kebersihan
                 </p>
               </Card>
@@ -268,6 +267,7 @@ export default function Edukasi() {
           </div>
         </div>
       </section>
+      <Footer color="white"/>
     </div>
   );
 }

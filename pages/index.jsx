@@ -7,6 +7,7 @@ import Iframe from './Components/iframe';
 import ContainerData from './Components/containerData';
 import Paragraph from './Components/paragraph';
 import Button from './Components/button';
+import Footer from './Components/footer';
 
 export default function Home() {
   return (
@@ -156,6 +157,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <Footer color="purple"/>
     </div>
   );
 }
