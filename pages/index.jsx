@@ -65,16 +65,16 @@ export default function Home() {
       >
         <div
           id="content"
-          className="flex gap-24 h-full px-20 pb-28 pt-32 bg-white items-center"
+          className="flex gap-24 h-full px-20 pb-28 pt-32 bg-white"
         >
-          <div className="relative w-1/2 h-5/6 pl-40  ">
+          <div className="relative w-1/2 h-5/6 pl-40 mt-12 ">
             <Image
               src="/images/ReadingBook.svg"
               alt="reading-book-image"
               layout="fill"
             />
           </div>
-          <div id="text" className="flex flex-col gap-12 items-start w-1/2">
+          <div id="text" className="flex flex-col gap-12 items-start w-1/2 pt-48">
             <Title color="dark-grey">
               EDUKASI <br /> SEPUTAR COVID 19
             </Title>
@@ -83,7 +83,7 @@ export default function Home() {
               pencegahanya? Berikut ini mari kita lihat penjelasanya secara
               lengkap.
             </Paragraph>
-            <Button color="purple">Lihat Selengkapnya</Button>
+            <Button to="#" color="purple">Lihat Selengkapnya</Button>
           </div>
         </div>
       </section>
@@ -100,9 +100,9 @@ export default function Home() {
         />
         <div
           id="content"
-          className="flex gap-16 h-full px-52 pt-32 bg-purple items-center"
+          className="flex gap-16 h-full px-52 pt-32 bg-purple"
         >
-          <div id="text" className="flex flex-col gap-12 items-start w-1/2">
+          <div id="text" className="flex flex-col gap-12 items-start w-1/2 mt-8">
             <Title color="white">
               RUMAH SAKIT <br /> RUJUKAN COVID-19
             </Title>
@@ -111,9 +111,9 @@ export default function Home() {
               Rujukan COVID-19. Disini kami menampikan data lengkap daftar Rumah
               Sakit Rujukan COVID-19 di Indonesia.
             </Paragraph>
-            <Button color="dark-grey">Lihat Selengkapnya</Button>
+            <Button to="#" color="dark-grey">Lihat Selengkapnya</Button>
           </div>
-          <div className="relative w-1/2 h-5/6 pl-40  ">
+          <div className="relative w-1/2 h-5/6 pl-40 mt-12">
             <Image
               src="/images/doctorAndNurse.svg"
               alt="reading-book-image"
@@ -127,7 +127,7 @@ export default function Home() {
 
       <section
         id="fifth"
-        className={`${styles.section5} w-full relative bg-purple`}
+        className={`${styles.section5} w-full relative`}
       >
         <div
           id="divider"
@@ -135,16 +135,17 @@ export default function Home() {
         />
         <div
           id="content"
-          className="flex h-full px-52 pl-0 pt-32 bg-white items-center justify-center"
+          className="flex h-full pr-52 pl-0 pt-32 bg-white" 
         >
-          <div className="relative w-5/6 h-full -z-10 -left-36 -top-28">
+          <div className="relative w-5/6 h-5/6 -z-10 top-8">
             <Image
               src="/images/doctorAndNurse 2.svg"
               alt="reading-book-image"
               layout="fill"
             />
           </div>
-          <div id="text" className="flex flex-col gap-12 items-start w-1/2">
+          <div id="text" className="flex flex-col gap-12 items-start w-1/2 mt-32
+          ">
             <Title color="dark-grey">
               MARI KITA VAKSIN <br /> COVID-19
             </Title>
@@ -153,7 +154,7 @@ export default function Home() {
               bagaimana cara melakukan vaksin serta hal apa saja yang harus
               dipersiapkan sebelum dan sesudah Vaksinasi covid-19
             </Paragraph>
-            <Button color="dark-grey">Lihat Selengkapnya</Button>
+            <Button to="#" color="purple">Lihat Selengkapnya</Button>
           </div>
         </div>
       </section>

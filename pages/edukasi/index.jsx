@@ -38,9 +38,9 @@ export default function Edukasi() {
             <Paragraph size="2xl" color="dark-grey">
               Cari tahu Edukasi seputar Covid-19
             </Paragraph>
-            <Button color="purple">Apa itu Covid-19</Button>
-            <Button color="purple">Apa saja gejala Covid-19</Button>
-            <Button color="purple">Pencegahan Covid-19</Button>
+            <Button to="#second" color="purple">Apa itu Covid-19</Button>
+            <Button to="#third" color="purple">Apa saja gejala Covid-19</Button>
+            <Button to="#fourth" color="purple">Pencegahan Covid-19</Button>
           </div>
         </div>
       </section>
@@ -57,9 +57,9 @@ export default function Edukasi() {
         />
         <div
           id="content"
-          className="flex gap-16 h-full px-52 pt-32 bg-purple items-center"
+          className="flex gap-16 h-full px-52  bg-purple items-center"
         >
-          <div id="text" className="flex flex-col gap-8 items-start w-1/2">
+          <div id="text" className="flex flex-col gap-8 items-start w-1/2 mb-12">
             <Title color="white">APA ITU COVID-19?</Title>
             <Paragraph size="2xl" color="white">
               Coronavirus adalah kumpulan virus yang bisa menginfeksi sistem
@@ -95,7 +95,7 @@ export default function Edukasi() {
         />
         <div
           id="content"
-          className="flex gap-12 h-full px-52 pt-32 bg-white items-center"
+          className="flex gap-12 h-full px-52 bg-white items-center"
         >
           <div id="text" className="flex flex-col gap-10 items-center w-full">
             <Title color="dark-grey">Gejala COVID-19</Title>
@@ -184,17 +184,17 @@ export default function Edukasi() {
       >
         <div
           id="divider"
-          className={`${styles.bgFourthSection} h-52 w-full absolute -top-24 -z-20`}
+          className={`${styles.bgFourthSection} h-52 w-full absolute -top-32 -z-20`}
         />
         <div
           id="content"
-          className="flex gap-12 h-full px-52 pt-32 bg-purple item-center"
+          className="flex gap-12 h-full px-52 pt-20 bg-purple item-center"
         >
           <div id="text" className="flex flex-col gap-8 items-center w-full">
-            <Title color="dark-grey">
+            <Title color="white">
               BAGAIMANA MELAKUKAN PENCEGAHAN TERHADAP COVID-19
             </Title>
-            <Paragraph size="xl" color="dark-grey" className="text-center">
+            <Paragraph size="xl" color="white" className="text-center">
               Gejala awal infeksi virus Corona atau COVID-19 bisa menyerupai
               gejala flu, yaitu demam, pilek, batuk kering, sakit tenggorokan,
               dan sakit kepala. Setelah itu, gejala dapat hilang dan sembuh atau
