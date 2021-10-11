@@ -1,0 +1,12 @@
+.form {
+  border: 3px solid #a5afed;
+}
+
+.input {
+  margin-left: -6rem;
+  width: 40rem;
+}
+
+.input:focus {
+  outline: none;
+}

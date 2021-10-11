@@ -111,7 +111,7 @@ export default function Edukasi() {
               id="card containter"
               className="w-full h-full flex justify-between gap-12"
             >
-              <Card>
+              <Card type="big">
                 <div className="relative h-3/4 w-full flex flex-col">
                   <Image
                     src="/images/Demam.svg"
@@ -126,7 +126,7 @@ export default function Edukasi() {
                   Demam
                 </p>
               </Card>
-              <Card>
+              <Card type="big">
                 <div className="relative h-3/4 w-full flex flex-col">
                   <Image
                     src="/images/Sesak Nafas.svg"
@@ -141,7 +141,7 @@ export default function Edukasi() {
                   Sesak Nafas
                 </p>
               </Card>
-              <Card>
+              <Card type="big">
                 <div className="relative h-3/4 w-full flex flex-col">
                   <Image
                     src="/images/Batuk Kering.svg"
@@ -156,7 +156,7 @@ export default function Edukasi() {
                   Batuk Kering
                 </p>
               </Card>
-              <Card>
+              <Card type="big">
                 <div className="relative h-3/4 w-full flex flex-col">
                   <Image
                     src="/images/Lelah.svg"
@@ -206,7 +206,7 @@ export default function Edukasi() {
               id="card containter"
               className="w-full h-full flex justify-between gap-12"
             >
-              <Card>
+              <Card type="big">
                 <div className="relative h-3/4 w-full flex flex-col">
                   <Image
                     src="/images/Gunakan Masker.svg"
@@ -221,7 +221,7 @@ export default function Edukasi() {
                   Gunakan Masker
                 </p>
               </Card>
-              <Card>
+              <Card type="big">
                 <div className="relative h-3/4 w-full flex flex-col">
                   <Image
                     src="/images/Mencuci Tangan.svg"
@@ -236,7 +236,7 @@ export default function Edukasi() {
                   Mencuci Tangan
                 </p>
               </Card>
-              <Card>
+              <Card type="big">
                 <div className="relative h-3/4 w-full flex flex-col">
                   <Image
                     src="/images/Menjaga Jarak.svg"
@@ -251,7 +251,7 @@ export default function Edukasi() {
                   Menjaga Jarak
                 </p>
               </Card>
-              <Card>
+              <Card type="big">
                 <div className="relative h-3/4 w-full flex flex-col">
                   <Image
                     src="/images/Jaga Kebersihan.svg"

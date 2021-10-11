@@ -1,0 +1,33 @@
+.dropDownControl {
+  background-color: #a5afed;
+  color: white;
+  border-radius: 3rem;
+}
+
+
+.menuControl  {
+  border-radius: 1.5rem 0 0 1.5rem;
+  margin-top: 1rem;
+  overflow: scroll;
+  text-align: center;
+}
+
+.menuControl::-webkit-scrollbar{
+  width: 10px;
+}
+ 
+/* Handle */
+.menuControl::-webkit-scrollbar-thumb {
+  background: #a5afed; 
+}
+
+/* Handle on hover */
+.menuControl::-webkit-scrollbar-thumb:hover {
+  background: #949bc5; 
+}
+
+.myArrowClassName {
+  border-color: white transparent transparent;
+  margin-top: 0.3rem;
+  margin-right: 0.5rem;
+}

@@ -24,7 +24,11 @@ export default function Navbar() {
       >
         Edukasi
       </NavItems>
-      <NavItems className="ml-4" to="/">
+      <NavItems
+        className="ml-4"
+        to="/RsRujukan"
+        isActive={router.pathname === '/RsRujukan'}
+      >
         RS Rujukan
       </NavItems>
       <NavItems className="ml-4" to="/">
