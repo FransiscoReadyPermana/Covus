@@ -10,10 +10,10 @@ export default function DropDownEdit({className}) {
       options={kota}
       placeholder="Filter"
       className={`text-center ${className}  ${styles.dropDown}`}
-      controlClassName={`text-xl font-medium bg-purple ${styles.dropDownControl}`}
+      controlClassName={`text-xl font-medium ${styles.dropDownControl}`}
       menuClassName={`font-medium ${styles.menuControl}`}
       arrowClassName={`${styles.myArrowClassName}`}
-      arrowOpen={<span className={`${styles.myArrowClassNameOpen}`} />}
+      arrowOpen={<span className="border-2 border-red-500" />}
     />
   );
 }

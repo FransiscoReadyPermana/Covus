@@ -1,0 +1,9 @@
+.section1 {
+  height: 90vh;
+}
+
+.bgFirstSection {
+  background: url('../../../public/images/firstDivider.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}

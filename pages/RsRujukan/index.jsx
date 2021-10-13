@@ -7,6 +7,7 @@ import Card from '../Components/card';
 import Footer from '../Components/footer';
 import SearchInput from '../Components/searchInput';
 import DropDownEdit from '../Components/dropDown';
+import TableData from '../Components/table';
 
 export default function RSRujukan() {
   return (
@@ -112,26 +113,11 @@ export default function RSRujukan() {
             dengan cepat dan mudah.
           </Paragraph>
 
-          <div className="flex gap-12">
+          <div className="flex gap-12 items-center mb-10">
             <DropDownEdit className="w-1/2" />
             <SearchInput className="w-full" />
           </div>
-
-          <table className="bg-green border-4 border-black">
-            <thead>
-              <tr>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>test</td>
-                <td>test</td>
-              </tr>
-            </tbody>
-          </table>
+          <TableData />
         </div>
       </section>
       <Footer color="purple" />

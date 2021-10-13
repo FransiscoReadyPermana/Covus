@@ -6,16 +6,17 @@ export default function SearchInput({ className }) {
   return (
     <div className="flex gap-12">
       <form
-        className={`${className} ${styles.form} flex rounded-2xl`}
+        className={`${className} ${styles.form} flex rounded-full`}
         action="#"
       >
-        <button className="bg-purple relative w-10 py-5 px-12 rounded-xl">
-          <Image
-            src="/images/bx_bx-search-alt-2.svg"
-            alt="reading-book-image"
-            layout="fill"
-            className={styles.image}
-          />
+        <button className="bg-purple relative flex items-center justify-center w-20 h-10 rounded-full -ml-1">
+          <div className="relative w-8 h-8">
+            <Image
+              src="/images/bx_bx-search-alt-2.svg"
+              alt="reading-book-image"
+              layout="fill"
+            />
+          </div>
         </button>
         <input
           type="text"

@@ -4,11 +4,9 @@ import Link from 'next/link';
 
 export default function Button({ children, color, to  }) {
   let colorSelect;
-  let colorHover;
 
   if (color === 'purple') {
     colorSelect = 'purple';
-    colorHover = '#858bb1';
   }
   if (color === 'dark-grey') {
     colorSelect = 'dark-grey';

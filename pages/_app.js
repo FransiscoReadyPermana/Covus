@@ -1,4 +1,5 @@
-import '../styles/globals.css';
+import '../styles/globals.scss';
+import '../styles/pagination.scss';
 import 'tailwindcss/tailwind.css';
 import Layout from './Components/layout';
 

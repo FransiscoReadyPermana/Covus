@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import Headline from './Components/Headline';
@@ -83,7 +82,7 @@ export default function Home() {
               pencegahanya? Berikut ini mari kita lihat penjelasanya secara
               lengkap.
             </Paragraph>
-            <Button to="#" color="purple">Lihat Selengkapnya</Button>
+            <Button to="/edukasi" color="purple">Lihat Selengkapnya</Button>
           </div>
         </div>
       </section>
@@ -111,7 +110,7 @@ export default function Home() {
               Rujukan COVID-19. Disini kami menampikan data lengkap daftar Rumah
               Sakit Rujukan COVID-19 di Indonesia.
             </Paragraph>
-            <Button to="#" color="dark-grey">Lihat Selengkapnya</Button>
+            <Button to="/RsRujukan" color="dark-grey">Lihat Selengkapnya</Button>
           </div>
           <div className="relative w-1/2 h-5/6 pl-40 mt-12">
             <Image

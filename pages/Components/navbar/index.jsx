@@ -14,7 +14,11 @@ export default function Navbar() {
       <NavItems className="ml-4" to="/" isActive={router.pathname === '/'}>
         Beranda
       </NavItems>
-      <NavItems className="ml-4" to="/">
+      <NavItems
+        className="ml-4"
+        to="/informasi"
+        isActive={router.pathname === '/informasi'}
+      >
         Informasi
       </NavItems>
       <NavItems
@@ -31,7 +35,11 @@ export default function Navbar() {
       >
         RS Rujukan
       </NavItems>
-      <NavItems className="ml-4" to="/">
+      <NavItems
+        className="ml-4"
+        to="/vaksinasi"
+        isActive={router.pathname === '/vaksinasi'}
+      >
         Vaksinasi
       </NavItems>
     </div>
