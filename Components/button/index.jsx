@@ -12,7 +12,7 @@ export default function Button({ children, color, to  }) {
     colorSelect = 'dark-grey';
   }
   return (
-    <Link href={to}>
+    <Link href={to} passHref>
       <button
         className={`${Styles.button} py-5 text-white text-2xl bg-${colorSelect} ${Styles.button} 4 rounded-full`}
       >

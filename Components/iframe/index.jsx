@@ -13,13 +13,16 @@ export default function Iframe() {
         src="https://peta.laporcovid19.org/"
         frameBorder="0"
         className={`w-full ${Styles.HIframe} rounded-lg mb-5 overflow-hidden z-0`}
-      >
-      </iframe>
+      ></iframe>
       <div id="virus" className="bg-green flex justify-end">
         <Virus className={`absolute ${Styles.virusPositionBottom}`} />
       </div>
-      <Link href="https://peta.laporcovid19.org/">
-        <button className={`bg-dark-grey text-white p-4 rounded-full font-medium text-2xl ${Styles.button}`}>Lihat selengkapnya</button>
+      <Link href="https://peta.laporcovid19.org/" passHref={true}>
+        <button
+          className={`bg-dark-grey text-white p-4 rounded-full font-medium text-2xl ${Styles.button}`}
+        >
+          Lihat selengkapnya
+        </button>
       </Link>
     </div>
   );

@@ -18,10 +18,12 @@
     font-size: 13px;
     min-width: 32px;
     border: 2px solid #a5afed;
+    border-left: 1px solid #a5afed;
 
     &:first-child{
       border-radius: 12px 0px 0px 12px; 
       margin-left: 2rem;
+      border-left: 2px solid #a5afed;
     }
     &:last-child{
       border-radius: 0px 12px 12px 0px; 
@@ -44,6 +46,7 @@
     &.dots:hover {
       background-color: transparent;
       cursor: default;
+      color: #494961;
     }
     &:hover {
       background-color: #a5afed;

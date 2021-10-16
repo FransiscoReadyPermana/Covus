@@ -1,13 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
-import Title from '../Components/title';
-import Paragraph from '../Components/paragraph';
+import Title from '../../Components/title';
+import Paragraph from '../../Components/paragraph';
 import styles from './RsRujukan.module.css';
-import Card from '../Components/card';
-import Footer from '../Components/footer';
-import SearchInput from '../Components/searchInput';
-import DropDownEdit from '../Components/dropDown';
-import TableData from '../Components/table';
+import Card from '../../Components/card';
+import Footer from '../../Components/footer';
+import SearchInput from '../../Components/searchInput';
+import DropDownEdit from '../../Components/dropDown';
+import TableData from '../../Components/table';
 
 export default function RSRujukan() {
   return (

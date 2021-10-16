@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
-import Headline from './Components/Headline';
-import Title from './Components/title';
-import Iframe from './Components/iframe';
-import ContainerData from './Components/containerData';
-import Paragraph from './Components/paragraph';
-import Button from './Components/button';
-import Footer from './Components/footer';
+import Headline from '../Components/Headline';
+import Title from '../Components/title';
+import Iframe from '../Components/iframe';
+import ContainerData from '../Components/containerData';
+import Paragraph from '../Components/paragraph';
+import Button from '../Components/button';
+import Footer from '../Components/footer';
 
 export default function Home() {
   return (

@@ -4,10 +4,10 @@ import Pagination from '../pagination';
 import rumahSakit from '../../data/rumahSakit.js';
 import Virus from '../icons/virus';
 
+let PageSize = 10;
 export default function TableData() {
-  let PageSize = 10;
   const [currentPage, setCurrentPage] = useState(1);
-
+  
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
@@ -18,7 +18,9 @@ export default function TableData() {
     <div>
       <div className="flex flex-col w-full relative">
         <div id="virus" className={`flex justify-end `}>
-          <Virus className={`absolute -mt-20 -mr-28 ${styles.virusPositionTop}`} />
+          <Virus
+            className={`absolute -mt-20 -mr-28 ${styles.virusPositionTop}`}
+          />
         </div>
         <div id="table container" className={`${styles.container} z-10`}>
           <table className={`w-full h-80 ${styles.table}`}>
@@ -34,7 +36,7 @@ export default function TableData() {
             <tbody>
               {currentTableData.map((item) => {
                 return (
-                  <tr key="test">
+                  <tr key={item.no}>
                     <td>{item.no}</td>
                     <td>{item.provinsi}</td>
                     <td>{item.nama}</td>

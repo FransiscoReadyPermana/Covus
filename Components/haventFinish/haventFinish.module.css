@@ -3,7 +3,7 @@
 }
 
 .bgFirstSection {
-  background: url('../../../public/images/firstDivider.svg');
+  background: url('../../public/images/firstDivider.svg');
   background-repeat: no-repeat;
   background-size: cover;
 }

@@ -21,7 +21,7 @@ export default function SearchInput({ className }) {
         <input
           type="text"
           placeholder="Cari disini"
-          className={`pl-28 pr-4 ${styles.input} rounded-xl`}
+          className={`pl-20 pr-4 ${styles.input} rounded-xl`}
         />
       </form>
       <button className="bg-purple flex items-center justify-center w-20 h-12 rounded-3xl">
