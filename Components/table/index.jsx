@@ -11,7 +11,7 @@ export default function TableData({data}) {
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return rumahSakit.slice(firstPageIndex, lastPageIndex);
+    return data.slice(firstPageIndex, lastPageIndex);
   }, [currentPage]);
 
   return (
@@ -34,7 +34,7 @@ export default function TableData({data}) {
               </tr>
             </thead>
             <tbody>
-              {data.map((item) => {
+              {currentTableData.map((item) => {
                 return (
                   <tr key={item._id}>
                     <td>{item.no}</td>

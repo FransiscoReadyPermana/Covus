@@ -168,10 +168,11 @@ export async function getServerSideProps() {
       notFound: true,
     }
   }
+  const sortdata = result.data.sort((a, b) => a.no - b.no);
 
   return {
     props: {
-      hospitals: result.data,
+      hospitals: sortdata,
     }
   }
 }
