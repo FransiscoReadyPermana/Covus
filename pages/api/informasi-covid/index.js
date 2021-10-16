@@ -1,5 +1,5 @@
 import dbConnect from "../../../utils/dbConnect";
-import Hospital from "../../../models/rsrujukan";
+import InformasiCovid from "../../../models/informasicovid";
 
 dbConnect();
 
@@ -9,8 +9,8 @@ export default async (req, res) => {
     switch (method) {
         case 'GET':
             try {
-                const hospitals = await Hospital.find({});
-                res.status(200).json({ success: true, data: hospitals })
+                const informasicovids = await InformasiCovid.find({});
+                res.status(200).json({ success: true, data: informasicovids })
             } catch (error) {
                 res.status(400).json({ success: false });
             }
@@ -18,8 +18,8 @@ export default async (req, res) => {
 
         case 'POST':
             try {
-                const hospitals = await Hospital.create(req.body);
-                res.status(201).json({ success: true, data: hospitals })
+                const informasicovids = await InformasiCovid.create(req.body);
+                res.status(200).json({ success: true, data: informasicovids })
             } catch (error) {
                 res.status(400).json({ success: false});
             }

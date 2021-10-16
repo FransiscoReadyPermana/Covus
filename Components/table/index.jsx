@@ -11,7 +11,7 @@ export default function TableData({data}) {
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return data.slice(firstPageIndex, lastPageIndex);
+  return data.slice(firstPageIndex, lastPageIndex);
   }, [currentPage]);
 
   return (

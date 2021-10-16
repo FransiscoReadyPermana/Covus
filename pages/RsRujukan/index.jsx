@@ -44,6 +44,7 @@ export default function RSRujukan({hospitals}) {
   //   })
 
   // }
+  
   return (
     <div className="pt-20">
       <section
@@ -161,15 +162,15 @@ export default function RSRujukan({hospitals}) {
 
 export async function getServerSideProps() {
   const response = await fetch("http://localhost:3000/api/rs-rujukan");
-
   const result = await response.json();
+
   if (!result.success) {
     return {
       notFound: true,
     }
   }
-  const sortdata = result.data.sort((a, b) => a.no - b.no);
 
+  const sortdata = result.data.sort((a, b) => a.no - b.no);
   return {
     props: {
       hospitals: sortdata,
