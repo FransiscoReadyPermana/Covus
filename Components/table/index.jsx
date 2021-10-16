@@ -5,7 +5,7 @@ import rumahSakit from '../../data/rumahSakit.js';
 import Virus from '../icons/virus';
 
 let PageSize = 10;
-export default function TableData() {
+export default function TableData({data}) {
   const [currentPage, setCurrentPage] = useState(1);
   
   const currentTableData = useMemo(() => {
@@ -34,13 +34,13 @@ export default function TableData() {
               </tr>
             </thead>
             <tbody>
-              {currentTableData.map((item) => {
+              {data.map((item) => {
                 return (
-                  <tr key={item.no}>
+                  <tr key={item._id}>
                     <td>{item.no}</td>
                     <td>{item.provinsi}</td>
                     <td>{item.nama}</td>
-                    <td>{item.lokasi}</td>
+                    <td>{item.alamat}</td>
                     <td>{item.telp}</td>
                   </tr>
                 );
