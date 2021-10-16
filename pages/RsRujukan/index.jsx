@@ -147,11 +147,6 @@ export default function RSRujukan({hospitals}) {
             agar anda bisa mengetahui daftar Rumah Sakit Rujukan di sekitar anda
             dengan cepat dan mudah.
           </Paragraph>
-
-          <div className="flex gap-12 items-center mb-10">
-            <DropDownEdit className="w-1/2" />
-            <SearchInput className="w-full" />
-          </div>
           <TableData data={hospitals}/>
         </div>
       </section>

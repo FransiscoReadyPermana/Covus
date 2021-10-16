@@ -1,6 +1,7 @@
 import React from 'react';
 import { usePagination, DOTS } from './usePagination';
 import classnames from 'classnames';
+import uuid from 'react-uuid';
 
 const Pagination = (props) => {
   const {
@@ -50,11 +51,12 @@ const Pagination = (props) => {
       <div className="numberContainer">
         {paginationRange.map((pageNumber) => {
           if (pageNumber === DOTS) {
-            return <li className="pagination-item dots">&#8230;</li>;
+            return <li className="pagination-item dots" key={uuid}>&#8230;</li>;
           }
 
           return (
             <li
+            key={uuid}
               className={classnames('pagination-item', {
                 selected: pageNumber === currentPage,
               })}

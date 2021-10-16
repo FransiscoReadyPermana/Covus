@@ -1,28 +1,81 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import styles from './table.module.css';
 import Pagination from '../pagination';
 import rumahSakit from '../../data/rumahSakit.js';
 import Virus from '../icons/virus';
+import DropDownEdit from '../dropDown';
+import SearchInput from '../searchInput';
 
 let PageSize = 10;
-export default function TableData({data}) {
+export default function TableData({ data }) {
   const [currentPage, setCurrentPage] = useState(1);
-  
-  const currentTableData = useMemo(() => {
+  const [filteredData, setFilteredData] = useState(data);
+  const [userInput, setUserInput] = useState('');
+  const [currentTableData, setCurrentTableData] = useState([]);
+
+  const onSearchHandler = (e) => {
+    setUserInput(e.target.value);
+
+    let filterHospital = null;
+    if (e.target.value.length > 0) {
+      const filterHospitalProv = data.filter((data) =>
+        new RegExp(e.target.value, 'gi').test(data.provinsi)
+      );
+      const filterHospitalNama = data.filter((data) =>
+        new RegExp(e.target.value, 'gi').test(data.nama)
+      );
+      const filterHospitalAlamat = data.filter((data) =>
+        new RegExp(e.target.value, 'gi').test(data.alamat)
+      );
+
+      filterHospital = Array.from(
+        new Set([
+          ...filterHospitalProv,
+          ...filterHospitalNama,
+          ...filterHospitalAlamat,
+        ])
+      );
+      console.log('hallo');
+    } else {
+      filterHospital = data;
+    }
+    setFilteredData(filterHospital);
+  };
+
+  useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-  return data.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+    setCurrentTableData(filteredData.slice(firstPageIndex, lastPageIndex));
+    // return filteredData.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, filteredData]);
+
+  // const currentTableData = useMemo(() => {
+  //   const firstPageIndex = (currentPage - 1) * PageSize;
+  //   const lastPageIndex = firstPageIndex + PageSize;
+  //   return filteredData.slice(firstPageIndex, lastPageIndex);
+  // }, [currentPage]);
 
   return (
     <div>
       <div className="flex flex-col w-full relative">
         <div id="virus" className={`flex justify-end `}>
+          <Virus className={`absolute mt-28 -mr-40`} />
+        </div>
+        <div id="virus" className={`flex justify-start `}>
           <Virus
-            className={`absolute -mt-20 -mr-28 ${styles.virusPositionTop}`}
+            className={`absolute mt-10 -ml-40 ${styles.virusPositionTop}`}
+          />
+        </div>
+        <div className="flex gap-12 items-center mb-10">
+          <DropDownEdit className="w-1/2" />
+          <SearchInput
+            className="w-full"
+            onChangeHandler={(e) => onSearchHandler(e)}
+            value={userInput}
           />
         </div>
         <div id="table container" className={`${styles.container} z-10`}>
+          {/* {filteredData.length != 0 && ( */}
           <table className={`w-full h-80 ${styles.table}`}>
             <thead className="bg-purple text-center text-xl text-white font-bold">
               <tr>
@@ -47,11 +100,12 @@ export default function TableData({data}) {
               })}
             </tbody>
           </table>
+          {/* )} */}
         </div>
         <Pagination
           className="pagination-bar"
           currentPage={currentPage}
-          totalCount={rumahSakit.length}
+          totalCount={filteredData.length}
           pageSize={PageSize}
           onPageChange={(page) => setCurrentPage(page)}
         />

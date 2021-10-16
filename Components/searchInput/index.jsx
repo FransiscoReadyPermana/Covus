@@ -2,7 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 import styles from './searchInput.module.css';
 
-export default function SearchInput({ className }) {
+export default function SearchInput({ className, onChangeHandler, value }) {
+
+
   return (
     <div className="flex gap-12">
       <form
@@ -22,6 +24,8 @@ export default function SearchInput({ className }) {
           type="text"
           placeholder="Cari disini"
           className={`pl-20 pr-4 ${styles.input} rounded-xl`}
+          value={value}
+          onChange={onChangeHandler}
         />
       </form>
       <button className="bg-purple flex items-center justify-center w-20 h-12 rounded-3xl">
