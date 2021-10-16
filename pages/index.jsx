@@ -7,8 +7,9 @@ import ContainerData from '../Components/containerData';
 import Paragraph from '../Components/paragraph';
 import Button from '../Components/button';
 import Footer from '../Components/footer';
+import formatK from '../utils/format';
 
-export default function Home() {
+export default function Home({dataOrang, total}) {
   return (
     <div className="">
 
@@ -41,14 +42,10 @@ export default function Home() {
         <Title color="white">LACAK KASUS COVID</Title>
         <Iframe />
         <div className="flex justify-between w-10/12">
-          <ContainerData title="Sembuh" content="19,244 Jiwa" color="green" />
-          <ContainerData title="Positif" content="19,244 Jiwa" color="red" />
-          <ContainerData title="ODP" content="19,244 Jiwa" color="orange" />
-          <ContainerData
-            title="Meninggal"
-            content="19,244 Jiwa"
-            color="dark-green"
-          />
+          <ContainerData title="Sembuh" content={`${formatK(total.jumlah_sembuh)} Jiwa`} color="green" />
+          <ContainerData title="Positif" content={`${formatK(total.jumlah_positif)} Jiwa`} color="red" />
+          <ContainerData title="ODP" content={`${formatK(dataOrang.jumlah_odp)} Jiwa`} color="orange" />
+          <ContainerData title="Meninggal" content={`${formatK(dataOrang.jumlah_odp)} Jiwa`} color="dark-green" />
         </div>
         <div
           id="divider"
@@ -160,4 +157,15 @@ export default function Home() {
       <Footer color="purple"/>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const response = await fetch("https://data.covid19.go.id/public/api/update.json");
+  const result = await response.json();
+  return {
+    props: {
+      dataOrang: result.data,
+      total: result.update.total,
+    }
+  }
 }
