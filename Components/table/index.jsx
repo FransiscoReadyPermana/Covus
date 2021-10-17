@@ -12,6 +12,7 @@ export default function TableData({ data }) {
   const [filteredData, setFilteredData] = useState(data);
   const [userInput, setUserInput] = useState('');
   const [currentTableData, setCurrentTableData] = useState([]);
+  const [dataDropdown, setDataDropdown] = useState('');
 
   const onSearchHandler = (e) => {
     setUserInput(e.target.value);
@@ -35,11 +36,23 @@ export default function TableData({ data }) {
           ...filterHospitalAlamat,
         ])
       );
-      console.log('hallo');
     } else {
       filterHospital = data;
     }
     setFilteredData(filterHospital);
+  };
+
+  const onFilterDropdown = (e) => {
+    setDataDropdown(e);
+
+    let filterProvinsi = null;
+    if (e.length > 0) {
+      filterProvinsi = data.filter((data) =>
+        new RegExp(e, 'gi').test(data.provinsi)
+      );
+  } else {
+    filterProvinsi = data;
+  } setFilteredData(filterProvinsi);
   };
 
   useEffect(() => {
@@ -67,7 +80,7 @@ export default function TableData({ data }) {
           />
         </div>
         <div className="flex gap-12 items-center mb-10">
-          <DropDownEdit className="w-1/2" />
+          <DropDownEdit className="w-1/2" value={dataDropdown} onChange={onFilterDropdown}/>
           <SearchInput
             className="w-full"
             onChangeHandler={(e) => onSearchHandler(e)}

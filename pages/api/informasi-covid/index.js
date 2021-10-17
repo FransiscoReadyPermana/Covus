@@ -3,7 +3,7 @@ import InformasiCovid from "../../../models/informasicovid";
 
 dbConnect();
 
-export default async (req, res) => {
+const informasicovid = async (req, res) => {
     const { method } = req;
 
     switch (method) {
@@ -30,3 +30,5 @@ export default async (req, res) => {
             break;
     }
 }
+
+module.exports = informasicovid;

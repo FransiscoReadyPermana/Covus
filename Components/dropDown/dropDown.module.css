@@ -2,15 +2,15 @@
   background-color: #a5afed;
   color: white;
   border-radius: 3rem;
+  cursor: pointer;
 }
-
-
 
 .menuControl  {
   border-radius: 1.5rem;
   margin-top: 1rem;
   overflow: scroll;
   text-align: center;
+  cursor: pointer;
 }
 
 .menuControl::-webkit-scrollbar{

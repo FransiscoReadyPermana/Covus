@@ -6,7 +6,7 @@ export default function Card({ children, type }) {
   if (type === 'small'){
     return (
       <div
-        className={`flex flex-col justify-center bg-white w-1/4 h-52 ${Styles.cardSmall} gap-3 p-5 pb-5 pt-5`}
+        className={`flex flex-col justify-center bg-white w-1/4 h-52 ${Styles.cardSmall} gap-3 p-4 pb-5 pt-5`}
       >
         {children}
       </div>
