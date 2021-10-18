@@ -20,14 +20,13 @@ export default function TableDataInformasiGlobal({data}) {
                 let indonesia;
                 if (item.country === "Indonesia") {
                   indonesia = styles.indonesia;
-                }
-                return (
+                } return (
                   <tr key={item._id} className={indonesia}>
-                    <td>{item.country}</td>
+                    <td className="uppercase">{item.country}</td>
                     <td>{item.cases?formatK(item.cases):0}</td>
                     <td>{item.deaths?formatK(item.deaths):0}</td>
                     <td>{item.recovered?formatK(item.recovered):0}</td>
-                    <td>{item.active?formatK(item.active):0}</td>
+                    <td className={`${styles.last}`}>{item.active?formatK(item.active):0}</td>
                   </tr>
                 );
               })}

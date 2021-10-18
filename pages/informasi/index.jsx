@@ -107,7 +107,7 @@ export default function Informasi({dataOrang, total, informasi, informasiGlobal}
         >
         <div
           id="content"
-          className="flex flex-col gap-8 h-full px-96 bg-white w-full"
+          className="flex flex-col gap-8 h-full px-80 bg-white w-full"
         >
           <Title className="text-center" color="dark-grey">
           DATA KASUS COVID-19 DI INDONESIA
@@ -129,15 +129,16 @@ export default function Informasi({dataOrang, total, informasi, informasiGlobal}
 
 export async function getServerSideProps() {
   const dataInformasi = await fetch("https://data.covid19.go.id/public/api/update.json");
-  const dataProvinsi = await fetch("http://localhost:3000/api/informasi-covid");
+  const dataProvinsi = await fetch("https://data.covid19.go.id/public/api/prov.json");
   const dataGlobal = await fetch("https://coronavirus-19-api.herokuapp.com/countries");
 
   const resultInformasi = await dataInformasi.json();
   const resultProvinsi = await dataProvinsi.json();
   const resultGlobal = await dataGlobal.json();
 
-  const sortdata = resultProvinsi.data.sort((a, b) => a.no - b.no);
+  const sortdata = resultProvinsi.list_data.sort((a, b) => b.jumlah_kasus - a.jumlah_kasus);
   const sortGlobal = resultGlobal.sort((a, b) => b.cases - a.cases);
+
   return {
     props: {
       dataOrang: resultInformasi.data,

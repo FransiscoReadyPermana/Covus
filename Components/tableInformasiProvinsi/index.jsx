@@ -18,7 +18,7 @@ export default function TableDataInformasiProvinsi({data}) {
     let filterProvinsi = null;
     if (e.length > 0) {
       filterProvinsi = data.filter((data) =>
-        new RegExp(e, 'gi').test(data.provinsi)
+        new RegExp(e, 'gi').test(data.key)
       );
   } else {
     filterProvinsi = data;
@@ -52,22 +52,22 @@ export default function TableDataInformasiProvinsi({data}) {
           <table className={`w-full ${styles.table}`}>
             <thead className="bg-purple text-center text-xl text-white font-bold">
               <tr>
-                <th className="px-4 py-4">No</th>
-                <th className="px-24 py-4">Provinsi</th>
-                <th className="px-12">Total Positif</th>
+                <th className="px-28 py-4">Provinsi</th>
+                <th className="px-12">Total Kasus</th>
                 <th className="px-12">Total Sembuh</th>
                 <th className="px-12">Total Meninggal</th>
+                <th className="px-12">Dirawat</th>
               </tr>
             </thead>
             <tbody>
               {currentTableData.map((item) => {
                 return (
                   <tr key={item._id} className="text-center">
-                    <td>{item.no}</td>
-                    <td>{item.provinsi}</td>
-                    <td>{formatK(item.positif)}</td>
-                    <td>{formatK(item.sembuh)}</td>
-                    <td>{formatK(item.meninggal)}</td>
+                    <td>{item.key}</td>
+                    <td>{formatK(item.jumlah_kasus)}</td>
+                    <td>{formatK(item.jumlah_sembuh)}</td>
+                    <td>{formatK(item.jumlah_meninggal)}</td>
+                    <td>{formatK(item.jumlah_dirawat)}</td>
                   </tr>
                 );
               })}

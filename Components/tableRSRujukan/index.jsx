@@ -86,7 +86,7 @@ export default function TableData({data}) {
 
         <div id="table container" className={`${styles.container} z-10`}>
           {/* {filteredData.length != 0 && ( */}
-          <table className={`w-full h-80 ${styles.table}`}>
+          <table className={`w-full ${styles.table}`}>
             <thead className="bg-purple text-center text-xl text-white font-bold">
               <tr>
                 <th className="px-3 py-4">No</th>

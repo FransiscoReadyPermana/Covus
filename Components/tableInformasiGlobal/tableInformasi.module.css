@@ -32,6 +32,7 @@
   
   .table tbody tr:first-child td {
     border-top: none;
+    font-weight: 600;
   }
 
   .indonesia {
@@ -42,4 +43,8 @@
   .indonesia td {
     border: none !important;
     font-weight: 600;
+  }
+
+  .last {
+    border-right: none !important;
   }
