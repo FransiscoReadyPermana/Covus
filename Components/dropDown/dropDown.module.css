@@ -3,6 +3,7 @@
   color: white;
   border-radius: 3rem;
   cursor: pointer;
+  padding-left: 3.25rem;
 }
 
 .menuControl  {
@@ -38,8 +39,3 @@
   margin-top: 0.3rem;
   margin-right: 1rem;
 }
-
-.arrowOpen {
-
-}
-
