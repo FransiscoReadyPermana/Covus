@@ -17,7 +17,7 @@ export default function Iframe() {
       <div id="virus" className="bg-green flex justify-end">
         <Virus className={`absolute ${Styles.virusPositionBottom}`} />
       </div>
-      <Link href="https://peta.laporcovid19.org/" passHref={true}>
+      <Link href="/informasi" passHref={true}>
         <button
           className={`bg-dark-grey text-white p-4 rounded-full font-medium text-2xl ${Styles.button}`}
         >

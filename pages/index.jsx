@@ -1,18 +1,17 @@
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
-import Headline from '../Components/Headline';
-import Title from '../Components/title';
-import Iframe from '../Components/iframe';
-import ContainerData from '../Components/containerData';
-import Paragraph from '../Components/paragraph';
-import Button from '../Components/button';
-import Footer from '../Components/footer';
-import formatK from '../utils/format';
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import Headline from "../Components/headline";
+import Title from "../Components/title";
+import Iframe from "../Components/iframe";
+import ContainerData from "../Components/containerData";
+import Paragraph from "../Components/paragraph";
+import Button from "../Components/button";
+import Footer from "../Components/footer";
+import formatK from "../utils/format";
 
-export default function Home({dataOrang, total}) {
+export default function Home({ dataOrang, total }) {
   return (
     <div className="">
-
       {/* first section */}
 
       <section
@@ -42,10 +41,26 @@ export default function Home({dataOrang, total}) {
         <Title color="white">LACAK KASUS COVID</Title>
         <Iframe />
         <div className="flex justify-between w-10/12">
-          <ContainerData title="Sembuh" content={`${formatK(total.jumlah_sembuh)} Jiwa`} color="green" />
-          <ContainerData title="Positif" content={`${formatK(total.jumlah_positif)} Jiwa`} color="red" />
-          <ContainerData title="ODP" content={`${formatK(dataOrang.jumlah_odp)} Jiwa`} color="orange" />
-          <ContainerData title="Meninggal" content={`${formatK(dataOrang.jumlah_odp)} Jiwa`} color="dark-green" />
+          <ContainerData
+            title="Sembuh"
+            content={`${formatK(total.jumlah_sembuh)} Jiwa`}
+            color="green"
+          />
+          <ContainerData
+            title="Positif"
+            content={`${formatK(total.jumlah_positif)} Jiwa`}
+            color="red"
+          />
+          <ContainerData
+            title="ODP"
+            content={`${formatK(dataOrang.jumlah_odp)} Jiwa`}
+            color="orange"
+          />
+          <ContainerData
+            title="Meninggal"
+            content={`${formatK(dataOrang.jumlah_odp)} Jiwa`}
+            color="dark-green"
+          />
         </div>
         <div
           id="divider"
@@ -70,7 +85,10 @@ export default function Home({dataOrang, total}) {
               layout="fill"
             />
           </div>
-          <div id="text" className="flex flex-col gap-12 items-start w-1/2 pt-48">
+          <div
+            id="text"
+            className="flex flex-col gap-12 items-start w-1/2 pt-48"
+          >
             <Title color="dark-grey">
               EDUKASI <br /> SEPUTAR COVID 19
             </Title>
@@ -79,7 +97,9 @@ export default function Home({dataOrang, total}) {
               pencegahanya? Berikut ini mari kita lihat penjelasanya secara
               lengkap.
             </Paragraph>
-            <Button to="/edukasi" color="purple">Lihat Selengkapnya</Button>
+            <Button to="/edukasi" color="purple">
+              Lihat Selengkapnya
+            </Button>
           </div>
         </div>
       </section>
@@ -94,11 +114,11 @@ export default function Home({dataOrang, total}) {
           id="divider"
           className={`${styles.secondBGThirdSection} h-52 w-full absolute -top-40`}
         />
-        <div
-          id="content"
-          className="flex gap-16 h-full px-52 pt-32 bg-purple"
-        >
-          <div id="text" className="flex flex-col gap-12 items-start w-1/2 mt-8">
+        <div id="content" className="flex gap-16 h-full px-52 pt-32 bg-purple">
+          <div
+            id="text"
+            className="flex flex-col gap-12 items-start w-1/2 mt-8"
+          >
             <Title color="white">
               RUMAH SAKIT <br /> RUJUKAN COVID-19
             </Title>
@@ -107,7 +127,9 @@ export default function Home({dataOrang, total}) {
               Rujukan COVID-19. Disini kami menampikan data lengkap daftar Rumah
               Sakit Rujukan COVID-19 di Indonesia.
             </Paragraph>
-            <Button to="/RsRujukan" color="dark-grey">Lihat Selengkapnya</Button>
+            <Button to="/RsRujukan" color="dark-grey">
+              Lihat Selengkapnya
+            </Button>
           </div>
           <div className="relative w-1/2 h-5/6 pl-40 mt-12">
             <Image
@@ -121,18 +143,12 @@ export default function Home({dataOrang, total}) {
 
       {/* fifth section */}
 
-      <section
-        id="fifth"
-        className={`${styles.section5} w-full relative`}
-      >
+      <section id="fifth" className={`${styles.section5} w-full relative`}>
         <div
           id="divider"
           className={`${styles.bgFourthSection} h-52 w-full absolute top-0`}
         />
-        <div
-          id="content"
-          className="flex h-full pr-52 pl-0 pt-32 bg-white" 
-        >
+        <div id="content" className="flex h-full pr-52 pl-0 pt-32 bg-white">
           <div className="relative w-5/6 h-5/6 -z-10 top-8">
             <Image
               src="/images/doctorAndNurse 2.svg"
@@ -140,8 +156,11 @@ export default function Home({dataOrang, total}) {
               layout="fill"
             />
           </div>
-          <div id="text" className="flex flex-col gap-12 items-start w-1/2 mt-32
-          ">
+          <div
+            id="text"
+            className="flex flex-col gap-12 items-start w-1/2 mt-32
+          "
+          >
             <Title color="dark-grey">
               MARI KITA VAKSIN <br /> COVID-19
             </Title>
@@ -150,22 +169,26 @@ export default function Home({dataOrang, total}) {
               bagaimana cara melakukan vaksin serta hal apa saja yang harus
               dipersiapkan sebelum dan sesudah Vaksinasi covid-19
             </Paragraph>
-            <Button to="#" color="purple">Lihat Selengkapnya</Button>
+            <Button to="#" color="purple">
+              Lihat Selengkapnya
+            </Button>
           </div>
         </div>
       </section>
-      <Footer color="purple"/>
+      <Footer color="purple" />
     </div>
   );
 }
 
 export async function getServerSideProps() {
-  const response = await fetch("https://data.covid19.go.id/public/api/update.json");
+  const response = await fetch(
+    "https://data.covid19.go.id/public/api/update.json"
+  );
   const result = await response.json();
   return {
     props: {
       dataOrang: result.data,
       total: result.update.total,
-    }
-  }
+    },
+  };
 }

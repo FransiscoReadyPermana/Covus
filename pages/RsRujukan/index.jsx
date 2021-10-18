@@ -1,16 +1,14 @@
-import React from 'react';
-import Image from 'next/image';
-import Title from '../../Components/title';
-import Paragraph from '../../Components/paragraph';
-import styles from './RsRujukan.module.css';
-import Card from '../../Components/card';
-import Footer from '../../Components/footer';
-import SearchInput from '../../Components/searchInput';
-import DropDownEdit from '../../Components/dropDown';
-import TableData from '../../Components/tableRSRujukan';
+import React from "react";
+import Image from "next/image";
+import Title from "../../Components/title";
+import Paragraph from "../../Components/paragraph";
+import styles from "./RsRujukan.module.css";
+import Card from "../../Components/card";
+import Footer from "../../Components/footer";
+import TableData from "../../Components/table";
 // import { data } from './data';
 
-export default function RSRujukan({hospitals}) {
+export default function RSRujukan({ hospitals }) {
   // const generatedata = async () => {
   //   const dataObject = data.map(d => {
   //     const obj = {
@@ -44,7 +42,7 @@ export default function RSRujukan({hospitals}) {
   //   })
 
   // }
-  
+
   return (
     <div className="pt-20">
       <section
@@ -147,7 +145,7 @@ export default function RSRujukan({hospitals}) {
             agar anda bisa mengetahui daftar Rumah Sakit Rujukan di sekitar anda
             dengan cepat dan mudah.
           </Paragraph>
-          <TableData data={hospitals}/>
+          <TableData data={hospitals} type="Hospitals"/>
         </div>
       </section>
       <Footer color="purple" />
@@ -159,16 +157,10 @@ export async function getServerSideProps() {
   const response = await fetch("http://localhost:3000/api/rs-rujukan");
   const result = await response.json();
 
-  // if (!result.success) {
-  //   return {
-  //     notFound: true,
-  //   }
-  // }
-
   const sortdata = result.data.sort((a, b) => a.no - b.no);
   return {
     props: {
       hospitals: sortdata,
-    }
-  }
+    },
+  };
 }

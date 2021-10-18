@@ -1,10 +1,13 @@
-import React from 'react';
-import Image from 'next/image';
-import styles from './searchInput.module.css';
+import React from "react";
+import Image from "next/image";
+import styles from "./searchInput.module.css";
 
-export default function SearchInput({ className, onChangeHandler, value }) {
-
-
+export default function SearchInput({
+  className,
+  onChangeHandler,
+  value,
+  onClick,
+}) {
   return (
     <div className="flex gap-12">
       <form
@@ -28,7 +31,10 @@ export default function SearchInput({ className, onChangeHandler, value }) {
           onChange={onChangeHandler}
         />
       </form>
-      <button className="bg-purple flex items-center justify-center w-20 h-12 rounded-3xl">
+      <button
+        className="bg-purple flex items-center justify-center w-20 h-12 rounded-3xl"
+        onClick={onClick}
+      >
         <div className="relative  w-8 h-8">
           <Image
             src="/images/ion_reload-sharp.svg"
