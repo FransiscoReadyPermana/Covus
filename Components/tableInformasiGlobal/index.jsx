@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './tableInformasi.module.css';
+import styles from './table.module.css';
 import formatK from '../../utils/format';
 
 export default function TableDataInformasiGlobal({data}) {

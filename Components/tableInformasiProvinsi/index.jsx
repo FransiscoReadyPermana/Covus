@@ -4,6 +4,7 @@ import Pagination from '../pagination';
 import Virus from '../icons/virus';
 import DropDownEdit from '../dropDown';
 import formatK from '../../utils/format';
+import Image from 'next/image';
 
 let PageSize = 10;
 export default function TableDataInformasiProvinsi({data}) {
@@ -43,9 +44,19 @@ export default function TableDataInformasiProvinsi({data}) {
           />
         </div> */}
 
-        <div className="flex gap-12 items-center mb-10 flex-col">
+        <div className="flex gap-12 items-center mb-10 flex-row justify-center">
           <DropDownEdit className="w-1/2" value={dataDropdown} onChange={onFilterDropdown}/>
+          <button className="bg-purple flex items-center justify-center w-20 h-12 rounded-3xl">
+        <div className="relative  w-8 h-8">
+          <Image
+            src="/images/ion_reload-sharp.svg"
+            alt="reading-book-image"
+            layout="fill"
+          />
         </div>
+      </button>
+        </div>
+
 
         <div id="table container" className={`${styles.container} z-10`}>
           {/* {filteredData.length != 0 && ( */}
@@ -67,7 +78,7 @@ export default function TableDataInformasiProvinsi({data}) {
                     <td>{formatK(item.jumlah_kasus)}</td>
                     <td>{formatK(item.jumlah_sembuh)}</td>
                     <td>{formatK(item.jumlah_meninggal)}</td>
-                    <td>{formatK(item.jumlah_dirawat)}</td>
+                    <td className={`${styles.last}`}>{formatK(item.jumlah_dirawat)}</td>
                   </tr>
                 );
               })}
@@ -90,6 +101,7 @@ export default function TableDataInformasiProvinsi({data}) {
         {/* <div id="virus" className={`flex justify-start`}>
           <Virus className={`absolute -mt-56 -ml-20 w-40`} />
         </div> */}
+
       </div>
     </div>
   );
