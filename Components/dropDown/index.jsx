@@ -14,7 +14,7 @@ export default function DropDownEdit({className, value, onChange}) {
       controlClassName={`text-xl font-medium ${styles.dropDownControl}`}
       menuClassName={`font-medium ${styles.menuControl}`}
       arrowClassName={`${styles.myArrowClassName}`}
-      arrowOpen={<span className="border-2 border-red-500" />}
+      arrowOpen={<span className="border-2 border-red-500"/>}
       value={value}
       onChange={(e) => onChange(e.value)}
     />

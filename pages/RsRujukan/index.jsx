@@ -7,7 +7,7 @@ import Card from '../../Components/card';
 import Footer from '../../Components/footer';
 import SearchInput from '../../Components/searchInput';
 import DropDownEdit from '../../Components/dropDown';
-import TableData from '../../Components/table';
+import TableData from '../../Components/tableRSRujukan';
 // import { data } from './data';
 
 export default function RSRujukan({hospitals}) {

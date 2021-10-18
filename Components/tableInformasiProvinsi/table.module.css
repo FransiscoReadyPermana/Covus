@@ -1,0 +1,45 @@
+.container {
+    border: 4px solid #a5afed;
+    border-radius: 2rem;
+    overflow: hidden;
+    background-color: #fff;
+  }
+  
+  .table {
+    border-collapse: collapse;
+    border-radius: 1rem;
+    overflow-x: scroll;
+  }
+
+  .table tbody tr td {
+    border: 8px #f7f8ff solid;
+    border-bottom: none;
+    border-left: none;
+    padding: 1rem 0 1rem 0;
+  }
+  
+  .table tbody tr:first-child td {
+    border-top: none;
+  }
+  
+  .table tbody tr td:first-child {
+    text-align: center;
+  }
+  
+  /* .virusPositionTop {
+    margin-right: -7rem;
+    margin-top: -5rem;
+  } */
+  
+  /* .virusPositionBottom {
+    margin-right: -7rem;
+    margin-top: -12rem;
+    z-index: 0;
+  }
+  
+  .virusPositionBottomRight {
+    margin-right: 8rem;
+    margin-top: -12rem;
+    z-index: 0;
+  }
+   */

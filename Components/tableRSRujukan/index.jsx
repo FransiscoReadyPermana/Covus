@@ -1,13 +1,12 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import styles from './table.module.css';
 import Pagination from '../pagination';
-import rumahSakit from '../../data/rumahSakit.js';
 import Virus from '../icons/virus';
 import DropDownEdit from '../dropDown';
 import SearchInput from '../searchInput';
 
 let PageSize = 10;
-export default function TableData({ data }) {
+export default function TableData({data}) {
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredData, setFilteredData] = useState(data);
   const [userInput, setUserInput] = useState('');
@@ -79,14 +78,12 @@ export default function TableData({ data }) {
             className={`absolute mt-10 -ml-40 ${styles.virusPositionTop}`}
           />
         </div>
+
         <div className="flex gap-12 items-center mb-10">
           <DropDownEdit className="w-1/2" value={dataDropdown} onChange={onFilterDropdown}/>
-          <SearchInput
-            className="w-full"
-            onChangeHandler={(e) => onSearchHandler(e)}
-            value={userInput}
-          />
+          <SearchInput className="w-full" onChangeHandler={(e) => onSearchHandler(e)} value={userInput}/>
         </div>
+
         <div id="table container" className={`${styles.container} z-10`}>
           {/* {filteredData.length != 0 && ( */}
           <table className={`w-full h-80 ${styles.table}`}>
@@ -115,6 +112,7 @@ export default function TableData({ data }) {
           </table>
           {/* )} */}
         </div>
+
         <Pagination
           className="pagination-bar"
           currentPage={currentPage}
@@ -125,6 +123,7 @@ export default function TableData({ data }) {
         <div id="virus" className={`flex justify-end `}>
           <Virus className={`absolute  -mt-48 w-80`} />
         </div>
+        
         <div id="virus" className={`flex justify-start`}>
           <Virus className={`absolute -mt-56 -ml-20 w-40`} />
         </div>
