@@ -137,12 +137,13 @@ export async function getServerSideProps() {
   const resultGlobal = await dataGlobal.json();
 
   const sortdata = resultProvinsi.data.sort((a, b) => a.no - b.no);
+  const sortGlobal = resultGlobal.sort((a, b) => b.cases - a.cases);
   return {
     props: {
       dataOrang: resultInformasi.data,
       total: resultInformasi.update.total,
       informasi: sortdata,
-      informasiGlobal: resultGlobal,
+      informasiGlobal: sortGlobal,
     }
   }
 }
