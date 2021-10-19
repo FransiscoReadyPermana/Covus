@@ -39,10 +39,10 @@ export default function Informasi({
 
       <section id="second" className={`${styles.section2} w-full relative`}>
         <div id="divider" className={`${styles.bgFirstSection} h-52 w-full`} />
-        <div id="content" className="flex h-full pl-0 pt-8 bg-white">
+        <div id="content" className="flex h-full pl-0 pt-8 bg-white items-center flex-col w-full">
           <div
             id="content"
-            className="flex flex-col gap-8 h-full px-80  bg-white "
+            className="flex flex-col gap-8 h-full px-80 bg-white "
           >
             <Title className="text-center" color="dark-grey">
               NEGARA DENGAN KASUS COVID-19 TERTINGGI
@@ -113,7 +113,7 @@ export default function Informasi({
         >
           <div
             id="content"
-            className="flex flex-col gap-8 h-full px-80 bg-white w-full"
+            className="flex flex-col gap-8 h-full px-80 bg-white w-full items-center"
           >
             <Title className="text-center" color="dark-grey">
               DATA KASUS COVID-19 DI INDONESIA

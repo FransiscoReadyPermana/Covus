@@ -11,7 +11,7 @@ import formatK from "../utils/format";
 
 export default function Home({ dataOrang, total }) {
   return (
-    <div className="">
+    <div className="h-screen w-full">
       {/* first section */}
 
       <section

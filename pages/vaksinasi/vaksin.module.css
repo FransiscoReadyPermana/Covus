@@ -1,0 +1,19 @@
+.section5 {
+  height: 100vh;
+}
+
+.section2 {
+    height: 100vh;
+}
+
+.bgFourthSection {
+  background: url("../../public/images/thirdDivider.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.footerDividerPurple {
+  background: url("../../public/images/fourthDivider.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
