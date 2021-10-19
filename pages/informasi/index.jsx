@@ -97,7 +97,7 @@ export default function Informasi({
 
               <ContainerData
                 title="Meninggal"
-                content={`${formatK(dataOrang.jumlah_odp)} Jiwa`}
+                content={`${formatK(total.jumlah_meninggal)} Jiwa`}
                 color="dark-green"
               />
             </div>

@@ -40,7 +40,7 @@ export default function Home({ dataOrang, total }) {
       >
         <Title color="white">LACAK KASUS COVID</Title>
         <Iframe />
-        <div className="flex justify-between w-10/12">
+        <div className="flex justify-between w-10/12 gap-12">
           <ContainerData
             title="Sembuh"
             content={`${formatK(total.jumlah_sembuh)} Jiwa`}
@@ -58,7 +58,7 @@ export default function Home({ dataOrang, total }) {
           />
           <ContainerData
             title="Meninggal"
-            content={`${formatK(dataOrang.jumlah_odp)} Jiwa`}
+            content={`${formatK(total.jumlah_meninggal)} Jiwa`}
             color="dark-green"
           />
         </div>
