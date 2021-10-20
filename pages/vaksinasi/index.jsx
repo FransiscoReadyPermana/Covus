@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./vaksin.module.css";
 import Title from "../../Components/title";
@@ -7,8 +7,21 @@ import Button from "../../Components/button";
 import Footer from "../../Components/footer";
 import formatK from "../../utils/format";
 import Card from "../../Components/card";
+import uuid from "react-uuid";
+import Pagination from "../../Components/pagination";
 
-export default function Vaksinasi() {
+export default function Vaksinasi({ data }) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const PageSize = 3;
+
+  useEffect(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    setCurrentPage(
+      data.slice(firstPageIndex, lastPageIndex)
+    );
+  }, [currentPage, data]);
+
   return (
     <div className="h-screen w-full">
       <section id="fifth" className={`${styles.section5} w-full relative`}>
@@ -229,31 +242,55 @@ export default function Vaksinasi() {
           id="divider"
           className={`${styles.dividerKetiga} h-10  w-full absolute`}
         />
+
         <div
           id="content"
-          className="flex gap-12 h-full px-52 bg-white justify-center"
+          className="flex gap-12 h-full px-52 bg-white justify-center pt-40"
         >
           <div
-            className={`flex flex-col justify-center bg-white w-1/4 h-96 ${styles.card} gap-8 pb-5 pt-2 mt-40`}
+            id="container card"
+            className="w-full flex h-64 justify-center gap-12 mt-12"
           >
-            <div className="w-3/4 h-3/4 flex justify-center gap-12 mt-12 flex-col">
-              <div className="relative h-full w-full flex flex-col">
-                <Image
-                  src="/images/layer 6.png"
-                  alt="reading-book-image"
-                  layout="fill"
-                />
-              </div>
-              <p
-                color="dark-grey"
-                className="text-center font-semibold text-2xl text-dark-grey"
+            {data.map((item) => (
+              <div
+                id="card"
+                className={`flex flex-col justify-center bg-white w-1/4 h-96 gap-8 pt-2 items-center ${styles.card}`}
               >
-                Vaksinasi Selesai
-              </p>
-            </div>
+                <div className="relative h-72 w-80 mt-4">
+                  <Image
+                    src={item.image}
+                    alt="reading-book-image"
+                    layout="fill"
+                  />
+                </div>
+                <p
+                  color="dark-grey"
+                  className="text-center font-semibold text-3xl text-dark-grey mb-6"
+                >
+                  {item.nama}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
+        <Pagination
+          className="pagination-bar"
+          currentPage={currentPage}
+          totalCount={data.length}
+          pageSize={PageSize}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
       </section>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const response = await fetch("http://localhost:3000/api/vaksinasi-provinsi");
+  const result = await response.json();
+  return {
+    props: {
+      data: result.data,
+    },
+  };
 }
