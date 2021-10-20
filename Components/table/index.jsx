@@ -10,6 +10,36 @@ import Image from "next/image";
 import SearchInput from "../searchInput";
 
 export default function TableData({ data, type }) {
+  const [currentPageProvinsi, setCurrentPageProvinsi] = useState(1);
+  const [filteredDataProvinsi, setFilteredDataProvinsi] = useState(data);
+  const [currentTableDataProvinsi, setCurrentTableDataProvinsi] = useState([]);
+  const [dataDropdownProvinsi, setDataDropdownProvinsi] = useState("");
+
+  const [currentPageHospitals, setCurrentPageHospitals] = useState(1);
+  const [filteredDataHospitals, setFilteredDataHospitals] = useState(data);
+  const [userInputHospitals, setUserInputHospitals] = useState("");
+  const [currentTableDataHospitals, setCurrentTableDataHospitals] = useState(
+    []
+  );
+  const [dataDropdownHospitals, setDataDropdownHospitals] = useState("");
+
+  useEffect(() => {
+    const firstPageIndex = (currentPageProvinsi - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    setCurrentTableDataProvinsi(
+      filteredDataProvinsi.slice(firstPageIndex, lastPageIndex)
+    );
+  }, [currentPageProvinsi, filteredDataProvinsi]);
+
+  useEffect(() => {
+    const firstPageIndex = (currentPageHospitals - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    setCurrentTableDataHospitals(
+      filteredDataHospitals.slice(firstPageIndex, lastPageIndex)
+    );
+    // return filteredDataHospitals.slice(firstPageIndex, lastPageIndex);
+  }, [currentPageHospitals, filteredDataHospitals]);
+
   let PageSize = 10;
   if (type === "Global") {
     return (
@@ -49,13 +79,8 @@ export default function TableData({ data, type }) {
   }
 
   if (type === "Provinsi") {
-    const [currentPage, setCurrentPage] = useState(1);
-    const [filteredData, setFilteredData] = useState(data);
-    const [currentTableData, setCurrentTableData] = useState([]);
-    const [dataDropdown, setDataDropdown] = useState("");
-
     const onFilterDropdown = (e) => {
-      setDataDropdown(e);
+      setDataDropdownProvinsi(e);
       let filterProvinsi = null;
 
       if (e.length > 0) {
@@ -64,36 +89,23 @@ export default function TableData({ data, type }) {
         );
       } else {
         filterProvinsi = data;
-        setDataDropdown("Pilih Provinsi");
+        setDataDropdownProvinsi("Pilih Provinsi");
       }
-      setFilteredData(filterProvinsi);
+      setFilteredDataProvinsi(filterProvinsi);
     };
-
-    useEffect(() => {
-      const firstPageIndex = (currentPage - 1) * PageSize;
-      const lastPageIndex = firstPageIndex + PageSize;
-      setCurrentTableData(filteredData.slice(firstPageIndex, lastPageIndex));
-    }, [currentPage, filteredData]);
-
     return (
       <div>
         <div className="flex flex-col w-full relative">
-          {/* <div id="virus" className={`flex justify-end `}>
-                <Virus className={`absolute mt-28 -mr-40`} />
-                </div>
-                <div id="virus" className={`flex justify-start `}>
-                <Virus
-                    className={`absolute mt-10 -ml-40 ${styles.virusPositionTop}`}
-                />
-                </div> */}
-
           <div className="flex gap-12 items-center mb-10 flex-row justify-center">
             <DropDownEdit
               className="w-1/2"
-              value={dataDropdown}
+              value={dataDropdownProvinsi}
               onChange={onFilterDropdown}
             />
-            <button className="bg-purple flex items-center justify-center w-20 h-12 rounded-3xl" onClick={onFilterDropdown}>
+            <button
+              className="bg-purple flex items-center justify-center w-20 h-12 rounded-3xl"
+              onClick={onFilterDropdown}
+            >
               <div className="relative  w-8 h-8">
                 <Image
                   src="/images/ion_reload-sharp.svg"
@@ -108,7 +120,6 @@ export default function TableData({ data, type }) {
             id="table container"
             className={`${stylesProvinsi.container} z-10`}
           >
-            {/* {filteredData.length != 0 && ( */}
             <table className={`w-full ${stylesProvinsi.table}`}>
               <thead className="bg-purple text-center text-xl text-white font-bold">
                 <tr>
@@ -120,7 +131,7 @@ export default function TableData({ data, type }) {
                 </tr>
               </thead>
               <tbody>
-                {currentTableData.map((item) => {
+                {currentTableDataProvinsi.map((item) => {
                   return (
                     <tr key={item._id} className="text-center">
                       <td>{item.key}</td>
@@ -135,36 +146,22 @@ export default function TableData({ data, type }) {
                 })}
               </tbody>
             </table>
-            {/* )} */}
           </div>
 
           <Pagination
             className="pagination-bar"
-            currentPage={currentPage}
-            totalCount={filteredData.length}
+            currentPage={currentPageProvinsi}
+            totalCount={filteredDataProvinsi.length}
             pageSize={PageSize}
-            onPageChange={(page) => setCurrentPage(page)}
+            onPageChange={(page) => setCurrentPageProvinsi(page)}
           />
-          {/* <div id="virus" className={`flex justify-end `}>
-                <Virus className={`absolute  -mt-48 w-80`} />
-                </div> */}
-
-          {/* <div id="virus" className={`flex justify-start`}>
-                <Virus className={`absolute -mt-56 -ml-20 w-40`} />
-                </div> */}
         </div>
       </div>
     );
   }
   if (type === "Hospitals") {
-    const [currentPage, setCurrentPage] = useState(1);
-    const [filteredData, setFilteredData] = useState(data);
-    const [userInput, setUserInput] = useState("");
-    const [currentTableData, setCurrentTableData] = useState([]);
-    const [dataDropdown, setDataDropdown] = useState("");
-
     const onSearchHandler = (e) => {
-      setUserInput(e.target.value);
+      setUserInputHospitals(e.target.value);
 
       let filterHospital = null;
       if (e.target.value.length > 0) {
@@ -188,11 +185,11 @@ export default function TableData({ data, type }) {
       } else {
         filterHospital = data;
       }
-      setFilteredData(filterHospital);
+      setFilteredDataHospitals(filterHospital);
     };
 
     const onFilterDropdown = (e) => {
-      setDataDropdown(e);
+      setDataDropdownHospitals(e);
 
       let filterProvinsi = null;
       if (e.length > 0) {
@@ -201,23 +198,10 @@ export default function TableData({ data, type }) {
         );
       } else {
         filterProvinsi = data;
-        setDataDropdown("Pilih Provinsi");
+        setDataDropdownHospitals("Pilih Provinsi");
       }
-      setFilteredData(filterProvinsi);
+      setFilteredDataHospitals(filterProvinsi);
     };
-
-    useEffect(() => {
-      const firstPageIndex = (currentPage - 1) * PageSize;
-      const lastPageIndex = firstPageIndex + PageSize;
-      setCurrentTableData(filteredData.slice(firstPageIndex, lastPageIndex));
-      // return filteredData.slice(firstPageIndex, lastPageIndex);
-    }, [currentPage, filteredData]);
-
-    // const currentTableData = useMemo(() => {
-    //   const firstPageIndex = (currentPage - 1) * PageSize;
-    //   const lastPageIndex = firstPageIndex + PageSize;
-    //   return filteredData.slice(firstPageIndex, lastPageIndex);
-    // }, [currentPage]);
 
     return (
       <div>
@@ -234,13 +218,13 @@ export default function TableData({ data, type }) {
           <div className="flex gap-12 items-center mb-10">
             <DropDownEdit
               className="w-1/2"
-              value={dataDropdown}
+              value={dataDropdownHospitals}
               onChange={onFilterDropdown}
             />
             <SearchInput
               className="w-full"
               onChangeHandler={(e) => onSearchHandler(e)}
-              value={userInput}
+              value={userInputHospitals}
               onClick={onFilterDropdown}
             />
           </div>
@@ -249,7 +233,7 @@ export default function TableData({ data, type }) {
             id="table container"
             className={`${stylesHospitals.container} z-10`}
           >
-            {/* {filteredData.length != 0 && ( */}
+            {/* {filteredDataHospitals.length != 0 && ( */}
             <table className={`w-full ${stylesHospitals.table}`}>
               <thead className="bg-purple text-center text-xl text-white font-bold">
                 <tr>
@@ -261,7 +245,7 @@ export default function TableData({ data, type }) {
                 </tr>
               </thead>
               <tbody>
-                {currentTableData.map((item) => {
+                {currentTableDataHospitals.map((item) => {
                   return (
                     <tr key={item._id}>
                       <td>{item.no}</td>
@@ -279,10 +263,10 @@ export default function TableData({ data, type }) {
 
           <Pagination
             className="pagination-bar"
-            currentPage={currentPage}
-            totalCount={filteredData.length}
+            currentPage={currentPageHospitals}
+            totalCount={filteredDataHospitals.length}
             pageSize={PageSize}
-            onPageChange={(page) => setCurrentPage(page)}
+            onPageChange={(page) => setCurrentPageHospitals(page)}
           />
           <div id="virus" className={`flex justify-end `}>
             <Virus className={`absolute  -mt-48 w-80`} />

@@ -2,8 +2,8 @@
   height: 100vh;
 }
 
-.section2 {
-    height: 100vh;
+.section3 {
+  height: 100vh;
 }
 
 .bgFourthSection {
@@ -16,4 +16,12 @@
   background: url("../../public/images/fourthDivider.svg");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.dividerKetiga {
+  background: url("../../public/images/fourthDivider.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transform: scaley(-1);
+  transform: scaley(-1);
 }

@@ -1,11 +1,11 @@
-import React from 'react';
-import Image from 'next/image';
-import styles from './edukasi.module.css';
-import Paragraph from '../../Components/paragraph';
-import Button from '../../Components/button';
-import Title from '../../Components/title';
-import Card from '../../Components/card';
-import Footer from '../../Components/footer';
+import React from "react";
+import Image from "next/image";
+import styles from "./edukasi.module.css";
+import Paragraph from "../../Components/paragraph";
+import Button from "../../Components/button";
+import Title from "../../Components/title";
+import Card from "../../Components/card";
+import Footer from "../../Components/footer";
 
 export default function Edukasi() {
   return (
@@ -38,9 +38,15 @@ export default function Edukasi() {
             <Paragraph size="2xl" color="dark-grey">
               Cari tahu Edukasi seputar Covid-19
             </Paragraph>
-            <Button to="#second" color="purple">Apa itu Covid-19</Button>
-            <Button to="#third" color="purple">Apa saja gejala Covid-19</Button>
-            <Button to="#fourth" color="purple">Pencegahan Covid-19</Button>
+            <Button to="#second" color="purple">
+              Apa itu Covid-19
+            </Button>
+            <Button to="#third" color="purple">
+              Apa saja gejala Covid-19
+            </Button>
+            <Button to="#fourth" color="purple">
+              Pencegahan Covid-19
+            </Button>
           </div>
         </div>
       </section>
@@ -59,7 +65,10 @@ export default function Edukasi() {
           id="content"
           className="flex gap-16 h-full px-52  bg-purple items-center"
         >
-          <div id="text" className="flex flex-col gap-8 items-start w-1/2 mb-12">
+          <div
+            id="text"
+            className="flex flex-col gap-8 items-start w-1/2 mb-12"
+          >
             <Title color="white">APA ITU COVID-19?</Title>
             <Paragraph size="2xl" color="white">
               Coronavirus adalah kumpulan virus yang bisa menginfeksi sistem
@@ -267,7 +276,7 @@ export default function Edukasi() {
           </div>
         </div>
       </section>
-      <Footer color="white"/>
+      <Footer color="white" />
     </div>
   );
 }

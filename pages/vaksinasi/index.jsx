@@ -6,7 +6,7 @@ import Paragraph from "../../Components/paragraph";
 import Button from "../../Components/button";
 import Footer from "../../Components/footer";
 import formatK from "../../utils/format";
-import Card from '../../Components/card';
+import Card from "../../Components/card";
 
 export default function Vaksinasi() {
   return (
@@ -57,74 +57,138 @@ export default function Vaksinasi() {
           className={`${styles.footerDividerPurple} h-10  w-full absolute -top-10`}
         />
 
-        <div id="content" className="flex h-full pt-24 bg-purple px-52">
-          <div className="flex flex-col w-full items-center">
-            <Title color="white">TATA CARA VAKSINASI COVUS</Title>
+        <div
+          id="content"
+          className="flex gap-12 h-full px-52 bg-purple justify-center"
+        >
+          <div id="text" className="flex flex-col items-center w-full mt-24">
+            <Title color="white">PROSES VAKSINASI COVUS</Title>
 
-            <div className="flex flex-row w-full items-center justify-center gap-12 mt-12">
+            <div className="w-full h-full flex justify-center gap-12 mt-12">
               <Card type="big">
-                <div
-                  id="card containter"
-                  className="w-full h-full flex justify-between gap-12"
-                >
-                  
+                <div className="h-2/3 w-2/3 flex m-auto mt-8">
+                  <div className=" relative h-full w-full flex flex-col">
+                    <Image
+                      src="/images/layer 1.png"
+                      alt="reading-book-image"
+                      layout="fill"
+                    />
+                  </div>
                 </div>
                 <p
                   color="dark-grey"
                   className="text-center font-semibold text-2xl text-dark-grey"
                 >
-                  Sesak Nafas
-                </p>
-              </Card>
-              
-              <Card type="big">
-                <div
-                  id="card containter"
-                  className="w-full h-full flex justify-between gap-12"
-                >
-                 
-                </div>
-                <p
-                  color="dark-grey"
-                  className="text-center font-semibold text-2xl text-dark-grey"
-                >
-                  Sesak Nafas
+                  Datang ke Lokasi
                 </p>
               </Card>
 
               <Card type="big">
-                <div
-                  id="card containter"
-                  className="w-full h-full flex justify-between gap-12"
-                >
-                  
+                <div className="h-2/3 w-2/3 flex m-auto mt-8">
+                  <div className=" relative h-full w-full flex flex-col">
+                    <Image
+                      src="/images/layer 2.png"
+                      alt="reading-book-image"
+                      layout="fill"
+                    />
+                  </div>
                 </div>
                 <p
                   color="dark-grey"
                   className="text-center font-semibold text-2xl text-dark-grey"
                 >
-                  Sesak Nafas
+                  Pendataan Ulang
                 </p>
               </Card>
 
               <Card type="big">
-                <div
-                  id="card containter"
-                  className="w-full h-full flex justify-between gap-12"
-                >
-                  
+                <div className="h-2/3 w-2/3 flex m-auto mt-8">
+                  <div className=" relative h-full w-full flex flex-col">
+                    <Image
+                      src="/images/layer 3.png"
+                      alt="reading-book-image"
+                      layout="fill"
+                    />
+                  </div>
                 </div>
                 <p
                   color="dark-grey"
                   className="text-center font-semibold text-2xl text-dark-grey"
                 >
-                  Sesak Nafas
+                  Check Kesehatan
+                </p>
+              </Card>
+            </div>
+
+            <div
+              id="content2"
+              className="w-full h-full flex justify-center gap-12 mt-12 mb-28"
+            >
+              <Card type="big">
+                <div className="h-2/3 w-2/3 flex m-auto mt-8">
+                  <div className=" relative h-full w-full flex flex-col">
+                    <Image
+                      src="/images/layer 4.png"
+                      alt="reading-book-image"
+                      layout="fill"
+                    />
+                  </div>
+                </div>
+                <p
+                  color="dark-grey"
+                  className="text-center font-semibold text-2xl text-dark-grey"
+                >
+                  Penyuntikan Vaksin
+                </p>
+              </Card>
+
+              <Card type="big">
+                <div className="h-2/3 w-2/3 flex m-auto mt-8">
+                  <div className=" relative h-full w-full flex flex-col">
+                    <Image
+                      src="/images/layer 5.png"
+                      alt="reading-book-image"
+                      layout="fill"
+                    />
+                  </div>
+                </div>
+                <p
+                  color="dark-grey"
+                  className="text-center font-semibold text-2xl text-dark-grey"
+                >
+                  Observasi Kesehatan
+                </p>
+              </Card>
+
+              <Card type="big">
+                <div className="h-2/3 w-2/3 flex m-auto mt-8">
+                  <div className=" relative h-full w-full flex flex-col">
+                    <Image
+                      src="/images/layer 6.png"
+                      alt="reading-book-image"
+                      layout="fill"
+                    />
+                  </div>
+                </div>
+                <p
+                  color="dark-grey"
+                  className="text-center font-semibold text-2xl text-dark-grey"
+                >
+                  Vaksinasi Selesai
                 </p>
               </Card>
             </div>
           </div>
         </div>
       </section>
+
+      <section id="third" className={`${styles.section3} w-full relative`}>
+        <div
+          id="divider"
+          className={`${styles.dividerKetiga} h-10  w-full absolute`}
+        />
+      </section>
+
     </div>
   );
 }
