@@ -1,13 +1,13 @@
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import Headline from "../Components/headline";
-import Title from "../Components/title";
-import Iframe from "../Components/iframe";
-import ContainerData from "../Components/containerData";
-import Paragraph from "../Components/paragraph";
-import Button from "../Components/button";
-import Footer from "../Components/footer";
-import formatK from "../utils/format";
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
+import Headline from '../Components/headline';
+import Title from '../Components/title';
+import Iframe from '../Components/iframe';
+import ContainerData from '../Components/containerData';
+import Paragraph from '../Components/paragraph';
+import Button from '../Components/button';
+import Footer from '../Components/footer';
+import formatK from '../utils/format';
 
 export default function Home({ dataOrang, total }) {
   return (
@@ -21,7 +21,9 @@ export default function Home({ dataOrang, total }) {
         <div className="flex justify-center items-center mt-32 h-20">
           <div className="bg-purple w-40 h-2 "></div>
           <Headline className="mx-5 text-dark-purple">
-            HEALTH <span className="text-purple">IS</span> PRECIOUS
+            HEALTH{' '}
+            <span className={`${styles.span} text-purple text-5xl`}>IS</span>{' '}
+            PRECIOUS
           </Headline>
           <div className="bg-purple w-40 h-2 "></div>
         </div>
@@ -89,14 +91,16 @@ export default function Home({ dataOrang, total }) {
             id="text"
             className="flex flex-col gap-12 items-start w-1/2 pt-48"
           >
-            <Title color="dark-grey">
-              EDUKASI <br /> SEPUTAR COVID 19
-            </Title>
-            <Paragraph size="2xl" color="dark-grey">
-              Apa itu COVID-19, apa saja gejalanya dan bagaimana cara
-              pencegahanya? Berikut ini mari kita lihat penjelasanya secara
-              lengkap.
-            </Paragraph>
+            <div className="flex flex-col gap-4">
+              <Title color="dark-grey">
+                EDUKASI <br /> SEPUTAR COVID 19
+              </Title>
+              <Paragraph size="2xl" color="dark-grey">
+                Apa itu COVID-19, apa saja gejalanya dan bagaimana cara
+                pencegahanya? Berikut ini mari kita lihat penjelasanya secara
+                lengkap.
+              </Paragraph>
+            </div>
             <Button to="/edukasi" color="purple">
               Lihat Selengkapnya
             </Button>
@@ -119,14 +123,16 @@ export default function Home({ dataOrang, total }) {
             id="text"
             className="flex flex-col gap-12 items-start w-1/2 mt-8"
           >
-            <Title color="white">
-              RUMAH SAKIT <br /> RUJUKAN COVID-19
-            </Title>
-            <Paragraph size="2xl" color="white">
-              Anda bingung dan tidak tahu kemana harus mencari Rumah Sakit
-              Rujukan COVID-19. Disini kami menampikan data lengkap daftar Rumah
-              Sakit Rujukan COVID-19 di Indonesia.
-            </Paragraph>
+            <div className="flex flex-col gap-4">
+              <Title color="white">
+                RUMAH SAKIT <br /> RUJUKAN COVID-19
+              </Title>
+              <Paragraph size="2xl" color="white">
+                Anda bingung dan tidak tahu kemana harus mencari Rumah Sakit
+                Rujukan COVID-19. Disini kami menampikan data lengkap daftar
+                Rumah Sakit Rujukan COVID-19 di Indonesia.
+              </Paragraph>
+            </div>
             <Button to="/RsRujukan" color="dark-grey">
               Lihat Selengkapnya
             </Button>
@@ -161,14 +167,16 @@ export default function Home({ dataOrang, total }) {
             className="flex flex-col gap-12 items-start w-1/2 mt-32
           "
           >
-            <Title color="dark-grey">
-              MARI KITA VAKSIN <br /> COVID-19
-            </Title>
-            <Paragraph size="2xl" color="dark-grey">
-              Mari kita cari tahu apa itu Vaksin, Vaksin apa saja yang tersedia,
-              bagaimana cara melakukan vaksin serta hal apa saja yang harus
-              dipersiapkan sebelum dan sesudah Vaksinasi covid-19
-            </Paragraph>
+            <div className="flex flex-col gap-4">
+              <Title color="dark-grey">
+                MARI KITA VAKSIN <br /> COVID-19
+              </Title>
+              <Paragraph size="2xl" color="dark-grey">
+                Mari kita cari tahu apa itu Vaksin, Vaksin apa saja yang
+                tersedia, bagaimana cara melakukan vaksin serta hal apa saja
+                yang harus dipersiapkan sebelum dan sesudah Vaksinasi covid-19
+              </Paragraph>
+            </div>
             <Button to="#" color="purple">
               Lihat Selengkapnya
             </Button>
@@ -182,7 +190,7 @@ export default function Home({ dataOrang, total }) {
 
 export async function getServerSideProps() {
   const response = await fetch(
-    "https://data.covid19.go.id/public/api/update.json"
+    'https://data.covid19.go.id/public/api/update.json'
   );
   const result = await response.json();
   return {

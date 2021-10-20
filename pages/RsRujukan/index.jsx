@@ -1,11 +1,11 @@
-import React from "react";
-import Image from "next/image";
-import Title from "../../Components/title";
-import Paragraph from "../../Components/paragraph";
-import styles from "./RsRujukan.module.css";
-import Card from "../../Components/card";
-import Footer from "../../Components/footer";
-import TableData from "../../Components/table";
+import React from 'react';
+import Image from 'next/image';
+import Title from '../../Components/title';
+import Paragraph from '../../Components/paragraph';
+import styles from './RsRujukan.module.css';
+import Card from '../../Components/card';
+import Footer from '../../Components/footer';
+import TableData from '../../Components/table';
 // import { data } from './data';
 
 export default function RSRujukan({ hospitals }) {
@@ -56,15 +56,17 @@ export default function RSRujukan({ hospitals }) {
         <div id="content" className="flex gap-16 h-full px-52 pt-24 bg-purple">
           <div
             id="text"
-            className="flex flex-col gap-12 items-start w-1/2 mt-8"
+            className="flex flex-col gap-16 items-start w-1/2 mt-8"
           >
-            <Title color="white">
-              RUMAH SAKIT <br /> RUJUKAN COVID-19
-            </Title>
-            <Paragraph size="2xl" color="white">
-              Dapatkan informasi mengenai rumah sakit rujukan covid-19, untuk
-              memeriksakan kesehatan diri di sekitar wilayah anda
-            </Paragraph>
+            <div className="flex flex-col gap-4">
+              <Title color="white">
+                RUMAH SAKIT <br /> RUJUKAN COVID-19
+              </Title>
+              <Paragraph size="2xl" color="white">
+                Dapatkan informasi mengenai rumah sakit rujukan covid-19, untuk
+                memeriksakan kesehatan diri di sekitar wilayah anda
+              </Paragraph>
+            </div>
             <div
               id="card containter"
               className="w-full h-full flex justify-start gap-12"
@@ -145,7 +147,7 @@ export default function RSRujukan({ hospitals }) {
             agar anda bisa mengetahui daftar Rumah Sakit Rujukan di sekitar anda
             dengan cepat dan mudah.
           </Paragraph>
-          <TableData data={hospitals} type="Hospitals"/>
+          <TableData data={hospitals} type="Hospitals" />
         </div>
       </section>
       <Footer color="purple" />
@@ -154,7 +156,7 @@ export default function RSRujukan({ hospitals }) {
 }
 
 export async function getServerSideProps() {
-  const response = await fetch("http://localhost:3000/api/rs-rujukan");
+  const response = await fetch('http://localhost:3000/api/rs-rujukan');
   const result = await response.json();
 
   const sortdata = result.data.sort((a, b) => a.no - b.no);

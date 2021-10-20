@@ -1,27 +1,18 @@
 import React from 'react'
+import style from './title.module.css';
 
 export default function Title({children, color, className}) {
   let colorSelect = color;
 
-  if (color === 'red') {
-    colorSelect = 'red';
-  }
-  if (color === 'green') {
-    colorSelect = 'green';
-  }
-  if (color === 'orange') {
-    colorSelect = 'orange';
-  }
-  if (color === 'dark-green') {
-    colorSelect = 'dark-green';
-  } 
-  if (color ==='white'){
-    colorSelect = 'white '
+  if (color === 'dark-grey') {
+    colorSelect = 'text-dark-grey';
+  } else if (color ==='white'){
+    colorSelect = 'text-white '
   }
 
   return (
     <h1
-      className={`font-bold text-4xl leading-relaxed text-${colorSelect} ${className}`}
+      className={`font-bold text-4xl leading-relaxed ${colorSelect} ${className} ${style.title}`}
     >
       {children}
     </h1>

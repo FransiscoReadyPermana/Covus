@@ -1,26 +1,25 @@
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import styles from "./vaksin.module.css";
-import Title from "../../Components/title";
-import Paragraph from "../../Components/paragraph";
-import Button from "../../Components/button";
-import Footer from "../../Components/footer";
-import formatK from "../../utils/format";
-import Card from "../../Components/card";
-import uuid from "react-uuid";
-import Pagination from "../../Components/pagination";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import styles from './vaksin.module.css';
+import Title from '../../Components/title';
+import Paragraph from '../../Components/paragraph';
+import Button from '../../Components/button';
+import Footer from '../../Components/footer';
+import formatK from '../../utils/format';
+import Card from '../../Components/card';
+import uuid from 'react-uuid';
+import Pagination from '../../Components/pagination';
 
 export default function Vaksinasi({ data }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const PageSize = 3;
+  const [currentTableData, setCurrentTableData] = useState([]);
+  let PageSize = 3;
 
   useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    setCurrentPage(
-      data.slice(firstPageIndex, lastPageIndex)
-    );
-  }, [currentPage, data]);
+    setCurrentTableData(data.slice(firstPageIndex, lastPageIndex));
+  }, [currentPage]);
 
   return (
     <div className="h-screen w-full">
@@ -42,13 +41,15 @@ export default function Vaksinasi({ data }) {
             id="text"
             className="flex flex-col gap-8 items-start w-1/2 mt-36"
           >
-            <Title color="dark-grey">
-              MARI KITA VAKSIN <br /> COVID-19
-            </Title>
-            <Paragraph size="2xl" color="dark-grey" className="mb-8">
-              Daftar Sekarang dan cari tahu informasi seputar
-              <br /> Vaksinasi Covid-19 disini
-            </Paragraph>
+            <div className="flex flex-col gap-4">
+              <Title color="dark-grey">
+                MARI KITA VAKSIN <br /> COVID-19
+              </Title>
+              <Paragraph size="2xl" color="dark-grey" className="mb-8">
+                Daftar Sekarang dan cari tahu informasi seputar
+                <br /> Vaksinasi Covid-19 disini
+              </Paragraph>
+            </div>
 
             <Button to="#" color="purple">
               Vaksinasi Pertama
@@ -245,18 +246,19 @@ export default function Vaksinasi({ data }) {
 
         <div
           id="content"
-          className="flex gap-12 h-full px-52 bg-white justify-center pt-40"
+          className="flex gap-12 w-full h-full px-52 bg-white justify-center pt-40"
         >
           <div
             id="container card"
-            className="w-full flex h-64 justify-center gap-12 mt-12"
+            className="w-full flex h-64 justify-center gap-12 mt-12 justify-center"
           >
-            {data.map((item) => (
+            {currentTableData.map((item) => (
               <div
                 id="card"
-                className={`flex flex-col justify-center bg-white w-1/4 h-96 gap-8 pt-2 items-center ${styles.card}`}
+                className={`flex flex-col justify-center bg-white w-1/4 h-96 gap-8 pt-2 items-center ${styles.card} overflow-hidden`}
+                key={uuid()}
               >
-                <div className="relative h-72 w-80 mt-4">
+                <div className={`relative w-80 mt-4 ${styles.image}`}>
                   <Image
                     src={item.image}
                     alt="reading-book-image"
@@ -286,7 +288,7 @@ export default function Vaksinasi({ data }) {
 }
 
 export async function getServerSideProps() {
-  const response = await fetch("http://localhost:3000/api/vaksinasi-provinsi");
+  const response = await fetch('http://localhost:3000/api/vaksinasi-provinsi');
   const result = await response.json();
   return {
     props: {

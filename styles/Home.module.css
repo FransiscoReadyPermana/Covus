@@ -14,6 +14,10 @@
   height: 100vh;
 }
 
+.span{
+  font-family: 'LeagueSpartan';
+}
+
 .firstSection {
   background-image: url('../public/images/UseMask.png');
   background-size: cover;

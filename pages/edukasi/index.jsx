@@ -1,11 +1,11 @@
-import React from "react";
-import Image from "next/image";
-import styles from "./edukasi.module.css";
-import Paragraph from "../../Components/paragraph";
-import Button from "../../Components/button";
-import Title from "../../Components/title";
-import Card from "../../Components/card";
-import Footer from "../../Components/footer";
+import React from 'react';
+import Image from 'next/image';
+import styles from './edukasi.module.css';
+import Paragraph from '../../Components/paragraph';
+import Button from '../../Components/button';
+import Title from '../../Components/title';
+import Card from '../../Components/card';
+import Footer from '../../Components/footer';
 
 export default function Edukasi() {
   return (
@@ -32,12 +32,14 @@ export default function Edukasi() {
             />
           </div>
           <div id="text" className="flex flex-col gap-8 items-start w-1/2">
-            <Title color="dark-grey">
-              EDUKASI <br /> SEPUTAR COVID 19
-            </Title>
-            <Paragraph size="2xl" color="dark-grey">
-              Cari tahu Edukasi seputar Covid-19
-            </Paragraph>
+            <div className="flex flex-col gap-2 mb-8">
+              <Title color="dark-grey">
+                EDUKASI <br /> SEPUTAR COVID 19
+              </Title>
+              <Paragraph size="2xl" color="dark-grey">
+                Cari tahu Edukasi seputar Covid-19
+              </Paragraph>
+            </div>
             <Button to="#second" color="purple">
               Apa itu Covid-19
             </Button>
@@ -106,16 +108,18 @@ export default function Edukasi() {
           id="content"
           className="flex gap-12 h-full px-52 bg-white items-center"
         >
-          <div id="text" className="flex flex-col gap-10 items-center w-full">
-            <Title color="dark-grey">Gejala COVID-19</Title>
-            <Paragraph size="xl" color="dark-grey" className="text-center">
-              Gejala awal infeksi virus Corona atau COVID-19 bisa menyerupai
-              gejala flu, yaitu demam, pilek, batuk kering, sakit tenggorokan,
-              dan sakit kepala. Setelah itu, gejala dapat hilang dan sembuh atau
-              malah memberat. Penderita dengan gejala yang berat bisa mengalami
-              demam tinggi, batuk berdahak bahkan berdarah, sesak napas, dan
-              nyeri dada
-            </Paragraph>
+          <div id="text" className="flex flex-col gap-12 items-center w-full">
+            <div className="flex flex-col gap-4 items-center">
+              <Title color="dark-grey">Gejala COVID-19</Title>
+              <Paragraph size="xl" color="dark-grey" className="text-center">
+                Gejala awal infeksi virus Corona atau COVID-19 bisa menyerupai
+                gejala flu, yaitu demam, pilek, batuk kering, sakit tenggorokan,
+                dan sakit kepala. Setelah itu, gejala dapat hilang dan sembuh
+                atau malah memberat. Penderita dengan gejala yang berat bisa
+                mengalami demam tinggi, batuk berdahak bahkan berdarah, sesak
+                napas, dan nyeri dada
+              </Paragraph>
+            </div>
             <div
               id="card containter"
               className="w-full h-full flex justify-between gap-12"
@@ -199,18 +203,20 @@ export default function Edukasi() {
           id="content"
           className="flex gap-12 h-full px-52 pt-20 bg-purple item-center"
         >
-          <div id="text" className="flex flex-col gap-8 items-center w-full">
-            <Title color="white">
-              BAGAIMANA MELAKUKAN PENCEGAHAN TERHADAP COVID-19
-            </Title>
-            <Paragraph size="xl" color="white" className="text-center">
-              Gejala awal infeksi virus Corona atau COVID-19 bisa menyerupai
-              gejala flu, yaitu demam, pilek, batuk kering, sakit tenggorokan,
-              dan sakit kepala. Setelah itu, gejala dapat hilang dan sembuh atau
-              malah memberat. Penderita dengan gejala yang berat bisa mengalami
-              demam tinggi, batuk berdahak bahkan berdarah, sesak napas, dan
-              nyeri dada
-            </Paragraph>
+          <div id="text" className="flex flex-col gap-12 items-center w-full">
+            <div className="flex flex-col gap-4 items-center">
+              <Title color="white">
+                BAGAIMANA MELAKUKAN PENCEGAHAN TERHADAP COVID-19
+              </Title>
+              <Paragraph size="xl" color="white" className="text-center">
+                Gejala awal infeksi virus Corona atau COVID-19 bisa menyerupai
+                gejala flu, yaitu demam, pilek, batuk kering, sakit tenggorokan,
+                dan sakit kepala. Setelah itu, gejala dapat hilang dan sembuh
+                atau malah memberat. Penderita dengan gejala yang berat bisa
+                mengalami demam tinggi, batuk berdahak bahkan berdarah, sesak
+                napas, dan nyeri dada
+              </Paragraph>
+            </div>
             <div
               id="card containter"
               className="w-full h-full flex justify-between gap-12"

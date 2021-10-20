@@ -8,6 +8,7 @@ import DropDownEdit from "../dropDown";
 import formatK from "../../utils/format";
 import Image from "next/image";
 import SearchInput from "../searchInput";
+import uuid from "react-uuid";
 
 export default function TableData({ data, type }) {
   const [currentPageProvinsi, setCurrentPageProvinsi] = useState(1);
@@ -61,7 +62,7 @@ export default function TableData({ data, type }) {
                 indonesia = stylesGlobal.indonesia;
               }
               return (
-                <tr key={item._id} className={indonesia}>
+                <tr key={uuid()} className={indonesia}>
                   <td className="uppercase">{item.country}</td>
                   <td>{item.cases ? formatK(item.cases) : 0}</td>
                   <td>{item.deaths ? formatK(item.deaths) : 0}</td>
@@ -133,7 +134,7 @@ export default function TableData({ data, type }) {
               <tbody>
                 {currentTableDataProvinsi.map((item) => {
                   return (
-                    <tr key={item._id} className="text-center">
+                    <tr key={uuid()} className="text-center">
                       <td>{item.key}</td>
                       <td>{formatK(item.jumlah_kasus)}</td>
                       <td>{formatK(item.jumlah_sembuh)}</td>
@@ -247,7 +248,7 @@ export default function TableData({ data, type }) {
               <tbody>
                 {currentTableDataHospitals.map((item) => {
                   return (
-                    <tr key={item._id}>
+                    <tr key={uuid()}>
                       <td>{item.no}</td>
                       <td>{item.provinsi}</td>
                       <td>{item.nama}</td>

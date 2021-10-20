@@ -4,17 +4,20 @@ import Link from 'next/link';
 
 export default function Button({ children, color, to  }) {
   let colorSelect;
+  let hover;
 
   if (color === 'purple') {
     colorSelect = 'purple';
+    hover = Styles.buttonPurple;
   }
   if (color === 'dark-grey') {
     colorSelect = 'dark-grey';
+    hover = Styles.buttonDarkGrey;
   }
   return (
     <Link href={to} passHref>
       <button
-        className={`${Styles.button} py-5 text-white text-2xl bg-${colorSelect} ${Styles.button} 4 rounded-full`}
+        className={`${Styles.button} py-3 text-white text-xl bg-${colorSelect} ${Styles.button} ${hover} 4 rounded-full`}
       >
         {children}
       </button>
