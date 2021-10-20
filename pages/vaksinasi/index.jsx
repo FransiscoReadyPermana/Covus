@@ -66,6 +66,13 @@ export default function Vaksinasi() {
 
             <div className="w-full h-full flex justify-center gap-12 mt-12">
               <Card type="big">
+                <div className="absolute h-12 w-12 right-4/4 ml-6 mb-56 mt-4">
+                  <Image
+                    src="/images/number1.svg"
+                    alt="reading-book-image"
+                    layout="fill"
+                  />
+                </div>
                 <div className="h-2/3 w-2/3 flex m-auto mt-8">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
@@ -84,6 +91,13 @@ export default function Vaksinasi() {
               </Card>
 
               <Card type="big">
+                <div className="absolute h-12 w-12 right-4/4 ml-6 mb-56 mt-4">
+                  <Image
+                    src="/images/number2.svg"
+                    alt="reading-book-image"
+                    layout="fill"
+                  />
+                </div>
                 <div className="h-2/3 w-2/3 flex m-auto mt-8">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
@@ -102,6 +116,13 @@ export default function Vaksinasi() {
               </Card>
 
               <Card type="big">
+                <div className="absolute h-12 w-12 right-4/4 ml-6 mb-56 mt-4">
+                  <Image
+                    src="/images/number3.svg"
+                    alt="reading-book-image"
+                    layout="fill"
+                  />
+                </div>
                 <div className="h-2/3 w-2/3 flex m-auto mt-8">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
@@ -125,6 +146,13 @@ export default function Vaksinasi() {
               className="w-full h-full flex justify-center gap-12 mt-12 mb-28"
             >
               <Card type="big">
+                <div className="absolute h-12 w-12 right-4/4 ml-6 mb-56 mt-4">
+                  <Image
+                    src="/images/number4.svg"
+                    alt="reading-book-image"
+                    layout="fill"
+                  />
+                </div>
                 <div className="h-2/3 w-2/3 flex m-auto mt-8">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
@@ -143,6 +171,13 @@ export default function Vaksinasi() {
               </Card>
 
               <Card type="big">
+                <div className="absolute h-12 w-12 right-4/4 ml-6 mb-56 mt-4">
+                  <Image
+                    src="/images/number5.svg"
+                    alt="reading-book-image"
+                    layout="fill"
+                  />
+                </div>
                 <div className="h-2/3 w-2/3 flex m-auto mt-8">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
@@ -161,6 +196,13 @@ export default function Vaksinasi() {
               </Card>
 
               <Card type="big">
+                <div className="absolute h-12 w-12 right-4/4 ml-6 mb-56 mt-4">
+                  <Image
+                    src="/images/number6.svg"
+                    alt="reading-book-image"
+                    layout="fill"
+                  />
+                </div>
                 <div className="h-2/3 w-2/3 flex m-auto mt-8">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
@@ -188,7 +230,6 @@ export default function Vaksinasi() {
           className={`${styles.dividerKetiga} h-10  w-full absolute`}
         />
       </section>
-
     </div>
   );
 }

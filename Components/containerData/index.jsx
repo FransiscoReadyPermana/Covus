@@ -26,7 +26,7 @@ export default function ContainerData({ title, content, color }) {
       </div>
       <div
         id="title"
-        className={`bg-white font-bold text-${colorSelect} text-2xl py-3 text-center px-24  rounded-full `}
+        className={`bg-white font-bold text-${colorSelect} text-2xl py-3 text-center px-24 rounded-full `}
       >
         {content}
       </div>
