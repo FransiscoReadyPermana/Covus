@@ -229,6 +229,30 @@ export default function Vaksinasi() {
           id="divider"
           className={`${styles.dividerKetiga} h-10  w-full absolute`}
         />
+        <div
+          id="content"
+          className="flex gap-12 h-full px-52 bg-white justify-center"
+        >
+          <div
+            className={`flex flex-col justify-center bg-white w-1/4 h-96 ${styles.card} gap-8 pb-5 pt-2 mt-40`}
+          >
+            <div className="w-3/4 h-3/4 flex justify-center gap-12 mt-12 flex-col">
+              <div className="relative h-full w-full flex flex-col">
+                <Image
+                  src="/images/layer 6.png"
+                  alt="reading-book-image"
+                  layout="fill"
+                />
+              </div>
+              <p
+                color="dark-grey"
+                className="text-center font-semibold text-2xl text-dark-grey"
+              >
+                Vaksinasi Selesai
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );
