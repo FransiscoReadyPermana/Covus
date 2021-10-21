@@ -13,7 +13,7 @@ import Pagination from '../../Components/pagination';
 export default function Vaksinasi({ data }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentTableData, setCurrentTableData] = useState([]);
-  let PageSize = 3;
+  const PageSize = 3;
 
   useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -80,14 +80,16 @@ export default function Vaksinasi({ data }) {
 
             <div className="w-full h-full flex justify-center gap-12 mt-12">
               <Card type="big">
-                <div className="absolute h-12 w-12 right-4/4 ml-6 mb-56 mt-4">
-                  <Image
-                    src="/images/number1.svg"
-                    alt="reading-book-image"
-                    layout="fill"
-                  />
+                <div className="abosolute">
+                  <div id="image" className="relative h-12 w-12 left-6 top-4">
+                    <Image
+                      src="/images/number1.svg"
+                      alt="reading-book-image"
+                      layout="fill"
+                    />
+                  </div>
                 </div>
-                <div className="h-2/3 w-2/3 flex m-auto mt-8">
+                <div className="h-2/3 w-2/3 flex m-auto">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
                       src="/images/layer 1.png"
@@ -105,14 +107,16 @@ export default function Vaksinasi({ data }) {
               </Card>
 
               <Card type="big">
-                <div className="absolute h-12 w-12 right-4/4 ml-6 mb-56 mt-4">
-                  <Image
-                    src="/images/number2.svg"
-                    alt="reading-book-image"
-                    layout="fill"
-                  />
+                <div className="abosolute">
+                  <div id="image" className="relative h-12 w-12 left-6 top-4">
+                    <Image
+                      src="/images/number2.svg"
+                      alt="reading-book-image"
+                      layout="fill"
+                    />
+                  </div>
                 </div>
-                <div className="h-2/3 w-2/3 flex m-auto mt-8">
+                <div className="h-2/3 w-2/3 flex m-auto">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
                       src="/images/layer 2.png"
@@ -130,14 +134,16 @@ export default function Vaksinasi({ data }) {
               </Card>
 
               <Card type="big">
-                <div className="absolute h-12 w-12 right-4/4 ml-6 mb-56 mt-4">
-                  <Image
-                    src="/images/number3.svg"
-                    alt="reading-book-image"
-                    layout="fill"
-                  />
+                <div className="abosolute">
+                  <div id="image" className="relative h-12 w-12 left-6 top-4">
+                    <Image
+                      src="/images/number3.svg"
+                      alt="reading-book-image"
+                      layout="fill"
+                    />
+                  </div>
                 </div>
-                <div className="h-2/3 w-2/3 flex m-auto mt-8">
+                <div className="h-2/3 w-2/3 flex m-auto">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
                       src="/images/layer 3.png"
@@ -160,14 +166,16 @@ export default function Vaksinasi({ data }) {
               className="w-full h-full flex justify-center gap-12 mt-12 mb-28"
             >
               <Card type="big">
-                <div className="absolute h-12 w-12 right-4/4 ml-6 mb-56 mt-4">
-                  <Image
-                    src="/images/number4.svg"
-                    alt="reading-book-image"
-                    layout="fill"
-                  />
+                <div className="abosolute">
+                  <div id="image" className="relative h-12 w-12 left-6 top-4">
+                    <Image
+                      src="/images/number4.svg"
+                      alt="reading-book-image"
+                      layout="fill"
+                    />
+                  </div>
                 </div>
-                <div className="h-2/3 w-2/3 flex m-auto mt-8">
+                <div className="h-2/3 w-2/3 flex m-auto">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
                       src="/images/layer 4.png"
@@ -185,14 +193,16 @@ export default function Vaksinasi({ data }) {
               </Card>
 
               <Card type="big">
-                <div className="absolute h-12 w-12 right-4/4 ml-6 mb-56 mt-4">
-                  <Image
-                    src="/images/number5.svg"
-                    alt="reading-book-image"
-                    layout="fill"
-                  />
+                <div className="abosolute">
+                  <div id="image" className="relative h-12 w-12 left-6 top-4">
+                    <Image
+                      src="/images/number5.svg"
+                      alt="reading-book-image"
+                      layout="fill"
+                    />
+                  </div>
                 </div>
-                <div className="h-2/3 w-2/3 flex m-auto mt-8">
+                <div className="h-2/3 w-2/3 flex m-auto">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
                       src="/images/layer 5.png"
@@ -210,14 +220,16 @@ export default function Vaksinasi({ data }) {
               </Card>
 
               <Card type="big">
-                <div className="absolute h-12 w-12 right-4/4 ml-6 mb-56 mt-4">
-                  <Image
-                    src="/images/number6.svg"
-                    alt="reading-book-image"
-                    layout="fill"
-                  />
+                <div className="abosolute">
+                  <div id="image" className="relative h-12 w-12 left-6 top-4">
+                    <Image
+                      src="/images/number6.svg"
+                      alt="reading-book-image"
+                      layout="fill"
+                    />
+                  </div>
                 </div>
-                <div className="h-2/3 w-2/3 flex m-auto mt-8">
+                <div className="h-2/3 w-2/3 flex m-auto">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
                       src="/images/layer 6.png"
@@ -246,11 +258,11 @@ export default function Vaksinasi({ data }) {
 
         <div
           id="content"
-          className="flex gap-12 w-full h-full px-52 bg-white justify-center pt-40"
+          className="flex flex-col w-full h-full px-52 bg-white pt-40"
         >
           <div
             id="container card"
-            className="w-full flex h-64 justify-center gap-12 mt-12 justify-center"
+            className="w-full flex justify-center gap-12 mt-12 justify-center"
           >
             {currentTableData.map((item) => (
               <div
@@ -274,15 +286,16 @@ export default function Vaksinasi({ data }) {
               </div>
             ))}
           </div>
+          <Pagination
+            className="pagination-bar"
+            currentPage={currentPage}
+            totalCount={data.length}
+            pageSize={PageSize}
+            onPageChange={(page) => setCurrentPage(page)}
+          />
         </div>
-        <Pagination
-          className="pagination-bar"
-          currentPage={currentPage}
-          totalCount={data.length}
-          pageSize={PageSize}
-          onPageChange={(page) => setCurrentPage(page)}
-        />
       </section>
+      <Footer color="white" />
     </div>
   );
 }
