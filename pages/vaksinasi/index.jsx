@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import styles from './vaksin.module.css';
-import Title from '../../Components/title';
-import Paragraph from '../../Components/paragraph';
-import Button from '../../Components/button';
-import Footer from '../../Components/footer';
-import formatK from '../../utils/format';
-import Card from '../../Components/card';
-import uuid from 'react-uuid';
-import Pagination from '../../Components/pagination';
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import styles from "./vaksin.module.css";
+import Title from "../../Components/title";
+import Paragraph from "../../Components/paragraph";
+import Button from "../../Components/button";
+import Footer from "../../Components/footer";
+import formatK from "../../utils/format";
+import Card from "../../Components/card";
+import uuid from "react-uuid";
+import Pagination from "../../Components/pagination";
 
 export default function Vaksinasi({ data }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentTableData, setCurrentTableData] = useState([]);
-  const PageSize = 3;
+  const PageSize = 4;
 
   useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -250,16 +250,19 @@ export default function Vaksinasi({ data }) {
         </div>
       </section>
 
-      <section id="third" className={`${styles.section3} w-full relative`}>
+      <section
+        id="third"
+        className={`${styles.section3} w-full relative mb-32`}
+      >
         <div
           id="divider"
           className={`${styles.dividerKetiga} h-10  w-full absolute`}
         />
-
         <div
           id="content"
-          className="flex flex-col w-full h-full px-52 bg-white pt-40"
+          className="flex flex-col w-full h-full px-52 bg-white pt-40 items-center"
         >
+          <Title color="dark-grey">PILIH LOKASI DAERAH VAKSINASI</Title>
           <div
             id="container card"
             className="w-full flex justify-center gap-12 mt-12 justify-center"
@@ -267,7 +270,7 @@ export default function Vaksinasi({ data }) {
             {currentTableData.map((item) => (
               <div
                 id="card"
-                className={`flex flex-col justify-center bg-white w-1/4 h-96 gap-8 pt-2 items-center ${styles.card} overflow-hidden`}
+                className={`flex flex-col justify-center bg-white w-1/4 h-96 gap-8 pt-2 items-center ${styles.card} overflow-hidden mb-8`}
                 key={uuid()}
               >
                 <div className={`relative w-80 mt-4 ${styles.image}`}>
@@ -295,13 +298,13 @@ export default function Vaksinasi({ data }) {
           />
         </div>
       </section>
-      <Footer color="white" />
+      <Footer color="purple" />
     </div>
   );
 }
 
 export async function getServerSideProps() {
-  const response = await fetch('http://localhost:3000/api/vaksinasi-provinsi');
+  const response = await fetch("http://localhost:3000/api/vaksinasi-provinsi");
   const result = await response.json();
   return {
     props: {

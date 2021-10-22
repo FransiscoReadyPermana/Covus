@@ -37,22 +37,25 @@ export default function Informasi({
         </div>
       </section>
 
-      <section id="second" className={`${styles.section2} w-full relative bg-white`}>
+      <section
+        id="second"
+        className={`${styles.section2} w-full relative bg-white`}
+      >
         <div id="divider" className={`${styles.bgFirstSection} h-52 w-full`} />
         {/* <div
           id="content"
           className="flex h-full pl-0 pt-8 bg-white items-center flex-col w-full px-52 "
         > */}
-          <div
-            id="content"
-            className="flex flex-col gap-10 h-full px-60 bg-white"
-          >
-            <Title className="text-center" color="dark-grey">
-              NEGARA DENGAN KASUS COVID-19 TERTINGGI
-            </Title>
+        <div
+          id="content"
+          className="flex flex-col gap-10 h-full px-60 bg-white"
+        >
+          <Title className="text-center" color="dark-grey">
+            NEGARA DENGAN KASUS COVID-19 TERTINGGI
+          </Title>
 
-            <TableData data={informasiGlobal} type="Global" />
-          </div>
+          <TableData data={informasiGlobal} type="Global" />
+        </div>
         {/* </div> */}
       </section>
 
@@ -114,16 +117,16 @@ export default function Informasi({
           id="content"
           className="flex h-full pl-0 pt-8 bg-white flex-col items-center w-full"
         > */}
-          <div
-            id="content"
-            className="flex flex-col gap-10 h-full px-60 bg-white"
-          >
-            <Title className="text-center" color="dark-grey">
-              DATA KASUS COVID-19 DI INDONESIA
-            </Title>
+        <div
+          id="content"
+          className="flex flex-col gap-10 h-full px-60 bg-white"
+        >
+          <Title className="text-center" color="dark-grey">
+            DATA KASUS COVID-19 DI INDONESIA
+          </Title>
 
-            <TableData data={informasi} type="Provinsi" />
-          </div>
+          <TableData data={informasi} type="Provinsi" />
+        </div>
         {/* </div> */}
 
         <div
