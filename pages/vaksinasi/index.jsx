@@ -5,7 +5,6 @@ import Title from '../../Components/title';
 import Paragraph from '../../Components/paragraph';
 import Button from '../../Components/button';
 import Footer from '../../Components/footer';
-import formatK from '../../utils/format';
 import Card from '../../Components/card';
 import uuid from 'react-uuid';
 import Pagination from '../../Components/pagination';
@@ -79,7 +78,7 @@ export default function Vaksinasi({ data }) {
             <Title color="white">PROSES VAKSINASI COVUS</Title>
 
             <div className="w-full h-full flex justify-center gap-12 mt-12">
-              <Card type="big">
+              <Card type="big" gap="3">
                 <div className="abosolute">
                   <div id="image" className="relative h-12 w-12 left-6 top-4">
                     <Image
@@ -89,8 +88,8 @@ export default function Vaksinasi({ data }) {
                     />
                   </div>
                 </div>
-                <div className="h-2/3 w-2/3 flex m-auto">
-                  <div className=" relative h-full w-full flex flex-col">
+                <div className="h-full w-2/3 flex m-auto">
+                  <div className="relative h-full w-full flex flex-col">
                     <Image
                       src="/images/layer 1.png"
                       alt="reading-book-image"
@@ -106,7 +105,7 @@ export default function Vaksinasi({ data }) {
                 </p>
               </Card>
 
-              <Card type="big">
+              <Card type="big" gap="3">
                 <div className="abosolute">
                   <div id="image" className="relative h-12 w-12 left-6 top-4">
                     <Image
@@ -133,7 +132,7 @@ export default function Vaksinasi({ data }) {
                 </p>
               </Card>
 
-              <Card type="big">
+              <Card type="big" gap="3">
                 <div className="abosolute">
                   <div id="image" className="relative h-12 w-12 left-6 top-4">
                     <Image
@@ -165,7 +164,7 @@ export default function Vaksinasi({ data }) {
               id="content2"
               className="w-full h-full flex justify-center gap-12 mt-12 mb-28"
             >
-              <Card type="big">
+              <Card type="big" gap="3">
                 <div className="abosolute">
                   <div id="image" className="relative h-12 w-12 left-6 top-4">
                     <Image
@@ -192,7 +191,7 @@ export default function Vaksinasi({ data }) {
                 </p>
               </Card>
 
-              <Card type="big">
+              <Card type="big" gap="3">
                 <div className="abosolute">
                   <div id="image" className="relative h-12 w-12 left-6 top-4">
                     <Image
@@ -219,7 +218,7 @@ export default function Vaksinasi({ data }) {
                 </p>
               </Card>
 
-              <Card type="big">
+              <Card type="big" gap="3">
                 <div className="abosolute">
                   <div id="image" className="relative h-12 w-12 left-6 top-4">
                     <Image
@@ -295,7 +294,7 @@ export default function Vaksinasi({ data }) {
           />
         </div>
       </section>
-      <Footer color="white" />
+      <Footer color="purple" />
     </div>
   );
 }
