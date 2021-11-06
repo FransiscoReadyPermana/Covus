@@ -10,16 +10,27 @@ import Card from "../../Components/card";
 import uuid from "react-uuid";
 import Pagination from "../../Components/pagination";
 
-export default function Vaksinasi({ data }) {
+export default function Vaksinasi({ data, dataKedua }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentTableData, setCurrentTableData] = useState([]);
+  const [dataVaksin, setDataVaksin] = useState(data);
   const PageSize = 4;
+  let firstPageIndex = 0;
+  let lastPageIndex = 0;
 
   useEffect(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    setCurrentTableData(data.slice(firstPageIndex, lastPageIndex));
+    firstPageIndex = (currentPage - 1) * PageSize;
+    lastPageIndex = firstPageIndex + PageSize;
+    setCurrentTableData(dataVaksin.slice(firstPageIndex, lastPageIndex));
   }, [currentPage]);
+
+  const VaksinPertama = () => {
+    setDataVaksin(data);
+  };
+
+  function VaksinKedua() {
+    setDataVaksin(dataKedua);
+  }
 
   return (
     <div className="h-screen w-full">
@@ -51,11 +62,11 @@ export default function Vaksinasi({ data }) {
               </Paragraph>
             </div>
 
-            <Button to="#" color="purple">
+            <Button to="#" color="purple" onClick={VaksinPertama}>
               Vaksinasi Pertama
             </Button>
 
-            <Button to="#" color="purple">
+            <Button to="#" color="purple" onClick={VaksinKedua}>
               Vaksinasi Kedua
             </Button>
           </div>
@@ -263,6 +274,7 @@ export default function Vaksinasi({ data }) {
           className="flex flex-col w-full h-full px-52 bg-white pt-40 items-center"
         >
           <Title color="dark-grey">PILIH LOKASI DAERAH VAKSINASI</Title>
+
           <div
             id="container card"
             className="w-full flex justify-center gap-12 mt-12 justify-center"
@@ -292,7 +304,7 @@ export default function Vaksinasi({ data }) {
           <Pagination
             className="pagination-bar"
             currentPage={currentPage}
-            totalCount={data.length}
+            totalCount={currentTableData.length}
             pageSize={PageSize}
             onPageChange={(page) => setCurrentPage(page)}
           />
@@ -304,11 +316,18 @@ export default function Vaksinasi({ data }) {
 }
 
 export async function getServerSideProps() {
-  const response = await fetch("http://localhost:3000/api/vaksinasi-provinsi");
-  const result = await response.json();
+  const vaksinasiPertama = await fetch(
+    "http://localhost:3000/api/vaksinasi-provinsi"
+  );
+  const vaksinasiKedua = await fetch(
+    "http://localhost:3000/api/vaksinasi-provinsi-kedua"
+  );
+  const resultPertama = await vaksinasiPertama.json();
+  const resultKedua = await vaksinasiKedua.json();
   return {
     props: {
-      data: result.data,
+      data: resultPertama.data,
+      dataKedua: resultKedua.data,
     },
   };
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import Styles from './button.module.css';
 import Link from 'next/link';
 
-export default function Button({ children, color, to  }) {
+export default function Button({ children, color, to, onClick  }) {
   let colorSelect;
   let hover;
 
@@ -18,6 +18,7 @@ export default function Button({ children, color, to  }) {
     <Link href={to} passHref>
       <button
         className={`${Styles.button} py-3 text-white text-xl bg-${colorSelect} ${Styles.button} ${hover} 4 rounded-full`}
+        onClick={onClick}
       >
         {children}
       </button>
