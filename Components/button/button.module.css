@@ -1,4 +1,4 @@
-.buttonPurple, .buttonDarkGrey{
+.buttonPurple, .buttonDarkGrey,.buttonSecondary{
   transition: all 0.23s ease-out;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
   width: 36rem;
@@ -10,4 +10,8 @@
 
 .buttonDarkGrey:hover{
   background-color: #33333d;
+}
+
+.buttonSecondary:hover{
+  outline: 0.3rem solid #7080ec;
 }

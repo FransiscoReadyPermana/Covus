@@ -6,6 +6,7 @@ import Paragraph from "../../Components/paragraph";
 import Button from "../../Components/button";
 import Footer from "../../Components/footer";
 import Card from "../../Components/card";
+import Link from "next/link";
 import uuid from "react-uuid";
 import Pagination from "../../Components/pagination";
 
@@ -13,6 +14,8 @@ export default function Vaksinasi({ data, dataKedua }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentTableData, setCurrentTableData] = useState([]);
   const [dataVaksin, setDataVaksin] = useState(data);
+  const [color, setColor] = useState("purple");
+  const [colorSecondary, setColorSecondary] = useState("secondary");
   const PageSize = 4;
   let firstPageIndex = 0;
   let lastPageIndex = 0;
@@ -21,14 +24,22 @@ export default function Vaksinasi({ data, dataKedua }) {
     firstPageIndex = (currentPage - 1) * PageSize;
     lastPageIndex = firstPageIndex + PageSize;
     setCurrentTableData(dataVaksin.slice(firstPageIndex, lastPageIndex));
-  }, [currentPage, dataVaksin]);
+    setColorSecondary(colorSecondary);
+    setColor(color);
+  }, [currentPage, dataVaksin, color, colorSecondary]);
 
   const VaksinPertama = () => {
     setDataVaksin(data);
+    setCurrentPage(1);
+    setColorSecondary("secondary");
+    setColor("purple");
   };
 
   function VaksinKedua() {
     setDataVaksin(dataKedua);
+    setCurrentPage(1);
+    setColorSecondary("purple");
+    setColor("secondary");
   }
 
   return (
@@ -61,11 +72,11 @@ export default function Vaksinasi({ data, dataKedua }) {
               </Paragraph>
             </div>
 
-            <Button to="#containerCard" color="purple" onClick={VaksinPertama}>
+            <Button to="#" color={color} onClick={VaksinPertama}>
               Vaksinasi Pertama
             </Button>
 
-            <Button to="#containerCard" color="purple" onClick={VaksinKedua}>
+            <Button to="#" color={colorSecondary} onClick={VaksinKedua}>
               Vaksinasi Kedua
             </Button>
           </div>
@@ -262,7 +273,7 @@ export default function Vaksinasi({ data, dataKedua }) {
 
       <section
         id="third"
-        className={`${styles.section3} w-full relative mb-32`}
+        className={`${styles.section3} w-full relative mb-40`}
       >
         <div
           id="divider"
@@ -272,7 +283,9 @@ export default function Vaksinasi({ data, dataKedua }) {
           id="content"
           className="flex flex-col w-full h-full px-52 bg-white pt-40 items-center"
         >
-          <Title color="dark-grey" id="judulVaksin">PILIH LOKASI DAERAH VAKSINASI</Title>
+          <Title color="dark-grey" id="judulVaksin">
+            PILIH LOKASI DAERAH VAKSINASI
+          </Title>
 
           <div
             id="containerCard"
@@ -303,10 +316,15 @@ export default function Vaksinasi({ data, dataKedua }) {
           <Pagination
             className="pagination-bar"
             currentPage={currentPage}
-            totalCount={currentTableData.length}
+            totalCount={dataVaksin.length}
             pageSize={PageSize}
             onPageChange={(page) => setCurrentPage(page)}
           />
+        </div>
+        <div className={`absolute w-8 h-8 right-0 p-6 mt-8 mr-12 ${styles.chevronUp}`}>
+          <Link href="#fifth" passHref>
+            <Image src="/images/chevron.svg" alt="" layout="fill" />
+          </Link>
         </div>
       </section>
       <Footer color="purple" />

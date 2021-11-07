@@ -45,7 +45,6 @@ export default function Navbar() {
         </NavItems>
       </div>
       <div id="right">
-        test
       </div>
     </div>
   );

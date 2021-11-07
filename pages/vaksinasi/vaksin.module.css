@@ -35,3 +35,13 @@
 .image {
   aspect-ratio: 1/1;
 }
+
+.chevronUp {
+  cursor: pointer;
+  border-radius: 100rem;
+  background-color: #A5AFED;
+}
+
+.chevronUp:hover {
+  background-color: #7080ec;
+}
