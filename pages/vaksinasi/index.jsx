@@ -5,7 +5,6 @@ import Title from "../../Components/title";
 import Paragraph from "../../Components/paragraph";
 import Button from "../../Components/button";
 import Footer from "../../Components/footer";
-import formatK from "../../utils/format";
 import Card from "../../Components/card";
 import uuid from "react-uuid";
 import Pagination from "../../Components/pagination";
@@ -22,7 +21,7 @@ export default function Vaksinasi({ data, dataKedua }) {
     firstPageIndex = (currentPage - 1) * PageSize;
     lastPageIndex = firstPageIndex + PageSize;
     setCurrentTableData(dataVaksin.slice(firstPageIndex, lastPageIndex));
-  }, [currentPage]);
+  }, [currentPage, dataVaksin]);
 
   const VaksinPertama = () => {
     setDataVaksin(data);
@@ -62,11 +61,11 @@ export default function Vaksinasi({ data, dataKedua }) {
               </Paragraph>
             </div>
 
-            <Button to="#" color="purple" onClick={VaksinPertama}>
+            <Button to="#containerCard" color="purple" onClick={VaksinPertama}>
               Vaksinasi Pertama
             </Button>
 
-            <Button to="#" color="purple" onClick={VaksinKedua}>
+            <Button to="#containerCard" color="purple" onClick={VaksinKedua}>
               Vaksinasi Kedua
             </Button>
           </div>
@@ -273,10 +272,10 @@ export default function Vaksinasi({ data, dataKedua }) {
           id="content"
           className="flex flex-col w-full h-full px-52 bg-white pt-40 items-center"
         >
-          <Title color="dark-grey">PILIH LOKASI DAERAH VAKSINASI</Title>
+          <Title color="dark-grey" id="judulVaksin">PILIH LOKASI DAERAH VAKSINASI</Title>
 
           <div
-            id="container card"
+            id="containerCard"
             className="w-full flex justify-center gap-12 mt-12 justify-center"
           >
             {currentTableData.map((item) => (
