@@ -2,10 +2,6 @@
   height: 100vh;
 }
 
-.section3 {
-  height: 100vh;
-}
-
 .bgFourthSection {
   background: url("../../public/images/thirdDivider.svg");
   background-repeat: no-repeat;
@@ -29,8 +25,23 @@
 .card {
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
   border-radius: 3.5rem;
+  cursor: pointer;
 }
 
-.image{
+.card:hover {
+  outline: 0.5rem solid #7080ec;
+}
+
+.image {
   aspect-ratio: 1/1;
+}
+
+.chevronUp {
+  cursor: pointer;
+  border-radius: 100rem;
+  background-color: #A5AFED;
+}
+
+.chevronUp:hover {
+  background-color: #7080ec;
 }

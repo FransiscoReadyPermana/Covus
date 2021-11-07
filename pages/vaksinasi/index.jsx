@@ -1,24 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import styles from './vaksin.module.css';
-import Title from '../../Components/title';
-import Paragraph from '../../Components/paragraph';
-import Button from '../../Components/button';
-import Footer from '../../Components/footer';
-import Card from '../../Components/card';
-import uuid from 'react-uuid';
-import Pagination from '../../Components/pagination';
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import styles from "./vaksin.module.css";
+import Title from "../../Components/title";
+import Paragraph from "../../Components/paragraph";
+import Button from "../../Components/button";
+import Footer from "../../Components/footer";
+import Card from "../../Components/card";
+import Link from "next/link";
+import uuid from "react-uuid";
+import Pagination from "../../Components/pagination";
 
-export default function Vaksinasi({ data }) {
+export default function Vaksinasi({ data, dataKedua }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentTableData, setCurrentTableData] = useState([]);
-  const PageSize = 3;
+  const [dataVaksin, setDataVaksin] = useState(data);
+  const [color, setColor] = useState("purple");
+  const [colorSecondary, setColorSecondary] = useState("secondary");
+  const [vaksin, setVaksin] = useState("PERTAMA");
+  const PageSize = 4;
+  let firstPageIndex = 0;
+  let lastPageIndex = 0;
 
   useEffect(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    setCurrentTableData(data.slice(firstPageIndex, lastPageIndex));
-  }, [currentPage]);
+    firstPageIndex = (currentPage - 1) * PageSize;
+    lastPageIndex = firstPageIndex + PageSize;
+    setCurrentTableData(dataVaksin.slice(firstPageIndex, lastPageIndex));
+    setColorSecondary(colorSecondary);
+    setColor(color);
+    setVaksin(vaksin)
+  }, [currentPage, dataVaksin, color, colorSecondary, vaksin]);
+
+  const VaksinPertama = () => {
+    setDataVaksin(data);
+    setCurrentPage(1);
+    setColorSecondary("secondary");
+    setColor("purple");
+    setVaksin("PERTAMA")
+  };
+
+  function VaksinKedua() {
+    setDataVaksin(dataKedua);
+    setCurrentPage(1);
+    setColorSecondary("purple");
+    setColor("secondary");
+    setVaksin("KEDUA")
+  }
 
   return (
     <div className="h-screen w-full">
@@ -50,11 +76,15 @@ export default function Vaksinasi({ data }) {
               </Paragraph>
             </div>
 
-            <Button to="#" color="purple">
+            <Button to="#containerCard" color={color} onClick={VaksinPertama}>
               Vaksinasi Pertama
             </Button>
 
-            <Button to="#" color="purple">
+            <Button
+              to="#containerCard"
+              color={colorSecondary}
+              onClick={VaksinKedua}
+            >
               Vaksinasi Kedua
             </Button>
           </div>
@@ -249,24 +279,30 @@ export default function Vaksinasi({ data }) {
         </div>
       </section>
 
-      <section id="third" className={`${styles.section3} w-full relative`}>
+      <section
+        id="third"
+        className={`${styles.section3} w-full relative mb-40`}
+      >
         <div
           id="divider"
           className={`${styles.dividerKetiga} h-10  w-full absolute`}
         />
-
         <div
           id="content"
-          className="flex flex-col w-full h-full px-52 bg-white pt-40"
+          className="flex flex-col w-full h-full px-52 bg-white pt-40 items-center"
         >
+          <Title color="dark-grey" id="judulVaksin">
+            PILIH LOKASI DAERAH VAKSINASI {vaksin}
+          </Title>
+
           <div
-            id="container card"
+            id="containerCard"
             className="w-full flex justify-center gap-12 mt-12 justify-center"
           >
             {currentTableData.map((item) => (
               <div
                 id="card"
-                className={`flex flex-col justify-center bg-white w-1/4 h-96 gap-8 pt-2 items-center ${styles.card} overflow-hidden`}
+                className={`flex flex-col justify-center bg-white w-1/4 h-96 gap-8 pt-2 items-center ${styles.card} overflow-hidden mb-8`}
                 key={uuid()}
               >
                 <div className={`relative w-80 mt-4 ${styles.image}`}>
@@ -288,10 +324,17 @@ export default function Vaksinasi({ data }) {
           <Pagination
             className="pagination-bar"
             currentPage={currentPage}
-            totalCount={data.length}
+            totalCount={dataVaksin.length}
             pageSize={PageSize}
             onPageChange={(page) => setCurrentPage(page)}
           />
+        </div>
+        <div
+          className={`absolute w-8 h-8 right-0 p-6 mt-8 mr-16 ${styles.chevronUp}`}
+        >
+          <Link href="#fifth" passHref>
+            <Image src="/images/chevron.svg" alt="" layout="fill" />
+          </Link>
         </div>
       </section>
       <Footer color="purple" />
@@ -300,11 +343,18 @@ export default function Vaksinasi({ data }) {
 }
 
 export async function getServerSideProps() {
-  const response = await fetch('http://localhost:3000/api/vaksinasi-provinsi');
-  const result = await response.json();
+  const vaksinasiPertama = await fetch(
+    "http://localhost:3000/api/vaksinasi-provinsi"
+  );
+  const vaksinasiKedua = await fetch(
+    "http://localhost:3000/api/vaksinasi-provinsi-kedua"
+  );
+  const resultPertama = await vaksinasiPertama.json();
+  const resultKedua = await vaksinasiKedua.json();
   return {
     props: {
-      data: result.data,
+      data: resultPertama.data,
+      dataKedua: resultKedua.data,
     },
   };
 }
