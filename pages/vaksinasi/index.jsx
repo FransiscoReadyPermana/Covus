@@ -16,6 +16,7 @@ export default function Vaksinasi({ data, dataKedua }) {
   const [dataVaksin, setDataVaksin] = useState(data);
   const [color, setColor] = useState("purple");
   const [colorSecondary, setColorSecondary] = useState("secondary");
+  const [vaksin, setVaksin] = useState("PERTAMA");
   const PageSize = 4;
   let firstPageIndex = 0;
   let lastPageIndex = 0;
@@ -26,13 +27,15 @@ export default function Vaksinasi({ data, dataKedua }) {
     setCurrentTableData(dataVaksin.slice(firstPageIndex, lastPageIndex));
     setColorSecondary(colorSecondary);
     setColor(color);
-  }, [currentPage, dataVaksin, color, colorSecondary]);
+    setVaksin(vaksin)
+  }, [currentPage, dataVaksin, color, colorSecondary, vaksin]);
 
   const VaksinPertama = () => {
     setDataVaksin(data);
     setCurrentPage(1);
     setColorSecondary("secondary");
     setColor("purple");
+    setVaksin("PERTAMA")
   };
 
   function VaksinKedua() {
@@ -40,6 +43,7 @@ export default function Vaksinasi({ data, dataKedua }) {
     setCurrentPage(1);
     setColorSecondary("purple");
     setColor("secondary");
+    setVaksin("KEDUA")
   }
 
   return (
@@ -284,7 +288,7 @@ export default function Vaksinasi({ data, dataKedua }) {
           className="flex flex-col w-full h-full px-52 bg-white pt-40 items-center"
         >
           <Title color="dark-grey" id="judulVaksin">
-            PILIH LOKASI DAERAH VAKSINASI
+            PILIH LOKASI DAERAH VAKSINASI {vaksin}
           </Title>
 
           <div
@@ -321,7 +325,7 @@ export default function Vaksinasi({ data, dataKedua }) {
             onPageChange={(page) => setCurrentPage(page)}
           />
         </div>
-        <div className={`absolute w-8 h-8 right-0 p-6 mt-8 mr-12 ${styles.chevronUp}`}>
+        <div className={`absolute w-8 h-8 right-0 p-6 mt-8 mr-16 ${styles.chevronUp}`}>
           <Link href="#fifth" passHref>
             <Image src="/images/chevron.svg" alt="" layout="fill" />
           </Link>
