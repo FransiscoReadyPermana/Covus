@@ -76,12 +76,12 @@ export default function Vaksinasi({ data, dataKedua }) {
               </Paragraph>
             </div>
 
-            <Button to="#containerCard" color={color} onClick={VaksinPertama}>
+            <Button to="#contentCard" color={color} onClick={VaksinPertama}>
               Vaksinasi Pertama
             </Button>
 
             <Button
-              to="#containerCard"
+              to="#contentCard"
               color={colorSecondary}
               onClick={VaksinKedua}
             >
@@ -288,7 +288,7 @@ export default function Vaksinasi({ data, dataKedua }) {
           className={`${styles.dividerKetiga} h-10  w-full absolute`}
         />
         <div
-          id="content"
+          id="contentCard"
           className="flex flex-col w-full h-full px-52 bg-white pt-40 items-center"
         >
           <Title color="dark-grey" id="judulVaksin">
