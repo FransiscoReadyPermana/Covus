@@ -1,4 +1,12 @@
-.dropDownControl {
+.dropDownControlWhite {
+  background-color: white;
+  color: #494961;
+  border-radius: 3rem;
+  cursor: pointer;
+  padding-left: 3.25rem;
+}
+
+.dropDownControlPurple {
   background-color: #a5afed;
   color: white;
   border-radius: 3rem;
@@ -6,7 +14,7 @@
   padding-left: 3.25rem;
 }
 
-.menuControl  {
+.menuControl {
   border-radius: 1.5rem;
   margin-top: 1rem;
   overflow: scroll;
@@ -14,27 +22,33 @@
   cursor: pointer;
 }
 
-.menuControl::-webkit-scrollbar{
+.menuControl::-webkit-scrollbar {
   width: 10px;
   display: none;
 }
 
 /* Track */
 .menuControl::-webkit-scrollbar-track {
-  background: rgb(255, 255, 255); 
+  background: rgb(255, 255, 255);
 }
- 
+
 /* Handle */
 .menuControl::-webkit-scrollbar-thumb {
-  background: #a5afed; 
+  background: #a5afed;
 }
 
 /* Handle on hover */
 .menuControl::-webkit-scrollbar-thumb:hover {
-  background: #949bc5; 
+  background: #949bc5;
 }
 
-.myArrowClassName {
+.myArrowClassNameWhite {
+  border-color: #494961 transparent transparent;
+  margin-top: 0.3rem;
+  margin-right: 1rem;
+}
+
+.myArrowClassNamePurple {
   border-color: white transparent transparent;
   margin-top: 0.3rem;
   margin-right: 1rem;

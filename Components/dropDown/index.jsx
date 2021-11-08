@@ -1,20 +1,29 @@
-import React, { Component } from 'react'
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
-import styles from './dropDown.module.css';
-import kota from './dataKota';
+import React, { Component } from "react";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
+import styles from "./dropDown.module.css";
+import kota from "./dataKota";
 
-export default function DropDownEdit({className, value, onChange}) {
-  
+export default function DropDownEdit({ color, className, value, onChange }) {
+  let style;
+  let menu;
+  if (color === "purple") {
+    style = styles.dropDownControlPurple;
+    menu = styles.myArrowClassNamePurple;
+  }
+  if (color === "white") {
+    style = styles.dropDownControlWhite;
+    menu = styles.myArrowClassNameWhite;
+  }
   return (
     <Dropdown
       options={kota}
       placeholder="Pilih Provinsi"
       className={`text-center ${className} ${styles.dropDown}`}
-      controlClassName={`text-xl font-medium ${styles.dropDownControl}`}
+      controlClassName={`text-xl font-medium ${style}`}
       menuClassName={`font-medium ${styles.menuControl}`}
-      arrowClassName={`${styles.myArrowClassName}`}
-      arrowOpen={<span className={`border-2 border-red-500 ${styles.dropDownControl}`}/>}
+      arrowClassName={`${menu}`}
+      arrowOpen={<span className={`border-2 border-red-500 ${style}`} />}
       value={value}
       onChange={(e) => onChange(e.value)}
     />
