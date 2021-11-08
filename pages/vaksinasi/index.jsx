@@ -33,17 +33,17 @@ export default function Vaksinasi({ data, dataKedua }) {
   const VaksinPertama = () => {
     setDataVaksin(data);
     setCurrentPage(1);
-    setColorSecondary('secondary');
-    setColor('purple');
-    setVaksin('PERTAMA');
+    setColorSecondary("secondary");
+    setColor("purple");
+    setVaksin("PERTAMA");
   };
 
   function VaksinKedua() {
     setDataVaksin(dataKedua);
     setCurrentPage(1);
-    setColorSecondary('purple');
-    setColor('secondary');
-    setVaksin('KEDUA');
+    setColorSecondary("purple");
+    setColor("secondary");
+    setVaksin("KEDUA");
   }
 
   return (
@@ -76,12 +76,12 @@ export default function Vaksinasi({ data, dataKedua }) {
               </Paragraph>
             </div>
 
-            <Button to="#containerCard" color={color} onClick={VaksinPertama}>
+            <Button to="#contentCard" color={color} onClick={VaksinPertama}>
               Vaksinasi Pertama
             </Button>
 
             <Button
-              to="#containerCard"
+              to="#contentCard"
               color={colorSecondary}
               onClick={VaksinKedua}
             >
@@ -288,7 +288,7 @@ export default function Vaksinasi({ data, dataKedua }) {
           className={`${styles.dividerKetiga} h-10  w-full absolute`}
         />
         <div
-          id="content"
+          id="contentCard"
           className="flex flex-col w-full h-full px-52 bg-white pt-40 items-center"
         >
           <Title color="dark-grey" id="judulVaksin">
@@ -300,6 +300,7 @@ export default function Vaksinasi({ data, dataKedua }) {
             className="w-full flex justify-center gap-12 mt-12 justify-center"
           >
             {currentTableData.map((item) => (
+            <Link href="./lokasi-vaksinasi" passHref key={uuid()}>
               <div
                 id="card"
                 className={`flex flex-col justify-center bg-white w-1/4 h-96 gap-8 pt-2 items-center ${styles.card} overflow-hidden mb-8`}
@@ -319,6 +320,7 @@ export default function Vaksinasi({ data, dataKedua }) {
                   {item.nama}
                 </p>
               </div>
+              </Link>
             ))}
           </div>
           <Pagination

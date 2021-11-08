@@ -1,16 +1,16 @@
 import dbConnect from "../../../utils/dbConnect";
-import Hospital from "../../../models/rsrujukan";
+import LokasiVaksinasi from "../../../models/lokasivaksinasi";
 
 dbConnect();
 
-const hospital = async (req, res) => {
+const lokasiVaksin = async (req, res) => {
   const { method } = req;
 
   switch (method) {
     case "GET":
       try {
-        const hospitals = await Hospital.find({});
-        res.status(200).json({ success: true, data: hospitals });
+        const lokasivaksin = await LokasiVaksinasi.find({});
+        res.status(200).json({ success: true, data: lokasivaksin });
       } catch (error) {
         res.status(400).json({ success: false });
       }
@@ -18,8 +18,8 @@ const hospital = async (req, res) => {
 
     case "POST":
       try {
-        const hospitals = await Hospital.create(req.body);
-        res.status(201).json({ success: true, data: hospitals });
+        const lokasivaksin = await LokasiVaksinasi.create(req.body);
+        res.status(201).json({ success: true, data: lokasivaksin });
       } catch (error) {
         res.status(400).json({ success: false });
       }
@@ -31,4 +31,4 @@ const hospital = async (req, res) => {
   }
 };
 
-module.exports = hospital;
+module.exports = lokasiVaksin;
