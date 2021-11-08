@@ -38,4 +38,4 @@ const LokasiVaksinasiSchema = new mongoose.Schema({
 
 module.exports =
   mongoose.models.LokasiVaksinasi ||
-  mongoose.model("Hospital", LokasiVaksinasiSchema);
+  mongoose.model("LokasiVaksinasi", LokasiVaksinasiSchema);

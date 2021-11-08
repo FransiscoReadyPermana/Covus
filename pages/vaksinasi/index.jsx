@@ -27,7 +27,7 @@ export default function Vaksinasi({ data, dataKedua }) {
     setCurrentTableData(dataVaksin.slice(firstPageIndex, lastPageIndex));
     setColorSecondary(colorSecondary);
     setColor(color);
-    setVaksin(vaksin)
+    setVaksin(vaksin);
   }, [currentPage, dataVaksin, color, colorSecondary, vaksin]);
 
   const VaksinPertama = () => {
@@ -35,7 +35,7 @@ export default function Vaksinasi({ data, dataKedua }) {
     setCurrentPage(1);
     setColorSecondary("secondary");
     setColor("purple");
-    setVaksin("PERTAMA")
+    setVaksin("PERTAMA");
   };
 
   function VaksinKedua() {
@@ -43,7 +43,7 @@ export default function Vaksinasi({ data, dataKedua }) {
     setCurrentPage(1);
     setColorSecondary("purple");
     setColor("secondary");
-    setVaksin("KEDUA")
+    setVaksin("KEDUA");
   }
 
   return (
@@ -300,6 +300,7 @@ export default function Vaksinasi({ data, dataKedua }) {
             className="w-full flex justify-center gap-12 mt-12 justify-center"
           >
             {currentTableData.map((item) => (
+            <Link href="./lokasi-vaksinasi" passHref>
               <div
                 id="card"
                 className={`flex flex-col justify-center bg-white w-1/4 h-96 gap-8 pt-2 items-center ${styles.card} overflow-hidden mb-8`}
@@ -319,6 +320,7 @@ export default function Vaksinasi({ data, dataKedua }) {
                   {item.nama}
                 </p>
               </div>
+              </Link>
             ))}
           </div>
           <Pagination
