@@ -1,15 +1,16 @@
 import { useRouter } from 'next/dist/client/router';
 import React from 'react';
+import AvatarDropDown from '../avatarDropDown';
+import AvatarDropDownMenu from '../avatarDropDownMenu';
 import Brand from '../brand';
 import NavItems from '../navItems';
 
 export default function Navbar() {
   const router = useRouter();
-  const path = router.pathname.split("/")
-  
+  const path = router.pathname.split('/');
 
   return (
-    <div className="flex items-center justify-between bg-dark-grey pl-24 pt-5 pb-6 fixed w-full z-30">
+    <div className="flex items-center justify-between bg-dark-grey pl-24 pt-5 pb-6 fixed w-full z-30 pr-24">
       <div id="left" className="flex items-center gap-12">
         <Brand />
         <NavItems className="ml-4" to="/" isActive={router.pathname === '/'}>
@@ -44,7 +45,10 @@ export default function Navbar() {
           Vaksinasi
         </NavItems>
       </div>
-      <div id="right">
+      <div id="right" className="flex items-center">
+        <AvatarDropDown>
+          <AvatarDropDownMenu />
+        </AvatarDropDown>
       </div>
     </div>
   );
