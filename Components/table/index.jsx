@@ -102,6 +102,7 @@ export default function TableData({ data, type }) {
               className="w-1/2"
               value={dataDropdownProvinsi}
               onChange={onFilterDropdown}
+              color="purple"
             />
             <button
               className="bg-purple flex items-center justify-center w-20 h-12 rounded-3xl"
@@ -221,6 +222,7 @@ export default function TableData({ data, type }) {
               className="w-1/2"
               value={dataDropdownHospitals}
               onChange={onFilterDropdown}
+              color="purple"
             />
             <SearchInput
               className="w-full"

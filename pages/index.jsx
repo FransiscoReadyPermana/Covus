@@ -178,7 +178,7 @@ export default function Home({ dataOrang, total }) {
                 yang harus dipersiapkan sebelum dan sesudah Vaksinasi covid-19
               </Paragraph>
             </div>
-            <Button to="#" color="purple">
+            <Button to="/vaksinasi" color="purple">
               Lihat Selengkapnya
             </Button>
           </div>
