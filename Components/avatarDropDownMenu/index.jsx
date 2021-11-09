@@ -12,7 +12,7 @@ export default function AvatarDropDownMenu() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
-      <PopUpLogin open={isOpen} />
+      <PopUpLogin open={isOpen} onClick={()=>setIsOpen(false)}/>
       <div className={`absolute right-30 ${style.Poligon}`}>
         <Poligon />
       </div>
