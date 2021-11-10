@@ -29,7 +29,7 @@ export default function PopUpLogin({open, onClick}) {
           </div>
           <input type="submit" value="Masuk" className="bg-purple text-white py-3 rounded-3xl"/>
         </form>
-        <h6 className="text-s mt-4 text-center font-semibold">
+        <h6 className={`mt-4 text-center font-semibold ${style.text}`}>
           Belum Memiliki Akun? <span className="text-purple"><Link href="/vaksinasi">Daftar Sekarang</Link></span> 
         </h6>
       </div>
