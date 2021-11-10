@@ -45,7 +45,7 @@ export default function Navbar() {
           Vaksinasi
         </NavItems>
       </div>
-      <div id="right" className="flex items-center">
+      <div id="right" className="flex justify-items-center">
         <AvatarDropDown>
           <AvatarDropDownMenu />
         </AvatarDropDown>
