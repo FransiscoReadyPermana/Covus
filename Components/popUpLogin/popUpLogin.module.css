@@ -1,54 +1,60 @@
-.background{
-    background-color: rgba(0, 0, 0, 0.404);
+.background {
+  background-color: rgba(0, 0, 0, 0.404);
 }
 
-.container{
-    border-radius: 3rem;
+.container {
+  border-radius: 3rem;
 }
 
-.close{
-    background-color: #F178B6;
-    transition: 0.2s ease-in-out;
+.close {
+  background-color: #f178b6;
+  transition: 0.2s ease-in-out;
 }
 
-.close:hover{
-    background-color: #f150a3;
+.close:hover {
+  background-color: #f150a3;
 }
 
-.judul{
-    font-family: 'LeagueSpartan';
-    font-weight: 700;
-    font-size: 1.2rem;
+.judul {
+  font-family: "LeagueSpartan";
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 
-.form{
-    width: 30rem;
+.form {
+  width: 30rem;
 }
 
-.form input{
-    width: 100%;
+.form input {
+  width: 100%;
 }
 
-.form input[type="text"], .form input[type="password"]{
-    padding: 0.8rem 1.5rem;
-    margin-top: 0.8rem;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-    border-radius: 1.5rem;
+.form input[type="text"],
+.form input[type="password"] {
+  padding: 0.8rem 1.5rem;
+  margin-top: 0.8rem;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 1.5rem;
 }
 
-.form input[type="submit"]{
-    opacity: 0.5;
-    transition: 0.2s ease-in-out;
-    cursor: pointer;
+.form input[type="text"]:focus,
+.form input[type="password"]:focus {
+   outline: 0.2rem solid #494961;
 }
 
-.form input[type="submit"]:hover{
-    opacity: 1;
+.form input[type="submit"] {
+  opacity: 0.5;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
 }
 
-.form label{
-    color: #494961;
-    font-weight: 400;
-    font-size: 1rem;
-    margin-left: 1rem;
+.form input[type="submit"]:hover {
+  opacity: 1;
+}
+
+.form label {
+  color: #494961;
+  font-weight: 400;
+  font-size: 1rem;
+  margin-left: 1rem;
 }
