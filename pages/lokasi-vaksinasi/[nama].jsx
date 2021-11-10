@@ -10,8 +10,9 @@ import Link from "next/link";
 import uuid from "react-uuid";
 import Pagination from "../../Components/pagination";
 import DropDownEdit from "../../Components/dropDown";
+import kota from "../../Components/dropDown/dataKota";
 
-export default function LokasiVaksinasi({ data }) {
+export default function LokasiVaksinasi({ data, dataVaksin1, dataVaksin2, nama }) {
   return (
     <div className="h-screen w-full">
       <section
@@ -33,7 +34,12 @@ export default function LokasiVaksinasi({ data }) {
             </Paragraph>
 
             <div className="flex gap-12 items-center mb-10 flex-row justify-center w-full mt-12">
-              <DropDownEdit className="w-3/4" color="white" />
+              <DropDownEdit
+                className="w-3/4"
+                color="white"
+                placeholder={nama}
+                option={dataVaksin1}
+              />
             </div>
           </div>
         </div>
@@ -200,14 +206,28 @@ export default function LokasiVaksinasi({ data }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx) {
+  const { nama } = ctx.query;
   const lokasiVaksinasi = await fetch(
     "http://localhost:3000/api/lokasi-vaksinasi"
   );
-  const resultPertama = await lokasiVaksinasi.json();
+  const vaksinasiPertama = await fetch(
+    "http://localhost:3000/api/vaksinasi-provinsi"
+  );
+  const vaksinasiKedua = await fetch(
+    "http://localhost:3000/api/vaksinasi-provinsi-kedua"
+  );
+  const resultPertama = await vaksinasiPertama.json();
+  const resultKedua = await vaksinasiKedua.json();
+  const resultKetiga = await lokasiVaksinasi.json();
+  const namaVaksin1 = resultPertama.data.map((item) => item.nama);
+  const namaVaksin2 = resultKedua.data.map((item) => item.nama);
   return {
     props: {
-      data: resultPertama.data,
+      data: resultKetiga.data,
+      dataVaksin1: namaVaksin1,
+      dataVaksin2: namaVaksin2,
+      nama,
     },
   };
 }

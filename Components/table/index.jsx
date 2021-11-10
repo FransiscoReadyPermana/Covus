@@ -9,6 +9,7 @@ import formatK from "../../utils/format";
 import Image from "next/image";
 import SearchInput from "../searchInput";
 import uuid from "react-uuid";
+import kota from "../dropDown/dataKota";
 
 export default function TableData({ data, type }) {
   const [currentPageProvinsi, setCurrentPageProvinsi] = useState(1);
@@ -103,6 +104,8 @@ export default function TableData({ data, type }) {
               value={dataDropdownProvinsi}
               onChange={onFilterDropdown}
               color="purple"
+              placeholder="Pilih Provinsi"
+              option={kota}
             />
             <button
               className="bg-purple flex items-center justify-center w-20 h-12 rounded-3xl"
@@ -223,6 +226,8 @@ export default function TableData({ data, type }) {
               value={dataDropdownHospitals}
               onChange={onFilterDropdown}
               color="purple"
+              placeholder="Pilih Provinsi"
+              option={kota}
             />
             <SearchInput
               className="w-full"

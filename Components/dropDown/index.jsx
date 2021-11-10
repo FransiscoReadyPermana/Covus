@@ -4,7 +4,7 @@ import "react-dropdown/style.css";
 import styles from "./dropDown.module.css";
 import kota from "./dataKota";
 
-export default function DropDownEdit({ color, className, value, onChange }) {
+export default function DropDownEdit({ color, className, value, onChange, placeholder, option }) {
   let style;
   let menu;
   if (color === "purple") {
@@ -17,8 +17,8 @@ export default function DropDownEdit({ color, className, value, onChange }) {
   }
   return (
     <Dropdown
-      options={kota}
-      placeholder="Pilih Provinsi"
+      options={option}
+      placeholder={placeholder}
       className={`text-center ${className} ${styles.dropDown}`}
       controlClassName={`text-xl font-medium ${style}`}
       menuClassName={`font-medium ${styles.menuControl}`}

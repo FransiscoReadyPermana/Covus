@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import styles from './vaksin.module.css';
-import Title from '../../Components/title';
-import Paragraph from '../../Components/paragraph';
-import Button from '../../Components/button';
-import Footer from '../../Components/footer';
-import Card from '../../Components/card';
-import Link from 'next/link';
-import uuid from 'react-uuid';
-import Pagination from '../../Components/pagination';
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import styles from "./vaksin.module.css";
+import Title from "../../Components/title";
+import Paragraph from "../../Components/paragraph";
+import Button from "../../Components/button";
+import Footer from "../../Components/footer";
+import Card from "../../Components/card";
+import Link from "next/link";
+import uuid from "react-uuid";
+import Pagination from "../../Components/pagination";
 
 export default function Vaksinasi({ data, dataKedua }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentTableData, setCurrentTableData] = useState([]);
   const [dataVaksin, setDataVaksin] = useState(data);
-  const [color, setColor] = useState('purple');
-  const [colorSecondary, setColorSecondary] = useState('secondary');
-  const [vaksin, setVaksin] = useState('PERTAMA');
+  const [color, setColor] = useState("purple");
+  const [colorSecondary, setColorSecondary] = useState("secondary");
+  const [vaksin, setVaksin] = useState("PERTAMA");
   const PageSize = 4;
   let firstPageIndex = 0;
   let lastPageIndex = 0;
@@ -300,26 +300,30 @@ export default function Vaksinasi({ data, dataKedua }) {
             className="w-full flex justify-center gap-12 mt-12 justify-center"
           >
             {currentTableData.map((item) => (
-            <Link href="./lokasi-vaksinasi" passHref key={uuid()}>
-              <div
-                id="card"
-                className={`flex flex-col justify-center bg-white w-1/4 h-96 gap-8 pt-2 items-center ${styles.card} overflow-hidden mb-8`}
+              <Link
+                href={`/lokasi-vaksinasi/${item.nama}`}
+                passHref
                 key={uuid()}
               >
-                <div className={`relative w-80 mt-4 ${styles.image}`}>
-                  <Image
-                    src={item.image}
-                    alt="reading-book-image"
-                    layout="fill"
-                  />
-                </div>
-                <p
-                  color="dark-grey"
-                  className="text-center font-semibold text-3xl text-dark-grey mb-6"
+                <div
+                  id="card"
+                  className={`flex flex-col justify-center bg-white w-1/4 h-96 gap-8 pt-2 items-center ${styles.card} overflow-hidden mb-8`}
+                  key={uuid()}
                 >
-                  {item.nama}
-                </p>
-              </div>
+                  <div className={`relative w-80 mt-4 ${styles.image}`}>
+                    <Image
+                      src={item.image}
+                      alt="reading-book-image"
+                      layout="fill"
+                    />
+                  </div>
+                  <p
+                    color="dark-grey"
+                    className="text-center font-semibold text-3xl text-dark-grey mb-6"
+                  >
+                    {item.nama}
+                  </p>
+                </div>
               </Link>
             ))}
           </div>
@@ -351,10 +355,10 @@ export default function Vaksinasi({ data, dataKedua }) {
 
 export async function getServerSideProps() {
   const vaksinasiPertama = await fetch(
-    'http://localhost:3000/api/vaksinasi-provinsi'
+    "http://localhost:3000/api/vaksinasi-provinsi"
   );
   const vaksinasiKedua = await fetch(
-    'http://localhost:3000/api/vaksinasi-provinsi-kedua'
+    "http://localhost:3000/api/vaksinasi-provinsi-kedua"
   );
   const resultPertama = await vaksinasiPertama.json();
   const resultKedua = await vaksinasiKedua.json();
