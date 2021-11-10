@@ -176,7 +176,7 @@ export default function LokasiVaksinasi({ data }) {
                   <div className={"flex flex-col items-center mt-5"}>
                     <Link href="/" passHref>
                       <button
-                        className={`${styles.button} py-3 text-white text-xl bg-purple 4 rounded-full`}
+                        className={`${styles.button} absolute py-3 text-white text-xl bg-purple 4 rounded-full bottom-0 mb-6`}
                       >
                         Daftar
                       </button>
