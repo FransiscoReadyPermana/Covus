@@ -57,131 +57,141 @@ export default function LokasiVaksinasi({ data }) {
             id="containerCard"
             className="w-full h-full flex justify-center gap-12 mt-12 justify-center mb-32"
           >
-            <div
-              id="card"
-              className={`relative bg-dark-grey w-1/4 h-full gap-8 items-center flex flex-col ${styles.card} mb-8`}
-            >
-              <div
-                id="image"
-                className={`absolute bg-white w-full h-3/5 flex flex-col ${styles.cardImage}`}
-              >
-                <Image
-                  src="/images/fotoTest.png"
-                  alt="reading-book-image"
-                  layout="fill"
-                  className={`${styles.cardImage}`}
-                />
-              </div>
-
+            {data.map((item) => (
               <div
                 id="card"
-                className={`absolute bg-white w-full h-96 bottom-0 ${styles.card2} flex flex-col`}
+                className={`relative bg-dark-grey w-1/4 h-full gap-8 items-center flex flex-col ${styles.card} mb-8`}
+                key={uuid()}
               >
-                <p
-                  color="dark-grey"
-                  className="text-center font-semibold text-m text-white mt-7 text-dark-grey"
-                >
-                  Vaksinasi Pertama
-                </p>
-
-                <p
-                  color="dark-grey"
-                  className="text-center font-light text-xl text-white mt-3 text-dark-grey"
-                >
-                  NAMA PENYELENGGARA
-                </p>
-
                 <div
-                  id="containerLogo"
-                  className={
-                    "flex flex-row justify-center mt-5 items-center ml-10"
-                  }
+                  id="image"
+                  className={`absolute bg-white w-full h-3/5 flex flex-col ${styles.cardImage}`}
                 >
-                  <div
-                    id="logo"
-                    className={
-                      "relative flex flex-row h-8 w-8 items-center justify-center top-0"
-                    }
-                  >
-                    <Image
-                      src="/images/Calendar.svg"
-                      alt="reading-book-image"
-                      layout="fill"
-                    />
-                  </div>
-                  <p
-                    color="dark-grey"
-                    className="text-left font-semibold text-l text-white text-dark-grey w-full ml-4"
-                  >
-                    01 Aug - 30 Oct 2021
-                  </p>
+                  <Image
+                    src={item.img}
+                    alt="reading-book-image"
+                    layout="fill"
+                    className={`${styles.cardImage}`}
+                  />
                 </div>
 
                 <div
-                  id="containerLogo"
-                  className={
-                    "flex flex-row justify-center mt-2 items-center ml-10"
-                  }
+                  id="card"
+                  className={`absolute bg-white w-full h-96 bottom-0 ${styles.card2} flex flex-col`}
                 >
-                  <div
-                    id="logo"
-                    className={
-                      "relative flex flex-row h-8 w-8 items-center justify-center top-0"
-                    }
-                  >
-                    <Image
-                      src="/images/Time.svg"
-                      alt="reading-book-image"
-                      layout="fill"
-                    />
-                  </div>
                   <p
                     color="dark-grey"
-                    className="text-left font-semibold text-l text-white text-dark-grey w-full ml-4"
+                    className="text-center font-semibold text-m text-white mt-7 text-dark-grey"
                   >
-                    07:00 - 15:00 WIB
+                    {item.jenisVaksin}
                   </p>
-                </div>
 
-                <div
-                  id="containerLogo"
-                  className={
-                    "flex flex-row justify-center mt-2 items-start mx-10 content-start"
-                  }
-                >
-                  <div
-                    id="logo"
-                    className={
-                      "relative h-8 w-8 items-center justify-center top-0 content-start"
-                    }
-                  >
-                    <Image
-                      src="/images/Location.svg"
-                      alt="reading-book-image"
-                      layout="fill"
-                    />
-                  </div>
                   <p
                     color="dark-grey"
-                    className="text-left font-semibold text-l text-white text-dark-grey w-full ml-4"
+                    className="text-center font-light text-xl text-white mt-3 text-dark-grey"
                   >
-                    Rumah Sakit Universitas Indonesia
-                    <br /> <br />
-                    Depok, Jawa Barat
+                    {item.nama}
                   </p>
-                </div>
 
-                <div className={"flex flex-col items-center mt-5"}>
-                  <Link href="/" passHref>
-                    <button
-                      className={`${styles.button} py-3 text-white text-xl bg-purple 4 rounded-full`}
+                  <div
+                    id="containerLogo"
+                    className={
+                      "flex flex-row justify-center mt-5 items-center ml-10"
+                    }
+                  >
+                    <div
+                      id="logo"
+                      className={
+                        "relative flex flex-row h-8 w-8 items-center justify-center top-0"
+                      }
                     >
-                      Daftar
-                    </button>
-                  </Link>
+                      <Image
+                        src="/images/Calendar.svg"
+                        alt="reading-book-image"
+                        layout="fill"
+                      />
+                    </div>
+                    <p
+                      color="dark-grey"
+                      className="text-left font-semibold text-l text-white text-dark-grey w-full ml-4"
+                    >
+                      {item.tanggal}
+                    </p>
+                  </div>
+
+                  <div
+                    id="containerLogo"
+                    className={
+                      "flex flex-row justify-center mt-2 items-center ml-10"
+                    }
+                  >
+                    <div
+                      id="logo"
+                      className={
+                        "relative flex flex-row h-8 w-8 items-center justify-center top-0"
+                      }
+                    >
+                      <Image
+                        src="/images/Time.svg"
+                        alt="reading-book-image"
+                        layout="fill"
+                      />
+                    </div>
+                    <p
+                      color="dark-grey"
+                      className="text-left font-semibold text-l text-white text-dark-grey w-full ml-4"
+                    >
+                      {item.waktu}
+                    </p>
+                  </div>
+
+                  <div
+                    id="containerLogo"
+                    className={
+                      "flex flex-row justify-center mt-2 items-start mx-10 content-start"
+                    }
+                  >
+                    <div
+                      id="logo"
+                      className={
+                        "relative h-8 w-8 items-center justify-center top-0 content-start"
+                      }
+                    >
+                      <Image
+                        src="/images/Location.svg"
+                        alt="reading-book-image"
+                        layout="fill"
+                      />
+                    </div>
+                    <p
+                      color="dark-grey"
+                      className="text-left font-semibold text-l text-white text-dark-grey w-full ml-4"
+                    >
+                      {item.lokasi1}
+                      <br /> <br />
+                      {item.lokasi2}
+                    </p>
+                  </div>
+
+                  <div className={"flex flex-col items-center mt-5"}>
+                    <Link href="/" passHref>
+                      <button
+                        className={`${styles.button} py-3 text-white text-xl bg-purple 4 rounded-full`}
+                      >
+                        Daftar
+                      </button>
+                    </Link>
+                  </div>
                 </div>
+                {/* <Pagination
+                className="pagination-bar"
+                currentPage={currentPage}
+                totalCount={dataVaksin.length}
+                pageSize={PageSize}
+                onPageChange={(page) => setCurrentPage(page)}
+              /> */}
               </div>
-            </div>
+            ))}
           </div>
         </div>
         <Footer color="purple" />

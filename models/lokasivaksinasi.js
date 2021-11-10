@@ -4,7 +4,6 @@ const LokasiVaksinasiSchema = new mongoose.Schema({
   provinsi: {
     type: String,
     required: true,
-    unique: true,
   },
   img: {
     type: String,
