@@ -47,3 +47,8 @@
   -webkit-transform: scaley(-1);
   transform: scaley(-1);
 }
+
+.cardImage {
+  border-radius: 3.5rem;
+  cursor: pointer;
+}

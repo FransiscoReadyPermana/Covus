@@ -52,6 +52,7 @@ export default function LokasiVaksinasi({ data }) {
           <Title color="dark-grey" id="judulVaksin">
             PILIH JADWAL DAN TEMPAT VAKSINASI DI {null}
           </Title>
+
           <div
             id="containerCard"
             className="w-full h-full flex justify-center gap-12 mt-12 justify-center mb-32"
@@ -61,12 +62,24 @@ export default function LokasiVaksinasi({ data }) {
               className={`relative bg-dark-grey w-1/4 h-full gap-8 items-center flex flex-col ${styles.card} mb-8`}
             >
               <div
+                id="image"
+                className={`absolute bg-white w-full h-3/5 flex flex-col ${styles.cardImage}`}
+              >
+                <Image
+                  src="/images/fotoTest.png"
+                  alt="reading-book-image"
+                  layout="fill"
+                  className={`${styles.cardImage}`}
+                />
+              </div>
+
+              <div
                 id="card"
                 className={`absolute bg-white w-full h-96 bottom-0 ${styles.card2} flex flex-col`}
               >
                 <p
                   color="dark-grey"
-                  className="text-center font-semibold text-m text-white mt-6 text-dark-grey"
+                  className="text-center font-semibold text-m text-white mt-7 text-dark-grey"
                 >
                   Vaksinasi Pertama
                 </p>
@@ -171,7 +184,7 @@ export default function LokasiVaksinasi({ data }) {
             </div>
           </div>
         </div>
-      <Footer color="purple" />
+        <Footer color="purple" />
       </section>
     </div>
   );
