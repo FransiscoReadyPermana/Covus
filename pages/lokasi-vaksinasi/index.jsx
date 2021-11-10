@@ -54,7 +54,7 @@ export default function LokasiVaksinasi({ data }) {
           </Title>
           <div
             id="containerCard"
-            className="w-full h-full flex justify-center gap-12 mt-12 justify-center mb-24"
+            className="w-full h-full flex justify-center gap-12 mt-12 justify-center mb-32"
           >
             <div
               id="card"
@@ -62,18 +62,18 @@ export default function LokasiVaksinasi({ data }) {
             >
               <div
                 id="card"
-                className={`absolute bg-white w-full h-80 bottom-0 ${styles.card} flex flex-col`}
+                className={`absolute bg-white w-full h-96 bottom-0 ${styles.card2} flex flex-col`}
               >
                 <p
                   color="dark-grey"
-                  className="text-center font-semibold text-m text-white mt-4 text-dark-grey"
+                  className="text-center font-semibold text-m text-white mt-6 text-dark-grey"
                 >
                   Vaksinasi Pertama
                 </p>
 
                 <p
                   color="dark-grey"
-                  className="text-center font-light text-xl text-white mt-4 text-dark-grey"
+                  className="text-center font-light text-xl text-white mt-3 text-dark-grey"
                 >
                   NAMA PENYELENGGARA
                 </p>
@@ -81,7 +81,7 @@ export default function LokasiVaksinasi({ data }) {
                 <div
                   id="containerLogo"
                   className={
-                    "flex flex-row justify-center mt-4 items-center ml-10"
+                    "flex flex-row justify-center mt-5 items-center ml-10"
                   }
                 >
                   <div
@@ -133,7 +133,7 @@ export default function LokasiVaksinasi({ data }) {
                 <div
                   id="containerLogo"
                   className={
-                    "flex flex-row justify-center mt-2 items-center mx-10"
+                    "flex flex-row justify-center mt-2 items-start mx-10 content-start"
                   }
                 >
                   <div
@@ -153,14 +153,25 @@ export default function LokasiVaksinasi({ data }) {
                     className="text-left font-semibold text-l text-white text-dark-grey w-full ml-4"
                   >
                     Rumah Sakit Universitas Indonesia
-                    <br/> <br/>
+                    <br /> <br />
                     Depok, Jawa Barat
                   </p>
+                </div>
+
+                <div className={"flex flex-col items-center mt-5"}>
+                  <Link href="/" passHref>
+                    <button
+                      className={`${styles.button} py-3 text-white text-xl bg-purple 4 rounded-full`}
+                    >
+                      Daftar
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      <Footer color="purple" />
       </section>
     </div>
   );

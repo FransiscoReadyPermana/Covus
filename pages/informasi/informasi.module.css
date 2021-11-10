@@ -1,34 +1,33 @@
 .section1 {
-    height: 40vh;
+  height: 40vh;
 }
 
 .section2 {
-    height: 140vh;
+  height: 140vh;
 }
 
 .section3 {
-    height: 50vh;
+  height: 50vh;
 }
 
 .bgFirstSection {
-    background: url('../../public/images/sixDivider.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+  background: url("../../public/images/sixDivider.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  .bgSecondSection {
-    background: url('../../public/images/sixDivider.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    -webkit-transform: scaley(-1);
-    transform: scaley(-1);
-  }
+.bgSecondSection {
+  background: url("../../public/images/sixDivider.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transform: scaley(-1);
+  transform: scaley(-1);
+}
 
-  .bgThirdSection {
-    background: url('../../public/images/secondDivider.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    -webkit-transform: scaley(-1);
-    transform: scaley(-1);
-  }
-
+.bgThirdSection {
+  background: url("../../public/images/secondDivider.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transform: scaley(-1);
+  transform: scaley(-1);
+}
