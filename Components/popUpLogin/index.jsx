@@ -6,18 +6,19 @@ import EyeShow from "../icons/EyeShow";
 import EyeHide from "../icons/EyeHide";
 
 export default function PopUpLogin({ open, onClick }) {
+  const [showPassword, setShowPassword] = useState(false);
+
   if (!open) {
     return null;
   }
 
-  const [showPassword, setShowPassword] = useState(true);
   return (
     <div
       id="background"
       className={`absolute h-screen w-screen flex items-center justify-center z-20 top-0 left-0 ${style.background}`}
     >
       <div
-        className="container"
+        id="container"
         className={`relative bg-white py-10 px-20 ${style.container}`}
       >
         <button

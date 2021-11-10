@@ -1,0 +1,97 @@
+.section5 {
+  height: 100vh;
+}
+
+.bgFourthSection {
+  background: url('../../public/images/thirdDivider.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.title {
+  font-weight: 400;
+}
+
+.background {
+  background-color: rgba(0, 0, 0, 0.404);
+}
+
+.container {
+  border-radius: 3rem;
+}
+
+.close {
+  background-color: #f178b6;
+  transition: 0.2s ease-in-out;
+}
+
+.close:hover {
+  background-color: #f150a3;
+}
+
+.judul {
+  font-family: 'LeagueSpartan';
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.form {
+  width: 100%;
+  padding: 3rem 20rem;
+}
+
+.form input {
+  width: 100%;
+}
+
+.form input[type='text'],
+.form input[type='password'],
+.form input[type='number'] {
+  padding: 1rem 2rem;
+  margin-top: 0.8rem;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 1.5rem;
+}
+
+.form input[type='text']:focus,
+.form input[type='password']:focus,
+.form input[type='number']:focus {
+  outline: 0.2rem solid #494961;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.form input::-webkit-outer-spin-button,
+.form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.form input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.form input[type='submit'] {
+  opacity: 0.5;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.form input[type='submit']:hover {
+  opacity: 1;
+}
+
+.form label {
+  color: #494961;
+  font-weight: 400;
+  font-size: 1rem;
+  margin-left: 1rem;
+}
+
+.text {
+  font-size: 0.9rem;
+}
+
+.form input[type='radio']{
+  width: auto;
+}
