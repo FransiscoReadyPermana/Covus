@@ -107,7 +107,7 @@ export default function LokasiVaksinasi({
             {currentData.map((item) => (
               <div
                 id="card"
-                className={`relative bg-dark-grey w-1/4 h-full gap-8 items-center flex flex-col ${styles.card} mb-8`}
+                className={`relative bg-dark-grey w-80 h-full gap-8 items-center flex flex-col ${styles.card} mb-8`}
                 key={uuid()}
               >
                 <div
