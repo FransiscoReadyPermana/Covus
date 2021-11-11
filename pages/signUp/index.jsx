@@ -1,24 +1,26 @@
-import React from 'react';
-import { useState } from 'react';
-import Headline from '../../Components/headline';
-import Title from '../../Components/title';
-import styles from './signUp.module.css';
-import EyeShow from '../../Components/icons/EyeShow';
-import EyeHide from '../../Components/icons/EyeHide';
-import Link from 'next/link';
+import React from "react";
+import { useState } from "react";
+import Headline from "../../Components/headline";
+import Title from "../../Components/title";
+import styles from "./signUp.module.css";
+import EyeShow from "../../Components/icons/EyeShow";
+import EyeHide from "../../Components/icons/EyeHide";
+import Link from "next/link";
+import DropDownEdit from "../../Components/dropDown";
+import bulan from "./Bulan";
+import Footer from "../../Components/footer";
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
-  const [mountValue, setMountValue] = useState('');
-
-  const handleChange = (e) => {
-    setMountValue(e.target.value);
-  };
+  const [mountValue, setMountValue] = useState("");
 
   return (
     <div>
-      <section id="fifth" className={`${styles.section5} w-full relative`}>
+      <section
+        id="fifth"
+        className={`${styles.section5} w-full relative pb-20`}
+      >
         <div
           id="divider"
           className={`${styles.bgFourthSection} h-52 w-full absolute top-0`}
@@ -36,7 +38,7 @@ export default function SignUp() {
               <label htmlFor="nama">Nama Lengkap</label>
               <input
                 type="text"
-                id="email" 
+                id="email"
                 placeholder="Masukkan Nama Lengkap"
               />
             </div>
@@ -46,22 +48,36 @@ export default function SignUp() {
             </div>
             <div id="tanggal" className="flex flex-col">
               <label htmlFor="tanggal">Tanggal Lahir</label>
-              <div className="flex gap-4 items-end">
+              <div className="flex gap-28 items-end">
                 <input type="number" id="tanggal" placeholder="Tanggal" />
-                <select value={mountValue} onChange={handleChange} className={`${styles.select}`}>
-                  <option value="Januari">Januari</option>
-                  <option value="Februari">Februari</option>
-                  <option value="Maret">Maret</option>
-                  <option value="April">April</option>
-                  <option value="Mei">Mei</option>
-                  <option value="Juni">Juni</option>
-                  <option value="Juli">Juli</option>
-                  <option value="Agustus">Agustus</option>
-                  <option value="September">September</option>
-                  <option value="November">November</option>
-                  <option value="Desember">Desember</option>
-                </select>
+                <DropDownEdit
+                  className={`w-full`}
+                  color="white"
+                  placeholder="Bulan"
+                  option={bulan}
+                  value={mountValue}
+                  onChange={(e) => setMountValue(e)}
+                  classNameControl={`${styles.control}`}
+                  classNameArrow={`${styles.arrow}`}
+                />
                 <input type="number" id="Tahun" placeholder="Tahun" />
+              </div>
+            </div>
+            <div id="jenis kelamin">
+              <label htmlFor="jenis kelamin">Jenis Kelamin</label>
+              <div className="flex gap-8 ml-8 mt-5">
+                <div id="Male" className="flex items-center">
+                  <input type="radio" id="laki" name="jenis kelamin" />
+                  <label htmlFor="laki">Laki-laki</label>
+                </div>
+                <div id="Female" className="flex items-center">
+                  <input type="radio" id="perempuan" name="jenis kelamin" />
+                  <label htmlFor="perempuan">Perempuan</label>
+                </div>
+                <div id="Other" className="flex items-center">
+                  <input type="radio" id="lainnya" name="jenis kelamin" />
+                  <label htmlFor="lainnya">Lainnya</label>
+                </div>
               </div>
             </div>
             <div id="alamat">
@@ -76,7 +92,7 @@ export default function SignUp() {
               <label htmlFor="password">Kata Sandi</label>
               <div className="relative">
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   placeholder="Masukkan Kata Sandi"
                 />
@@ -92,7 +108,7 @@ export default function SignUp() {
               <label htmlFor="Cpassword">Konfirmasi Kata Sandi</label>
               <div className="relative">
                 <input
-                  type={showPassword2 ? 'text' : 'password'}
+                  type={showPassword2 ? "text" : "password"}
                   id="password"
                   placeholder="Masukkan Kata Sandi"
                 />
@@ -105,11 +121,11 @@ export default function SignUp() {
               </div>
             </div>
             <div id="sk" className="flex items-center">
-              <input type="checkbox" id="checkbox" />
-              <label htmlFor="checkbox">
+              <input type="radio" id="radio" className={`${styles.radio}`} />
+              <label htmlFor="radio">
                 Dengan ini saya telah menyetujui
                 <span className="text-purple">
-                  <Link href="#"> Syarat dan Ketentuan </Link>{' '}
+                  <Link href="/"> Syarat dan Ketentuan </Link>
                 </span>
                 yang berlaku
               </label>
@@ -122,6 +138,7 @@ export default function SignUp() {
           </form>
         </div>
       </section>
+      <Footer color="purple" />
     </div>
   );
 }

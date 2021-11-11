@@ -7,9 +7,11 @@ import Button from '../button/';
 import Poligon from '../icons/poligon';
 import PopUpLogin from '../popUpLogin';
 import { useState } from 'react';
+import { useRouter } from "next/router";
 
 export default function AvatarDropDownMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
   return (
     <div>
       <PopUpLogin open={isOpen} onClick={()=>setIsOpen(false)}/>
@@ -25,7 +27,7 @@ export default function AvatarDropDownMenu() {
         >
           Masuk Akun
         </AvatarDropDownItems>
-        <AvatarDropDownItems leftIcon={<Profile />}>
+        <AvatarDropDownItems leftIcon={<Profile />} onClick={()=> router.push('/signUp')}>
           Daftar Akun
         </AvatarDropDownItems>
         <AvatarDropDownItems leftIcon={<Games />}>
