@@ -40,7 +40,6 @@ export default function LokasiVaksinasi({
 
   const onFilterDropdown = (e) => {
     setDataDropdown(e);
-
     let filterData = null;
 
     if (e.length > 0) {
@@ -96,13 +95,13 @@ export default function LokasiVaksinasi({
           id="contentCard"
           className="flex flex-col w-full h-full px-52 bg-white pt-8 items-center"
         >
-          <Title color="dark-grey" id="judulVaksin">
-            PILIH JADWAL DAN TEMPAT VAKSINASI DI {null}
+          <Title color="dark-grey" id="judulVaksin" className="uppercase">
+            PILIH JADWAL DAN TEMPAT VAKSINASI DI {dataDropdown}
           </Title>
 
           <div
             id="containerCard"
-            className="w-full h-full flex justify-center gap-12 mt-12 justify-center mb-32"
+            className="w-full h-full flex justify-center gap-12 mt-12 justify-center"
           >
             {currentData.map((item) => (
               <div
@@ -235,18 +234,23 @@ export default function LokasiVaksinasi({
                     </Link>
                   </div>
                 </div>
-                <Pagination
-                  className="pagination-bar"
-                  currentPage={currentPage}
-                  totalCount={currentData.length}
-                  pageSize={PageSize}
-                  onPageChange={(page) => setCurrentPage(page)}
-                />
               </div>
             ))}
           </div>
         </div>
-        <Footer color="purple" />
+
+        <div id="pagination" className="flex bg-white pb-20 justify-center">
+          <Pagination
+            className="pagination-bar"
+            currentPage={currentPage}
+            totalCount={filteredData.length}
+            pageSize={PageSize}
+            onPageChange={(page) => setCurrentPage(page)}
+          />
+        </div>
+        <div id="pagination" className="mt-12">
+          <Footer color="purple" />
+        </div>
       </section>
     </div>
   );
