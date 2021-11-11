@@ -12,7 +12,12 @@ import Pagination from "../../Components/pagination";
 import DropDownEdit from "../../Components/dropDown";
 import kota from "../../Components/dropDown/dataKota";
 
-export default function LokasiVaksinasi({ data, dataVaksin1, dataVaksin2, nama }) {
+export default function LokasiVaksinasi({
+  data,
+  dataVaksin1,
+  dataVaksin2,
+  nama,
+}) {
   return (
     <div className="h-screen w-full">
       <section
@@ -174,15 +179,21 @@ export default function LokasiVaksinasi({ data, dataVaksin1, dataVaksin2, nama }
                       className="text-left font-semibold text-l text-white text-dark-grey w-full ml-4"
                     >
                       {item.lokasi1}
-                      <br /> <br />
-                      {item.lokasi2}
                     </p>
                   </div>
 
+
                   <div className={"flex flex-col items-center mt-5"}>
+                    <p
+                      color="dark-grey"
+                      className="text-center font-semibold text-l text-white text-dark-grey w-full mb-5"
+                    >
+                      {item.lokasi2}
+                    </p>
+
                     <Link href="/" passHref>
                       <button
-                        className={`${styles.button} absolute py-3 text-white text-xl bg-purple 4 rounded-full bottom-0 mb-6`}
+                        className={`${styles.button} relative py-3 text-white text-xl bg-purple 4 rounded-full bottom-0 mb-6`}
                       >
                         Daftar
                       </button>
