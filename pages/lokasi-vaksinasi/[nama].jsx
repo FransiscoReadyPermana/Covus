@@ -11,6 +11,7 @@ import uuid from "react-uuid";
 import Pagination from "../../Components/pagination";
 import DropDownEdit from "../../Components/dropDown";
 import kota from "../../Components/dropDown/dataKota";
+import { useRouter } from "next/router";
 
 export default function LokasiVaksinasi({
   data,
@@ -18,16 +19,39 @@ export default function LokasiVaksinasi({
   dataVaksin2,
   nama,
 }) {
+  const router = useRouter();
   const [currentData, setCurrentData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [filteredData, setFilteredData] = useState(
+    data.filter((namaData) => namaData.provinsi === nama)
+  );
+  const [dataDropdown, setDataDropdown] = useState(nama);
+
   let firstPageIndex = 0;
   let lastPageIndex = 0;
   const PageSize = 4;
+
   useEffect(() => {
     firstPageIndex = (currentPage - 1) * PageSize;
     lastPageIndex = firstPageIndex + PageSize;
-    setCurrentData(data.slice(firstPageIndex, lastPageIndex));
-  }, [currentPage]);
+    setCurrentData(filteredData.slice(firstPageIndex, lastPageIndex));
+  }, [currentPage, filteredData]);
+  console.log(currentData);
+
+  const onFilterDropdown = (e) => {
+    setDataDropdown(e);
+
+    let filterData = null;
+
+    if (e.length > 0) {
+      filterData = data.filter((dataBaru) => dataBaru.provinsi === e);
+    } else {
+      filterData = data;
+      setDataDropdown(nama);
+    }
+    setFilteredData(filterData);
+    router.replace(`/lokasi-vaksinasi/${e}`);
+  };
 
   return (
     <div className="h-screen w-full">
@@ -55,6 +79,7 @@ export default function LokasiVaksinasi({
                 color="white"
                 placeholder={nama}
                 option={dataVaksin1}
+                onChange={onFilterDropdown}
               />
             </div>
           </div>
@@ -211,12 +236,12 @@ export default function LokasiVaksinasi({
                   </div>
                 </div>
                 <Pagination
-                className="pagination-bar"
-                currentPage={currentPage}
-                totalCount={currentData.length}
-                pageSize={PageSize}
-                onPageChange={(page) => setCurrentPage(page)}
-              />
+                  className="pagination-bar"
+                  currentPage={currentPage}
+                  totalCount={currentData.length}
+                  pageSize={PageSize}
+                  onPageChange={(page) => setCurrentPage(page)}
+                />
               </div>
             ))}
           </div>
