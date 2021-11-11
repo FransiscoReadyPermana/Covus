@@ -5,9 +5,17 @@ import Title from '../../Components/title';
 import styles from './signUp.module.css';
 import EyeShow from '../../Components/icons/EyeShow';
 import EyeHide from '../../Components/icons/EyeHide';
+import Link from 'next/link';
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
+  const [mountValue, setMountValue] = useState('');
+
+  const handleChange = (e) => {
+    setMountValue(e.target.value);
+  };
+
   return (
     <div>
       <section id="fifth" className={`${styles.section5} w-full relative`}>
@@ -28,7 +36,7 @@ export default function SignUp() {
               <label htmlFor="nama">Nama Lengkap</label>
               <input
                 type="text"
-                id="email"
+                id="email" 
                 placeholder="Masukkan Nama Lengkap"
               />
             </div>
@@ -38,15 +46,22 @@ export default function SignUp() {
             </div>
             <div id="tanggal" className="flex flex-col">
               <label htmlFor="tanggal">Tanggal Lahir</label>
-              <div className="flex">
+              <div className="flex gap-4 items-end">
                 <input type="number" id="tanggal" placeholder="Tanggal" />
-                <select id="cars" name="cars">
-                  <option value="volvo">Volvo</option>
-                  <option value="saab">Saab</option>
-                  <option value="fiat">Fiat</option>
-                  <option value="audi">Audi</option>
+                <select value={mountValue} onChange={handleChange} className={`${styles.select}`}>
+                  <option value="Januari">Januari</option>
+                  <option value="Februari">Februari</option>
+                  <option value="Maret">Maret</option>
+                  <option value="April">April</option>
+                  <option value="Mei">Mei</option>
+                  <option value="Juni">Juni</option>
+                  <option value="Juli">Juli</option>
+                  <option value="Agustus">Agustus</option>
+                  <option value="September">September</option>
+                  <option value="November">November</option>
+                  <option value="Desember">Desember</option>
                 </select>
-                <input type="number" id="tanggal" placeholder="Tahun" />
+                <input type="number" id="Tahun" placeholder="Tahun" />
               </div>
             </div>
             <div id="alamat">
@@ -77,23 +92,26 @@ export default function SignUp() {
               <label htmlFor="Cpassword">Konfirmasi Kata Sandi</label>
               <div className="relative">
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword2 ? 'text' : 'password'}
                   id="password"
                   placeholder="Masukkan Kata Sandi"
                 />
                 <button
                   className="absolute right-4 top-6"
-                  onClick={() => setShowPassword(!showPassword)}
+                  onClick={() => setShowPassword2(!showPassword2)}
                 >
-                  {showPassword ? <EyeHide /> : <EyeShow />}
+                  {showPassword2 ? <EyeHide /> : <EyeShow />}
                 </button>
               </div>
             </div>
             <div id="sk" className="flex items-center">
-              <input type="radio" id="radio" />
-              <label htmlFor="radio">
-                Dengan ini saya telah menyetujui Syarat dan Ketentuan yang
-                berlaku
+              <input type="checkbox" id="checkbox" />
+              <label htmlFor="checkbox">
+                Dengan ini saya telah menyetujui
+                <span className="text-purple">
+                  <Link href="#"> Syarat dan Ketentuan </Link>{' '}
+                </span>
+                yang berlaku
               </label>
             </div>
             <input
