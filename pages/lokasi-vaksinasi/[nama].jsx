@@ -18,6 +18,17 @@ export default function LokasiVaksinasi({
   dataVaksin2,
   nama,
 }) {
+  const [currentData, setCurrentData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  let firstPageIndex = 0;
+  let lastPageIndex = 0;
+  const PageSize = 4;
+  useEffect(() => {
+    firstPageIndex = (currentPage - 1) * PageSize;
+    lastPageIndex = firstPageIndex + PageSize;
+    setCurrentData(data.slice(firstPageIndex, lastPageIndex));
+  }, [currentPage]);
+
   return (
     <div className="h-screen w-full">
       <section
@@ -68,7 +79,7 @@ export default function LokasiVaksinasi({
             id="containerCard"
             className="w-full h-full flex justify-center gap-12 mt-12 justify-center mb-32"
           >
-            {data.map((item) => (
+            {currentData.map((item) => (
               <div
                 id="card"
                 className={`relative bg-dark-grey w-1/4 h-full gap-8 items-center flex flex-col ${styles.card} mb-8`}
@@ -182,7 +193,6 @@ export default function LokasiVaksinasi({
                     </p>
                   </div>
 
-
                   <div className={"flex flex-col items-center mt-5"}>
                     <p
                       color="dark-grey"
@@ -193,20 +203,20 @@ export default function LokasiVaksinasi({
 
                     <Link href="/" passHref>
                       <button
-                        className={`${styles.button} relative py-3 text-white text-xl bg-purple 4 rounded-full bottom-0 mb-6`}
+                        className={`${styles.button} py-3 text-white text-xl bg-purple 4 rounded-full`}
                       >
                         Daftar
                       </button>
                     </Link>
                   </div>
                 </div>
-                {/* <Pagination
+                <Pagination
                 className="pagination-bar"
                 currentPage={currentPage}
-                totalCount={dataVaksin.length}
+                totalCount={currentData.length}
                 pageSize={PageSize}
                 onPageChange={(page) => setCurrentPage(page)}
-              /> */}
+              />
               </div>
             ))}
           </div>
