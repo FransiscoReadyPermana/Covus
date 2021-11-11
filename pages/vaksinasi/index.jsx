@@ -84,6 +84,7 @@ export default function Vaksinasi({ data, dataKedua }) {
               to="#contentCard"
               color={colorSecondary}
               onClick={VaksinKedua}
+              
             >
               Vaksinasi Kedua
             </Button>
