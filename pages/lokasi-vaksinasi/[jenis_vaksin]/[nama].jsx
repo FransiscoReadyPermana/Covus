@@ -3,15 +3,13 @@ import Image from "next/image";
 import styles from "../lokasi.module.css";
 import Title from "../../../Components/title";
 import Paragraph from "../../../Components/paragraph";
-import Button from "../../../Components/button";
 import Footer from "../../../Components/footer";
-import Card from "../../../Components/card";
 import Link from "next/link";
 import uuid from "react-uuid";
 import Pagination from "../../../Components/pagination";
 import DropDownEdit from "../../../Components/dropDown";
-import kota from "../../../Components/dropDown/dataKota";
 import { useRouter } from "next/router";
+import jenisVaksinasi from "./jenisVaksin";
 
 export default function LokasiVaksinasi({
   data,
@@ -225,13 +223,14 @@ export default function LokasiVaksinasi({
                       {item.lokasi2}
                     </p>
 
-                    <Link href="/" passHref>
-                      <button
-                        className={`${styles.button} py-3 text-white text-xl bg-purple 4 rounded-full`}
-                      >
-                        Daftar
-                      </button>
-                    </Link>
+                    <div className="flex gap-12 items-center mb-10 flex-row justify-center w-full">
+                      <DropDownEdit
+                        className="w-3/4 text"
+                        color="purple"
+                        placeholder={"Jenis Vaksin"}
+                        option={jenisVaksinasi}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -257,7 +256,7 @@ export default function LokasiVaksinasi({
 }
 
 export async function getServerSideProps(ctx) {
-  const { nama,jenis_vaksin } = ctx.query;
+  const { nama, jenis_vaksin } = ctx.query;
   const lokasiVaksinasi = await fetch(
     "http://localhost:3000/api/lokasi-vaksinasi"
   );
@@ -271,7 +270,9 @@ export async function getServerSideProps(ctx) {
   const resultKedua = await vaksinasiKedua.json();
   const resultKetiga = await lokasiVaksinasi.json();
 
-  const data = resultKetiga.data.filter((item) => item.jenisVaksin === jenis_vaksin)
+  const data = resultKetiga.data.filter(
+    (item) => item.jenisVaksin === jenis_vaksin
+  );
 
   let namaVaksin = [];
   if (jenis_vaksin === "Vaksinasi Pertama") {
