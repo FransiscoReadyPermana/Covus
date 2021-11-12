@@ -17,6 +17,7 @@ export default function Vaksinasi({ data, dataKedua }) {
   const [color, setColor] = useState("purple");
   const [colorSecondary, setColorSecondary] = useState("secondary");
   const [vaksin, setVaksin] = useState("PERTAMA");
+  const [jenisVaksin, setJenisVaksin] = useState("Vaksinasi Pertama");
   const PageSize = 4;
   let firstPageIndex = 0;
   let lastPageIndex = 0;
@@ -32,6 +33,7 @@ export default function Vaksinasi({ data, dataKedua }) {
 
   const VaksinPertama = () => {
     setDataVaksin(data);
+    setJenisVaksin("Vaksinasi Pertama");
     setCurrentPage(1);
     setColorSecondary("secondary");
     setColor("purple");
@@ -40,6 +42,7 @@ export default function Vaksinasi({ data, dataKedua }) {
 
   function VaksinKedua() {
     setDataVaksin(dataKedua);
+    setJenisVaksin("Vaksinasi Kedua");
     setCurrentPage(1);
     setColorSecondary("purple");
     setColor("secondary");
@@ -302,7 +305,7 @@ export default function Vaksinasi({ data, dataKedua }) {
           >
             {currentTableData.map((item) => (
               <Link
-                href={`/lokasi-vaksinasi/${item.nama}`}
+                href={`/lokasi-vaksinasi/${jenisVaksin}/${item.nama}`}
                 passHref
                 key={uuid()}
               >

@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import styles from "./lokasi.module.css";
-import Title from "../../Components/title";
-import Paragraph from "../../Components/paragraph";
-import Button from "../../Components/button";
-import Footer from "../../Components/footer";
-import Card from "../../Components/card";
+import styles from "../lokasi.module.css";
+import Title from "../../../Components/title";
+import Paragraph from "../../../Components/paragraph";
+import Button from "../../../Components/button";
+import Footer from "../../../Components/footer";
+import Card from "../../../Components/card";
 import Link from "next/link";
 import uuid from "react-uuid";
-import Pagination from "../../Components/pagination";
-import DropDownEdit from "../../Components/dropDown";
-import kota from "../../Components/dropDown/dataKota";
+import Pagination from "../../../Components/pagination";
+import DropDownEdit from "../../../Components/dropDown";
+import kota from "../../../Components/dropDown/dataKota";
 import { useRouter } from "next/router";
 
 export default function LokasiVaksinasi({
   data,
-  dataVaksin1,
-  dataVaksin2,
+  dataVaksin,
   nama,
+  jenis_vaksin,
 }) {
   const router = useRouter();
   const [currentData, setCurrentData] = useState([]);
@@ -49,7 +49,7 @@ export default function LokasiVaksinasi({
       setDataDropdown(nama);
     }
     setFilteredData(filterData);
-    router.replace(`/lokasi-vaksinasi/${e}`);
+    router.replace(`/lokasi-vaksinasi/${jenis_vaksin}/${e}`);
   };
 
   return (
@@ -77,7 +77,7 @@ export default function LokasiVaksinasi({
                 className="w-3/4"
                 color="white"
                 placeholder={nama}
-                option={dataVaksin1}
+                option={dataVaksin}
                 onChange={onFilterDropdown}
               />
             </div>
@@ -257,7 +257,7 @@ export default function LokasiVaksinasi({
 }
 
 export async function getServerSideProps(ctx) {
-  const { nama } = ctx.query;
+  const { nama,jenis_vaksin } = ctx.query;
   const lokasiVaksinasi = await fetch(
     "http://localhost:3000/api/lokasi-vaksinasi"
   );
@@ -270,14 +270,21 @@ export async function getServerSideProps(ctx) {
   const resultPertama = await vaksinasiPertama.json();
   const resultKedua = await vaksinasiKedua.json();
   const resultKetiga = await lokasiVaksinasi.json();
-  const namaVaksin1 = resultPertama.data.map((item) => item.nama);
-  const namaVaksin2 = resultKedua.data.map((item) => item.nama);
+
+  const data = resultKetiga.data.filter((item) => item.jenisVaksin === jenis_vaksin)
+
+  let namaVaksin = [];
+  if (jenis_vaksin === "Vaksinasi Pertama") {
+    namaVaksin = resultPertama.data.map((item) => item.nama);
+  } else if (jenis_vaksin === "Vaksinasi Kedua") {
+    namaVaksin = resultKedua.data.map((item) => item.nama);
+  }
   return {
     props: {
-      data: resultKetiga.data,
-      dataVaksin1: namaVaksin1,
-      dataVaksin2: namaVaksin2,
+      data,
+      dataVaksin: namaVaksin,
       nama,
+      jenis_vaksin,
     },
   };
 }
