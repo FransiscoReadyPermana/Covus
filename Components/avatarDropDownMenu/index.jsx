@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AvatarDropDownItems from '../avatarDropDownItems';
 import Profile from '../icons/profile';
 import Games from '../icons/games';
@@ -7,14 +7,26 @@ import Button from '../button/';
 import Poligon from '../icons/poligon';
 import PopUpLogin from '../popUpLogin';
 import { useState } from 'react';
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 
 export default function AvatarDropDownMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleClickOutside = () => {
+      setIsOpen(false);
+    };
+    window.addEventListener('click', handleClickOutside);
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
     <div>
-      <PopUpLogin open={isOpen} onClick={()=>setIsOpen(false)}/>
+      <PopUpLogin open={isOpen} onClick={() => setIsOpen(false)} />
       <div className={`absolute right-30 ${style.Poligon}`}>
         <Poligon />
       </div>
@@ -27,7 +39,10 @@ export default function AvatarDropDownMenu() {
         >
           Masuk Akun
         </AvatarDropDownItems>
-        <AvatarDropDownItems leftIcon={<Profile />} onClick={()=> router.push('/signUp')}>
+        <AvatarDropDownItems
+          leftIcon={<Profile />}
+          onClick={() => router.push('/signUp')}
+        >
           Daftar Akun
         </AvatarDropDownItems>
         <AvatarDropDownItems leftIcon={<Games />}>

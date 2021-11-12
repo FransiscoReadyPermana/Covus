@@ -1,19 +1,32 @@
-import React from "react";
-import { useState } from "react";
-import Headline from "../../Components/headline";
-import Title from "../../Components/title";
-import styles from "./signUp.module.css";
-import EyeShow from "../../Components/icons/EyeShow";
-import EyeHide from "../../Components/icons/EyeHide";
-import Link from "next/link";
-import DropDownEdit from "../../Components/dropDown";
-import bulan from "./Bulan";
-import Footer from "../../Components/footer";
+import React from 'react';
+import { useState } from 'react';
+import Headline from '../../Components/headline';
+import Title from '../../Components/title';
+import styles from './signUp.module.css';
+import EyeShow from '../../Components/icons/EyeShow';
+import EyeHide from '../../Components/icons/EyeHide';
+import Link from 'next/link';
+import DropDownEdit from '../../Components/dropDown';
+import bulan from '../../data/Bulan';
+import Footer from '../../Components/footer';
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
-  const [mountValue, setMountValue] = useState("");
+  const [mountValue, setMountValue] = useState('');
+
+  const [formUser, setFormUser] = useState({
+    nama: '',
+    email: '',
+    tanggal: '',
+    bulan: '',
+    tahun: '',
+    jenisKelamin: '',
+    alamat: '',
+    kataSandi: '',
+    CKataSandi: '',
+    setuju: false,
+  });
 
   return (
     <div>
@@ -38,44 +51,96 @@ export default function SignUp() {
               <label htmlFor="nama">Nama Lengkap</label>
               <input
                 type="text"
-                id="email"
+                id="nama"
                 placeholder="Masukkan Nama Lengkap"
+                onChange={(e) =>
+                  setFormUser({ ...formUser, nama: e.target.value })
+                }
               />
             </div>
             <div id="email">
               <label htmlFor="email">Email</label>
-              <input type="text" id="email" placeholder="Masukkan Email" />
+              <input
+                type="text"
+                id="email"
+                placeholder="Masukkan Email"
+                onChange={(e) =>
+                  setFormUser({ ...formUser, email: e.target.value })
+                }
+              />
             </div>
             <div id="tanggal" className="flex flex-col">
               <label htmlFor="tanggal">Tanggal Lahir</label>
               <div className="flex gap-28 items-end">
-                <input type="number" id="tanggal" placeholder="Tanggal" />
+                <input
+                  type="number"
+                  id="tanggal"
+                  placeholder="Tanggal"
+                  onChange={(e) =>
+                    setFormUser({ ...formUser, tanggal: e.target.value })
+                  }
+                />
                 <DropDownEdit
                   className={`w-full`}
                   color="white"
                   placeholder="Bulan"
                   option={bulan}
                   value={mountValue}
-                  onChange={(e) => setMountValue(e)}
+                  onChange={(e) => {
+                    setMountValue(e);
+                    setFormUser({ ...formUser, bulan: e });
+                  }}
                   classNameControl={`${styles.control}`}
                   classNameArrow={`${styles.arrow}`}
+                  placeholderClassName={`${styles.placeholderDropdown}`}
                 />
-                <input type="number" id="Tahun" placeholder="Tahun" />
+                <input
+                  type="number"
+                  id="Tahun"
+                  placeholder="Tahun"
+                  onChange={(e) =>
+                    setFormUser({ ...formUser, tahun: e.target.value })
+                  }
+                />
               </div>
             </div>
             <div id="jenis kelamin">
               <label htmlFor="jenis kelamin">Jenis Kelamin</label>
               <div className="flex gap-8 ml-8 mt-5">
                 <div id="Male" className="flex items-center">
-                  <input type="radio" id="laki" name="jenis kelamin" />
+                  <input
+                    type="radio"
+                    id="laki"
+                    name="jenis kelamin"
+                    value="laki-laki"
+                    onChange={(e) =>
+                      setFormUser({ ...formUser, jenisKelamin: e.target.value })
+                    }
+                  />
                   <label htmlFor="laki">Laki-laki</label>
                 </div>
                 <div id="Female" className="flex items-center">
-                  <input type="radio" id="perempuan" name="jenis kelamin" />
+                  <input
+                    type="radio"
+                    id="perempuan"
+                    name="jenis kelamin"
+                    value="perempuan"
+                    onChange={(e) =>
+                      setFormUser({ ...formUser, jenisKelamin: e.target.value })
+                    }
+                  />
                   <label htmlFor="perempuan">Perempuan</label>
                 </div>
                 <div id="Other" className="flex items-center">
-                  <input type="radio" id="lainnya" name="jenis kelamin" />
+                  <input
+                    type="radio"
+                    id="lainnya"
+                    name="jenis kelamin"
+                    value="lainnya"
+                    onChange={(e) =>
+                      setFormUser({ ...formUser, jenisKelamin: e.target.value })
+                    }
+                  />
                   <label htmlFor="lainnya">Lainnya</label>
                 </div>
               </div>
@@ -86,17 +151,24 @@ export default function SignUp() {
                 type="text"
                 id="email"
                 placeholder="Masukkan Alamat Lengkap"
+                onChange={(e) =>
+                  setFormUser({ ...formUser, alamat: e.target.value })
+                }
               />
             </div>
             <div id="password">
               <label htmlFor="password">Kata Sandi</label>
               <div className="relative">
                 <input
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? 'text' : 'password'}
                   id="password"
                   placeholder="Masukkan Kata Sandi"
+                  onChange={(e) =>
+                    setFormUser({ ...formUser, kataSandi: e.target.value })
+                  }
                 />
                 <button
+                  type="button"
                   className="absolute right-4 top-6"
                   onClick={() => setShowPassword(!showPassword)}
                 >
@@ -108,11 +180,15 @@ export default function SignUp() {
               <label htmlFor="Cpassword">Konfirmasi Kata Sandi</label>
               <div className="relative">
                 <input
-                  type={showPassword2 ? "text" : "password"}
+                  type={showPassword2 ? 'text' : 'password'}
                   id="password"
                   placeholder="Masukkan Kata Sandi"
+                  onChange={(e) =>
+                    setFormUser({ ...formUser, CKataSandi: e.target.value })
+                  }
                 />
                 <button
+                  type="button"
                   className="absolute right-4 top-6"
                   onClick={() => setShowPassword2(!showPassword2)}
                 >
@@ -121,7 +197,14 @@ export default function SignUp() {
               </div>
             </div>
             <div id="sk" className="flex items-center">
-              <input type="radio" id="radio" className={`${styles.radio}`} />
+              <input
+                type="checkbox"
+                id="radio"
+                className={`${styles.radio}`}
+                onChange={(e) =>
+                  setFormUser({ ...formUser, setuju: e.target.checked })
+                }
+              />
               <label htmlFor="radio">
                 Dengan ini saya telah menyetujui
                 <span className="text-purple">
