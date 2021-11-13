@@ -40,7 +40,7 @@ export default function Navbar() {
         <NavItems
           className="ml-4"
           to="/vaksinasi"
-          isActive={router.pathname === '/vaksinasi' || router.pathname === '/lokasi-vaksinasi'}
+          isActive={router.pathname === '/vaksinasi' || router.pathname === '/lokasi-vaksinasi/[jenis_vaksin]'}
         >
           Vaksinasi
         </NavItems>
