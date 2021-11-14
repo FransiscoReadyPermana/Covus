@@ -5,19 +5,19 @@ import style from './avatarDropDown.module.css';
 export default function AvatarDropDown({ children }) {
   const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    if (!show) return;
-    const handleClickOutside = () => {
-      setShow(false);
-    };
-    window.addEventListener('click', handleClickOutside);
-    return () => {
-      window.removeEventListener('click', handleClickOutside);
-    };
-  }, [show]);
+  // useEffect(() => {
+  //   if (!show) return;
+  //   const handleClickOutside = () => {
+  //     setShow(false);
+  //   };
+  //   window.addEventListener('click', handleClickOutside);
+  //   return () => {
+  //     window.removeEventListener('click', handleClickOutside);
+  //   };
+  // }, [show]);
 
   return (
-    <div>
+    <>
       <button className={`${style.avatar}`} onClick={() => setShow(!show)}>
         <div className="bg-white p-1 rounded-full">
           <div className="relative w-8 h-8">
@@ -30,6 +30,6 @@ export default function AvatarDropDown({ children }) {
         </div>
       </button>
       {show && children}
-    </div>
+    </>
   );
 }

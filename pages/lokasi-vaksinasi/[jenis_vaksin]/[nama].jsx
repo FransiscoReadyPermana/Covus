@@ -9,7 +9,7 @@ import uuid from "react-uuid";
 import Pagination from "../../../Components/pagination";
 import DropDownEdit from "../../../Components/dropDown";
 import { useRouter } from "next/router";
-import jenisVaksinasi from "./jenisVaksin";
+import jenisVaksinasi from "../../../data/jenisVaksin";
 
 export default function LokasiVaksinasi({
   data,
