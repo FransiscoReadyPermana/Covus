@@ -33,6 +33,10 @@ const LokasiVaksinasiSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  namaVaksin: {
+    type: Array,
+    required: true,
+  },
 });
 
 module.exports =

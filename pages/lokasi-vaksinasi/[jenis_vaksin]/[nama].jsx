@@ -24,6 +24,7 @@ export default function LokasiVaksinasi({
     data.filter((namaData) => namaData.provinsi === nama)
   );
   const [dataDropdown, setDataDropdown] = useState(nama);
+  const [dataNamaVaksin, setDataNamaVaksin] = useState("");
 
   let firstPageIndex = 0;
   let lastPageIndex = 0;
@@ -34,7 +35,6 @@ export default function LokasiVaksinasi({
     lastPageIndex = firstPageIndex + PageSize;
     setCurrentData(filteredData.slice(firstPageIndex, lastPageIndex));
   }, [currentPage, filteredData]);
-  console.log(currentData);
 
   const onFilterDropdown = (e) => {
     setDataDropdown(e);
@@ -48,6 +48,11 @@ export default function LokasiVaksinasi({
     }
     setFilteredData(filterData);
     router.replace(`/lokasi-vaksinasi/${jenis_vaksin}/${e}`);
+  };
+
+  const onDropdownDataNamaVaksin = (e) => {
+    setDataNamaVaksin(e.target);
+    console.log(dataNamaVaksin)
   };
 
   return (
@@ -228,7 +233,8 @@ export default function LokasiVaksinasi({
                         className="w-3/4 text"
                         color="purple"
                         placeholder={"Jenis Vaksin"}
-                        option={jenisVaksinasi}
+                        option={item.namaVaksin}
+                        onChange={onDropdownDataNamaVaksin}
                       />
                     </div>
                   </div>
