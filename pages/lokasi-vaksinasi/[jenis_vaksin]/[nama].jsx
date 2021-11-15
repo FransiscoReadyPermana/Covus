@@ -8,13 +8,10 @@ import uuid from "react-uuid";
 import Pagination from "../../../Components/pagination";
 import DropDownEdit from "../../../Components/dropDown";
 import { useRouter } from "next/router";
-<<<<<<< HEAD
 import jenisVaksinasi from "./jenisVaksin";
 import CardVaksin from "../../../Components/cardVaksin";
 import Button from "../../../Components/button";
-=======
 import jenisVaksinasi from "../../../data/jenisVaksin";
->>>>>>> 34120f87c2138e1066e58465185d1b5bfefb2baf
 
 export default function LokasiVaksinasi({
   data,
