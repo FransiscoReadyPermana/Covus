@@ -10,7 +10,7 @@ export default function Navbar() {
   const path = router.pathname.split('/');
 
   return (
-    <div className="flex items-center justify-between bg-dark-grey pl-24 pt-5 pb-6 fixed w-full z-30 pr-24">
+    <div className="flex items-center justify-between bg-dark-grey pl-24 pt-5 pb-6 fixed w-full z-50 pr-24">
       <div id="left" className="flex items-center gap-12">
         <Brand />
         <NavItems className="ml-4" to="/" isActive={router.pathname === '/'}>

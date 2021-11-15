@@ -4,11 +4,8 @@ import User from '../../../models/user';
 dbConnect();
 
 const user = async (req, res) => {
-  const isAlphanumericWithSpace = (str) => /^[a-zA-Z0-9\s]+$/gm.test(str);
-  const isUsername = (str) => /^[a-z0-9_.]+$/gm.test(str);
-  const isEmail = (str) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/gm.test(str);
   const { method } = req;
-
+  const userService = new UserService();
   switch (method) {
     case 'POST':
       try {
@@ -49,9 +46,12 @@ const user = async (req, res) => {
           message: 'Activation link success sent to mail. Please check',
         });
       } catch (error) {
-        res.status(400).json({ success: false, msg: 'user sudah ada' });
+        if (error instanceof ClientError) {
+          return res.status(error.statusCode).json(clientErrRes(error));
+        }
+
+        return res.status(500).json(serverErrRes(error));
       }
-      break;
 
     default:
       res.status(400).json({ success: false });
