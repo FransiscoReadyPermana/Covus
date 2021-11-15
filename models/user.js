@@ -34,10 +34,6 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  CKataSandi: {
-    type: String,
-    required: true,
-  },
 });
 
 module.exports =
