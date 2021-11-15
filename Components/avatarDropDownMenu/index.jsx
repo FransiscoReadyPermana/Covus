@@ -27,11 +27,11 @@ export default function AvatarDropDownMenu() {
   return (
     <div>
       <PopUpLogin open={isOpen} onClick={() => setIsOpen(false)} />
-      <div className={`absolute right-30 ${style.Poligon}`}>
+      <div className={`absolute ${style.Poligon}`}>
         <Poligon />
       </div>
       <div
-        className={`absolute bg-purple mr-20 w-96 rounded-2xl -right-4 mt-8 p-4 ${style.menu}`}
+        className={`absolute bg-purple mr-20 w-96 rounded-2xl -right-4 mt-16 p-4 ${style.menu}`}
       >
         <AvatarDropDownItems
           leftIcon={<Profile />}
