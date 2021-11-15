@@ -1,30 +1,30 @@
-import React from 'react';
-import { useState } from 'react';
-import Headline from '../../Components/headline';
-import Title from '../../Components/title';
-import styles from './signUp.module.css';
-import EyeShow from '../../Components/icons/EyeShow';
-import EyeHide from '../../Components/icons/EyeHide';
-import Link from 'next/link';
-import DropDownEdit from '../../Components/dropDown';
-import bulan from '../../data/Bulan';
-import Footer from '../../Components/footer';
+import React from "react";
+import { useState } from "react";
+import Headline from "../../Components/headline";
+import Title from "../../Components/title";
+import styles from "./signUp.module.css";
+import EyeShow from "../../Components/icons/EyeShow";
+import EyeHide from "../../Components/icons/EyeHide";
+import Link from "next/link";
+import DropDownEdit from "../../Components/dropDown";
+import bulan from "../../data/Bulan";
+import Footer from "../../Components/footer";
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
-  const [mountValue, setMountValue] = useState('');
+  const [mountValue, setMountValue] = useState("");
 
   const [formUser, setFormUser] = useState({
-    nama: '',
-    email: '',
-    tanggal: '',
-    bulan: '',
-    tahun: '',
-    jenisKelamin: '',
-    alamat: '',
-    kataSandi: '',
-    CKataSandi: '',
+    nama: "",
+    email: "",
+    tanggal: "",
+    bulan: "",
+    tahun: "",
+    jenisKelamin: "",
+    alamat: "",
+    kataSandi: "",
+    CKataSandi: "",
     setuju: false,
   });
 
@@ -160,7 +160,7 @@ export default function SignUp() {
               <label htmlFor="password">Kata Sandi</label>
               <div className="relative">
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   placeholder="Masukkan Kata Sandi"
                   onChange={(e) =>
@@ -180,7 +180,7 @@ export default function SignUp() {
               <label htmlFor="Cpassword">Konfirmasi Kata Sandi</label>
               <div className="relative">
                 <input
-                  type={showPassword2 ? 'text' : 'password'}
+                  type={showPassword2 ? "text" : "password"}
                   id="password"
                   placeholder="Masukkan Kata Sandi"
                   onChange={(e) =>

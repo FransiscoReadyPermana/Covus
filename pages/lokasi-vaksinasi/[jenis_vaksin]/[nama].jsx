@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import styles from "../lokasi.module.css";
 import Title from "../../../Components/title";
 import Paragraph from "../../../Components/paragraph";
@@ -10,6 +9,8 @@ import Pagination from "../../../Components/pagination";
 import DropDownEdit from "../../../Components/dropDown";
 import { useRouter } from "next/router";
 import jenisVaksinasi from "./jenisVaksin";
+import CardVaksin from "../../../Components/cardVaksin";
+import Button from "../../../Components/button";
 
 export default function LokasiVaksinasi({
   data,
@@ -24,17 +25,20 @@ export default function LokasiVaksinasi({
     data.filter((namaData) => namaData.provinsi === nama)
   );
   const [dataDropdown, setDataDropdown] = useState(nama);
-  const [dataNamaVaksin, setDataNamaVaksin] = useState("");
-
-  let firstPageIndex = 0;
-  let lastPageIndex = 0;
+  const [vaksinValue, setVaksinValue] = useState("");
   const PageSize = 4;
 
   useEffect(() => {
-    firstPageIndex = (currentPage - 1) * PageSize;
-    lastPageIndex = firstPageIndex + PageSize;
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
     setCurrentData(filteredData.slice(firstPageIndex, lastPageIndex));
   }, [currentPage, filteredData]);
+
+  const onDropdownDataNamaVaksin = (e) => {
+    let dataNamaVaksin = e;
+    setVaksinValue(dataNamaVaksin);
+    console.log(dataNamaVaksin);
+  };
 
   const onFilterDropdown = (e) => {
     setDataDropdown(e);
@@ -48,11 +52,6 @@ export default function LokasiVaksinasi({
     }
     setFilteredData(filterData);
     router.replace(`/lokasi-vaksinasi/${jenis_vaksin}/${e}`);
-  };
-
-  const onDropdownDataNamaVaksin = (e) => {
-    setDataNamaVaksin(e.target);
-    console.log(dataNamaVaksin)
   };
 
   return (
@@ -107,144 +106,29 @@ export default function LokasiVaksinasi({
             className="w-full h-full flex justify-center gap-12 mt-12 justify-center"
           >
             {currentData.map((item) => (
-              <div
-                id="card"
-                className={`relative bg-dark-grey w-80 h-full gap-8 items-center flex flex-col ${styles.card} mb-8`}
+              <CardVaksin
                 key={uuid()}
-              >
-                <div
-                  id="image"
-                  className={`absolute bg-white w-full h-3/5 flex flex-col ${styles.cardImage}`}
-                >
-                  <Image
-                    src={item.img}
-                    alt="reading-book-image"
-                    layout="fill"
-                    className={`${styles.cardImage}`}
-                  />
-                </div>
-
-                <div
-                  id="card"
-                  className={`absolute bg-white w-full h-96 bottom-0 ${styles.card2} flex flex-col`}
-                >
-                  <p
-                    color="dark-grey"
-                    className="text-center font-semibold text-m text-white mt-7 text-dark-grey"
-                  >
-                    {item.jenisVaksin}
-                  </p>
-
-                  <p
-                    color="dark-grey"
-                    className="text-center font-light text-xl text-white mt-3 text-dark-grey"
-                  >
-                    {item.nama}
-                  </p>
-
-                  <div
-                    id="containerLogo"
-                    className={
-                      "flex flex-row justify-center mt-5 items-center ml-10"
-                    }
-                  >
-                    <div
-                      id="logo"
-                      className={
-                        "relative flex flex-row h-8 w-8 items-center justify-center top-0"
-                      }
-                    >
-                      <Image
-                        src="/images/Calendar.svg"
-                        alt="reading-book-image"
-                        layout="fill"
-                      />
-                    </div>
-                    <p
-                      color="dark-grey"
-                      className="text-left font-semibold text-l text-white text-dark-grey w-full ml-4"
-                    >
-                      {item.tanggal}
-                    </p>
-                  </div>
-
-                  <div
-                    id="containerLogo"
-                    className={
-                      "flex flex-row justify-center mt-2 items-center ml-10"
-                    }
-                  >
-                    <div
-                      id="logo"
-                      className={
-                        "relative flex flex-row h-8 w-8 items-center justify-center top-0"
-                      }
-                    >
-                      <Image
-                        src="/images/Time.svg"
-                        alt="reading-book-image"
-                        layout="fill"
-                      />
-                    </div>
-                    <p
-                      color="dark-grey"
-                      className="text-left font-semibold text-l text-white text-dark-grey w-full ml-4"
-                    >
-                      {item.waktu}
-                    </p>
-                  </div>
-
-                  <div
-                    id="containerLogo"
-                    className={
-                      "flex flex-row justify-center mt-2 items-start mx-10 content-start"
-                    }
-                  >
-                    <div
-                      id="logo"
-                      className={
-                        "relative h-8 w-8 items-center justify-center top-0 content-start"
-                      }
-                    >
-                      <Image
-                        src="/images/Location.svg"
-                        alt="reading-book-image"
-                        layout="fill"
-                      />
-                    </div>
-                    <p
-                      color="dark-grey"
-                      className="text-left font-semibold text-l text-white text-dark-grey w-full ml-4"
-                    >
-                      {item.lokasi1}
-                    </p>
-                  </div>
-
-                  <div className={"flex flex-col items-center mt-5"}>
-                    <p
-                      color="dark-grey"
-                      className="text-center font-semibold text-l text-white text-dark-grey w-full mb-5"
-                    >
-                      {item.lokasi2}
-                    </p>
-
-                    <div className="flex gap-12 items-center mb-10 flex-row justify-center w-full">
-                      <DropDownEdit
-                        className="w-3/4 text"
-                        color="purple"
-                        placeholder={"Jenis Vaksin"}
-                        option={item.namaVaksin}
-                        onChange={onDropdownDataNamaVaksin}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+                img={item.img}
+                nama={item.nama}
+                tanggal={item.tanggal}
+                jenisVaksin={item.jenisVaksin}
+                namaVaksin={item.namaVaksin}
+                lokasi1={item.lokasi1}
+                lokasi2={item.lokasi2}
+                waktu={item.waktu}
+                onChange={(e) => {
+                  onDropdownDataNamaVaksin(e);
+                }}
+                vaksin={vaksinValue}
+              />
             ))}
           </div>
         </div>
 
-        <div id="pagination" className="flex bg-white pb-20 justify-center">
+        <div
+          id="pagination"
+          className="flex bg-white pb-20 mt-4 justify-center flex-col items-center"
+        >
           <Pagination
             className="pagination-bar"
             currentPage={currentPage}
@@ -252,8 +136,12 @@ export default function LokasiVaksinasi({
             pageSize={PageSize}
             onPageChange={(page) => setCurrentPage(page)}
           />
+
+          <Button to="#" color="purple" className="mt-12">
+            Selanjutnya
+          </Button>
         </div>
-        <div id="pagination" className="mt-12">
+        <div id="pagination" className="mt-4">
           <Footer color="purple" />
         </div>
       </section>
