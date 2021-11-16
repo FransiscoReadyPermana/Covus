@@ -15,6 +15,13 @@ export default function SignUp() {
   const [showPassword2, setShowPassword2] = useState(false);
   const [mountValue, setMountValue] = useState("");
 
+  let placeholderColor;
+  if(mountValue === ""){
+    placeholderColor= styles.placeHolderDefault
+  }else{
+    placeholderColor= styles.placeHolder
+  }
+
   const [formUser, setFormUser] = useState({
     nama: "",
     email: "",
@@ -92,7 +99,7 @@ export default function SignUp() {
                   }}
                   classNameControl={`${styles.control}`}
                   classNameArrow={`${styles.arrow}`}
-                  placeholderClassName={`${styles.placeholderDropdown}`}
+                  placeholderClassName={`${placeholderColor}`}
                 />
                 <input
                   type="number"

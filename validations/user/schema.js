@@ -8,7 +8,7 @@ const UserPayloadSchema = Joi.object({
   tahun: Joi.number().required(),
   jenisKelamin: Joi.string().required(),
   alamat: Joi.string().required().min(3).max(100),
-  password: Joi.string().required().min(8).max(100),
+  kataSandi: Joi.string().required().min(8).max(100),
 });
 
 export { UserPayloadSchema };

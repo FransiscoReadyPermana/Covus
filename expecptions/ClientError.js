@@ -1,4 +1,4 @@
-import { CLIENT_ERR } from "@lib/constantErrorType";
+import { CLIENT_ERR } from "../lib/constantErrorType";
 
 class ClientError extends Error {
   CLIENT_ERR = 'CLIENT_ERR';
