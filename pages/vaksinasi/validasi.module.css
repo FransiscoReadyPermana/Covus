@@ -1,0 +1,19 @@
+.section1 {
+  height: fit-content;
+}
+
+.section2 {
+  height: 50vh;
+}
+
+.container_konten {
+  border-radius: 3rem;
+}
+
+.dividerKetiga {
+  background: url("../../public/images/fourthDivider.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transform: scaley(-1);
+  transform: scaley(-1);
+}

@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
-import styles from "../lokasi.module.css";
-import React, { useEffect, useState } from 'react';
-import styles from '../lokasi.module.css';
-import Title from '../../../Components/title';
-import Paragraph from '../../../Components/paragraph';
-import Footer from '../../../Components/footer';
-import Link from 'next/link';
-import uuid from 'react-uuid';
-import Pagination from '../../../Components/pagination';
-import DropDownEdit from '../../../Components/dropDown';
-import { useRouter } from 'next/router';
-import CardVaksin from '../../../Components/cardVaksin';
-import Button from '../../../Components/button';
+import styles from "../../lokasi.module.css";
+import Title from "../../../../Components/title";
+import Paragraph from "../../../../Components/paragraph";
+import Footer from "../../../../Components/footer";
+import uuid from "react-uuid";
+import Pagination from "../../../../Components/pagination";
+import DropDownEdit from "../../../../Components/dropDown";
+import { useRouter } from "next/router";
+import CardVaksin from "../../../../Components/cardVaksin";
+import Button from "../../../../Components/button";
 
 export default function LokasiVaksinasi({
   data,
@@ -26,6 +23,7 @@ export default function LokasiVaksinasi({
     data.filter((namaData) => namaData.provinsi === nama)
   );
   const [dataDropdown, setDataDropdown] = useState(nama);
+  const [vaksinValue, setVaksinValue] = useState("");
   const PageSize = 4;
 
   useEffect(() => {
@@ -33,6 +31,12 @@ export default function LokasiVaksinasi({
     const lastPageIndex = firstPageIndex + PageSize;
     setCurrentData(filteredData.slice(firstPageIndex, lastPageIndex));
   }, [currentPage, filteredData]);
+
+  const onDropdownDataNamaVaksin = (e) => {
+    let dataNamaVaksin = e;
+    setVaksinValue(dataNamaVaksin);
+    console.log(dataNamaVaksin);
+  };
 
   const onFilterDropdown = (e) => {
     setDataDropdown(e);
@@ -47,29 +51,6 @@ export default function LokasiVaksinasi({
     setFilteredData(filterData);
     router.replace(`/lokasi-vaksinasi/${jenis_vaksin}/${e}`);
   };
-
-  function selanjutnyaHandler() {
-    const myHeaders = new Headers();
-
-    myHeaders.append('Content-Type', 'application/json');
-
-    const raw = JSON.stringify({
-      nama:{},
-
-    });
-
-    const requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow',
-    };
-
-    fetch('localhost:3000/api/reservasi-vaksinasi', requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log('error', error));
-  }
 
   return (
     <div className="h-screen w-full">
@@ -123,7 +104,21 @@ export default function LokasiVaksinasi({
             className="w-full h-full flex justify-center gap-12 mt-12 justify-center"
           >
             {currentData.map((item) => (
-              <CardVaksin key={uuid()} item={item} />
+              <CardVaksin
+                key={uuid()}
+                img={item.img}
+                nama={item.nama}
+                tanggal={item.tanggal}
+                jenisVaksin={item.jenisVaksin}
+                namaVaksin={item.namaVaksin}
+                lokasi1={item.lokasi1}
+                lokasi2={item.lokasi2}
+                waktu={item.waktu}
+                onChange={(e) => {
+                  onDropdownDataNamaVaksin(e);
+                }}
+                vaksin={vaksinValue}
+              />
             ))}
           </div>
         </div>
@@ -140,7 +135,7 @@ export default function LokasiVaksinasi({
             onPageChange={(page) => setCurrentPage(page)}
           />
 
-          <Button to="#" color="purple" className="mt-12">
+          <Button to="../../validasi-vaksinasi" color="purple" className="mt-12">
             Selanjutnya
           </Button>
         </div>
@@ -155,13 +150,13 @@ export default function LokasiVaksinasi({
 export async function getServerSideProps(ctx) {
   const { nama, jenis_vaksin } = ctx.query;
   const lokasiVaksinasi = await fetch(
-    'http://localhost:3000/api/lokasi-vaksinasi'
+    "http://localhost:3000/api/lokasi-vaksinasi"
   );
   const vaksinasiPertama = await fetch(
-    'http://localhost:3000/api/vaksinasi-provinsi'
+    "http://localhost:3000/api/vaksinasi-provinsi"
   );
   const vaksinasiKedua = await fetch(
-    'http://localhost:3000/api/vaksinasi-provinsi-kedua'
+    "http://localhost:3000/api/vaksinasi-provinsi-kedua"
   );
   const resultPertama = await vaksinasiPertama.json();
   const resultKedua = await vaksinasiKedua.json();
@@ -172,9 +167,9 @@ export async function getServerSideProps(ctx) {
   );
 
   let namaVaksin = [];
-  if (jenis_vaksin === 'Vaksinasi Pertama') {
+  if (jenis_vaksin === "Vaksinasi Pertama") {
     namaVaksin = resultPertama.data.map((item) => item.nama);
-  } else if (jenis_vaksin === 'Vaksinasi Kedua') {
+  } else if (jenis_vaksin === "Vaksinasi Kedua") {
     namaVaksin = resultKedua.data.map((item) => item.nama);
   }
   return {

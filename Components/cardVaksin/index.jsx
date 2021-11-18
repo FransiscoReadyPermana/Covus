@@ -108,7 +108,7 @@ export default function CardVaksin({ item }) {
             }
           >
             <Image
-              src="/../public/images/location.svg"
+              src="/images/location.svg"
               alt="reading-book-image"
               layout="fill"
             />
