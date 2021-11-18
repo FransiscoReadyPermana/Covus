@@ -1,144 +1,163 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import Headline from '../../Components/headline';
-import Title from '../../Components/title';
-import styles from './signUp.module.css';
-import EyeShow from '../../Components/icons/EyeShow';
-import EyeHide from '../../Components/icons/EyeHide';
-import Link from 'next/link';
-import DropDownEdit from '../../Components/dropDown';
-import bulan from '../../data/Bulan';
-import Footer from '../../Components/footer';
+import React from "react";
+import { useState, useEffect } from "react";
+import Headline from "../../Components/headline";
+import Title from "../../Components/title";
+import styles from "./signUp.module.css";
+import EyeShow from "../../Components/icons/EyeShow";
+import EyeHide from "../../Components/icons/EyeHide";
+import Link from "next/link";
+import DropDownEdit from "../../Components/dropDown";
+import bulan from "../../data/Bulan";
+import Footer from "../../Components/footer";
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
-  const [mountValue, setMountValue] = useState('');
-  const [errorNama, setErrorNama] = useState('');
-  const [errorEmail, setErrorEmail] = useState('');
-  const [errorTanggal, setErrorTanggal] = useState('');
-  const [errorBulan, setErrorBulan] = useState('');
-  const [errorTahun, setErrorTahun] = useState('');
-  const [errorJenisKelamin, setErrorJenisKelamin] = useState('');
-  const [errorAlamat, setErrorAlamat] = useState('');
-  const [errorKataSandi, setErrorKataSandi] = useState('');
-  const [errorCKataSandi, setErrorCKataSandi] = useState('');
-  const [errorSetuju, setErrorSetuju] = useState('');
-  const [buttonPressed, setButtonPressed] = useState(false);
+  const [mountValue, setMountValue] = useState("");
+  const [errorNama, setErrorNama] = useState(null);
+  const [errorEmail, setErrorEmail] = useState(null);
+  const [errorTanggal, setErrorTanggal] = useState(null);
+  const [errorBulan, setErrorBulan] = useState(null);
+  const [errorTahun, setErrorTahun] = useState(null);
+  const [errorJenisKelamin, setErrorJenisKelamin] = useState(null);
+  const [errorAlamat, setErrorAlamat] = useState(null);
+  const [errorKataSandi, setErrorKataSandi] = useState(null);
+  const [errorCKataSandi, setErrorCKataSandi] = useState(null);
+  const [errorSetuju, setErrorSetuju] = useState(null);
 
   let placeholderColor;
-  let buttonCondition = styles.buttonDisable;
-  if (mountValue === '') {
+  if (mountValue === "") {
     placeholderColor = styles.placeHolderDefault;
   } else {
     placeholderColor = styles.placeHolder;
   }
 
   const [formUser, setFormUser] = useState({
-    nama: '',
-    email: '',
-    tanggal: '',
-    bulan: '',
-    tahun: '',
-    jenisKelamin: '',
-    alamat: '',
-    kataSandi: '',
-    CKataSandi: '',
+    nama: "",
+    email: "",
+    tanggal: "",
+    bulan: "",
+    tahun: "",
+    jenisKelamin: "",
+    alamat: "",
+    kataSandi: "",
+    CKataSandi: "",
     setuju: false,
   });
+
+  const namaCheck = () => {
+    if (formUser.nama.length < 3) {
+      setErrorNama("Nama minimal 3 karakter");
+    } else {
+      setErrorNama(null);
+    }
+  };
+
+  const emailCheck = () => {
+    if (formUser.email === "" || formUser.email === null) {
+      setErrorEmail("Email tidak boleh kosong");
+    } else if (
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formUser.email)
+    ) {
+      setErrorEmail("Email tidak valid");
+    } else {
+      setErrorEmail(null);
+    }
+  };
+
+  const tanggalCheck = () => {
+    if (formUser.tanggal === "" || formUser.tanggal === null) {
+      setErrorTanggal("Tanggal tidak boleh kosong");
+    } else if (formUser.tanggal < 1 || formUser.tanggal > 31) {
+      setErrorTanggal("Tanggal tidak valid");
+    } else {
+      setErrorTanggal(null);
+    }
+  };
+
+  const bulanCheck = () => {
+    if (formUser.bulan === "" || formUser.bulan === null) {
+      setErrorBulan("Bulan tidak boleh kosong");
+    } else {
+      setErrorBulan(null);
+    }
+  };
+
+  const tahunCheck = () => {
+    if (formUser.tahun === "" || formUser.tahun === null) {
+      setErrorTahun("Tahun tidak boleh kosong");
+    } else if (formUser.tahun < 1900 || formUser.tahun > 2020) {
+      setErrorTahun("Tahun tidak valid");
+    } else {
+      setErrorTahun(null);
+    }
+  };
+
+  const jenisKelaminCheck = () => {
+    if (formUser.jenisKelamin === "" || formUser.jenisKelamin === null) {
+      setErrorJenisKelamin("Jenis Kelamin tidak boleh kosong");
+    } else {
+      setErrorJenisKelamin(null);
+    }
+  };
+
+  const alamatCheck = () => {
+    if (formUser.alamat === "" || formUser.alamat === null) {
+      setErrorAlamat("Alamat tidak boleh kosong");
+    } else if (formUser.alamat.length < 3 || formUser.alamat.length > 100) {
+      setErrorAlamat("Alamat minimal 3 karakter dan maksimal 100 karakter");
+    } else {
+      setErrorAlamat(null);
+    }
+  };
+
+  const kataSandiCheck = () => {
+    if (formUser.kataSandi === "" || formUser.kataSandi === null) {
+      setErrorKataSandi("Kata Sandi tidak boleh kosong");
+    } else if (formUser.kataSandi.length < 8 || formUser.kataSandi.length > 20) {
+      setErrorKataSandi(
+        "Kata Sandi minimal 8 karakter dan maksimal 20 karakter"
+      );
+    }
+
+    else if (formUser.CKataSandi === "" || formUser.CKataSandi === null) {
+      setErrorCKataSandi("Konfirmasi Kata Sandi tidak boleh kosong");
+    } else if (formUser.CKataSandi !== formUser.kataSandi) {
+      setErrorKataSandi("Kata Sandi tidak sama");
+      setErrorCKataSandi("Kata Sandi tidak sama");
+    } else {
+      setErrorKataSandi(null);
+      setErrorCKataSandi(null);
+    }
+  };
+
+  const setujuCheck = () => {
+    if (formUser.setuju === false) {
+      setErrorSetuju("Anda harus menyetujui syarat dan ketentuan");
+    } else {
+      setErrorSetuju(null);
+    }
+  };
 
   const checkInput = (e) => {
     e.preventDefault();
     console.log(formUser);
-
-    if (formUser.nama < 3) {
-      setErrorNama('Nama minimal 3 karakter');
-    }
-
-    if (/[^A-Za-z ]/g.test(formUser.nama)) {
-      setErrorNama('Nama tidak boleh mengandung angka');
-    }
-
-    if (formUser.email === '' || formUser.email === null) {
-      setErrorEmail('Email tidak boleh kosong');
-    }
-
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formUser.email)) {
-      setErrorEmail('Email tidak valid');
-    }
-
-    if (formUser.tanggal === '' || formUser.tanggal === null) {
-      setErrorTanggal('Tanggal tidak boleh kosong');
-    }
-
-    if (formUser.tanggal < 1 || formUser.tanggal > 31) {
-      setErrorTanggal('Tanggal tidak valid');
-    }
-
-    if (formUser.bulan === '' || formUser.bulan === null) {
-      setErrorBulan('Bulan tidak boleh kosong');
-    }
-
-    if (formUser.tahun === '' || formUser.tahun === null) {
-      setErrorTahun('Tahun tidak boleh kosong');
-    }
-
-    if (formUser.tahun < 1900 || formUser.tahun > 2020) {
-      setErrorTahun('Tahun tidak valid');
-    }
-
-    if (formUser.jenisKelamin === '' || formUser.jenisKelamin === null) {
-      setErrorJenisKelamin('Jenis Kelamin tidak boleh kosong');
-    }
-
-    if (formUser.alamat === '' || formUser.alamat === null) {
-      setErrorAlamat('Alamat tidak boleh kosong');
-    }
-
-    if (formUser.alamat < 3 || formUser.alamat > 100) {
-      setErrorAlamat('Alamat minimal 3 karakter dan maksimal 100 karakter');
-    }
-
-    if (formUser.kataSandi === '' || formUser.kataSandi === null) {
-      setErrorKataSandi('Kata Sandi tidak boleh kosong');
-    }
-
-    if (formUser.kataSandi < 8 || formUser.kataSandi > 20) {
-      setErrorKataSandi(
-        'Kata Sandi minimal 8 karakter dan maksimal 20 karakter'
-      );
-    }
-
-    if (formUser.CKataSandi === '' || formUser.CKataSandi === null) {
-      setErrorCKataSandi('Konfirmasi Kata Sandi tidak boleh kosong');
-    }
-
-    if (formUser.CKataSandi !== formUser.kataSandi) {
-      setErrorKataSandi('Kata Sandi tidak sama');
-      setErrorCKataSandi('Kata Sandi tidak sama');
-    }
-
-    if (formUser.setuju === false || formUser.setuju === null) {
-      setErrorSetuju('Anda harus setuju dengan syarat dan ketentuan');
-    }
-
-    // setErrorNama('');
-    // setErrorEmail('');
-    // setErrorTanggal('');
-    // setErrorBulan('');
-    // setErrorTahun('');
-    // setErrorJenisKelamin('');
-    // setErrorAlamat('');
-    // setErrorKataSandi('');
-    // setErrorCKataSandi('');
-    // setErrorSetuju('');
+    namaCheck();
+    emailCheck();
+    tanggalCheck();
+    bulanCheck();
+    tahunCheck();
+    jenisKelaminCheck();
+    alamatCheck();
+    kataSandiCheck();
+    setujuCheck();
   };
 
   const handleRegister = async (e) => {
     checkInput(e);
 
     const myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
       nama: formUser.nama,
@@ -152,22 +171,34 @@ export default function SignUp() {
     });
 
     const requestOptions = {
-      method: 'POST',
+      method: "POST",
       headers: myHeaders,
       body: raw,
-      redirect: 'follow',
+      redirect: "follow",
     };
 
-    const response = fetch(
-      'http://localhost:3000/api/auth/register',
+    const response = await fetch(
+      "http://localhost:3000/api/auth/register",
       requestOptions
-    )
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log('error', error));
-    
-    const result = await response.JSON;
-    console.log("ini result: "+ result);
+    );
+    const result = await response.json();
+    console.log(result);
+
+    // if (result.success) {
+    //   setErrorMsg("");
+    //   alert("Data Buku Berhasil Ditambahkan");
+    //   setFormBook({
+    //     judul: "",
+    //     penulis: "",
+    //     tahun: "",
+    //     selesai: false,
+    //   });
+    //   // eslint-disable-next-line no-restricted-globals
+    //   location.reload();
+    // } else {
+    //   console.log(result);
+    //   setErrorMsg(result.message);
+    // }
   };
 
   return (
@@ -329,7 +360,7 @@ export default function SignUp() {
               <label htmlFor="password">Kata Sandi</label>
               <div className="relative">
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   placeholder="Masukkan Kata Sandi"
                   onChange={(e) =>
@@ -352,7 +383,7 @@ export default function SignUp() {
               <label htmlFor="Cpassword">Konfirmasi Kata Sandi</label>
               <div className="relative">
                 <input
-                  type={showPassword2 ? 'text' : 'password'}
+                  type={showPassword2 ? "text" : "password"}
                   id="password"
                   placeholder="Masukkan Kata Sandi"
                   onChange={(e) =>
@@ -371,24 +402,26 @@ export default function SignUp() {
                 <p className="mt-2 ml-2 text-red">{errorCKataSandi}</p>
               )}
             </div>
-            <div id="sk" className="flex items-center">
-              <input
-                type="checkbox"
-                id="radio"
-                className={`${styles.radio}`}
-                onChange={(e) =>
-                  setFormUser({ ...formUser, setuju: e.target.checked })
-                }
-              />
-              <label htmlFor="radio">
-                Dengan ini saya telah menyetujui
-                <span className="text-purple">
-                  <Link href="/"> Syarat dan Ketentuan </Link>
-                </span>
-                yang berlaku
-              </label>
+            <div id="sk2">
+              <div id="sk" className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="radio"
+                  className={`${styles.radio}`}
+                  onChange={(e) =>
+                    setFormUser({ ...formUser, setuju: e.target.checked })
+                  }
+                />
+                <label htmlFor="radio">
+                  Dengan ini saya telah menyetujui
+                  <span className="text-purple">
+                    <Link href="/"> Syarat dan Ketentuan </Link>
+                  </span>
+                  yang berlaku
+                </label>
+              </div>
               {errorSetuju && (
-                <p className="mt-2 ml-2 text-red">{errorSetuju}</p>
+                <p className="mt-2 ml-8 text-red">{errorSetuju}</p>
               )}
             </div>
             <input
