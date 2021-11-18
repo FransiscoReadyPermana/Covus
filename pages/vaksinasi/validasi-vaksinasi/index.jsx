@@ -93,7 +93,7 @@ export default function ValidasiVaksinasi({ data }) {
                   <div id="waktu" className="flex flex-row">
                     <div id="icon" className={"absolute h-6 w-6 mr-2 mt-2"}>
                       <Image
-                        src="/images/Calendar.svg"
+                        src="/images/Time.svg"
                         alt="reading-book-image"
                         layout="fill"
                       />
@@ -103,7 +103,7 @@ export default function ValidasiVaksinasi({ data }) {
                       color="dark-grey"
                       className="text-left font-light text-l text-dark-grey mt-2 ml-8"
                     >
-                      11 November 2021
+                      08:00 - 15:00 WIB
                     </p>
                   </div>
                 </div>
@@ -118,7 +118,7 @@ export default function ValidasiVaksinasi({ data }) {
                   <div id="lokasi" className="flex flex-row">
                     <div id="icon" className={"absolute h-6 w-6 mr-2 mt-4"}>
                       <Image
-                        src="/images/Calendar.svg"
+                        src="/images/location.svg"
                         alt="reading-book-image"
                         layout="fill"
                       />
@@ -217,7 +217,7 @@ export default function ValidasiVaksinasi({ data }) {
                   </label>
                 </div>
 
-                <div id="jenis-tiga" className="flex flex-row items-center">
+                <div id="jenis-tiga" className="flex flex-row items-start">
                   <input
                     type="checkbox"
                     id="riwayat-tiga"
@@ -225,6 +225,7 @@ export default function ValidasiVaksinasi({ data }) {
                     value="riwayat-tiga"
                     className="absolute h-4"
                   />
+
                   <label htmlFor="riwayat-tiga" className="pl-5">
                     Kontak erat dengan keluarga Serumah / Suspek / Konfirmasi /
                     Sedang dalam perawatan penyakit COVID-19
