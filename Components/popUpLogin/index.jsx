@@ -15,7 +15,7 @@ export default function PopUpLogin({ open, onClick }) {
   return (
     <div
       id="background"
-      className={`absolute h-screen w-screen flex items-center justify-center z-20 top-0 left-0 ${style.background}`}
+      className={`absolute h-screen w-full flex items-center justify-center top-0 left-0 ${style.background}`}
     >
       <div
         id="container"
@@ -60,7 +60,7 @@ export default function PopUpLogin({ open, onClick }) {
         <h6 className={`mt-4 text-center font-semibold ${style.text}`}>
           Belum Memiliki Akun?{" "}
           <span className="text-purple">
-            <Link href="/vaksinasi">Daftar Sekarang</Link>
+            <Link href="/signUp">Daftar Sekarang</Link>
           </span>
         </h6>
       </div>
