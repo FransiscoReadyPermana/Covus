@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import styles from "../lokasi.module.css";
-import Title from "../../../Components/title";
-import Paragraph from "../../../Components/paragraph";
-import Footer from "../../../Components/footer";
+import styles from "../../lokasi.module.css";
+import Title from "../../../../Components/title";
+import Paragraph from "../../../../Components/paragraph";
+import Footer from "../../../../Components/footer";
 import uuid from "react-uuid";
-import Pagination from "../../../Components/pagination";
-import DropDownEdit from "../../../Components/dropDown";
+import Pagination from "../../../../Components/pagination";
+import DropDownEdit from "../../../../Components/dropDown";
 import { useRouter } from "next/router";
-import CardVaksin from "../../../Components/cardVaksin";
-import Button from "../../../Components/button";
-import jenisVaksinasi from "../../../data/jenisVaksin";
+import CardVaksin from "../../../../Components/cardVaksin";
+import Button from "../../../../Components/button";
 
 export default function LokasiVaksinasi({
   data,
@@ -136,7 +135,7 @@ export default function LokasiVaksinasi({
             onPageChange={(page) => setCurrentPage(page)}
           />
 
-          <Button to="#" color="purple" className="mt-12">
+          <Button to="../../validasi-vaksinasi" color="purple" className="mt-12">
             Selanjutnya
           </Button>
         </div>

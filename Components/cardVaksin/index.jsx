@@ -62,7 +62,7 @@ export default function CardVaksin({
             }
           >
             <Image
-              src="/../public/images/Calendar.svg"
+              src="/images/Calendar.svg"
               alt="reading-book-image"
               layout="fill"
             />
@@ -86,7 +86,7 @@ export default function CardVaksin({
             }
           >
             <Image
-              src="/../public/images/Time.svg"
+              src="/images/Time.svg"
               alt="reading-book-image"
               layout="fill"
             />
@@ -112,7 +112,7 @@ export default function CardVaksin({
             }
           >
             <Image
-              src="/../public/images/location.svg"
+              src="/images/location.svg"
               alt="reading-book-image"
               layout="fill"
             />

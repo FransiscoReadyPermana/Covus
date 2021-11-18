@@ -305,7 +305,7 @@ export default function Vaksinasi({ data, dataKedua }) {
           >
             {currentTableData.map((item) => (
               <Link
-                href={`/lokasi-vaksinasi/${jenisVaksin}/${item.nama}`}
+                href={`/vaksinasi/lokasi-vaksinasi/${jenisVaksin}/${item.nama}`}
                 passHref
                 key={uuid()}
               >
