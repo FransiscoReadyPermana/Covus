@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "../lokasi.module.css";
-import React, { useEffect, useState } from 'react';
-import styles from '../lokasi.module.css';
 import Title from '../../../Components/title';
 import Paragraph from '../../../Components/paragraph';
 import Footer from '../../../Components/footer';

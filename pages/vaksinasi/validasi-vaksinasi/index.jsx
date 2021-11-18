@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import Footer from "../../../Components/footer";
 import Title from "../../../Components/title";
 import styles from "../validasi.module.css";
+import Link from "next/link";
 
-export default function Vaksinasi() {
+export default function ValidasiVaksinasi({ data }) {
   return (
     <div className="h-screen w-full">
       <section
@@ -139,12 +140,168 @@ export default function Vaksinasi() {
 
       <section
         id="second"
-        className={`${styles.section2} w-full h-full relative`}
+        className={`${styles.section2} w-full h-full relative flex flex-col items-center pb-24`}
       >
         <div
           id="divider"
           className={`${styles.dividerKetiga} h-10  w-full absolute`}
         />
+
+        <div
+          id="container-form"
+          className="w-1/2 flex flex-col items-center mt-32"
+        >
+          <form action="#" className={`flex flex-col gap-8 ${styles.form}`}>
+            <div id="radio-jenis-vaksin">
+              <label htmlFor="jenis-vaksin">
+                Jenis Vaksinasi yang akan dipilih
+              </label>
+              <div className="flex gap-2 ml-8 mt-5 flex-col">
+                <div id="jenis-satu" className="flex items-center">
+                  <input
+                    type="radio"
+                    id="Astrazeneca"
+                    name="jenis-vaksin"
+                    value="Astrazeneca"
+                  />
+                  <label htmlFor="Astrazeneca">Astrazeneca</label>
+                </div>
+                <div id="jenis-dua" className="flex items-center">
+                  <input
+                    type="radio"
+                    id="Astrazeneca2"
+                    name="jenis-vaksin"
+                    value="Astrazeneca2"
+                  />
+                  <label htmlFor="Astrazeneca2">Astrazeneca</label>
+                </div>
+                <div id="jenis-tiga" className="flex items-center">
+                  <input
+                    type="radio"
+                    id="Astrazeneca1"
+                    name="jenis-vaksin"
+                    value="Astrazeneca1"
+                  />
+                  <label htmlFor="Astrazeneca1">Astrazeneca</label>
+                </div>
+              </div>
+            </div>
+
+            <div id="checkbox-penyakit" className="mt-4">
+              <label htmlFor="penyakit" className={`${styles.judul}`}>
+                Apakah Anda memiliki Kontradikasi Vaksin ?
+              </label>
+              <div className="flex gap-2 ml-8 mt-5 flex-col">
+                <div id="jenis-satu" className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="riwayat-satu"
+                    name="penyakit-vaksin"
+                    value="riwayat-satu"
+                  />
+                  <label htmlFor="riwayat-satu">
+                    Menderita COVID-19 selama 3 bulan terakhir
+                  </label>
+                </div>
+
+                <div id="jenis-dua" className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="riwayat-dua"
+                    name="penyakit-vaksin"
+                    value="riwayat-dua"
+                  />
+                  <label htmlFor="riwayat-dua">
+                    Gejala ISPA seperti Batuk / Pilek / Sesak Napas selama 7
+                    hari terakhir
+                  </label>
+                </div>
+
+                <div id="jenis-tiga" className="flex flex-row items-center">
+                  <input
+                    type="checkbox"
+                    id="riwayat-tiga"
+                    name="penyakit-vaksin"
+                    value="riwayat-tiga"
+                    className="absolute h-4"
+                  />
+                  <label htmlFor="riwayat-tiga" className="pl-5">
+                    Kontak erat dengan keluarga Serumah / Suspek / Konfirmasi /
+                    Sedang dalam perawatan penyakit COVID-19
+                  </label>
+                </div>
+
+                <div id="jenis-empat" className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="riwayat-empat"
+                    name="penyakit-vaksin"
+                    value="riwayat-empat"
+                  />
+                  <label htmlFor="riwayat-empat">
+                    Sedang dalam terapi jangka panjang terhadap penyakit
+                    kelainan darah
+                  </label>
+                </div>
+
+                <div id="jenis-lima" className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="riwayat-lima"
+                    name="penyakit-vaksin"
+                    value="riwayat-lima"
+                  />
+                  <label htmlFor="riwayat-lima">
+                    Memiliki penyakit Jantung (Gagal jantung / Penyakit jantung
+                    coroner)
+                  </label>
+                </div>
+
+                <div id="jenis-enam" className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="riwayat-enam"
+                    name="penyakit-vaksin"
+                    value="riwayat-enam"
+                  />
+                  <label htmlFor="riwayat-enam">
+                    Memiliki penyakit Autoimun Sistemik (SLE / Lupus / Sjogren /
+                    Vaskulitis)
+                  </label>
+                </div>
+
+                <div id="jenis-tujuh" className="flex items-center mt-4">
+                  <input
+                    type="checkbox"
+                    id="riwayat-tujuh"
+                    name="penyakit-vaksin"
+                    value="riwayat-tujuh"
+                  />
+                  <label htmlFor="riwayat-tujuh">
+                    Tidak Memiliki Riwayat Penyakit penyerta dan kondisi diatas
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div id="sk" className="flex items-center mt-4">
+              <input type="checkbox" id="radio" className={`${styles.radio}`} />
+              <label htmlFor="radio" className={`${styles.sk}`}>
+                Dengan ini saya telah menyetujui
+                <span className="text-purple">
+                  <Link href="/"> Syarat dan Ketentuan </Link>
+                </span>
+                yang berlaku
+              </label>
+            </div>
+
+            <input
+              type="submit"
+              value="Daftar Sekarang"
+              className="bg-purple text-white py-3 rounded-3xl mt-4"
+            />
+          </form>
+        </div>
       </section>
       <Footer color="purple" />
     </div>

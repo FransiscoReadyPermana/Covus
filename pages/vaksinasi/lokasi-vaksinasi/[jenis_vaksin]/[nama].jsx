@@ -23,7 +23,6 @@ export default function LokasiVaksinasi({
     data.filter((namaData) => namaData.provinsi === nama)
   );
   const [dataDropdown, setDataDropdown] = useState(nama);
-  const [vaksinValue, setVaksinValue] = useState("");
   const PageSize = 4;
 
   useEffect(() => {
@@ -31,12 +30,6 @@ export default function LokasiVaksinasi({
     const lastPageIndex = firstPageIndex + PageSize;
     setCurrentData(filteredData.slice(firstPageIndex, lastPageIndex));
   }, [currentPage, filteredData]);
-
-  const onDropdownDataNamaVaksin = (e) => {
-    let dataNamaVaksin = e;
-    setVaksinValue(dataNamaVaksin);
-    console.log(dataNamaVaksin);
-  };
 
   const onFilterDropdown = (e) => {
     setDataDropdown(e);
@@ -49,7 +42,7 @@ export default function LokasiVaksinasi({
       setDataDropdown(nama);
     }
     setFilteredData(filterData);
-    router.replace(`/lokasi-vaksinasi/${jenis_vaksin}/${e}`);
+    router.replace(`/vaksinasi/lokasi-vaksinasi/${jenis_vaksin}/${e}`);
   };
 
   return (
@@ -104,28 +97,14 @@ export default function LokasiVaksinasi({
             className="w-full h-full flex justify-center gap-12 mt-12 justify-center"
           >
             {currentData.map((item) => (
-              <CardVaksin
-                key={uuid()}
-                img={item.img}
-                nama={item.nama}
-                tanggal={item.tanggal}
-                jenisVaksin={item.jenisVaksin}
-                namaVaksin={item.namaVaksin}
-                lokasi1={item.lokasi1}
-                lokasi2={item.lokasi2}
-                waktu={item.waktu}
-                onChange={(e) => {
-                  onDropdownDataNamaVaksin(e);
-                }}
-                vaksin={vaksinValue}
-              />
+              <CardVaksin key={uuid()} item={item} />
             ))}
           </div>
         </div>
 
         <div
           id="pagination"
-          className="flex bg-white pb-20 mt-4 justify-center flex-col items-center"
+          className="flex bg-white pb-20 mt-4 justify-center items-center"
         >
           <Pagination
             className="pagination-bar"
@@ -134,10 +113,6 @@ export default function LokasiVaksinasi({
             pageSize={PageSize}
             onPageChange={(page) => setCurrentPage(page)}
           />
-
-          <Button to="../../validasi-vaksinasi" color="purple" className="mt-12">
-            Selanjutnya
-          </Button>
         </div>
         <div id="pagination" className="mt-4">
           <Footer color="purple" />

@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import DropDownEdit from '../dropDown';
-import styles from './cardVaksin.module.css';
-import Image from 'next/image';
+import React, { useState } from "react";
+import DropDownEdit from "../dropDown";
+import styles from "./cardVaksin.module.css";
+import Image from "next/image";
+import Button from "../button";
+import Link from "next/link";
+import uuid from "react-uuid";
 
 export default function CardVaksin({ item }) {
-  const [vaksinValue, setVaksinValue] = useState('');
-  
+  const [vaksinValue, setVaksinValue] = useState("");
+
   const onDropdownDataNamaVaksin = (e) => {
     let dataNamaVaksin = e;
     setVaksinValue(dataNamaVaksin);
@@ -49,12 +52,12 @@ export default function CardVaksin({ item }) {
 
         <div
           id="containerLogo"
-          className={'flex flex-row justify-center mt-5 items-center ml-10'}
+          className={"flex flex-row justify-center mt-5 items-center ml-10"}
         >
           <div
             id="logo"
             className={
-              'relative flex flex-row h-8 w-8 items-center justify-center top-0'
+              "relative flex flex-row h-8 w-8 items-center justify-center top-0"
             }
           >
             <Image
@@ -73,12 +76,12 @@ export default function CardVaksin({ item }) {
 
         <div
           id="containerLogo"
-          className={'flex flex-row justify-center mt-2 items-center ml-10'}
+          className={"flex flex-row justify-center mt-2 items-center ml-10"}
         >
           <div
             id="logo"
             className={
-              'relative flex flex-row h-8 w-8 items-center justify-center top-0'
+              "relative flex flex-row h-8 w-8 items-center justify-center top-0"
             }
           >
             <Image
@@ -98,13 +101,13 @@ export default function CardVaksin({ item }) {
         <div
           id="containerLogo"
           className={
-            'flex flex-row justify-center mt-2 items-start mx-10 content-start'
+            "flex flex-row justify-center mt-2 items-start mx-10 content-start"
           }
         >
           <div
             id="logo"
             className={
-              'relative h-8 w-8 items-center justify-center top-0 content-start'
+              "relative h-8 w-8 items-center justify-center top-0 content-start"
             }
           >
             <Image
@@ -121,7 +124,7 @@ export default function CardVaksin({ item }) {
           </p>
         </div>
 
-        <div className={'flex flex-col items-center mt-5'}>
+        <div className={"flex flex-col items-center mt-5"}>
           <p
             color="dark-grey"
             className="text-center font-semibold text-l text-white text-dark-grey w-full mb-5"
@@ -129,8 +132,13 @@ export default function CardVaksin({ item }) {
             {item.lokasi2}
           </p>
 
-          <div className="flex gap-12 items-center mb-10 flex-row justify-center w-full">
-            <DropDownEdit
+          <div className="flex items-center pb-24 flex-row justify-center w-5/6">
+            <Link href={`/vaksinasi/validasi-vaksinasi`} passHref key={uuid()}>
+              <Button to="#" color="purple">
+                Pilih
+              </Button>
+            </Link>
+            {/* <DropDownEdit
               className="w-3/4 text"
               color="purple"
               placeholder={'Jenis Vaksin'}
@@ -139,7 +147,7 @@ export default function CardVaksin({ item }) {
               onChange={(e) => {
                 onDropdownDataNamaVaksin(e);
               }}
-            />
+            /> */}
           </div>
         </div>
       </div>
