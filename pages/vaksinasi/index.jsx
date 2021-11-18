@@ -341,7 +341,7 @@ export default function Vaksinasi({ data, dataKedua }) {
         </div>
 
         <div
-          className={`fixed w-8 h-8 bottom-10 right-0 p-6 mt-8 mr-16 ${styles.chevronUp} z-30`}
+          className={`fixed w-8 h-8 bottom-10 right-0 p-6 mt-8 mr-16 ${styles.chevronUp} z-20`}
         >
           <Link href="#fifth" passHref>
             <div
