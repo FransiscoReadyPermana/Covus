@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import styles from "../lokasi.module.css";
 import React, { useEffect, useState } from 'react';
