@@ -1,11 +1,16 @@
-import React, { useState } from "react";
-import Link from "next/link";
-import style from "./popUpLogin.module.css";
-import Close from "../icons/Close";
-import EyeShow from "../icons/EyeShow";
-import EyeHide from "../icons/EyeHide";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import style from './popUpLogin.module.css';
+import Close from '../icons/Close';
+import EyeShow from '../icons/EyeShow';
+import EyeHide from '../icons/EyeHide';
 
-export default function PopUpLogin({ open, onClick }) {
+export default function PopUpLogin({
+  open,
+  onClick,
+  onClickBackground,
+  onClickDaftar,
+}) {
   const [showPassword, setShowPassword] = useState(false);
 
   if (!open) {
@@ -13,13 +18,15 @@ export default function PopUpLogin({ open, onClick }) {
   }
 
   return (
-    <div
-      id="background"
-      className={`absolute h-screen w-full flex items-center justify-center top-0 left-0 ${style.background}`}
-    >
+    <>
+      <div
+        id="background"
+        className={`fixed h-screen w-full flex items-center justify-center top-0 left-0 ${style.background}`}
+        onClick={onClickBackground}
+      />
       <div
         id="container"
-        className={`relative bg-white py-10 px-20 ${style.container}`}
+        className={`fixed bg-white py-10 px-20  ${style.container}`}
       >
         <button
           className={`absolute right-8 top-8 rounded-full ${style.close}`}
@@ -33,13 +40,17 @@ export default function PopUpLogin({ open, onClick }) {
         <form action="#" className={`flex flex-col gap-6 ${style.form}`}>
           <div id="email">
             <label htmlFor="email">Email</label>
-            <input type="text" id="email" placeholder="Masukkan Email" />
+            <input
+              type="text"
+              id="email"
+              placeholder="Masukkan Email"
+            />
           </div>
           <div id="password">
             <label htmlFor="password">Kata Sandi</label>
             <div className="relative">
               <input
-                type={showPassword ? "text" : "password"}
+                type={showPassword ? 'text' : 'password'}
                 id="password"
                 placeholder="Masukkan Kata Sandi"
               />
@@ -47,7 +58,7 @@ export default function PopUpLogin({ open, onClick }) {
                 className="absolute right-3 top-5"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? <EyeHide /> : <EyeShow />}  
+                {showPassword ? <EyeHide /> : <EyeShow />}
               </button>
             </div>
           </div>
@@ -58,12 +69,12 @@ export default function PopUpLogin({ open, onClick }) {
           />
         </form>
         <h6 className={`mt-4 text-center font-semibold ${style.text}`}>
-          Belum Memiliki Akun?{" "}
+          Belum Memiliki Akun?
           <span className="text-purple">
-            <Link href="/signUp">Daftar Sekarang</Link>
+            <button onClick={onClickDaftar}>Daftar Sekarang</button>
           </span>
         </h6>
       </div>
-    </div>
+    </>
   );
 }
