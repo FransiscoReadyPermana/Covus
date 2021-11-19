@@ -4,8 +4,10 @@ import Footer from "../../../Components/footer";
 import Title from "../../../Components/title";
 import styles from "../validasi.module.css";
 import Link from "next/link";
+import uuid from "react-uuid";
 
 export default function ValidasiVaksinasi({ data }) {
+  console.log(data);
   return (
     <div className="h-screen w-full">
       <section
@@ -38,7 +40,7 @@ export default function ValidasiVaksinasi({ data }) {
                   color="dark-grey"
                   className="text-center font-medium text-xl text-white bg-purple px-10 py-2 rounded-full"
                 >
-                  Vaksinasi Pertama
+                  {data[0].jenisVaksin}
                 </p>
               </div>
 
@@ -60,9 +62,16 @@ export default function ValidasiVaksinasi({ data }) {
 
                   <p
                     color="dark-grey"
-                    className="text-left font-light text-l text-dark-grey mt-4"
+                    className="text-left font-semibold text-l text-dark-grey mt-4"
                   >
-                    Rumah Sakit Universitas Indonesia
+                    {data[0].nama}
+                  </p>
+
+                  <p
+                    color="dark-grey"
+                    className="text-left font-light text-l text-dark-grey mt-2"
+                  >
+                    {data[0].lokasi2}
                   </p>
                 </div>
 
@@ -86,7 +95,7 @@ export default function ValidasiVaksinasi({ data }) {
                       color="dark-grey"
                       className="text-left font-light text-l text-dark-grey mt-4 ml-8"
                     >
-                      11 November 2021
+                      {data[0].tanggal}
                     </p>
                   </div>
 
@@ -103,7 +112,7 @@ export default function ValidasiVaksinasi({ data }) {
                       color="dark-grey"
                       className="text-left font-light text-l text-dark-grey mt-2 ml-8"
                     >
-                      08:00 - 15:00 WIB
+                      {data[0].waktu}
                     </p>
                   </div>
                 </div>
@@ -128,7 +137,7 @@ export default function ValidasiVaksinasi({ data }) {
                       color="dark-grey"
                       className="text-left font-light text-l text-dark-grey mt-4 ml-8"
                     >
-                      Lokasi Vaksinasi Lokasi Vaksinasi
+                      {data[0].lokasi1}
                     </p>
                   </div>
                 </div>
@@ -157,16 +166,23 @@ export default function ValidasiVaksinasi({ data }) {
                 Jenis Vaksinasi yang akan dipilih
               </label>
               <div className="flex gap-2 ml-8 mt-5 flex-col">
-                <div id="jenis-satu" className="flex items-center">
-                  <input
-                    type="radio"
-                    id="Astrazeneca"
-                    name="jenis-vaksin"
-                    value="Astrazeneca"
-                  />
-                  <label htmlFor="Astrazeneca">Astrazeneca</label>
-                </div>
-                <div id="jenis-dua" className="flex items-center">
+                {data[0].namaVaksin.map((item) => (
+                  <div
+                    id="nama-vaksin"
+                    className="flex items-center"
+                    key={uuid}
+                  >
+                    <input
+                      type="radio"
+                      id={item}
+                      name="jenis-vaksin"
+                      value={item}
+                    />
+                    <label htmlFor={item}>{item}</label>
+                  </div>
+                ))}
+
+                {/* <div id="jenis-dua" className="flex items-center">
                   <input
                     type="radio"
                     id="Astrazeneca2"
@@ -183,7 +199,7 @@ export default function ValidasiVaksinasi({ data }) {
                     value="Astrazeneca1"
                   />
                   <label htmlFor="Astrazeneca1">Astrazeneca</label>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -307,4 +323,19 @@ export default function ValidasiVaksinasi({ data }) {
       <Footer color="purple" />
     </div>
   );
+}
+
+export async function getServerSideProps(ctx) {
+  const { id_vaksin } = ctx.query;
+  const lokasiVaksinasi = await fetch(
+    "http://localhost:3000/api/lokasi-vaksinasi"
+  );
+
+  const resultKetiga = await lokasiVaksinasi.json();
+  const data = resultKetiga.data.filter((item) => item._id === id_vaksin);
+  return {
+    props: {
+      data,
+    },
+  };
 }

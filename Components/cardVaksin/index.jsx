@@ -133,7 +133,7 @@ export default function CardVaksin({ item }) {
           </p>
 
           <div className="flex items-center pb-24 flex-row justify-center w-5/6">
-            <Link href={`/vaksinasi/validasi-vaksinasi`} passHref key={uuid()}>
+            <Link href={`/vaksinasi/validasi-vaksinasi/${item._id}`} passHref key={uuid()}>
               <Button to="#" color="purple">
                 Pilih
               </Button>

@@ -56,8 +56,13 @@ export default function Navbar() {
             isActive={
               router.pathname === '/vaksinasi' ||
               router.pathname ===
+<<<<<<< HEAD
                 '/vaksinasi/lokasi-vaksinasi/[jenis_vaksin]' ||
               router.pathname === '/vaksinasi/validasi-vaksinasi'
+=======
+                "/vaksinasi/lokasi-vaksinasi/[jenis_vaksin]" ||
+              router.pathname === "/vaksinasi/validasi-vaksinasi/[id_vaksin]"
+>>>>>>> 7d01583a6813cfa44bc0aa3f23ceb9132395b106
             }
           >
             Vaksinasi
