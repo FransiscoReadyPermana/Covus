@@ -32,7 +32,7 @@ export default function Button({ value, children, color, to, onClick, className 
   return (
     <Link href={to} passHref>
       <button
-        className={`${Styles.button} py-3 ${text} text-xl ${colorSelect} ${className} ${hover} 4 rounded-full`}
+        className={`${Styles.button} py-3 ${text} text-xl ${colorSelect} ${className} ${hover} rounded-full`}
         onClick={onClick}
         value={value}
       >
