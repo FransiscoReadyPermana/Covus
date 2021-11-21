@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import style from './popUpLogin.module.css';
 import Close from '../icons/Close';
@@ -12,6 +13,7 @@ export default function PopUpLogin({
   onClickBackground,
   onClickDaftar,
 }) {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [formUser, setFormUser] = useState({
     email: '',
@@ -133,6 +135,7 @@ export default function PopUpLogin({
               <button
                 className="absolute right-3 top-5"
                 onClick={() => setShowPassword(!showPassword)}
+                type="button"
               >
                 {showPassword ? <EyeHide /> : <EyeShow />}
               </button>

@@ -7,6 +7,8 @@ import Button from "../button";
 import NavItems from "../navItems";
 import PopUpLogin from "../popUpLogin";
 import style from "./navbar.module.css";
+import Session from "../session";
+import {  signOut } from "next-auth/client"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,13 +58,8 @@ export default function Navbar() {
             isActive={
               router.pathname === "/vaksinasi" ||
               router.pathname ===
-<<<<<<< HEAD
-                '/vaksinasi/lokasi-vaksinasi/[jenis_vaksin]' ||
-              router.pathname === '/vaksinasi/validasi-vaksinasi/[id_vaksin]'
-=======
                 "/vaksinasi/lokasi-vaksinasi/[jenis_vaksin]" ||
               router.pathname === "/vaksinasi/validasi-vaksinasi/[id_vaksin]"
->>>>>>> bc26676fb389590bd8c336b345306a8323180046
             }
           >
             Vaksinasi
@@ -76,6 +73,8 @@ export default function Navbar() {
           >
             Login/Register
           </button>
+          <Session/>
+          <button type="button" onClick={()=>signOut()}>signout</button>
         </div>
       </div>
     </>
