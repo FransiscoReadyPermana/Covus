@@ -6,54 +6,55 @@ import NotFoundError from '../../../expecptions/NotFoundError';
 import bcrypt from 'bcrypt';
 import AuthenticationError from '../../../expecptions/Authentication';
 
-export default connectDb(
-  NextAuth({
-    session: {
-      jwt: true,
-    },
-    jwt: {
-      secret: process.env.SECRET_KEY,
-    },
-    providers: [
-      Providers.Credentials({
-        async authorize(credentials) {
-          const user = await User.findOne({ email: credentials.email });
+dbConnect();
 
-          if (!user) {
-            throw new NotFoundError('User not found');
-          }
+export default NextAuth({
+  session: {
+    jwt: true,
+  },
+  jwt: {
+    secret: process.env.SECRET_KEY,
+  },
+  providers: [
+    Providers.Credentials({
+      async authorize(credentials) {
+        const user = await User.findOne({ email: credentials.email });
 
-          const isMatch = await bcrypt.compare(
-            credentials.password,
-            user.password
-          );
-
-          if (!isMatch) {
-            throw new AuthenticationError('Email or Password incorrect');
-          }
-
-          return { name: user.fullname, email: user.email };
-        },
-      }),
-      Providers.Google({
-        clientId: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      }),
-    ],
-    database: process.env.MONGO_URI,
-    callbacks: {
-      async signIn(user, account, profile) {
-        if (account.provider === 'google') {
-          if (profile.verified_email === true) {
-            return true;
-          }
-
-          return false;
+        if (!user) {
+          throw new NotFoundError('User not found');
         }
 
-        return true;
+        const isMatch = await bcrypt.compare(
+          credentials.password,
+          user.password
+        ); 
+
+        if (!isMatch) {
+          throw new AuthenticationError('Email or Password incorrect');
+        }
+
+        console.log("sabi bos");
+
+        return { name: user.nama, email: user.email };
       },
+    }),
+  ],
+  database: process.env.MONGO_URI,
+  callbacks: {
+    jwt: async (token, user) => {
+      if (user){
+        token.id = user.id;
+      }
+      return token;
     },
-  }),
-  true
-);
+
+    session: async (session, user) => {
+      if (user){
+        session.id = user.id;
+      }
+      return session;
+    },
+  }
+});
+
+// module.exports = NextAuth;

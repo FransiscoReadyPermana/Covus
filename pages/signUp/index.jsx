@@ -61,7 +61,7 @@ export default function SignUp() {
   const namaCheck = () => {
     if (formUser.nama.length < 3) {
       setErrorNama('Nama minimal 3 karakter');
-    } else if (/[^A-Za-z ]/g.test(nama)) {
+    } else if (!/^[a-zA-Z ][a-zA-Z\\s ]+$/.test(formUser.nama)) {
       setErrorNama('Nama hanya boleh huruf');
     } else {
       setErrorNama(null);
@@ -72,7 +72,7 @@ export default function SignUp() {
     if (formUser.email === '' || formUser.email === null) {
       setErrorEmail('Email tidak boleh kosong');
     } else if (
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formUser.email)
+      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formUser.email)
     ) {
       setErrorEmail('Email tidak valid');
     } else {
@@ -101,7 +101,7 @@ export default function SignUp() {
   const tahunCheck = () => {
     if (formUser.tahun === '' || formUser.tahun === null) {
       setErrorTahun('Tahun tidak boleh kosong');
-    } else if (formUser.tahun < 1900 || formUser.tahun > 2020) {
+    } else if (formUser.tahun < 1900 || formUser.tahun > 2021) {
       setErrorTahun('Tahun tidak valid');
     } else {
       setErrorTahun(null);
@@ -205,6 +205,7 @@ export default function SignUp() {
       // eslint-disable-next-line no-restricted-globals
       location.reload();
     } else {
+      alert(result.message);
       console.log(result);
     }
   };

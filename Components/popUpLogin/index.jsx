@@ -4,6 +4,7 @@ import style from './popUpLogin.module.css';
 import Close from '../icons/Close';
 import EyeShow from '../icons/EyeShow';
 import EyeHide from '../icons/EyeHide';
+import { signIn } from 'next-auth/client';
 
 export default function PopUpLogin({
   open,
@@ -12,6 +13,72 @@ export default function PopUpLogin({
   onClickDaftar,
 }) {
   const [showPassword, setShowPassword] = useState(false);
+  const [formUser, setFormUser] = useState({
+    email: '',
+    kataSandi: '',
+  });
+  const [errorEmail, setErrorEmail] = useState(null);
+  const [errorKataSandi, setErrorKataSandi] = useState(null);
+
+  const clear = () => {
+    setFormUser({
+      email: '',
+      kataSandi: '',
+    });
+    setErrorEmail(null);
+    setErrorKataSandi(null);
+    console.log('clear');
+  };
+
+  const inputCheck = () => {
+    let isValid = true;
+
+    if (formUser.email === '' || formUser.email === null) {
+      setErrorEmail('Email tidak boleh kosong');
+      isValid = false;
+    } else if (
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formUser.email)
+    ) {
+      setErrorEmail('Email tidak valid');
+      isValid = false;
+    }
+
+    if (formUser.kataSandi === '' || formUser.kataSandi === null) {
+      setErrorKataSandi('Kata Sandi tidak boleh kosong');
+      isValid = false;
+    } else {
+      setErrorKataSandi(null);
+      setErrorEmail(null);
+      isValid = true;
+    }
+
+    return isValid;
+  };
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    console.log(formUser);
+    const isValid = inputCheck();
+    console.log(isValid);
+
+    if (isValid) {
+      const response = await signIn('credentials', {
+        redirect: false,
+        email: formUser.email,
+        kataSandi: formUser.kataSandi,
+      });
+      console.log(response);
+
+      if (!response.error) {
+        router.replace('/');
+      } else {
+        clear();
+        alert(response.error);
+      }
+    } else {
+      console.log('error');
+    }
+  };
 
   if (!open) {
     return null;
@@ -44,7 +111,12 @@ export default function PopUpLogin({
               type="text"
               id="email"
               placeholder="Masukkan Email"
+              value={formUser.email}
+              onChange={(e) => {
+                setFormUser({ ...formUser, email: e.target.value });
+              }}
             />
+            {errorEmail && <p className="mt-2 ml-2 text-red">{errorEmail}</p>}
           </div>
           <div id="password">
             <label htmlFor="password">Kata Sandi</label>
@@ -53,6 +125,10 @@ export default function PopUpLogin({
                 type={showPassword ? 'text' : 'password'}
                 id="password"
                 placeholder="Masukkan Kata Sandi"
+                value={formUser.kataSandi}
+                onChange={(e) =>
+                  setFormUser({ ...formUser, kataSandi: e.target.value })
+                }
               />
               <button
                 className="absolute right-3 top-5"
@@ -61,11 +137,17 @@ export default function PopUpLogin({
                 {showPassword ? <EyeHide /> : <EyeShow />}
               </button>
             </div>
+            {errorKataSandi && (
+              <p className="mt-2 ml-2 text-red">{errorKataSandi}</p>
+            )}
           </div>
           <input
             type="submit"
             value="Masuk"
             className="bg-purple text-white py-3 rounded-3xl"
+            onClick={(e) => {
+              handleSignIn(e);
+            }}
           />
         </form>
         <h6 className={`mt-4 text-center font-semibold ${style.text}`}>
