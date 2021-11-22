@@ -71,7 +71,7 @@ export default function Navbar() {
             className={`bg-purple py-3 px-4 text-white rounded-xl ${style.button}`}
             onClick={() => setIsOpen(true)}
           >
-            Login/Register
+            Register
           </button>
           <Session/>
           <button type="button" onClick={()=>signOut()}>signout</button>

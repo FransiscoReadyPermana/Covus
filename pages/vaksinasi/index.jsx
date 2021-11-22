@@ -87,7 +87,6 @@ export default function Vaksinasi({ data, dataKedua }) {
               to="#contentCard"
               color={colorSecondary}
               onClick={VaksinKedua}
-              
             >
               Vaksinasi Kedua
             </Button>
@@ -345,9 +344,9 @@ export default function Vaksinasi({ data, dataKedua }) {
         >
           <Link href="#fifth" passHref>
             <div
-              className={`absolute w-10 h-10 top-0 left-0 ${styles.imgChevron}`}
+              className={`absolute w-10 h-10 top-0 left-0 flex ${styles.imgChevron}`}
             >
-              <Image src="/images/chevron.svg" alt="" layout="fill" />
+              <Image src="/images/Help.svg" alt="" layout="fill" />
             </div>
           </Link>
         </div>
