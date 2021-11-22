@@ -41,6 +41,7 @@
 
 .button:hover {
   background-color: #7080ec;
+  outline: 0.2rem solid #7080ec;
 }
 
 .button_batal {
