@@ -29,3 +29,19 @@
   -webkit-transform: scaley(-1);
   transform: scaley(-1);
 }
+
+.chevronUp {
+  cursor: pointer;
+  border-radius: 100rem;
+  background-color: #a5afed;
+  outline: white solid;
+}
+
+.chevronUp:hover {
+  background-color: #7080ec;
+}
+
+.imgChevron {
+  margin-top: 0.2rem;
+  margin-left: 0.2rem;
+}

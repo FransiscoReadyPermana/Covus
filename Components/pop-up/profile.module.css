@@ -11,10 +11,20 @@
   transform: translate(-50%, -50%);
 }
 
+.close {
+  background-color: #f178b6;
+  transition: 0.2s ease-in-out;
+}
+
+.close:hover {
+  background-color: #f150a3;
+}
+
 .judul {
   font-family: "LeagueSpartan";
   font-weight: 700;
   font-size: 1.2rem;
+  position: sticky;
 }
 
 .button {
@@ -38,4 +48,12 @@
 .button_batal:hover {
   background-color: #a5afed;
   color: white;
+}
+
+.SK {
+  overflow-y: scroll;
+}
+
+.SK::-webkit-scrollbar {
+  display: none;
 }

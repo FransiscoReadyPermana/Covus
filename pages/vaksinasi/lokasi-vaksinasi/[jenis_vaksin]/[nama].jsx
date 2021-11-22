@@ -8,7 +8,8 @@ import Pagination from "../../../../Components/pagination";
 import DropDownEdit from "../../../../Components/dropDown";
 import { useRouter } from "next/router";
 import CardVaksin from "../../../../Components/cardVaksin";
-import Button from "../../../../Components/button";
+import PopUpSK from "../../../../Components/pop-up/pop-up-SK";
+import Image from "next/image";
 
 export default function LokasiVaksinasi({
   data,
@@ -23,6 +24,7 @@ export default function LokasiVaksinasi({
     data.filter((namaData) => namaData.provinsi === nama)
   );
   const [dataDropdown, setDataDropdown] = useState(nama);
+  const [isOpen, setIsOpen] = useState(false);
   const PageSize = 4;
 
   useEffect(() => {
@@ -115,6 +117,22 @@ export default function LokasiVaksinasi({
           />
         </div>
         <div id="pagination" className="mt-4">
+          <PopUpSK
+            open={isOpen}
+            onClickBackground={() => setIsOpen(false)}
+            onClick={() => setIsOpen(false)}
+          />
+
+          <div
+            className={`fixed w-8 h-8 bottom-10 right-0 p-6 mt-8 mr-16 ${styles.chevronUp} z-20`}
+            onClick={() => setIsOpen(true)}
+          >
+            <div
+              className={`absolute w-10 h-10 top-0 left-0 flex ${styles.imgChevron}`}
+            >
+              <Image src="/images/Help.svg" alt="" layout="fill" />
+            </div>
+          </div>
           <Footer color="purple" />
         </div>
       </section>

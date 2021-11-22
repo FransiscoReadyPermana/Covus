@@ -5,9 +5,10 @@ import Title from "../../../Components/title";
 import styles from "../validasi.module.css";
 import Link from "next/link";
 import uuid from "react-uuid";
+import PopUpSK from "../../../Components/pop-up/pop-up-SK";
 
 export default function ValidasiVaksinasi({ data }) {
-  console.log(data);
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="h-screen w-full">
       <section
@@ -181,25 +182,6 @@ export default function ValidasiVaksinasi({ data }) {
                     <label htmlFor={item}>{item}</label>
                   </div>
                 ))}
-
-                {/* <div id="jenis-dua" className="flex items-center">
-                  <input
-                    type="radio"
-                    id="Astrazeneca2"
-                    name="jenis-vaksin"
-                    value="Astrazeneca2"
-                  />
-                  <label htmlFor="Astrazeneca2">Astrazeneca</label>
-                </div>
-                <div id="jenis-tiga" className="flex items-center">
-                  <input
-                    type="radio"
-                    id="Astrazeneca1"
-                    name="jenis-vaksin"
-                    value="Astrazeneca1"
-                  />
-                  <label htmlFor="Astrazeneca1">Astrazeneca</label>
-                </div> */}
               </div>
             </div>
 
@@ -301,14 +283,20 @@ export default function ValidasiVaksinasi({ data }) {
               </div>
             </div>
 
+            <PopUpSK
+              open={isOpen}
+              onClickBackground={() => setIsOpen(false)}
+              onClick={() => setIsOpen(false)}
+            />
+
             <div id="sk" className="flex items-center mt-4">
               <input type="checkbox" id="radio" className={`${styles.radio}`} />
               <label htmlFor="radio" className={`${styles.sk}`}>
-                Dengan ini saya telah menyetujui
-                <span className="text-purple">
-                  <Link href="/"> Syarat dan Ketentuan </Link>
+                Dengan ini saya telah menyetujui 
+                <span className="text-purple mx-2" onClick={() => setIsOpen(true)}>
+                   Syarat dan Ketentuan 
                 </span>
-                yang berlaku
+                yang berlaku 
               </label>
             </div>
 

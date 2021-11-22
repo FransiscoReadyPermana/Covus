@@ -1,16 +1,24 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import uuid from "react-uuid";
 import styles from "../edit.module.css";
 import Footer from "../../../Components/footer";
-import Button from "../../../Components/button";
 import PopUpProfile from "../../../Components/pop-up/pop-up-profil";
 import PopUpBerhasil from "../../../Components/pop-up/pop-up-berhasil";
 
 export default function EditAkun() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  function PopUp() {
+    {
+      () => setIsSuccess(true);
+    }
+    {
+      () => setIsOpen(false);
+    }
+    console.log(isOpen);
+  }
 
   return (
     <>
@@ -194,7 +202,7 @@ export default function EditAkun() {
                   <input
                     type="text"
                     id="nama-lengkap"
-                    value="Raihan Kemmy Rachmansyah"
+                    defaultValue="Raihan Kemmy Rachmansyah"
                     className={`rounded-full w-full text-xl ml-4 ${styles.input}`}
                   />
                 </div>
@@ -210,7 +218,7 @@ export default function EditAkun() {
                   <input
                     type="text"
                     id="tanggal"
-                    value="05 Januari 2001"
+                    defaultValue="05 Januari 2001"
                     className={`rounded-full w-full text-xl text-dark-grey ml-4 ${styles.input}`}
                   />
                 </div>
@@ -242,7 +250,7 @@ export default function EditAkun() {
                   <input
                     type="text"
                     id="alamat"
-                    value="Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    defaultValue="Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                   Voluptatibus sed vitae maxime illum, repellendus quo qui numquam
                   in a, et sapiente cumque eum. Quaerat, nesciunt."
                     className={`rounded-full w-full text-xl text-dark-grey ml-4 ${styles.input}`}

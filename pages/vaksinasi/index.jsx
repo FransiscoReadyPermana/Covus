@@ -9,6 +9,7 @@ import Card from "../../Components/card";
 import Link from "next/link";
 import uuid from "react-uuid";
 import Pagination from "../../Components/pagination";
+import PopUpSK from "../../Components/pop-up/pop-up-SK";
 
 export default function Vaksinasi({ data, dataKedua }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,6 +19,7 @@ export default function Vaksinasi({ data, dataKedua }) {
   const [colorSecondary, setColorSecondary] = useState("secondary");
   const [vaksin, setVaksin] = useState("PERTAMA");
   const [jenisVaksin, setJenisVaksin] = useState("Vaksinasi Pertama");
+  const [isOpen, setIsOpen] = useState(false);
   const PageSize = 4;
   let firstPageIndex = 0;
   let lastPageIndex = 0;
@@ -339,17 +341,23 @@ export default function Vaksinasi({ data, dataKedua }) {
           />
         </div>
 
+        <PopUpSK
+          open={isOpen}
+          onClickBackground={() => setIsOpen(false)}
+          onClick={() => setIsOpen(false)}
+        />
+
         <div
           className={`fixed w-8 h-8 bottom-10 right-0 p-6 mt-8 mr-16 ${styles.chevronUp} z-20`}
+          onClick={() => setIsOpen(true)}
         >
-          <Link href="#fifth" passHref>
-            <div
-              className={`absolute w-10 h-10 top-0 left-0 flex ${styles.imgChevron}`}
-            >
-              <Image src="/images/Help.svg" alt="" layout="fill" />
-            </div>
-          </Link>
+          <div
+            className={`absolute w-10 h-10 top-0 left-0 flex ${styles.imgChevron}`}
+          >
+            <Image src="/images/Help.svg" alt="" layout="fill" />
+          </div>
         </div>
+        
       </section>
       <Footer color="purple" />
     </div>

@@ -7,14 +7,6 @@ import Link from "next/link";
 import uuid from "react-uuid";
 
 export default function CardVaksin({ item }) {
-  const [vaksinValue, setVaksinValue] = useState("");
-
-  const onDropdownDataNamaVaksin = (e) => {
-    let dataNamaVaksin = e;
-    setVaksinValue(dataNamaVaksin);
-    console.log(dataNamaVaksin);
-  };
-
   return (
     <div
       id="card"

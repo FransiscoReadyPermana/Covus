@@ -6,8 +6,8 @@ import EyeShow from "../../icons/EyeShow";
 import EyeHide from "../../icons/EyeHide";
 import Image from "next/image";
 
-export default function PopUpBerhasil({ open, onClickBackground }) {
-  if (!open) {
+export default function PopUpBerhasil({ openBerhasil, onClickBackground }) {
+  if (!openBerhasil) {
     return null;
   }
 

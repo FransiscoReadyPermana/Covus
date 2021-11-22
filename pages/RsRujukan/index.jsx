@@ -6,43 +6,8 @@ import styles from './RsRujukan.module.css';
 import Card from '../../Components/card';
 import Footer from '../../Components/footer';
 import TableData from '../../Components/table';
-// import { data } from './data';
 
 export default function RSRujukan({ hospitals }) {
-  // const generatedata = async () => {
-  //   const dataObject = data.map(d => {
-  //     const obj = {
-  //       no: d[0], provinsi: d[1], nama: d[2], alamat: d[3], telp: d[4],
-  //     }
-  //     return obj;
-  //   })
-
-  //   console.table(dataObject);
-
-  //   dataObject.map(async (data)=> {
-  //     console.log(data);
-  //     const bodyjson = JSON.stringify(data);
-  //     const option = {
-  //       method: "POST",
-  //       body: bodyjson,
-  //       headers: {
-  //         "content-type": "application/json",
-  //       }
-  //     }
-
-  //     const response = await fetch("http://localhost:3000/api/rs-rujukan", option)
-  //     const result = response.json ();
-
-  //     if (result.success) {
-  //       console.log("success");
-  //     } else {
-  //       console.log("error ", data.no);
-  //     }
-
-  //   })
-
-  // }
-
   return (
     <div className="pt-20">
       <section

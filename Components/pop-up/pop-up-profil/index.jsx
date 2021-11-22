@@ -13,6 +13,7 @@ export default function PopUpProfile({
 
   return (
     <>
+
       <div
         id="background"
         className={`fixed h-screen w-full flex items-center justify-center top-0 left-0 ${style.background}`}
