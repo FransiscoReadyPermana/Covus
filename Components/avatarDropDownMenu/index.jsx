@@ -8,6 +8,7 @@ import Poligon from '../icons/poligon';
 import PopUpLogin from '../popUpLogin';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { signOut } from 'next-auth/client';
 
 export default function AvatarDropDownMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,29 +27,24 @@ export default function AvatarDropDownMenu() {
 
   return (
     <div>
-      <PopUpLogin open={isOpen} onClick={() => setIsOpen(false)} />
       <div className={`absolute ${style.Poligon}`}>
         <Poligon />
       </div>
       <div
+        id="container"
         className={`absolute bg-purple mr-20 w-96 rounded-2xl -right-4 mt-16 p-4 ${style.menu}`}
       >
+        <h5>hallo</h5>
         <AvatarDropDownItems
           leftIcon={<Profile />}
           onClick={() => setIsOpen(true)}
         >
-          Masuk Akun
-        </AvatarDropDownItems>
-        <AvatarDropDownItems
-          leftIcon={<Profile />}
-          onClick={() => router.push('/signUp')}
-        >
-          Daftar Akun
+          Lihat Profil
         </AvatarDropDownItems>
         <AvatarDropDownItems leftIcon={<Games />}>
           Permainan Covus
         </AvatarDropDownItems>
-        <Button color="white" to="/" className="ml-3">
+        <Button color="white" to="/" className="ml-3" onClick={() => signOut()}>
           Keluar
         </Button>
       </div>

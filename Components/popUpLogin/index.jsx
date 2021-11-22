@@ -73,6 +73,9 @@ export default function PopUpLogin({
 
       if (!response.error) {
         router.replace('/');
+        location.reload();
+        alert('Berhasil Login');
+        
       } else {
         clear();
         alert(response.error);
