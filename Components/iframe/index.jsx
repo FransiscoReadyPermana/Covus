@@ -1,7 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
-import Styles from './iframe.module.css'
-import Virus from '../icons/virus';
+import React from "react";
+import Link from "next/link";
+import Styles from "./iframe.module.css";
+import Virus from "../icons/virus";
 
 export default function Iframe() {
   return (
