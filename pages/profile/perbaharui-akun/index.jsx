@@ -33,7 +33,7 @@ export default function EditAkun() {
           >
             <div
               id="kiri"
-              className={`bg-white w-1/3 h-full flex flex-col items-start px-12 ${styles.container}`}
+              className={`bg-white w-1/3 h-full flex flex-col items-start px-8 ${styles.container}`}
             >
               <p
                 color="dark-grey"
@@ -51,13 +51,11 @@ export default function EditAkun() {
                 >
                   <div
                     id="icon"
-                    className={
-                      "relative h-7 w-7 flex items-center justify-center"
-                    }
+                    className={`relative h-7 w-7 flex items-center justify-center`}
                   >
                     <Image
                       src="/images/Profile_Active.svg"
-                      alt="reading-book-image"
+                      alt=""
                       layout="fill"
                     />
                   </div>
@@ -71,31 +69,30 @@ export default function EditAkun() {
                 </div>
               </Link>
 
-              <div
-                id="edit-akun"
-                className={`flex flex-row pl-6 py-3 w-full mt-2 ${styles.container_icon}`}
-              >
+              <Link href={`/profile/ubah-kata-sandi`} passHref>
                 <div
-                  id="icon"
-                  className={
-                    "relative h-7 w-7 flex items-center justify-center"
-                  }
+                  id="ubah-kata-sandi"
+                  className={`flex flex-row pl-6 py-3 w-full mt-2 ${styles.container_icon}`}
                 >
-                  <Image
-                    src="/images/Edit.svg"
-                    alt="reading-book-image"
-                    layout="fill"
-                  />
+                  <div
+                    id="icon"
+                    className={
+                      "relative h-7 w-7 flex items-center justify-center"
+                    }
+                  >
+                    <Image src="/images/Edit.svg" alt="" layout="fill" />
+                  </div>
+
+                  <p
+                    color="dark-grey"
+                    className="text-left font-normal text-xl text-dark-grey flex items-center ml-4 mr-4"
+                  >
+                    Ubah Kata Sandi
+                  </p>
                 </div>
+              </Link>
 
-                <p
-                  color="dark-grey"
-                  className="text-left font-normal text-xl text-dark-grey flex items-center ml-4"
-                >
-                  Edit Akun
-                </p>
-              </div>
-
+              <Link href={`/profile/riwayat-vaksinasi`} passHref>
               <div
                 id="riwayat-vaksin"
                 className={`flex flex-row pl-6 py-3 w-full mt-2 ${styles.container_icon}`}
@@ -106,11 +103,7 @@ export default function EditAkun() {
                     "relative h-7 w-7 flex items-center justify-center"
                   }
                 >
-                  <Image
-                    src="/images/Riwayat.svg"
-                    alt="reading-book-image"
-                    layout="fill"
-                  />
+                  <Image src="/images/Riwayat.svg" alt="" layout="fill" />
                 </div>
 
                 <p
@@ -120,9 +113,10 @@ export default function EditAkun() {
                   Vaksinasi
                 </p>
               </div>
+              </Link>
 
               <button
-                className={`w-full rounded-full py-3 text-xl text-white bg-purple mt-80 mb-12 ${styles.button}`}
+                className={`w-full rounded-full py-3 text-xl text-white bg-purple mt-80 mb-12 ${styles.keluar}`}
               >
                 Keluar
               </button>
