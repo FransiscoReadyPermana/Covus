@@ -122,14 +122,20 @@ export default function AkunSaya({ data }) {
               >
                 Akun Saya
               </p>
+              <div
+                id="button"
+                className="flex flex-row items-center justify-between gap-8 w-1/3"
+              >
+              
 
-              <Link href={`/profile/perbaharui-akun`} passHref>
-                <button
-                  className={`w-1/4 rounded-full py-2 h-full text-l text-white bg-purple ${styles.button}`}
-                >
-                  Perbaharui Akun
-                </button>
-              </Link>
+                <Link href={`/profile/perbaharui-akun`} passHref>
+                  <button
+                    className={`w-full rounded-full py-2 h-full text-l text-white bg-purple ${styles.button}`}
+                  >
+                    Perbaharui Akun
+                  </button>
+                </Link>
+              </div>
             </div>
 
             <hr className="h-1 bg-dark-grey w-full mb-6 mt-6 opacity-25" />

@@ -3,13 +3,9 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "../vaksin.module.css";
 import Footer from "../../../Components/footer";
+import CardHasilVaksin from "../../../Components/card/card-hasil-vaksin";
 
 export default function UbahKataSandi() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showCPassword, setShowCPassword] = useState(false);
-  const [showLPassword, setShowLPassword] = useState(false);
-
   return (
     <>
       <div className="h-screen w-full">
@@ -116,18 +112,34 @@ export default function UbahKataSandi() {
               id="kanan"
               className={`bg-white w-full h-full flex flex-col items-start px-12 pb-12 ${styles.container_kanan}`}
             >
-              <p
-                color="dark-grey"
-                className="text-center font-semibold text-2xl text-dark-grey mt-12"
+              <div
+                id="header"
+                className="flex flex-row w-full h-full items-center justify-between mt-12"
               >
-                Riwayat Vaksinasi
-              </p>
+                <p
+                  color="dark-grey"
+                  className="text-center font-semibold text-2xl text-dark-grey"
+                >
+                  Riwayat Vaksinasi
+                </p>
+                <div
+                  id="button"
+                  className="flex flex-row items-center justify-between gap-8 w-1/3"
+                >
+                  <button
+                    className={`w-full rounded-full py-2 h-full text-l text-purple bg-white ${styles.button}`}
+                  >
+                    Daftar Vaksinasi
+                  </button>
+                </div>
+              </div>
 
               <hr className="h-1 bg-dark-grey w-full mb-6 mt-6 opacity-25" />
 
-              <div id="konten"
-              className="">
-
+              <div className="flex flex-col items-center gap-12 w-full mt-4">
+                <CardHasilVaksin />
+                <CardHasilVaksin />
+                <CardHasilVaksin />
               </div>
             </div>
           </div>

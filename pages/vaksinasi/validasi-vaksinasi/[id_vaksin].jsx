@@ -24,7 +24,7 @@ export default function ValidasiVaksinasi({ data }) {
 
             <div
               id="container-konten"
-              className={`flex flex-col items-center bg-white w-1/2 mt-4 pb-10 pt-10 ${styles.container_konten}`}
+              className={`flex flex-col items-center bg-white w-1/2 mt-4 pb-10 pt-6 ${styles.container_konten}`}
             >
               <div
                 id="vaksin-keberapa"

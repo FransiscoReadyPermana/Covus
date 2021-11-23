@@ -20,6 +20,7 @@
 .container_icon {
   cursor: pointer;
   border-radius: 3.5rem;
+  transition: all 0.23s ease-out;
 }
 
 .container_icon:hover {
@@ -51,4 +52,5 @@
 
 .button:hover {
   background-color: #7080ec;
+  outline: 0.2rem solid #7080ec;
 }
