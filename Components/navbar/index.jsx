@@ -76,27 +76,28 @@ export default function Navbar() {
           </NavItems>
         </div>
         <div id="right" className="flex justify-items-center">
-          <Link href="/signUp" passHref>
-            <button
-              type="button"
-              className={`bg-dark-grey py-3 px-10 text-white rounded-xl mr-8 ${style.button_secondary}`}
-            >
-              Daftar
-            </button>
-          </Link>
-
           {session ? (
             <AvatarDropDown>
               <AvatarDropDownMenu />
             </AvatarDropDown>
           ) : (
-            <button
-              type="button"
-              className={`bg-purple py-3 px-10 text-white rounded-xl ${style.button}`}
-              onClick={() => setIsOpen(true)}
-            >
-              Masuk
-            </button>
+            <div className="flex flex-row">
+              <Link href="/signUp" passHref>
+                <button
+                  type="button"
+                  className={`bg-dark-grey py-3 px-10 text-white rounded-xl mr-8 ${style.button_secondary}`}
+                >
+                  Daftar
+                </button>
+              </Link>
+              <button
+                type="button"
+                className={`bg-purple py-3 px-10 text-white rounded-xl ${style.button}`}
+                onClick={() => setIsOpen(true)}
+              >
+                Masuk
+              </button>
+            </div>
           )}
         </div>
       </div>
