@@ -9,6 +9,7 @@ import PopUpLogin from "../popUpLogin";
 import style from "./navbar.module.css";
 import Session from "../session";
 import { useSession } from "next-auth/client";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,13 +76,14 @@ export default function Navbar() {
           </NavItems>
         </div>
         <div id="right" className="flex justify-items-center">
-          <button
-            type="button"
-            className={`bg-dark-grey py-3 px-8 text-white rounded-xl mr-8 ${style.button_secondary}`}
-            onClick={() => setIsOpen(true)}
-          >
-            Register
-          </button>
+          <Link href="/signUp" passHref>
+            <button
+              type="button"
+              className={`bg-dark-grey py-3 px-10 text-white rounded-xl mr-8 ${style.button_secondary}`}
+            >
+              Daftar
+            </button>
+          </Link>
 
           {session ? (
             <AvatarDropDown>
@@ -93,7 +95,7 @@ export default function Navbar() {
               className={`bg-purple py-3 px-10 text-white rounded-xl ${style.button}`}
               onClick={() => setIsOpen(true)}
             >
-              Login
+              Masuk
             </button>
           )}
         </div>
