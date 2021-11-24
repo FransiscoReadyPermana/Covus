@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import styles from "../vaksin.module.css";
+import styles from '../../../styles/vaksinProfile.module.css';
 import Footer from "../../../Components/footer";
 import CardHasilVaksin from "../../../Components/card/card-hasil-vaksin";
 import PopUp from "../../../Components/pop-up/pop-up";

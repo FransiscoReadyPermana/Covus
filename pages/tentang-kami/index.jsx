@@ -2,9 +2,8 @@ import React from "react";
 import Image from "next/image";
 import Title from "../../Components/title";
 import Paragraph from "../../Components/paragraph";
-import styles from "./about.module.css";
+import styles from '../../styles/about.module.css';
 import Footer from "../../Components/footer";
-import TableData from "../../Components/table";
 
 export default function RSRujukan({ hospitals }) {
   return (

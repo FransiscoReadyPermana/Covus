@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Title from '../../Components/title';
 import Paragraph from '../../Components/paragraph';
-import styles from './RsRujukan.module.css';
+import styles from '../../styles/RsRujukan.module.css';
 import Card from '../../Components/card';
 import Footer from '../../Components/footer';
 import TableData from '../../Components/table';

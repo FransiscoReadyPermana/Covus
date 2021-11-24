@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import styles from "../akun.module.css";
+import styles from "../../../styles/akun.module.css";
 import Footer from "../../../Components/footer";
 import PopUp from "../../../Components/pop-up/pop-up";
 

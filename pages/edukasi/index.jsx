@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import styles from './edukasi.module.css';
+import styles from '../../styles/edukasi.module.css';
 import Paragraph from '../../Components/paragraph';
 import Button from '../../Components/button';
 import Title from '../../Components/title';

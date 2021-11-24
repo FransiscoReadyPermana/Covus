@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import styles from "./vaksin.module.css";
+import styles from '../../styles/vaksin.module.css';
 import Title from "../../Components/title";
 import Paragraph from "../../Components/paragraph";
 import Button from "../../Components/button";

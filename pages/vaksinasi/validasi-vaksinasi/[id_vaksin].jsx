@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Footer from "../../../Components/footer";
 import Title from "../../../Components/title";
-import styles from "../validasi.module.css";
+import styles from '../../../styles/validasi.module.css';
 import Link from "next/link";
 import uuid from "react-uuid";
 import PopUpSK from "../../../Components/pop-up/pop-up-SK";

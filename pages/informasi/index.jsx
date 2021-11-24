@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./informasi.module.css";
+import styles from '../../styles/informasi.module.css';
 import Paragraph from "../../Components/paragraph";
 import Title from "../../Components/title";
 import Footer from "../../Components/footer";
