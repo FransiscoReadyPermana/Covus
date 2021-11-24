@@ -68,8 +68,8 @@ export default function Navbar() {
 
           <NavItems
             className="ml-4"
-            to="/about"
-            isActive={router.pathname == "/about"}
+            to="/tentang-kami"
+            isActive={router.pathname == "/tentang-kami"}
           >
             Tentang Kami
           </NavItems>
