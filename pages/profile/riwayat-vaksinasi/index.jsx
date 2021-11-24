@@ -4,8 +4,11 @@ import Link from "next/link";
 import styles from "../vaksin.module.css";
 import Footer from "../../../Components/footer";
 import CardHasilVaksin from "../../../Components/card/card-hasil-vaksin";
+import PopUp from "../../../Components/pop-up/pop-up";
 
 export default function UbahKataSandi() {
+  const [keluar, setKeluar] = useState(false);
+
   return (
     <>
       <div className="h-screen w-full">
@@ -101,8 +104,20 @@ export default function UbahKataSandi() {
                 </div>
               </Link>
 
+              <PopUp
+                open={keluar}
+                onClickBackground={() => setKeluar(false)}
+                onClickSimpan={() => setKeluar(false)}
+                pertanyaan1={"Apakah Anda yakin ingin"}
+                pertanyaan2={"keluar aplikasi?"}
+                gambar={"/images/Close.svg"}
+                button_primary={"Iya"}
+                button_secondary={"Tidak"}
+              />
+
               <button
                 className={`w-full rounded-full py-3 text-xl text-white mt-80 mb-12 ${styles.keluar}`}
+                onClick={() => setKeluar(true)}
               >
                 Keluar
               </button>

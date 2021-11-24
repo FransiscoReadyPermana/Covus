@@ -65,6 +65,14 @@ export default function Navbar() {
           >
             Vaksinasi
           </NavItems>
+
+          <NavItems
+            className="ml-4"
+            to="/about"
+            isActive={router.pathname == "/about"}
+          >
+            Tentang Kami
+          </NavItems>
         </div>
         <div id="right" className="flex justify-items-center">
           <button

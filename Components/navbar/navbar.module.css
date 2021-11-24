@@ -8,9 +8,11 @@
 
 .button_secondary {
   transition: 0.2s ease-in-out;
+  opacity: 0.5;
 }
 
 .button_secondary:hover {
   outline: 0.2rem solid white;
   color: white;
+  opacity: 1;
 }

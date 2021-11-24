@@ -9,6 +9,8 @@ export default function PopUp({
   pertanyaan1,
   pertanyaan2,
   gambar,
+  button_primary,
+  button_secondary,
 }) {
   if (!open) {
     return null;
@@ -48,14 +50,14 @@ export default function PopUp({
             className={`bg-white text-purple py-3 rounded-3xl w-full ${style.button_batal}`}
             onClick={onClickSimpan}
           >
-            Tidak
+            {button_secondary}
           </button>
 
           <button
             className={`bg-purple text-white py-3 rounded-3xl w-full ${style.button}`}
             onClick={onClickSimpan}
           >
-            Simpan
+           {button_primary}
           </button>
         </div>
       </div>

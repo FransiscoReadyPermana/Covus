@@ -9,6 +9,7 @@ import EyeHide from "../../../Components/icons/EyeHide";
 
 export default function UbahKataSandi() {
   const [isOpen, setIsOpen] = useState(false);
+  const [keluar, setKeluar] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
   const [showLPassword, setShowLPassword] = useState(false);
@@ -104,8 +105,20 @@ export default function UbahKataSandi() {
                 </div>
               </Link>
 
+              <PopUp
+                open={keluar}
+                onClickBackground={() => setKeluar(false)}
+                onClickSimpan={() => setKeluar(false)}
+                pertanyaan1={"Apakah Anda yakin ingin"}
+                pertanyaan2={"keluar aplikasi?"}
+                gambar={"/images/Close.svg"}
+                button_primary={"Iya"}
+                button_secondary={"Tidak"}
+              />
+
               <button
                 className={`w-full rounded-full py-3 text-xl text-white mt-80 mb-12 ${styles.keluar}`}
+                onClick={() => setKeluar(true)}
               >
                 Keluar
               </button>
@@ -122,6 +135,8 @@ export default function UbahKataSandi() {
                 pertanyaan1={"Apakah Anda yakin ingin"}
                 pertanyaan2={"menyimpan perubahan?"}
                 gambar={"/images/Question.svg"}
+                button_primary={"Simpan"}
+                button_secondary={"Tidak"}
               />
 
               <div

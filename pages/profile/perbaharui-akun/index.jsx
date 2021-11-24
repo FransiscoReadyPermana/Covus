@@ -111,6 +111,19 @@ export default function EditAkun() {
                 pertanyaan1={"Apakah Anda yakin ingin"}
                 pertanyaan2={"keluar aplikasi?"}
                 gambar={"/images/Close.svg"}
+                button_primary={"Simpan"}
+                button_secondary={"Tidak"}
+              />
+
+              <PopUp
+                open={keluar}
+                onClickBackground={() => setKeluar(false)}
+                onClickSimpan={() => setKeluar(false)}
+                pertanyaan1={"Apakah Anda yakin ingin"}
+                pertanyaan2={"menyimpan perubahan?"}
+                gambar={"/images/Question.svg"}
+                button_primary={"Iya"}
+                button_secondary={"Tidak"}
               />
 
               <button
@@ -125,15 +138,6 @@ export default function EditAkun() {
               id="kanan"
               className={`bg-white w-full h-full flex flex-col items-start px-12 pb-12 ${styles.container_kanan}`}
             >
-              <PopUp
-                open={keluar}
-                onClickBackground={() => setKeluar(false)}
-                onClickSimpan={() => setKeluar(false)}
-                pertanyaan1={"Apakah Anda yakin ingin"}
-                pertanyaan2={"menyimpan perubahan?"}
-                gambar={"/images/Question.svg"}
-              />
-
               <div
                 id="header"
                 className="flex flex-row w-full h-full items-center justify-between mt-12"

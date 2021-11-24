@@ -1,12 +1,12 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import uuid from "react-uuid";
 import styles from "../akun.module.css";
 import Footer from "../../../Components/footer";
-import Button from "../../../Components/button";
+import PopUp from "../../../Components/pop-up/pop-up";
 
-export default function AkunSaya({ data }) {
+export default function AkunSaya() {
+  const [keluar, setKeluar] = useState(false);
   return (
     <div className="h-screen w-full">
       <section
@@ -101,8 +101,20 @@ export default function AkunSaya({ data }) {
               </div>
             </Link>
 
+            <PopUp
+              open={keluar}
+              onClickBackground={() => setKeluar(false)}
+              onClickSimpan={() => setKeluar(false)}
+              pertanyaan1={"Apakah Anda yakin ingin"}
+              pertanyaan2={"keluar aplikasi?"}
+              gambar={"/images/Close.svg"}
+              button_primary={"Iya"}
+              button_secondary={"Tidak"}
+            />
+
             <button
               className={`w-full rounded-full py-3 text-xl text-white bg-purple mt-80 mb-12 ${styles.keluar}`}
+              onClick={() => setKeluar(true)}
             >
               Keluar
             </button>
@@ -126,8 +138,6 @@ export default function AkunSaya({ data }) {
                 id="button"
                 className="flex flex-row items-center justify-between gap-8 w-1/3"
               >
-              
-
                 <Link href={`/profile/perbaharui-akun`} passHref>
                   <button
                     className={`w-full rounded-full py-2 h-full text-l text-white bg-purple ${styles.button}`}
