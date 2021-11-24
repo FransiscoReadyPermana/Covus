@@ -67,6 +67,14 @@ export default function Navbar() {
           </NavItems>
         </div>
         <div id="right" className="flex justify-items-center">
+          <button
+            type="button"
+            className={`bg-dark-grey py-3 px-8 text-white rounded-xl mr-8 ${style.button_secondary}`}
+            onClick={() => setIsOpen(true)}
+          >
+            Register
+          </button>
+
           {session ? (
             <AvatarDropDown>
               <AvatarDropDownMenu />
@@ -74,10 +82,10 @@ export default function Navbar() {
           ) : (
             <button
               type="button"
-              className={`bg-purple py-3 px-4 text-white rounded-xl ${style.button}`}
+              className={`bg-purple py-3 px-10 text-white rounded-xl ${style.button}`}
               onClick={() => setIsOpen(true)}
             >
-              Login/Register
+              Login
             </button>
           )}
         </div>
