@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import style from "../profile.module.css";
 import Image from "next/image";
 
-export default function PopUpProfile({
+export default function PopUp({
   open,
   onClickBackground,
   onClickSimpan,
+  pertanyaan1,
+  pertanyaan2,
+  gambar,
 }) {
   if (!open) {
     return null;
@@ -24,14 +27,14 @@ export default function PopUpProfile({
         className={`fixed bg-white py-10 px-20 flex flex-col items-center ${style.container}`}
       >
         <h1
-          className={`text-center text-dark-grey mb-6 leading-loose ${style.judul}`}
+          className={`text-center text-dark-grey mb-6 leading-loose tracking-wider ${style.judul}`}
         >
-          Apakah Anda yakin ingin menyimpan <br /> perubahan ini?
+         {pertanyaan1} <br/> {pertanyaan2}
         </h1>
 
         <div id="illustrasi" className={"relative h-48 w-48"}>
           <Image
-            src="/images/Question.svg"
+            src={gambar}
             alt="reading-book-image"
             layout="fill"
           />
@@ -39,7 +42,7 @@ export default function PopUpProfile({
 
         <div
           id="button"
-          className="flex flex-row items-center justify-between gap-6 w-full mt-10"
+          className="flex flex-row items-center justify-between gap-6 w-full mt-12"
         >
           <button
             className={`bg-white text-purple py-3 rounded-3xl w-full ${style.button_batal}`}

@@ -21,7 +21,8 @@
 }
 
 .buttonSecondary:hover{
-  outline: 0.3rem solid #7080ec;
+  outline: 0.3rem solid #A5AFED;
+  color: #7080ec;
 }
 
 .buttonWhite:hover{

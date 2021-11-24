@@ -27,7 +27,7 @@ export default function Button({ value, children, color, to, onClick, className 
   if (color === 'secondary') {
     colorSelect = 'white';
     hover = Styles.buttonSecondary;
-    text = 'text-dark-grey';
+    text = 'text-purple';
   }
   return (
     <Link href={to} passHref>

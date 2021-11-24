@@ -3,22 +3,11 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "../edit.module.css";
 import Footer from "../../../Components/footer";
-import PopUpProfile from "../../../Components/pop-up/pop-up-profil";
-import PopUpBerhasil from "../../../Components/pop-up/pop-up-berhasil";
+import PopUp from "../../../Components/pop-up/pop-up";
 
 export default function EditAkun() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  function PopUp() {
-    {
-      () => setIsSuccess(true);
-    }
-    {
-      () => setIsOpen(false);
-    }
-    console.log(isOpen);
-  }
+  const [keluar, setKeluar] = useState(false);
 
   return (
     <>
@@ -93,30 +82,40 @@ export default function EditAkun() {
               </Link>
 
               <Link href={`/profile/riwayat-vaksinasi`} passHref>
-              <div
-                id="riwayat-vaksin"
-                className={`flex flex-row pl-6 py-3 w-full mt-2 ${styles.container_icon}`}
-              >
                 <div
-                  id="icon"
-                  className={
-                    "relative h-7 w-7 flex items-center justify-center"
-                  }
+                  id="riwayat-vaksin"
+                  className={`flex flex-row pl-6 py-3 w-full mt-2 ${styles.container_icon}`}
                 >
-                  <Image src="/images/Riwayat.svg" alt="" layout="fill" />
-                </div>
+                  <div
+                    id="icon"
+                    className={
+                      "relative h-7 w-7 flex items-center justify-center"
+                    }
+                  >
+                    <Image src="/images/Riwayat.svg" alt="" layout="fill" />
+                  </div>
 
-                <p
-                  color="dark-grey"
-                  className="text-left font-normal text-xl flex items-center ml-4 text-dark-grey"
-                >
-                  Vaksinasi
-                </p>
-              </div>
+                  <p
+                    color="dark-grey"
+                    className="text-left font-normal text-xl flex items-center ml-4 text-dark-grey"
+                  >
+                    Vaksinasi
+                  </p>
+                </div>
               </Link>
+
+              <PopUp
+                open={isOpen}
+                onClickBackground={() => setIsOpen(false)}
+                onClickSimpan={() => setIsOpen(false)}
+                pertanyaan1={"Apakah Anda yakin ingin"}
+                pertanyaan2={"keluar aplikasi?"}
+                gambar={"/images/Close.svg"}
+              />
 
               <button
                 className={`w-full rounded-full py-3 text-xl text-white bg-purple mt-80 mb-12 ${styles.keluar}`}
+                onClick={() => setIsOpen(true)}
               >
                 Keluar
               </button>
@@ -126,10 +125,13 @@ export default function EditAkun() {
               id="kanan"
               className={`bg-white w-full h-full flex flex-col items-start px-12 pb-12 ${styles.container_kanan}`}
             >
-              <PopUpProfile
-                open={isOpen}
-                onClickBackground={() => setIsOpen(false)}
-                onClickSimpan={() => setIsOpen(false)}
+              <PopUp
+                open={keluar}
+                onClickBackground={() => setKeluar(false)}
+                onClickSimpan={() => setKeluar(false)}
+                pertanyaan1={"Apakah Anda yakin ingin"}
+                pertanyaan2={"menyimpan perubahan?"}
+                gambar={"/images/Question.svg"}
               />
 
               <div
@@ -156,7 +158,7 @@ export default function EditAkun() {
 
                   <button
                     className={`w-full rounded-full py-2 h-full text-l text-white bg-purple ${styles.button}`}
-                    onClick={() => setIsOpen(true)}
+                    onClick={() => setKeluar(true)}
                   >
                     Simpan
                   </button>
