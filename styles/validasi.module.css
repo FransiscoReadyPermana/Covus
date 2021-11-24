@@ -12,7 +12,7 @@
 }
 
 .dividerKetiga {
-  background: url("../../public/images/fourthDivider.svg");
+  background: url("../public/images/fourthDivider.svg");
   background-repeat: no-repeat;
   background-size: cover;
   -webkit-transform: scaley(-1);

@@ -11,13 +11,13 @@
 }
 
 .bgFirstSection {
-  background: url("../../public/images/sixDivider.svg");
+  background: url("../public/images/sixDivider.svg");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .bgSecondSection {
-  background: url("../../public/images/sixDivider.svg");
+  background: url("../public/images/sixDivider.svg");
   background-repeat: no-repeat;
   background-size: cover;
   -webkit-transform: scaley(-1);
@@ -25,7 +25,7 @@
 }
 
 .bgThirdSection {
-  background: url("../../public/images/secondDivider.svg");
+  background: url("../public/images/secondDivider.svg");
   background-repeat: no-repeat;
   background-size: cover;
   -webkit-transform: scaley(-1);
