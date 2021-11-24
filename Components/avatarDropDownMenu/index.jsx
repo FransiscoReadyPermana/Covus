@@ -4,7 +4,7 @@ import Profile from '../icons/profile';
 import Games from '../icons/games';
 import style from './AvatarDropDownMenu.module.css';
 import Button from '../button/';
-import Poligon from '../icons/poligon';
+import Poligon from '../icons/Poligon';
 import PopUpLogin from '../popUpLogin';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
