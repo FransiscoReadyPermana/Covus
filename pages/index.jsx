@@ -18,7 +18,7 @@ export default function Home({ dataOrang, total }) {
         id="first"
         className={`flex flex-col w-100 justify-center h-screen relative`}
       >
-        <div className="flex justify-center items-center mt-32 h-20">
+        <div className="flex justify-center items-center mt-40 h-20 pb-16">
           <div className="bg-purple w-40 h-2 "></div>
           <Headline className="mx-5 text-dark-purple">
             HEALTH{" "}
@@ -29,7 +29,7 @@ export default function Home({ dataOrang, total }) {
         </div>
         <div
           id="background"
-          className={`h-full w-full ${styles.firstSection}`}
+          className={`h-full w-full pt-12 ${styles.firstSection}`}
         ></div>
         <div className="bg-dark-grey w-full h-3" />
       </section>
