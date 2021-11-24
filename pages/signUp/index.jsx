@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import Headline from '../../Components/headline';
+import Headline from '../../Components/Headline';
 import Title from '../../Components/title';
 import styles from './signUp.module.css';
 import EyeShow from '../../Components/icons/EyeShow';
