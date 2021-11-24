@@ -9,6 +9,7 @@ import PopUpLogin from "../popUpLogin";
 import style from "./navbar.module.css";
 import Session from "../session";
 import { useSession } from "next-auth/client";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -65,6 +66,14 @@ export default function Navbar() {
           >
             Vaksinasi
           </NavItems>
+
+          <NavItems
+            className="ml-4"
+            to="/tentang-kami"
+            isActive={router.pathname == "/tentang-kami"}
+          >
+            Tentang Kami
+          </NavItems>
         </div>
         <div id="right" className="flex justify-items-center">
           {session ? (
@@ -72,13 +81,23 @@ export default function Navbar() {
               <AvatarDropDownMenu />
             </AvatarDropDown>
           ) : (
-            <button
-              type="button"
-              className={`bg-purple py-3 px-4 text-white rounded-xl ${style.button}`}
-              onClick={() => setIsOpen(true)}
-            >
-              Login/Register
-            </button>
+            <div className="flex flex-row">
+              <Link href="/signUp" passHref>
+                <button
+                  type="button"
+                  className={`bg-dark-grey py-3 px-10 text-white rounded-xl mr-8 ${style.button_secondary}`}
+                >
+                  Daftar
+                </button>
+              </Link>
+              <button
+                type="button"
+                className={`bg-purple py-3 px-10 text-white rounded-xl ${style.button}`}
+                onClick={() => setIsOpen(true)}
+              >
+                Masuk
+              </button>
+            </div>
           )}
         </div>
       </div>

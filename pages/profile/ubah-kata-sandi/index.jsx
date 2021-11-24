@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "../edit.module.css";
 import Footer from "../../../Components/footer";
-import PopUpProfile from "../../../Components/pop-up/pop-up-profil";
+import PopUp from "../../../Components/pop-up/pop-up";
 import EyeShow from "../../../Components/icons/EyeShow";
 import EyeHide from "../../../Components/icons/EyeHide";
 
 export default function UbahKataSandi() {
   const [isOpen, setIsOpen] = useState(false);
+  const [keluar, setKeluar] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
   const [showLPassword, setShowLPassword] = useState(false);
@@ -82,30 +83,42 @@ export default function UbahKataSandi() {
               </Link>
 
               <Link href={`/profile/riwayat-vaksinasi`} passHref>
-              <div
-                id="riwayat-vaksin"
-                className={`flex flex-row pl-6 py-3 w-full mt-2 ${styles.container_icon}`}
-              >
                 <div
-                  id="icon"
-                  className={
-                    "relative h-7 w-7 flex items-center justify-center"
-                  }
+                  id="riwayat-vaksin"
+                  className={`flex flex-row pl-6 py-3 w-full mt-2 ${styles.container_icon}`}
                 >
-                  <Image src="/images/Riwayat.svg" alt="" layout="fill" />
-                </div>
+                  <div
+                    id="icon"
+                    className={
+                      "relative h-7 w-7 flex items-center justify-center"
+                    }
+                  >
+                    <Image src="/images/Riwayat.svg" alt="" layout="fill" />
+                  </div>
 
-                <p
-                  color="dark-grey"
-                  className="text-left font-normal text-xl flex items-center ml-4 text-dark-grey"
-                >
-                  Vaksinasi
-                </p>
-              </div>
+                  <p
+                    color="dark-grey"
+                    className="text-left font-normal text-xl flex items-center ml-4 text-dark-grey"
+                  >
+                    Vaksinasi
+                  </p>
+                </div>
               </Link>
+
+              <PopUp
+                open={keluar}
+                onClickBackground={() => setKeluar(false)}
+                onClickSimpan={() => setKeluar(false)}
+                pertanyaan1={"Apakah Anda yakin ingin"}
+                pertanyaan2={"keluar aplikasi?"}
+                gambar={"/images/Close.svg"}
+                button_primary={"Iya"}
+                button_secondary={"Tidak"}
+              />
 
               <button
                 className={`w-full rounded-full py-3 text-xl text-white mt-80 mb-12 ${styles.keluar}`}
+                onClick={() => setKeluar(true)}
               >
                 Keluar
               </button>
@@ -115,10 +128,15 @@ export default function UbahKataSandi() {
               id="kanan"
               className={`bg-white w-full h-full flex flex-col items-start px-12 pb-12 ${styles.container_kanan}`}
             >
-              <PopUpProfile
+              <PopUp
                 open={isOpen}
                 onClickBackground={() => setIsOpen(false)}
                 onClickSimpan={() => setIsOpen(false)}
+                pertanyaan1={"Apakah Anda yakin ingin"}
+                pertanyaan2={"menyimpan perubahan?"}
+                gambar={"/images/Question.svg"}
+                button_primary={"Simpan"}
+                button_secondary={"Tidak"}
               />
 
               <div

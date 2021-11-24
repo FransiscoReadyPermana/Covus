@@ -159,7 +159,7 @@ export default function PopUpLogin({
         <h6 className={`mt-4 text-center font-semibold ${style.text}`}>
           Belum Memiliki Akun?
           <span className="text-purple">
-            <button onClick={onClickDaftar}>Daftar Sekarang</button>
+            <button onClick={onClickDaftar} className="ml-2">Daftar Sekarang</button>
           </span>
         </h6>
       </div>

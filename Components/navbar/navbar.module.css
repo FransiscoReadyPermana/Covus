@@ -1,7 +1,18 @@
-.button{
+.button {
   transition: 0.2s ease-in-out;
 }
 
-.button:hover{
+.button:hover {
   background-color: #7080ec;
+}
+
+.button_secondary {
+  transition: 0.2s ease-in-out;
+  opacity: 0.5;
+}
+
+.button_secondary:hover {
+  outline: 0.2rem solid white;
+  color: white;
+  opacity: 1;
 }
