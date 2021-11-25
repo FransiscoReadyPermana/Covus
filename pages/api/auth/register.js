@@ -18,8 +18,16 @@ const user = async (req, res) => {
     case 'POST':
       try {
         // get user data from request
-        const { nama, email, tanggal, bulan, tahun, jenisKelamin, alamat, kataSandi } =
-          req.body;
+        const {
+          nama,
+          email,
+          tanggal,
+          bulan,
+          tahun,
+          jenisKelamin,
+          alamat,
+          kataSandi,
+        } = req.body;
 
         // validate user data
         userValidation.validateUserPayload(req.body);
