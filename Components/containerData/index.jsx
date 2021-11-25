@@ -25,7 +25,7 @@ export default function ContainerData({ title, content, color }) {
     <div className="flex flex-col gap-4">
       <div
         id="title"
-        className={`bg-dark-green font-medium text-white text-xl py-3 text-center px-28 rounded-full `}
+        className={`${colorSelect} font-medium text-white text-xl py-3 text-center px-28 rounded-full `}
       >
         {title}
       </div>

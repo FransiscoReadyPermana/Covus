@@ -14,7 +14,7 @@ import Link from "next/link";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
-  const [session, loading] = useSession();
+  const [session] = useSession();
 
   return (
     <>
