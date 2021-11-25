@@ -1,3 +1,9 @@
+.navbar{
+  padding-left: 6rem;
+  padding-right: 6rem;
+  padding-top: 1.25rem;
+}
+
 .button {
   transition: 0.2s ease-in-out;
 }
