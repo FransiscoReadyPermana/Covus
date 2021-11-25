@@ -22,7 +22,7 @@ export default function Footer({ color }) {
           id="divider"
           className={`${styles.footerDividerWhite} h-52  w-full absolute`}
         />
-        <div className="h-80 w-full flex items-center justify-center pt-40">
+        <div className={`w-full flex items-center justify-center pt-40 ${styles.whiteFooter}`}>
           <p className="text-center text-dark-grey font-semibold text-xl">
             Copyright. Covus 2021. All Rights Reserved.
           </p>

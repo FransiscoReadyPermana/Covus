@@ -8,7 +8,7 @@ export default function Card({ children, type, className, gap }) {
   if (type === 'small'){
     return (
       <div
-        className={`flex flex-col justify-center bg-white w-1/4 ${Styles.cardSmall} ${className} gap-3 p-4 pb-5 pt-5`}
+        className={`flex flex-col justify-center bg-white w-1/4 ${Styles.cardSmall} ${className} gap-3 p-4  pt-5`}
       >
         {children}
       </div>
@@ -18,7 +18,7 @@ export default function Card({ children, type, className, gap }) {
   if (type === 'big') {
     return (
       <div
-        className={`flex flex-col justify-center bg-white w-1/4 ${Styles.card} ${className} ${gapp} pb-5 pt-2`}
+        className={`flex flex-col justify-center bg-white w-1/4 ${Styles.card} ${className} ${gapp}  pt-2`}
       >
         {children}
       </div>

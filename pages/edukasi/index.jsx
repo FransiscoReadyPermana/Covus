@@ -127,7 +127,7 @@ export default function Edukasi() {
               <Card type="big">
                 <div className="relative h-3/4 w-full flex flex-col">
                   <Image
-                    src="/images/demam.svg"
+                    src="/images/demamm.svg"
                     alt="reading-book-image"
                     layout="fill"
                   />
