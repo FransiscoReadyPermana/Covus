@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@alex-bl/next-authentication": "^1.0.0",
     "aws-sdk": "^2.1036.0",
     "bcrypt": "^5.0.1",
     "bl": "^5.0.0",
