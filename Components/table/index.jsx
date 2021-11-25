@@ -49,8 +49,8 @@ export default function TableData({ data, type }) {
         <table className={`w-full h-80 text-center ${stylesGlobal.table}`}>
           <thead className="bg-purple text-center text-xl text-white font-bold">
             <tr>
-              <th className="px-20 py-4">Nama Negara</th>
-              <th className="px-12 py-4">Total Kasus</th>
+              <th className={`px-20 ${stylesGlobal.head}`}>Nama Negara</th>
+              <th className={`px-12 ${stylesGlobal.head}`}>Total Kasus</th>
               <th className="px-12">Total Meninggal</th>
               <th className="px-12">Total Sembuh</th>
               <th className="px-12">Kasus Aktif</th>
@@ -59,7 +59,7 @@ export default function TableData({ data, type }) {
           <tbody>
             {data.map((item) => {
               let indonesia;
-              if (item.country === "Indonesia") {
+              if (item.country === 'Indonesia') {
                 indonesia = stylesGlobal.indonesia;
               }
               return (
@@ -108,7 +108,7 @@ export default function TableData({ data, type }) {
               option={kota}
             />
             <button
-              className="bg-purple flex items-center justify-center w-20 h-12 rounded-3xl"
+              className={`bg-purple flex items-center justify-center h-12 rounded-3xl ${stylesProvinsi.reset}`}
               onClick={onFilterDropdown}
             >
               <div className="relative  w-8 h-8">
@@ -128,7 +128,9 @@ export default function TableData({ data, type }) {
             <table className={`w-full ${stylesProvinsi.table}`}>
               <thead className="bg-purple text-center text-xl text-white font-bold">
                 <tr>
-                  <th className="px-28 py-4">Provinsi</th>
+                  <th className={`px-28 ${stylesProvinsi.head}`}>
+                    Provinsi
+                  </th>
                   <th className="px-12">Total Kasus</th>
                   <th className="px-12">Total Sembuh</th>
                   <th className="px-12">Total Meninggal</th>

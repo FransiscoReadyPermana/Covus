@@ -8,9 +8,9 @@ export default function NavItems({ children, to, isActive }) {
 
   if (isActive) {
     hover = Styles.navItemsActive
-    boldest = 'font-bold';
+    boldest = Styles.bold;
   } else {
-    boldest = 'font-medium';
+    boldest = Styles.medium;
   }
 
   return (

@@ -48,3 +48,8 @@
   .last {
     border-right: none !important;
   }
+
+  .head{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
