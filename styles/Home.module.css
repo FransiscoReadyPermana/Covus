@@ -29,7 +29,7 @@
 
 
 .bgThirdSection {
-  /* background-image: url('../public/images/firstDivider.svg'); */
+  background-image: url('../public/images/firstDivider.svg');
   background-repeat: no-repeat;
   background-size: cover;
 }
