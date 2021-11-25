@@ -25,7 +25,7 @@ export default function Button({ value, children, color, to, onClick, className 
     text = 'text-white';
   }
   if (color === 'secondary') {
-    colorSelect = 'white';
+    colorSelect = 'bg-white';
     hover = Styles.buttonSecondary;
     text = 'text-purple';
   }

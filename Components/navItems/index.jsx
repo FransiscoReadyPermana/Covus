@@ -8,15 +8,15 @@ export default function NavItems({ children, to, isActive }) {
 
   if (isActive) {
     hover = Styles.navItemsActive
-    boldest = "bold"
+    boldest = 'font-bold';
   } else {
-    boldest="medium"
+    boldest = 'font-medium';
   }
 
   return (
     <div>
       <Link href= {`${to}`}>
-        <a className={`text-2xl font-${boldest} mb-20 text-white relative ${Styles.navItems} ${hover}`}>{children}</a>
+        <a className={`text-2xl ${boldest} mb-20 text-white relative ${Styles.navItems} ${hover}`}>{children}</a>
       </Link>
     </div>
   );
