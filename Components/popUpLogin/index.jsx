@@ -98,7 +98,7 @@ export default function PopUpLogin({
       />
       <div
         id="container"
-        className={`fixed bg-white py-10 px-20  ${style.container}`}
+        className={`fixed bg-white px-20 ${style.container}`}
       >
         <button
           className={`absolute right-8 top-8 rounded-full ${style.close}`}
@@ -136,7 +136,7 @@ export default function PopUpLogin({
                 }
               />
               <button
-                className="absolute right-3 top-5"
+                className={`absolute ${style.eye}`}
                 onClick={() => setShowPassword(!showPassword)}
                 type="button"
               >

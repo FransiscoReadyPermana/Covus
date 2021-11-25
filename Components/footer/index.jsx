@@ -9,7 +9,7 @@ export default function Footer({ color }) {
           id="divider"
           className={`${styles.footerDividerPurple} h-10  w-full absolute -top-10`}
         />
-        <p className="text-center text-white font-semibold text-xl py-9">
+        <p className={`text-center text-white font-semibold text-xl ${styles.purple}`}>
           Copyright. Covus 2021. All Rights Reserved.
         </p>
       </footer>
