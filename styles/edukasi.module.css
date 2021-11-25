@@ -25,7 +25,7 @@
 
 
 .bgFirstSection {
-  background-image: url('../public/images/firstDivider.svg');
+  background-image: url('../public/images/divider.svg');
   background-repeat: no-repeat;
   background-size: cover;
 }

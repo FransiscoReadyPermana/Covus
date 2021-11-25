@@ -41,12 +41,6 @@
   background-size: cover;
 }
 
-.bgFourthSection {
-  background-image: url('../public/images/Divider.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .secondBGFourthSection {
   background-image: url('../public/images/fourthDivider.svg');
   background-repeat: no-repeat;
