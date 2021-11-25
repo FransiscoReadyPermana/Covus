@@ -1,24 +1,40 @@
-.top{
+.top {
   padding-right: 7rem;
   padding-left: 7rem;
 }
 
-.red{
-  background-color: #FA3030;
+.red {
+  background-color: #fa3030;
 }
 
-.green{
-  background-color: #59C48C;
+.green {
+  background-color: #59c48c;
 }
 
-.orange{
-  background-color: #FF7B7B;
+.orange {
+  background-color: #ff7b7b;
 }
 
-.darkGreen{
+.darkGreen {
   background-color: #385964;
 }
 
-.bottom{
+.redText {
+  color: #fa3030;
+}
+
+.greenText {
+  color: #59c48c;
+}
+
+.orangeText {
+  color: #ff7b7b;
+}
+
+.darkGreenText {
+  color: #385964;
+}
+
+.bottom {
   font-weight: 700;
 }

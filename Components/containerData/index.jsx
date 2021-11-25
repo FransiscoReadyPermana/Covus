@@ -7,19 +7,19 @@ export default function ContainerData({ title, content, color }) {
 
   if (color === "red"){
     colorSelect = styles.red;
-    colorSelectText = 'text-red';
+    colorSelectText = styles.redText;
   }  
   if (color === "green"){
     colorSelect = styles.green;
-    colorSelectText = 'text-green';
+    colorSelectText = styles.greenText;
   }  
   if (color === "orange"){
     colorSelect = styles.orange;
-    colorSelectText = 'text-orange'; 
+    colorSelectText = styles.orangeText;
   } 
   if (color === "dark-green"){
     colorSelect = styles.darkGreen;
-    colorSelectText = 'text-dark-green';
+    colorSelectText = styles.darkGreenText;
   }
 
   return (

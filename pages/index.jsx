@@ -158,7 +158,7 @@ export default function Home({ dataOrang, total }) {
         <div id="content" className="flex h-full pr-48 pl-0 pt-32 bg-white">
           <div className="relative w-3/6 h-4/6 -z-10 top-32">
             <Image
-              src="/images/doctorAndNurse 2.svg"
+              src="/images/doctorAndNurse2.svg"
               alt="reading-book-image"
               layout="fill"
             />
