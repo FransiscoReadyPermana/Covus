@@ -1,9 +1,11 @@
 .card {
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
   border-radius: 3.5rem;
+  height: 20rem;
 }
 
 .cardSmall {
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
   border-radius: 2rem;
+  height: 13rem;
 }

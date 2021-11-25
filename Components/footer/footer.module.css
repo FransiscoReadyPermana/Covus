@@ -13,6 +13,7 @@
   background: url('../../public/images/footerDivider.svg');
   background-repeat: no-repeat;
   background-size: cover;
+  top: -0.5rem;
 }
 
 

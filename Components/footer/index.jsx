@@ -20,7 +20,7 @@ export default function Footer({ color }) {
       <footer className={`relative bg-white h-40`}>
         <div
           id="divider"
-          className={`${styles.footerDividerWhite} h-52  w-full absolute -top-2 -z-20`}
+          className={`${styles.footerDividerWhite} h-52  w-full absolute`}
         />
         <div className="h-80 w-full flex items-center justify-center pt-40">
           <p className="text-center text-dark-grey font-semibold text-xl">
