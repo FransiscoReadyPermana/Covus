@@ -9,17 +9,20 @@ export default function Iframe() {
       <div id="virus" className={`bg-green justify-start `}>
         <Virus className={`absolute ${Styles.virusPositionTop}`} />
       </div>
+
       <iframe
         src="https://peta.laporcovid19.org/"
         frameBorder="0"
-        className={`w-full ${Styles.HIframe} rounded-lg mb-5 overflow-hidden z-0`}
+        className={`w-full ${Styles.HIframe} rounded-lg overflow-hidden`}
       ></iframe>
-      <div id="virus" className="bg-green flex justify-end">
+
+      <div id="virus" className={`${Styles.containerVirusBot}`}>
         <Virus className={`absolute ${Styles.virusPositionBottom}`} />
       </div>
+
       <Link href="/informasi" passHref={true}>
         <button
-          className={`bg-dark-grey text-white p-4 rounded-full font-medium text-2xl ${Styles.button}`}
+          className={`bg-dark-grey text-white rounded-full font-medium text-2xl ${Styles.button}`}
         >
           Lihat selengkapnya
         </button>

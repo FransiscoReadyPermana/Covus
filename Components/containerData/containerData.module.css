@@ -1,0 +1,24 @@
+.top{
+  padding-right: 7rem;
+  padding-left: 7rem;
+}
+
+.red{
+  background-color: #FA3030;
+}
+
+.green{
+  background-color: #59C48C;
+}
+
+.orange{
+  background-color: #FF7B7B;
+}
+
+.darkGreen{
+  background-color: #385964;
+}
+
+.bottom{
+  font-weight: 700;
+}

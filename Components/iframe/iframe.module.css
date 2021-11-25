@@ -1,10 +1,13 @@
 .HIframe {
   height: 30rem;
   border-radius: 2rem;
+  z-index: 0;
 }
 
 .button {
   transition: all 0.2s ease;
+  margin-top: 1.25rem;
+  padding: 1rem;
 }
 
 .button:hover {
@@ -14,6 +17,11 @@
 .virusPositionTop {
   margin-left: -7rem;
   margin-top: -5rem;
+}
+
+.containerVirusBot{
+  display: flex;
+  justify-content: flex-end;
 }
 
 .virusPositionBottom {

@@ -16,7 +16,7 @@ export default function NavItems({ children, to, isActive }) {
   return (
     <>
       <Link href= {`${to}`}>
-        <a className={`text-2xl ${boldest} mb-20 text-white relative ${Styles.navItems} ${hover}`}>{children}</a>
+        <a className={`text-2xl ${boldest}  text-white relative ${Styles.navItems} ${hover}`}>{children}</a>
       </Link>
     </>
   );
