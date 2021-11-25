@@ -1,5 +1,5 @@
 import dbConnect from '../../../utils/dbConnect';
-import UserService from '../../../service/UserService';
+import UserService from '../../../service/User';
 import InvariantError from '../../../expecptions/InvariantError';
 import userValidation from '../../../validations/user';
 import ClientError from '../../../expecptions/ClientError';
