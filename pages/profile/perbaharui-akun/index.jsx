@@ -1,9 +1,9 @@
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import styles from '../../../styles/edit.module.css';
-import Footer from "../../../Components/footer";
-import PopUp from "../../../Components/pop-up/pop-up";
+import Footer from '../../../Components/footer';
+import PopUp from '../../../Components/pop-up/pop-up';
 
 export default function EditAkun() {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,7 +66,7 @@ export default function EditAkun() {
                   <div
                     id="icon"
                     className={
-                      "relative h-7 w-7 flex items-center justify-center"
+                      'relative h-7 w-7 flex items-center justify-center'
                     }
                   >
                     <Image src="/images/Edit.svg" alt="" layout="fill" />
@@ -89,7 +89,7 @@ export default function EditAkun() {
                   <div
                     id="icon"
                     className={
-                      "relative h-7 w-7 flex items-center justify-center"
+                      'relative h-7 w-7 flex items-center justify-center'
                     }
                   >
                     <Image src="/images/Riwayat.svg" alt="" layout="fill" />
@@ -108,22 +108,22 @@ export default function EditAkun() {
                 open={isOpen}
                 onClickBackground={() => setIsOpen(false)}
                 onClickSimpan={() => setIsOpen(false)}
-                pertanyaan1={"Apakah Anda yakin ingin"}
-                pertanyaan2={"keluar aplikasi?"}
-                gambar={"/images/close.svg"}
-                button_primary={"Simpan"}
-                button_secondary={"Tidak"}
+                pertanyaan1={'Apakah Anda yakin ingin'}
+                pertanyaan2={'keluar aplikasi?'}
+                gambar={'/images/tutup.svg'}
+                button_primary={'Simpan'}
+                button_secondary={'Tidak'}
               />
 
               <PopUp
                 open={keluar}
                 onClickBackground={() => setKeluar(false)}
                 onClickSimpan={() => setKeluar(false)}
-                pertanyaan1={"Apakah Anda yakin ingin"}
-                pertanyaan2={"menyimpan perubahan?"}
-                gambar={"/images/question.svg"}
-                button_primary={"Iya"}
-                button_secondary={"Tidak"}
+                pertanyaan1={'Apakah Anda yakin ingin'}
+                pertanyaan2={'menyimpan perubahan?'}
+                gambar={'/images/pertanyaan.svg'}
+                button_primary={'Iya'}
+                button_secondary={'Tidak'}
               />
 
               <button

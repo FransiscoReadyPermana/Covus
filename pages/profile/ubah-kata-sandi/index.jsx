@@ -1,11 +1,11 @@
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import styles from '../../../styles/edit.module.css';
-import Footer from "../../../Components/footer";
-import PopUp from "../../../Components/pop-up/pop-up";
-import EyeShow from "../../../Components/icons/EyeShow";
-import EyeHide from "../../../Components/icons/EyeHide";
+import Footer from '../../../Components/footer';
+import PopUp from '../../../Components/pop-up/pop-up';
+import EyeShow from '../../../Components/icons/EyeShow';
+import EyeHide from '../../../Components/icons/EyeHide';
 
 export default function UbahKataSandi() {
   const [isOpen, setIsOpen] = useState(false);
@@ -67,7 +67,7 @@ export default function UbahKataSandi() {
                   <div
                     id="icon"
                     className={
-                      "relative h-7 w-7 flex items-center justify-center"
+                      'relative h-7 w-7 flex items-center justify-center'
                     }
                   >
                     <Image src="/images/Edit_Active.svg" alt="" layout="fill" />
@@ -90,7 +90,7 @@ export default function UbahKataSandi() {
                   <div
                     id="icon"
                     className={
-                      "relative h-7 w-7 flex items-center justify-center"
+                      'relative h-7 w-7 flex items-center justify-center'
                     }
                   >
                     <Image src="/images/Riwayat.svg" alt="" layout="fill" />
@@ -109,11 +109,11 @@ export default function UbahKataSandi() {
                 open={keluar}
                 onClickBackground={() => setKeluar(false)}
                 onClickSimpan={() => setKeluar(false)}
-                pertanyaan1={"Apakah Anda yakin ingin"}
-                pertanyaan2={"keluar aplikasi?"}
-                gambar={"/images/close.svg"}
-                button_primary={"Iya"}
-                button_secondary={"Tidak"}
+                pertanyaan1={'Apakah Anda yakin ingin'}
+                pertanyaan2={'keluar aplikasi?'}
+                gambar={'/images/tutup.svg'}
+                button_primary={'Iya'}
+                button_secondary={'Tidak'}
               />
 
               <button
@@ -132,11 +132,11 @@ export default function UbahKataSandi() {
                 open={isOpen}
                 onClickBackground={() => setIsOpen(false)}
                 onClickSimpan={() => setIsOpen(false)}
-                pertanyaan1={"Apakah Anda yakin ingin"}
-                pertanyaan2={"menyimpan perubahan?"}
-                gambar={"/images/question.svg"}
-                button_primary={"Simpan"}
-                button_secondary={"Tidak"}
+                pertanyaan1={'Apakah Anda yakin ingin'}
+                pertanyaan2={'menyimpan perubahan?'}
+                gambar={'/images/pertanyaan.svg'}
+                button_primary={'Simpan'}
+                button_secondary={'Tidak'}
               />
 
               <div
@@ -186,7 +186,7 @@ export default function UbahKataSandi() {
 
                   <div className="relative">
                     <input
-                      type={showLPassword ? "text" : "password"}
+                      type={showLPassword ? 'text' : 'password'}
                       id="lama"
                       placeholder="Masukkan kata sandi lama"
                       className={`rounded-full w-full text-xl ml-4 ${styles.input}`}
@@ -210,7 +210,7 @@ export default function UbahKataSandi() {
                   </label>
                   <div className="relative">
                     <input
-                      type={showPassword ? "text" : "password"}
+                      type={showPassword ? 'text' : 'password'}
                       id="baru"
                       placeholder="Masukkan kata sandi baru"
                       className={`rounded-full w-full text-xl ml-4 ${styles.input}`}
@@ -237,7 +237,7 @@ export default function UbahKataSandi() {
                   </label>
                   <div className="relative">
                     <input
-                      type={showCPassword ? "text" : "password"}
+                      type={showCPassword ? 'text' : 'password'}
                       id="konfirmasi-baru"
                       placeholder="Masukkan konfirmasi kata sandi baru"
                       className={`rounded-full w-full text-xl ml-4 ${styles.input}`}
