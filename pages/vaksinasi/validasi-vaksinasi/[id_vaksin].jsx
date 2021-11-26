@@ -1,11 +1,11 @@
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import Footer from "../../../Components/footer";
-import Title from "../../../Components/title";
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import Footer from '../../../Components/footer';
+import Title from '../../../Components/title';
 import styles from '../../../styles/validasi.module.css';
-import Link from "next/link";
-import uuid from "react-uuid";
-import PopUpSK from "../../../Components/pop-up/pop-up-SK";
+import Link from 'next/link';
+import uuid from 'react-uuid';
+import PopUpSK from '../../../Components/pop-up/pop-up-SK';
 
 export default function ValidasiVaksinasi({ data }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -84,7 +84,7 @@ export default function ValidasiVaksinasi({ data }) {
                     Tempat dan Waktu
                   </p>
                   <div id="tempat" className="flex flex-row">
-                    <div id="icon" className={"absolute h-6 w-6 mr-2 mt-4"}>
+                    <div id="icon" className={'absolute h-6 w-6 mr-2 mt-4'}>
                       <Image
                         src="/images/Calendar.svg"
                         alt="reading-book-image"
@@ -101,7 +101,7 @@ export default function ValidasiVaksinasi({ data }) {
                   </div>
 
                   <div id="waktu" className="flex flex-row">
-                    <div id="icon" className={"absolute h-6 w-6 mr-2 mt-2"}>
+                    <div id="icon" className={'absolute h-6 w-6 mr-2 mt-2'}>
                       <Image
                         src="/images/Time.svg"
                         alt="reading-book-image"
@@ -126,7 +126,7 @@ export default function ValidasiVaksinasi({ data }) {
                     Lokasi Vaksinasi
                   </p>
                   <div id="lokasi" className="flex flex-row">
-                    <div id="icon" className={"absolute h-6 w-6 mr-2 mt-4"}>
+                    <div id="icon" className={'absolute h-6 w-6 mr-2 mt-4'}>
                       <Image
                         src="/images/location.svg"
                         alt="reading-book-image"
@@ -292,11 +292,14 @@ export default function ValidasiVaksinasi({ data }) {
             <div id="sk" className="flex items-center mt-4">
               <input type="checkbox" id="radio" className={`${styles.radio}`} />
               <label htmlFor="radio" className={`${styles.sk}`}>
-                Dengan ini saya telah menyetujui 
-                <span className="text-purple mx-2" onClick={() => setIsOpen(true)}>
-                   Syarat dan Ketentuan 
+                Dengan ini saya telah menyetujui
+                <span
+                  className="text-purple mx-2"
+                  onClick={() => setIsOpen(true)}
+                >
+                  Syarat dan Ketentuan
                 </span>
-                yang berlaku 
+                yang berlaku
               </label>
             </div>
 
@@ -315,9 +318,8 @@ export default function ValidasiVaksinasi({ data }) {
 
 export async function getServerSideProps(ctx) {
   const { id_vaksin } = ctx.query;
-  const lokasiVaksinasi = await fetch(
-    "http://localhost:3000/api/lokasi-vaksinasi"
-  );
+  const baseUrl = process.env.BASE_URL;
+  const lokasiVaksinasi = await fetch(`${baseUrl}/api/lokasi-vaksinasi`);
 
   const resultKetiga = await lokasiVaksinasi.json();
   const data = resultKetiga.data.filter((item) => item._id === id_vaksin);

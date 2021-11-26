@@ -212,10 +212,10 @@ export default function TableData({ data, type }) {
       <div>
         <div className="flex flex-col w-full relative">
           <div id="virus" className={`${stylesHospitals.containerVirusRight}`}>
-            <Virus className={`absolute ${stylesHospitals.virusRight}`} />
+            <Virus className={`absolute ${stylesHospitals.virusRightTop}`} />
           </div>
           <div id="virus" className={`${stylesHospitals.containerVirusLeft}`}>
-            <Virus className={`absolute ${stylesHospitals.virusLeft}`} />
+            <Virus className={`absolute ${stylesHospitals.virusLeftTop}`} />
           </div>
 
           <div className="flex gap-12 items-center mb-10">

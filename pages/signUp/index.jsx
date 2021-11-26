@@ -193,8 +193,10 @@ export default function SignUp() {
       redirect: 'follow',
     };
 
+    const baseUrl = process.env.BASE_URL;
+
     const response = await fetch(
-      'http://localhost:3000/api/auth/register',
+      `${baseUrl}/api/auth/register`,
       requestOptions
     );
     const result = await response.json();

@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import styles from '../../../../styles/lokasi.module.css';
-import Title from "../../../../Components/title";
-import Paragraph from "../../../../Components/paragraph";
-import Footer from "../../../../Components/footer";
-import uuid from "react-uuid";
-import Pagination from "../../../../Components/pagination";
-import DropDownEdit from "../../../../Components/dropDown";
-import { useRouter } from "next/router";
-import CardVaksin from "../../../../Components/cardVaksin";
-import PopUpSK from "../../../../Components/pop-up/pop-up-SK";
-import Image from "next/image";
+import Title from '../../../../Components/title';
+import Paragraph from '../../../../Components/paragraph';
+import Footer from '../../../../Components/footer';
+import uuid from 'react-uuid';
+import Pagination from '../../../../Components/pagination';
+import DropDownEdit from '../../../../Components/dropDown';
+import { useRouter } from 'next/router';
+import CardVaksin from '../../../../Components/cardVaksin';
+import PopUpSK from '../../../../Components/pop-up/pop-up-SK';
+import Image from 'next/image';
 
 export default function LokasiVaksinasi({
   data,
@@ -142,15 +142,10 @@ export default function LokasiVaksinasi({
 
 export async function getServerSideProps(ctx) {
   const { nama, jenis_vaksin } = ctx.query;
-  const lokasiVaksinasi = await fetch(
-    "http://localhost:3000/api/lokasi-vaksinasi"
-  );
-  const vaksinasiPertama = await fetch(
-    "http://localhost:3000/api/vaksinasi-provinsi"
-  );
-  const vaksinasiKedua = await fetch(
-    "http://localhost:3000/api/vaksinasi-provinsi-kedua"
-  );
+  const baseUrl = process.env.BASE_URL;
+  const lokasiVaksinasi = await fetch(`${baseUrl}/api/lokasi-vaksinasi`);
+  const vaksinasiPertama = await fetch(`${baseUrl}/api/vaksinasi-provinsi`);
+  const vaksinasiKedua = await fetch(`${baseUrl}/api/vaksinasi-provinsi-kedua`);
   const resultPertama = await vaksinasiPertama.json();
   const resultKedua = await vaksinasiKedua.json();
   const resultKetiga = await lokasiVaksinasi.json();
@@ -160,9 +155,9 @@ export async function getServerSideProps(ctx) {
   );
 
   let namaVaksin = [];
-  if (jenis_vaksin === "Vaksinasi Pertama") {
+  if (jenis_vaksin === 'Vaksinasi Pertama') {
     namaVaksin = resultPertama.data.map((item) => item.nama);
-  } else if (jenis_vaksin === "Vaksinasi Kedua") {
+  } else if (jenis_vaksin === 'Vaksinasi Kedua') {
     namaVaksin = resultKedua.data.map((item) => item.nama);
   }
   return {

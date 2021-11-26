@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import styles from '../../styles/vaksin.module.css';
-import Title from "../../Components/title";
-import Paragraph from "../../Components/paragraph";
-import Button from "../../Components/button";
-import Footer from "../../Components/footer";
-import Card from "../../Components/card";
-import Link from "next/link";
-import uuid from "react-uuid";
-import Pagination from "../../Components/pagination";
-import PopUpSK from "../../Components/pop-up/pop-up-SK";
+import Title from '../../Components/title';
+import Paragraph from '../../Components/paragraph';
+import Button from '../../Components/button';
+import Footer from '../../Components/footer';
+import Card from '../../Components/card';
+import Link from 'next/link';
+import uuid from 'react-uuid';
+import Pagination from '../../Components/pagination';
+import PopUpSK from '../../Components/pop-up/pop-up-SK';
 
 export default function Vaksinasi({ data, dataKedua }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentTableData, setCurrentTableData] = useState([]);
   const [dataVaksin, setDataVaksin] = useState(data);
-  const [color, setColor] = useState("purple");
-  const [colorSecondary, setColorSecondary] = useState("secondary");
-  const [vaksin, setVaksin] = useState("PERTAMA");
-  const [jenisVaksin, setJenisVaksin] = useState("Vaksinasi Pertama");
+  const [color, setColor] = useState('purple');
+  const [colorSecondary, setColorSecondary] = useState('secondary');
+  const [vaksin, setVaksin] = useState('PERTAMA');
+  const [jenisVaksin, setJenisVaksin] = useState('Vaksinasi Pertama');
   const [isOpen, setIsOpen] = useState(false);
   const PageSize = 4;
   let firstPageIndex = 0;
@@ -35,20 +35,20 @@ export default function Vaksinasi({ data, dataKedua }) {
 
   const VaksinPertama = () => {
     setDataVaksin(data);
-    setJenisVaksin("Vaksinasi Pertama");
+    setJenisVaksin('Vaksinasi Pertama');
     setCurrentPage(1);
-    setColorSecondary("secondary");
-    setColor("purple");
-    setVaksin("PERTAMA");
+    setColorSecondary('secondary');
+    setColor('purple');
+    setVaksin('PERTAMA');
   };
 
   function VaksinKedua() {
     setDataVaksin(dataKedua);
-    setJenisVaksin("Vaksinasi Kedua");
+    setJenisVaksin('Vaksinasi Kedua');
     setCurrentPage(1);
-    setColorSecondary("purple");
-    setColor("secondary");
-    setVaksin("KEDUA");
+    setColorSecondary('purple');
+    setColor('secondary');
+    setVaksin('KEDUA');
   }
 
   return (
@@ -62,7 +62,7 @@ export default function Vaksinasi({ data, dataKedua }) {
         <div id="content" className="flex h-full pr-48 pl-0 pt-32 bg-white">
           <div className="relative w-3/6 h-4/6 -z-10 top-32">
             <Image
-              src="/images/doctorAndNurse 2.svg"
+              src="/images/doctorAndNurse2.svg"
               alt="reading-book-image"
               layout="fill"
             />
@@ -357,7 +357,6 @@ export default function Vaksinasi({ data, dataKedua }) {
             <Image src="/images/Help.svg" alt="" layout="fill" />
           </div>
         </div>
-        
       </section>
       <Footer color="purple" />
     </div>
@@ -365,12 +364,9 @@ export default function Vaksinasi({ data, dataKedua }) {
 }
 
 export async function getServerSideProps() {
-  const vaksinasiPertama = await fetch(
-    "http://localhost:3000/api/vaksinasi-provinsi"
-  );
-  const vaksinasiKedua = await fetch(
-    "http://localhost:3000/api/vaksinasi-provinsi-kedua"
-  );
+  const baseUrl = process.env.BASE_URL;
+  const vaksinasiPertama = await fetch(`${baseUrl}/api/vaksinasi-provinsi`);
+  const vaksinasiKedua = await fetch(`${baseUrl}/api/vaksinasi-provinsi-kedua`);
   const resultPertama = await vaksinasiPertama.json();
   const resultKedua = await vaksinasiKedua.json();
   return {
