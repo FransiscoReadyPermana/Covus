@@ -16,6 +16,8 @@
 .close {
   background-color: #f178b6;
   transition: 0.2s ease-in-out;
+  right: 2rem;
+  top: 2rem;
 }
 
 .close:hover {
@@ -57,4 +59,8 @@
 
 .SK::-webkit-scrollbar {
   display: none;
+}
+
+.containerIlustrasi{
+  width: 12rem;
 }

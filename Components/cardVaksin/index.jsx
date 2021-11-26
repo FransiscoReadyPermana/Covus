@@ -37,7 +37,7 @@ export default function CardVaksin({ item }) {
 
         <p
           color="dark-grey"
-          className="text-center font-light text-xl text-white mt-3 text-dark-grey"
+          className={`text-center font-light text-xl text-white text-dark-grey ${styles.nama}`}
         >
           {item.nama}
         </p>
@@ -117,7 +117,7 @@ export default function CardVaksin({ item }) {
         <div className={'flex flex-col items-center mt-5'}>
           <p
             color="dark-grey"
-            className="text-center font-semibold text-l text-white text-dark-grey w-full mb-5"
+            className={`text-center font-semibold text-l text-white text-dark-grey w-full ${styles.lokasi2}`}
           >
             {item.lokasi2}
           </p>

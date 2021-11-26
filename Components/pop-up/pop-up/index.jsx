@@ -34,7 +34,7 @@ export default function PopUp({
          {pertanyaan1} <br/> {pertanyaan2}
         </h1>
 
-        <div id="illustrasi" className={"relative h-48 w-48"}>
+        <div id="illustrasi" className={`relative h-48 w-48 ${style.containerIlustrasi}`}>
           <Image
             src={gambar}
             alt="reading-book-image"

@@ -116,7 +116,7 @@ export default function CardHasilVaksin() {
           <div id="lokasi" className="flex flex-row">
             <div id="icon" className={"absolute h-6 w-6 mr-2 mt-4"}>
               <Image
-                src="/images/location.svg"
+                src="/images/Location.svg"
                 alt="reading-book-image"
                 layout="fill"
               />
