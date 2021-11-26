@@ -28,6 +28,15 @@
   text-align: center;
 }
 
+.containerVirusRight{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.containerVirusLeft{
+  display: flex;
+  justify-content: flex-start;
+}
 
 .virusRightTop {
   margin-right: -10rem;
