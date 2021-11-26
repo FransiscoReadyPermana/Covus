@@ -42,7 +42,7 @@ export default function UbahKataSandi() {
                     id="icon"
                     className={`relative h-7 w-7 flex items-center justify-center`}
                   >
-                    <Image src="/images/Profile.svg" alt="" layout="fill" />
+                    <Image src="/images/profile.svg" alt="" layout="fill" />
                   </div>
 
                   <p

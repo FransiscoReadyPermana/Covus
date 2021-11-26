@@ -110,7 +110,7 @@ export default function EditAkun() {
                 onClickSimpan={() => setIsOpen(false)}
                 pertanyaan1={"Apakah Anda yakin ingin"}
                 pertanyaan2={"keluar aplikasi?"}
-                gambar={"/images/Close.svg"}
+                gambar={"/images/close.svg"}
                 button_primary={"Simpan"}
                 button_secondary={"Tidak"}
               />
@@ -121,7 +121,7 @@ export default function EditAkun() {
                 onClickSimpan={() => setKeluar(false)}
                 pertanyaan1={"Apakah Anda yakin ingin"}
                 pertanyaan2={"menyimpan perubahan?"}
-                gambar={"/images/Question.svg"}
+                gambar={"/images/question.svg"}
                 button_primary={"Iya"}
                 button_secondary={"Tidak"}
               />

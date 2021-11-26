@@ -26,7 +26,7 @@ export default function PopUp({
       />
       <div
         id="container"
-        className={`fixed bg-white py-10 px-20 flex flex-col items-center ${style.container}`}
+        className={`fixed bg-white px-20 flex flex-col items-center ${style.container}`}
       >
         <h1
           className={`text-center text-dark-grey mb-6 leading-loose tracking-wider ${style.judul}`}

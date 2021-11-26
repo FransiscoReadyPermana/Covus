@@ -47,7 +47,7 @@ export default function UbahKataSandi() {
                     id="icon"
                     className={`relative h-7 w-7 flex items-center justify-center`}
                   >
-                    <Image src="/images/Profile.svg" alt="" layout="fill" />
+                    <Image src="/images/profile.svg" alt="" layout="fill" />
                   </div>
 
                   <p
@@ -111,7 +111,7 @@ export default function UbahKataSandi() {
                 onClickSimpan={() => setKeluar(false)}
                 pertanyaan1={"Apakah Anda yakin ingin"}
                 pertanyaan2={"keluar aplikasi?"}
-                gambar={"/images/Close.svg"}
+                gambar={"/images/close.svg"}
                 button_primary={"Iya"}
                 button_secondary={"Tidak"}
               />
@@ -134,7 +134,7 @@ export default function UbahKataSandi() {
                 onClickSimpan={() => setIsOpen(false)}
                 pertanyaan1={"Apakah Anda yakin ingin"}
                 pertanyaan2={"menyimpan perubahan?"}
-                gambar={"/images/Question.svg"}
+                gambar={"/images/question.svg"}
                 button_primary={"Simpan"}
                 button_secondary={"Tidak"}
               />

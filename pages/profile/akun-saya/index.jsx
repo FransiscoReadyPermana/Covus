@@ -107,7 +107,7 @@ export default function AkunSaya() {
               onClickSimpan={() => setKeluar(false)}
               pertanyaan1={"Apakah Anda yakin ingin"}
               pertanyaan2={"keluar aplikasi?"}
-              gambar={"/images/Close.svg"}
+              gambar={"/images/close.svg"}
               button_primary={"Iya"}
               button_secondary={"Tidak"}
             />
