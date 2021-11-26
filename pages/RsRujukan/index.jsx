@@ -123,7 +123,7 @@ export default function RSRujukan({ hospitals }) {
 export async function getServerSideProps() {
   const baseUrl = process.env.BASE_URL;
 
-  const response = await fetch(`${baseUrl}/api/rs-rujukan`);
+  const response = await fetch(`${baseUrl}api/rs-rujukan`);
   const result = await response.json();
 
   const sortdata = result.data.sort((a, b) => a.no - b.no);

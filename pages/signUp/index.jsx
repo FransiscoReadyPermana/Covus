@@ -196,7 +196,7 @@ export default function SignUp() {
     const baseUrl = process.env.BASE_URL;
 
     const response = await fetch(
-      `${baseUrl}/api/auth/register`,
+      `${baseUrl}api/auth/register`,
       requestOptions
     );
     const result = await response.json();

@@ -126,7 +126,7 @@ export default function Vaksinasi({ data, dataKedua }) {
                 <div className="h-full w-2/3 flex m-auto">
                   <div className="relative h-full w-full flex flex-col">
                     <Image
-                      src="/images/layer1.png"
+                      src="/images/Layer1.png"
                       alt="reading-book-image"
                       layout="fill"
                     />
@@ -153,7 +153,7 @@ export default function Vaksinasi({ data, dataKedua }) {
                 <div className="h-2/3 w-2/3 flex m-auto">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
-                      src="/images/layer2.png"
+                      src="/images/Layer2.png"
                       alt="reading-book-image"
                       layout="fill"
                     />
@@ -180,7 +180,7 @@ export default function Vaksinasi({ data, dataKedua }) {
                 <div className="h-2/3 w-2/3 flex m-auto">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
-                      src="/images/layer3.png"
+                      src="/images/Layer3.png"
                       alt="reading-book-image"
                       layout="fill"
                     />
@@ -212,7 +212,7 @@ export default function Vaksinasi({ data, dataKedua }) {
                 <div className="h-2/3 w-2/3 flex m-auto">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
-                      src="/images/layer4.png"
+                      src="/images/Layer4.png"
                       alt="reading-book-image"
                       layout="fill"
                     />
@@ -239,7 +239,7 @@ export default function Vaksinasi({ data, dataKedua }) {
                 <div className="h-2/3 w-2/3 flex m-auto">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
-                      src="/images/layer5.png"
+                      src="/images/Layer5.png"
                       alt="reading-book-image"
                       layout="fill"
                     />
@@ -266,7 +266,7 @@ export default function Vaksinasi({ data, dataKedua }) {
                 <div className="h-2/3 w-2/3 flex m-auto">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
-                      src="/images/layer6.png"
+                      src="/images/Layer6.png"
                       alt="reading-book-image"
                       layout="fill"
                     />
@@ -365,8 +365,8 @@ export default function Vaksinasi({ data, dataKedua }) {
 
 export async function getServerSideProps() {
   const baseUrl = process.env.BASE_URL;
-  const vaksinasiPertama = await fetch(`${baseUrl}/api/vaksinasi-provinsi`);
-  const vaksinasiKedua = await fetch(`${baseUrl}/api/vaksinasi-provinsi-kedua`);
+  const vaksinasiPertama = await fetch(`${baseUrl}api/vaksinasi-provinsi`);
+  const vaksinasiKedua = await fetch(`${baseUrl}api/vaksinasi-provinsi-kedua`);
   const resultPertama = await vaksinasiPertama.json();
   const resultKedua = await vaksinasiKedua.json();
   return {

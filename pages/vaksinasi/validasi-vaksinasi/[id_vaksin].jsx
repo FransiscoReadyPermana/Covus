@@ -319,7 +319,7 @@ export default function ValidasiVaksinasi({ data }) {
 export async function getServerSideProps(ctx) {
   const { id_vaksin } = ctx.query;
   const baseUrl = process.env.BASE_URL;
-  const lokasiVaksinasi = await fetch(`${baseUrl}/api/lokasi-vaksinasi`);
+  const lokasiVaksinasi = await fetch(`${baseUrl}api/lokasi-vaksinasi`);
 
   const resultKetiga = await lokasiVaksinasi.json();
   const data = resultKetiga.data.filter((item) => item._id === id_vaksin);

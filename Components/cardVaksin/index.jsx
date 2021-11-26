@@ -92,9 +92,7 @@ export default function CardVaksin({ item }) {
 
         <div
           id="containerLogo"
-          className={
-            `flex flex-row justify-center mt-2 items-start mx-10 content-start ${styles.locationContainer}`
-          }
+          className={`flex flex-row justify-center mt-2 items-start mx-10 content-start ${styles.locationContainer}`}
         >
           <div
             id="logo"
@@ -127,15 +125,13 @@ export default function CardVaksin({ item }) {
           <div
             className={`flex items-center pb-24 flex-row justify-center w-5/6 ${styles.buttonContainer}`}
           >
-            <Link
-              href={`/vaksinasi/validasi-vaksinasi/${item._id}`}
-              passHref
+            <Button
+              to={`/vaksinasi/validasi-vaksinasi/${item._id}`}
+              color="purple"
               key={uuid()}
             >
-              <Button to="#" color="purple">
-                Pilih
-              </Button>
-            </Link>
+              Pilih
+            </Button>
             {/* <DropDownEdit
               className="w-3/4 text"
               color="purple"

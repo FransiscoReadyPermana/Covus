@@ -143,9 +143,9 @@ export default function LokasiVaksinasi({
 export async function getServerSideProps(ctx) {
   const { nama, jenis_vaksin } = ctx.query;
   const baseUrl = process.env.BASE_URL;
-  const lokasiVaksinasi = await fetch(`${baseUrl}/api/lokasi-vaksinasi`);
-  const vaksinasiPertama = await fetch(`${baseUrl}/api/vaksinasi-provinsi`);
-  const vaksinasiKedua = await fetch(`${baseUrl}/api/vaksinasi-provinsi-kedua`);
+  const lokasiVaksinasi = await fetch(`${baseUrl}api/lokasi-vaksinasi`);
+  const vaksinasiPertama = await fetch(`${baseUrl}api/vaksinasi-provinsi`);
+  const vaksinasiKedua = await fetch(`${baseUrl}api/vaksinasi-provinsi-kedua`);
   const resultPertama = await vaksinasiPertama.json();
   const resultKedua = await vaksinasiKedua.json();
   const resultKetiga = await lokasiVaksinasi.json();
