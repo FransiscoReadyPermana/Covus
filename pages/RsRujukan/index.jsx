@@ -121,7 +121,12 @@ export default function RSRujukan({ hospitals }) {
 }
 
 export async function getServerSideProps() {
-  const response = await fetch('http://localhost:3000/api/rs-rujukan');
+  const baseUrl =
+    process.env.NODE_ENV === 'production'
+      ? 'https://web-covus.vercel.app/'
+      : 'http://localhost:3000';
+
+  const response = await fetch(`${baseUrl}/api/rs-rujukan`);
   const result = await response.json();
 
   const sortdata = result.data.sort((a, b) => a.no - b.no);
