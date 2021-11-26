@@ -214,12 +214,10 @@ export default function TableData({ data, type }) {
       <div>
         <div className="flex flex-col w-full relative">
           <div id="virus" className={`flex justify-end `}>
-            <Virus className={`absolute mt-28 -mr-40`} />
+            <Virus className={`absolute ${stylesHospitals.virusRightTop}`} />
           </div>
           <div id="virus" className={`flex justify-start `}>
-            <Virus
-              className={`absolute mt-10 -ml-40 ${stylesHospitals.virusPositionTop}`}
-            />
+            <Virus className={`absolute ${stylesHospitals.virusLeftTop}`} />
           </div>
 
           <div className="flex gap-12 items-center mb-10">
@@ -247,8 +245,8 @@ export default function TableData({ data, type }) {
             <table className={`w-full ${stylesHospitals.table}`}>
               <thead className="bg-purple text-center text-xl text-white font-bold">
                 <tr>
-                  <th className="px-3 py-4">No</th>
-                  <th className="px-3 py-4">Provinsi</th>
+                  <th className={`${stylesHospitals.head}`}>No</th>
+                  <th className={`${stylesHospitals.head}`}>Provinsi</th>
                   <th>Nama Rumah Sakit</th>
                   <th>Alamat</th>
                   <th>Telepon</th>

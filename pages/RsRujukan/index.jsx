@@ -54,7 +54,7 @@ export default function RSRujukan({ hospitals }) {
               <Card type="small">
                 <div className="relative h-3/4 w-full flex flex-col">
                   <Image
-                    src="/images/Hearth.svg"
+                    src="/images/hearth.svg"
                     alt="reading-book-image"
                     layout="fill"
                   />

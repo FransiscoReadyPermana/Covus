@@ -6,8 +6,19 @@
 .input {
   margin-left: -4rem;
   width: 40rem;
+  padding-left: 5rem;
+  padding-right: 1rem;
 }
 
 .input:focus {
   outline: none;
+}
+
+.search{
+  width: 5rem;
+  margin-left: -0.25rem;
+}
+
+.reset{
+  width: 5rem;
 }

@@ -14,7 +14,7 @@ export default function SearchInput({
         className={`${className} ${styles.form} flex rounded-full`}
         action="#"
       >
-        <button className="bg-purple relative flex items-center justify-center w-20 h-10 rounded-full -ml-1">
+        <button className={`bg-purple relative flex items-center justify-center h-10 rounded-full ${styles.search}`}>
           <div className="relative w-8 h-8">
             <Image
               src="/images/bx_bx-search-alt-2.svg"
@@ -26,13 +26,13 @@ export default function SearchInput({
         <input
           type="text"
           placeholder="Cari disini"
-          className={`pl-20 pr-4 ${styles.input} rounded-xl`}
+          className={`${styles.input} rounded-xl`}
           value={value}
           onChange={onChangeHandler}
         />
       </form>
       <button
-        className="bg-purple flex items-center justify-center w-20 h-12 rounded-3xl"
+        className={`bg-purple flex items-center justify-center h-12 rounded-3xl ${styles.reset}`}
         onClick={onClick}
       >
         <div className="relative  w-8 h-8">
