@@ -126,7 +126,7 @@ export default function Vaksinasi({ data, dataKedua }) {
                 <div className="h-full w-2/3 flex m-auto">
                   <div className="relative h-full w-full flex flex-col">
                     <Image
-                      src="/images/layer 1.png"
+                      src="/images/layer1.png"
                       alt="reading-book-image"
                       layout="fill"
                     />
@@ -153,7 +153,7 @@ export default function Vaksinasi({ data, dataKedua }) {
                 <div className="h-2/3 w-2/3 flex m-auto">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
-                      src="/images/layer 2.png"
+                      src="/images/layer2.png"
                       alt="reading-book-image"
                       layout="fill"
                     />
@@ -180,7 +180,7 @@ export default function Vaksinasi({ data, dataKedua }) {
                 <div className="h-2/3 w-2/3 flex m-auto">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
-                      src="/images/layer 3.png"
+                      src="/images/layer3.png"
                       alt="reading-book-image"
                       layout="fill"
                     />
@@ -212,7 +212,7 @@ export default function Vaksinasi({ data, dataKedua }) {
                 <div className="h-2/3 w-2/3 flex m-auto">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
-                      src="/images/layer 4.png"
+                      src="/images/layer4.png"
                       alt="reading-book-image"
                       layout="fill"
                     />
@@ -239,7 +239,7 @@ export default function Vaksinasi({ data, dataKedua }) {
                 <div className="h-2/3 w-2/3 flex m-auto">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
-                      src="/images/layer 5.png"
+                      src="/images/layer5.png"
                       alt="reading-book-image"
                       layout="fill"
                     />
@@ -266,7 +266,7 @@ export default function Vaksinasi({ data, dataKedua }) {
                 <div className="h-2/3 w-2/3 flex m-auto">
                   <div className=" relative h-full w-full flex flex-col">
                     <Image
-                      src="/images/layer 6.png"
+                      src="/images/layer6.png"
                       alt="reading-book-image"
                       layout="fill"
                     />

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import DropDownEdit from "../dropDown";
-import styles from "./cardVaksin.module.css";
-import Image from "next/image";
-import Button from "../button";
-import Link from "next/link";
-import uuid from "react-uuid";
+import React, { useState } from 'react';
+import DropDownEdit from '../dropDown';
+import styles from './cardVaksin.module.css';
+import Image from 'next/image';
+import Button from '../button';
+import Link from 'next/link';
+import uuid from 'react-uuid';
 
 export default function CardVaksin({ item }) {
   return (
@@ -14,7 +14,7 @@ export default function CardVaksin({ item }) {
     >
       <div
         id="image"
-        className={`absolute bg-white w-full h-3/5 flex flex-col ${styles.cardImage}`}
+        className={`absolute bg-white w-full flex flex-col ${styles.cardImage}`}
       >
         <Image
           src={item.img}
@@ -44,12 +44,12 @@ export default function CardVaksin({ item }) {
 
         <div
           id="containerLogo"
-          className={"flex flex-row justify-center mt-5 items-center ml-10"}
+          className={`flex flex-row justify-center items-center ${styles.calenderContainer}`}
         >
           <div
             id="logo"
             className={
-              "relative flex flex-row h-8 w-8 items-center justify-center top-0"
+              'relative flex flex-row h-8 w-8 items-center justify-center top-0'
             }
           >
             <Image
@@ -68,12 +68,12 @@ export default function CardVaksin({ item }) {
 
         <div
           id="containerLogo"
-          className={"flex flex-row justify-center mt-2 items-center ml-10"}
+          className={`flex flex-row justify-center items-center ${styles.timeContainer}`}
         >
           <div
             id="logo"
             className={
-              "relative flex flex-row h-8 w-8 items-center justify-center top-0"
+              'relative flex flex-row h-8 w-8 items-center justify-center top-0'
             }
           >
             <Image
@@ -93,17 +93,17 @@ export default function CardVaksin({ item }) {
         <div
           id="containerLogo"
           className={
-            "flex flex-row justify-center mt-2 items-start mx-10 content-start"
+            `flex flex-row justify-center mt-2 items-start mx-10 content-start ${styles.locationContainer}`
           }
         >
           <div
             id="logo"
             className={
-              "relative h-8 w-8 items-center justify-center top-0 content-start"
+              'relative h-8 w-8 items-center justify-center top-0 content-start'
             }
           >
             <Image
-              src="/images/location.svg"
+              src="/images/Location.svg"
               alt="reading-book-image"
               layout="fill"
             />
@@ -116,7 +116,7 @@ export default function CardVaksin({ item }) {
           </p>
         </div>
 
-        <div className={"flex flex-col items-center mt-5"}>
+        <div className={'flex flex-col items-center mt-5'}>
           <p
             color="dark-grey"
             className="text-center font-semibold text-l text-white text-dark-grey w-full mb-5"
@@ -124,8 +124,14 @@ export default function CardVaksin({ item }) {
             {item.lokasi2}
           </p>
 
-          <div className="flex items-center pb-24 flex-row justify-center w-5/6">
-            <Link href={`/vaksinasi/validasi-vaksinasi/${item._id}`} passHref key={uuid()}>
+          <div
+            className={`flex items-center pb-24 flex-row justify-center w-5/6 ${styles.buttonContainer}`}
+          >
+            <Link
+              href={`/vaksinasi/validasi-vaksinasi/${item._id}`}
+              passHref
+              key={uuid()}
+            >
               <Button to="#" color="purple">
                 Pilih
               </Button>
