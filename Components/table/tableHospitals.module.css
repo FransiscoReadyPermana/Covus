@@ -45,10 +45,15 @@
   z-index: 0;
 }
 
-.virusPositionBottomRight {
-  margin-right: 8rem;
+.virusBottomRight {
   margin-top: -12rem;
-  z-index: 0;
+  width: 20rem;
+}
+
+.virusBottomLeft{
+  margin-top: -14rem;
+  margin-left: -5rem;
+  width: 10rem;
 }
 
 .head{

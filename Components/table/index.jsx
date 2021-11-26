@@ -277,11 +277,11 @@ export default function TableData({ data, type }) {
             onPageChange={(page) => setCurrentPageHospitals(page)}
           />
           <div id="virus" className={`flex justify-end `}>
-            <Virus className={`absolute  -mt-48 w-80`} />
+            <Virus className={`absolute ${stylesHospitals.virusBottomRight}`} />
           </div>
 
           <div id="virus" className={`flex justify-start`}>
-            <Virus className={`absolute -mt-56 -ml-20 w-40`} />
+            <Virus className={`absolute ${stylesHospitals.virusBottomLeft}`} />
           </div>
         </div>
       </div>
