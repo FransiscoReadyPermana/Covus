@@ -19,7 +19,7 @@ export default function AvatarDropDown({ children }) {
   return (
     <>
       <button className={`${style.avatar}`} onClick={() => setShow(!show)}>
-        <div className="bg-white p-1 rounded-full">
+        <div className={`bg-white rounded-full ${style.whiteContainer}`}>
           <div className="relative w-8 h-8">
             <Image
               src="/images/profile.svg"

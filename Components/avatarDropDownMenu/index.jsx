@@ -32,7 +32,7 @@ export default function AvatarDropDownMenu() {
       </div>
       <div
         id="container"
-        className={`absolute bg-purple mr-20 w-96 rounded-2xl -right-4 mt-16 p-4 ${style.menu}`}
+        className={`absolute bg-purple w-96 rounded-2xl ${style.menu}`}
       >
         <h5>hallo</h5>
         <AvatarDropDownItems
