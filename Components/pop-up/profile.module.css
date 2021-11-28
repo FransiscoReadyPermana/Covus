@@ -70,11 +70,16 @@
   margin-bottom: 1rem;
 }
 
+.divider2 {
+  margin-bottom: 0.5rem;
+}
+
 .jenis_vaksin {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  margin-left: 0.5rem;
 }
 
 .kontradiksi {

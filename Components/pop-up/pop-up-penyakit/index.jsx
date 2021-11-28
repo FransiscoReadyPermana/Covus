@@ -43,24 +43,23 @@ export default function PopUpPenyakit({ open, onClickBackground, onClick }) {
               className={`h-1 bg-dark-grey w-full opacity-25 ${style.divider}`}
             />
           </div>
-          <div className="mb-2">
+          <div className={`${style.divider2}`}>
             <b className="text-dark-grey">
-              {" "}
-              Saya memiliki kontradiksi Vaksin berupa :{" "}
+              Saya memiliki kontradiksi Vaksin berupa :
             </b>
           </div>
           <p
-            className={`text-justify font-normal px-10 mt-1 text-dark-grey ${style.kontradinsi}`}
+            className={`text-justify font-normal px-10 mt-1 text-dark-grey ${style.kontradiksi}`}
           >
             Menderita COVID-19 selama 3 bulan terakhir
           </p>
           <p
-            className={`text-justify font-normal px-10 mt-1 text-dark-grey ${style.kontradinsi}`}
+            className={`text-justify font-normal px-10 mt-1 text-dark-grey ${style.kontradiksi}`}
           >
             Menderita COVID-19 selama 3 bulan terakhir
           </p>
           <p
-            className={`text-justify font-normal px-10 mt-1 text-dark-grey ${style.kontradinsi}`}
+            className={`text-justify font-normal px-10 mt-1 text-dark-grey ${style.kontradiksi}`}
           >
             Menderita COVID-19 selama 3 bulan terakhir
           </p>
