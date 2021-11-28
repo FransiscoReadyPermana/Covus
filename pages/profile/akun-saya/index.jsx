@@ -1,9 +1,9 @@
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import styles from '../../../styles/akun.module.css';
-import Footer from '../../../Components/footer';
-import PopUp from '../../../Components/pop-up/pop-up';
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import styles from "../../../styles/akun.module.css";
+import Footer from "../../../Components/footer";
+import PopUp from "../../../Components/pop-up/pop-up";
 
 export default function AkunSaya() {
   const [keluar, setKeluar] = useState(false);
@@ -63,7 +63,7 @@ export default function AkunSaya() {
                 <div
                   id="icon"
                   className={
-                    'relative h-7 w-7 flex items-center justify-center'
+                    "relative h-7 w-7 flex items-center justify-center"
                   }
                 >
                   <Image src="/images/Edit.svg" alt="" layout="fill" />
@@ -86,7 +86,7 @@ export default function AkunSaya() {
                 <div
                   id="icon"
                   className={
-                    'relative h-7 w-7 flex items-center justify-center'
+                    "relative h-7 w-7 flex items-center justify-center"
                   }
                 >
                   <Image src="/images/Riwayat.svg" alt="" layout="fill" />
@@ -105,11 +105,11 @@ export default function AkunSaya() {
               open={keluar}
               onClickBackground={() => setKeluar(false)}
               onClickSimpan={() => setKeluar(false)}
-              pertanyaan1={'Apakah Anda yakin ingin'}
-              pertanyaan2={'keluar aplikasi?'}
-              gambar={'/images/tutup.svg'}
-              button_primary={'Iya'}
-              button_secondary={'Tidak'}
+              pertanyaan1={"Apakah Anda yakin ingin"}
+              pertanyaan2={"keluar aplikasi?"}
+              gambar={"/images/tutup.svg"}
+              button_primary={"Iya"}
+              button_secondary={"Tidak"}
             />
 
             <button

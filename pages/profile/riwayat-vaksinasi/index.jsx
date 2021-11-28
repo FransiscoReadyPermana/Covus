@@ -1,11 +1,10 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import styles from '../../../styles/vaksinProfile.module.css';
+import styles from "../../../styles/vaksinProfile.module.css";
 import Footer from "../../../Components/footer";
 import CardHasilVaksin from "../../../Components/card/card-hasil-vaksin";
 import PopUp from "../../../Components/pop-up/pop-up";
-
 
 export default function UbahKataSandi() {
   const [keluar, setKeluar] = useState(false);
@@ -111,7 +110,7 @@ export default function UbahKataSandi() {
                 onClickSimpan={() => setKeluar(false)}
                 pertanyaan1={"Apakah Anda yakin ingin"}
                 pertanyaan2={"keluar aplikasi?"}
-                gambar={"/images/Close.svg"}
+                gambar={"/images/tutup.svg"}
                 button_primary={"Iya"}
                 button_secondary={"Tidak"}
               />

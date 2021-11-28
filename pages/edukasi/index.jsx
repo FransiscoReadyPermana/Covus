@@ -1,11 +1,11 @@
-import React from 'react';
-import Image from 'next/image';
-import styles from '../../styles/edukasi.module.css';
-import Paragraph from '../../Components/paragraph';
-import Button from '../../Components/button';
-import Title from '../../Components/title';
-import Card from '../../Components/card';
-import Footer from '../../Components/footer';
+import React from "react";
+import Image from "next/image";
+import styles from "../../styles/edukasi.module.css";
+import Paragraph from "../../Components/paragraph";
+import Button from "../../Components/button";
+import Title from "../../Components/title";
+import Card from "../../Components/card";
+import Footer from "../../Components/footer";
 
 export default function Edukasi() {
   return (
