@@ -1,0 +1,58 @@
+.section {
+  height: 90vh;
+}
+
+.section3 {
+  height: 110vh;
+}
+
+.section4 {
+  height: 80vh;
+}
+
+.section5 {
+  height: 90vh;
+}
+
+.span {
+  font-family: 'LeagueSpartan';
+}
+
+.firstSection {
+  background-image: url('../../public/images/UseMask.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -20;
+  bottom: 0;
+}
+
+.bgThirdSection {
+  background-image: url('../../public/images/divider.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.secondBGThirdSection {
+  background-image: url('../../public/images/secondDivider.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bgFourthSection {
+  background-image: url('../../public/images/thirdDivider.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.secondBGFourthSection {
+  background-image: url('../../public/images/fourthDivider.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.headline {
+  color: #494961;
+  line-height: 5rem;
+  text-align: center;
+}

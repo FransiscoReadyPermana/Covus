@@ -34,7 +34,6 @@ export default function AvatarDropDownMenu() {
         id="container"
         className={`absolute bg-purple w-96 rounded-2xl ${style.menu}`}
       >
-        <h5>hallo</h5>
         <AvatarDropDownItems
           leftIcon={<Profile />}
           onClick={() => setIsOpen(true)}
