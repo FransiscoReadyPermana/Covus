@@ -1,11 +1,11 @@
-import React from 'react';
-import Image from 'next/image';
-import Title from '../../Components/title';
-import Paragraph from '../../Components/paragraph';
-import styles from '../../styles/RsRujukan.module.css';
-import Card from '../../Components/card';
-import Footer from '../../Components/footer';
-import TableData from '../../Components/table';
+import React from "react";
+import Image from "next/image";
+import Title from "../../Components/title";
+import Paragraph from "../../Components/paragraph";
+import styles from "../../styles/RsRujukan.module.css";
+import Card from "../../Components/card";
+import Footer from "../../Components/footer";
+import TableData from "../../Components/table";
 
 export default function RSRujukan({ hospitals }) {
   return (
@@ -48,7 +48,9 @@ export default function RSRujukan({ hospitals }) {
                   color="dark-grey"
                   className="text-center font-semibold text-xl text-dark-grey"
                 >
-                  Siap Melayani 24 jam
+                  Melayani
+                  <br />
+                  24 jam
                 </p>
               </Card>
               <Card type="small">
