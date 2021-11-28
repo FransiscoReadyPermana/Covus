@@ -108,10 +108,10 @@ export default function TableData({ data, type }) {
               option={kota}
             />
             <button
-              className={`bg-purple flex items-center justify-center h-12 rounded-3xl ${stylesProvinsi.reset}`}
+              className={`bg-white flex items-center justify-center h-12 rounded-3xl ${stylesProvinsi.reset}`}
               onClick={onFilterDropdown}
             >
-              <div className="relative  w-8 h-8">
+              <div className="relative w-8 h-8">
                 <Image
                   src="/images/ion_reload-sharp.svg"
                   alt="reading-book-image"

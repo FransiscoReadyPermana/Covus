@@ -32,10 +32,10 @@ export default function SearchInput({
         />
       </form>
       <button
-        className={`bg-purple flex items-center justify-center h-12 rounded-3xl ${styles.reset}`}
+        className={`bg-white flex items-center justify-center h-12 rounded-3xl ${styles.reset}`}
         onClick={onClick}
       >
-        <div className="relative  w-8 h-8">
+        <div className="relative w-8 h-8">
           <Image
             src="/images/ion_reload-sharp.svg"
             alt="reading-book-image"
@@ -46,3 +46,4 @@ export default function SearchInput({
     </div>
   );
 }
+

@@ -14,11 +14,17 @@
   outline: none;
 }
 
-.search{
+.search {
   width: 5rem;
   margin-left: -0.25rem;
 }
 
-.reset{
+.reset {
   width: 5rem;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
+  transition: 0.1s ease-in all;
+}
+
+.reset:hover {
+  outline: 0.2rem solid #a5afed;
 }
