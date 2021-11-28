@@ -136,7 +136,7 @@ export default function CardHasilVaksin() {
 
       <button onClick={() => setIsOpen(true)}>
         <div
-          className={`absolute w-10 h-10 ${styles.penyakit} bg-purple flex flex-col items-center justify-center rounded-full mt-44 left-3/4`}
+          className={`absolute w-10 h-10 ${styles.penyakit} bg-purple flex flex-col items-center justify-center rounded-full`}
         >
           <div className={`absolute w-6 h-6 flex`}>
             <Image src="/images/Riwayat_Active.svg" alt="" layout="fill" />

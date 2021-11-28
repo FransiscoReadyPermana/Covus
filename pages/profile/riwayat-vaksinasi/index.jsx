@@ -155,7 +155,6 @@ export default function UbahKataSandi() {
               <div className="flex flex-col items-center gap-12 w-full mt-4">
                 <CardHasilVaksin />
                 <CardHasilVaksin />
-                <CardHasilVaksin />
               </div>
             </div>
           </div>

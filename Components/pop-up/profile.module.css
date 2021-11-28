@@ -61,6 +61,24 @@
   display: none;
 }
 
-.containerIlustrasi{
+.containerIlustrasi {
   width: 12rem;
+}
+
+.divider {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.jenis_vaksin {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.kontradiksi {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  margin-top: 0.25rem;
 }

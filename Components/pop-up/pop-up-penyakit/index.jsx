@@ -33,11 +33,15 @@ export default function PopUpPenyakit({ open, onClickBackground, onClick }) {
 
         <p className="text-center font-normal text-dark-grey">
           Jenis Vaksin yang diambil adalah{" "}
-          <span className="text-l text-white bg-dark-grey py-1 px-4 rounded-full ml-2">
+          <span
+            className={`text-l text-white bg-dark-grey rounded-full ml-1 ${style.jenis_vaksin}`}
+          >
             Astrazeneca
           </span>
           <div className="px-6">
-            <hr className="h-1 bg-dark-grey w-full opacity-25 my-4" />
+            <hr
+              className={`h-1 bg-dark-grey w-full opacity-25 ${style.divider}`}
+            />
           </div>
           <div className="mb-2">
             <b className="text-dark-grey">
@@ -45,16 +49,19 @@ export default function PopUpPenyakit({ open, onClickBackground, onClick }) {
               Saya memiliki kontradiksi Vaksin berupa :{" "}
             </b>
           </div>
-          <p className="text-justify font-normal px-10 mt-1 text-dark-grey">
+          <p
+            className={`text-justify font-normal px-10 mt-1 text-dark-grey ${style.kontradinsi}`}
+          >
             Menderita COVID-19 selama 3 bulan terakhir
           </p>
-          <p className="text-justify font-normal px-10 mt-1 text-dark-grey">
+          <p
+            className={`text-justify font-normal px-10 mt-1 text-dark-grey ${style.kontradinsi}`}
+          >
             Menderita COVID-19 selama 3 bulan terakhir
           </p>
-          <p className="text-justify font-normal px-10 mt-1 text-dark-grey">
-            Menderita COVID-19 selama 3 bulan terakhir
-          </p>
-          <p className="text-justify font-normal px-10 mt-1 text-dark-grey">
+          <p
+            className={`text-justify font-normal px-10 mt-1 text-dark-grey ${style.kontradinsi}`}
+          >
             Menderita COVID-19 selama 3 bulan terakhir
           </p>
         </p>
