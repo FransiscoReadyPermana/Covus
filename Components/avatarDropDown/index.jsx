@@ -5,16 +5,16 @@ import style from './avatarDropDown.module.css';
 export default function AvatarDropDown({ children }) {
   const [show, setShow] = useState(false);
 
-  // useEffect(() => {
-  //   if (!show) return;
-  //   const handleClickOutside = () => {
-  //     setShow(false);
-  //   };
-  //   window.addEventListener('click', handleClickOutside);
-  //   return () => {
-  //     window.removeEventListener('click', handleClickOutside);
-  //   };
-  // }, [show]);
+  useEffect(() => {
+    if (!show) return;
+    const handleClickOutside = () => {
+      setShow(false);
+    };
+    window.addEventListener('click', handleClickOutside);
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, [show]);
 
   return (
     <>

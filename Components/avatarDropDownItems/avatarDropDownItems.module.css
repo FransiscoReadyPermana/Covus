@@ -1,3 +1,11 @@
 .items:hover{
   background-color: #6E7DDF;
 }
+
+.items{
+  padding:0.2rem;
+  padding-left: 1rem;
+  border-radius: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}

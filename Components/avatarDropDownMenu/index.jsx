@@ -32,7 +32,7 @@ export default function AvatarDropDownMenu() {
       </div>
       <div
         id="container"
-        className={`absolute bg-purple w-96 rounded-2xl ${style.menu}`}
+        className={`absolute bg-purple w-96 ${style.menu}`}
       >
         <AvatarDropDownItems
           leftIcon={<Profile />}
