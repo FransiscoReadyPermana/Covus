@@ -6,6 +6,7 @@ import Footer from "../../../Components/footer";
 import CardHasilVaksin from "../../../Components/card/card-hasil-vaksin";
 import PopUp from "../../../Components/pop-up/pop-up";
 
+
 export default function UbahKataSandi() {
   const [keluar, setKeluar] = useState(false);
 

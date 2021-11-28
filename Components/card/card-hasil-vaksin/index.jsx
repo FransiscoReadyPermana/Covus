@@ -1,19 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../hasilvaksin.module.css";
 import Image from "next/image";
+import PopUpPenyakit from "../../../Components/pop-up/pop-up-penyakit";
 
 export default function CardHasilVaksin() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div
       id="container-konten"
       className={`flex flex-col items-center bg-white w-full pb-10 pt-6 ${styles.konten}`}
     >
-      <p
-        className={`absolute text-center font-medium text-s text-white px-10 py-2 rounded-full left-1/3 transform -rotate-45 ml-12 ${styles.jenis_vaksin}`}
-      >
-        Astrazeneca
-      </p>
-
       <div
         id="vaksin-keberapa"
         className="flex flex-row justify-center items-center gap-16"
@@ -132,13 +128,21 @@ export default function CardHasilVaksin() {
         </div>
       </div>
 
-      <div
-        className={`absolute w-10 h-10 ${styles.penyakit} bg-purple flex flex-col items-center justify-center rounded-full mt-44 left-3/4`}
-      >
-        <div className={`absolute w-6 h-6 flex`}>
-          <Image src="/images/Riwayat_Active.svg" alt="" layout="fill" />
+      <PopUpPenyakit
+        open={isOpen}
+        onClickBackground={() => setIsOpen(false)}
+        onClick={() => setIsOpen(false)}
+      />
+
+      <button onClick={() => setIsOpen(true)}>
+        <div
+          className={`absolute w-10 h-10 ${styles.penyakit} bg-purple flex flex-col items-center justify-center rounded-full mt-44 left-3/4`}
+        >
+          <div className={`absolute w-6 h-6 flex`}>
+            <Image src="/images/Riwayat_Active.svg" alt="" layout="fill" />
+          </div>
         </div>
-      </div>
+      </button>
     </div>
   );
 }

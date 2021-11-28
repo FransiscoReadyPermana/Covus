@@ -16,7 +16,7 @@ export default function PopUpPenyakit({ open, onClickBackground, onClick }) {
       />
       <div
         id="container"
-        className={`fixed bg-white py-10 px-20 h-3/4 flex flex-col items-center mt-12 ${style.container} ${style.SK}`}
+        className={`fixed bg-white py-10 px-20 h-1/2 flex flex-col items-center ${style.container} ${style.SK}`}
       >
         <button
           className={`absolute right-8 top-8 rounded-full ${style.close}`}
@@ -28,51 +28,34 @@ export default function PopUpPenyakit({ open, onClickBackground, onClick }) {
         <h1
           className={`text-center text-dark-grey mb-4 leading-loose ${style.judul}`}
         >
-          Kontradiksi Vaksin
+          Catatan Vaksinasi
         </h1>
 
-        <p className="text-center font-normal">
-          <p className="text-justify font-normal px-10">
-            <b className="mr-2">1.</b>Jenis Vaksin yang diambil adalah
-            <br /> <br />
-            <b className="mr-2">2.</b>Ibu hamil (minimal 13 minggu) dapat
-            diberikan vaksin jenis Pfizer, atau Sinovac
-            <br /> <br />
-            <b className="mr-2">3.</b>Peserta berusia 17 tahun ke atas wajib
-            membawa KTP (berlaku untuk semua wilayah) pada hari vaksinasi dan
-            peserta 12-17 tahun wajib membawa salinan Kartu Keluarga
-            <br /> <br />
-            <b className="mr-2">4.</b>Seluruh peserta wajib mendaftarkan diri
-            terlebih dahulu dan pastikan telah melakukan registrasi dan login
-            kedalam COVUS
-            <br /> <br />
-            <b className="mr-2">5.</b>Peserta wajib menunjukkan bukti
-            pendaftaran yang akan diverifikasi ulang oleh petugas di lokasi
-            tempat Vaksinasi yang telah dipilih.
-            <br /> <br />
-            <b className="mr-2">6.</b>Peserta dalam keadaan sehat dan tidak
-            memiliki gejala COVID-19. <br />
-            <p className="mt-2">
-              Jika Peserta memiliki penyakit penyerta dapat membawa surat
-              kelayakan untuk divaksinasi dari dokter.
-            </p>
-            <p className="pl-5 mt-2">
-              - Penyintas dengan gejala ringan dapat dilakukan vaksinasi dengan
-              jarak 1 bulan sejak negatif atau selesai isolasi mandiri (isoman).
-            </p>
-            <p className="pl-5 mt-2">
-              - Penyintas dengan gejala sedang-berat (riwayat masuk di rumah
-              sakit) vaksinasi tetap dilakukan dengan jarak 3 bulan sejak
-              negatif.
-            </p>
-            <br />
-            <b className="mr-2">7.</b>Peserta menggunakan baju yang longgar di
-            area lengan atas untuk memudahkan penyuntikan.
-            <br /> <br />
+        <p className="text-center font-normal text-dark-grey">
+          Jenis Vaksin yang diambil adalah{" "}
+          <span className="text-l text-white bg-dark-grey py-1 px-4 rounded-full ml-2">
+            Astrazeneca
+          </span>
+          <div className="px-6">
+            <hr className="h-1 bg-dark-grey w-full opacity-25 my-4" />
+          </div>
+          <div className="mb-2">
+            <b className="text-dark-grey">
+              {" "}
+              Saya memiliki kontradiksi Vaksin berupa :{" "}
+            </b>
+          </div>
+          <p className="text-justify font-normal px-10 mt-1 text-dark-grey">
+            Menderita COVID-19 selama 3 bulan terakhir
           </p>
-          <p className="text-center font-semibold">
-            Penyelenggara berhak menolak jika peserta tidak memenuhi syarat dan
-            ketentuan di atas
+          <p className="text-justify font-normal px-10 mt-1 text-dark-grey">
+            Menderita COVID-19 selama 3 bulan terakhir
+          </p>
+          <p className="text-justify font-normal px-10 mt-1 text-dark-grey">
+            Menderita COVID-19 selama 3 bulan terakhir
+          </p>
+          <p className="text-justify font-normal px-10 mt-1 text-dark-grey">
+            Menderita COVID-19 selama 3 bulan terakhir
           </p>
         </p>
       </div>
