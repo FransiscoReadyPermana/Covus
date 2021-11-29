@@ -12,11 +12,6 @@ export default function RSRujukan({ hospitals }) {
         id="first"
         className={`${styles.section1} w-full relative bg-purple`}
       >
-  
-        {/* <div
-          id="divider"
-          className={`${styles.bgFirstSection} h-40 w-full absolute -top-40`}
-        /> */}
         <div
           id="content"
           className="flex gap-16 h-full px-64 pt-24 bg-purple pb-16"
@@ -37,10 +32,7 @@ export default function RSRujukan({ hospitals }) {
           id="divider"
           className={`${styles.bgFirstSection} h-40 w-full absolute -top-40 transform rotate-180`}
         />
-        {/* <div
-          id="divider"
-          className={`${styles.bgThirdSection} h-52 w-full absolute -top-32`}
-        /> */}
+       
         <div
           id="content"
           className="flex flex-col gap-8 h-full px-52 pt-24 bg-white"
