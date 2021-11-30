@@ -24,7 +24,7 @@ export default function Navbar() {
         onClickBackground={() => setIsOpen(false)}
         onClickDaftar={() => {
           setIsOpen(false);
-          router.push('/signUp');
+          router.push('/daftar-akun');
         }}
       />
       <div
@@ -87,7 +87,7 @@ export default function Navbar() {
             </AvatarDropDown>
           ) : (
             <div className="flex flex-row">
-              <Link href="/signUp" passHref>
+              <Link href="/daftar-akun" passHref>
                 <button
                   type="button"
                   className={`bg-dark-grey py-2 px-10 text-white mr-8 ${style.button_secondary}`}
