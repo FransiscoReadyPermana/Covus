@@ -8,56 +8,6 @@
   background-size: cover;
 }
 
-.card {
-  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
-  border-radius: 3.5rem;
-  transition: 0.2s ease-in all;
-}
-
-.card2 {
-  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
-  border-radius: 3.5rem;
-  transition: 0.2s ease-in all;
-  bottom: 0;
-}
-
-.card:hover {
-  outline: 0.5rem solid #7080ec;
-}
-
-.cardImage {
-  border-radius: 3.5rem;
-  height: 60%;
-}
-
-.buttonContainer {
-  width: 83.333333%;
-}
-
-.calenderContainer {
-  margin-left: 2.5rem;
-  margin-top: 1.25rem;
-}
-
-.timeContainer {
-  margin-top: 0.5rem;
-  margin-left: 2.5rem;
-}
-
-.locationContainer {
-  margin-top: 0.5rem;
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
-}
-
-.nama {
-  margin-top: 0.75rem;
-}
-
-.lokasi2 {
-  margin-bottom: 1.25rem;
-}
-
 .buttonTambah {
   opacity: 0.5;
   transition: 0.2s ease-in-out;
