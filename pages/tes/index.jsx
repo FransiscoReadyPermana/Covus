@@ -6,7 +6,6 @@ import Button from "../../Components/button";
 import Footer from "../../Components/footer";
 import Card from "../../Components/card";
 
-
 export default function Admin() {
   return (
     <div className="h-screen w-full">
@@ -40,7 +39,7 @@ export default function Admin() {
                 color="dark-grey"
                 className="text-center font-semibold text-2xl text-dark-grey"
               >
-                Daftar Vaksinasi
+                Vaksinasi
               </p>
             </Card>
             <Card type="big" className={`${styles.card}`}>
@@ -56,21 +55,6 @@ export default function Admin() {
                 className="text-center font-semibold text-2xl text-dark-grey"
               >
                 RS Rujukan
-              </p>
-            </Card>
-            <Card type="big" className={`${styles.card}`}>
-              <div className="relative h-3/4 w-full flex flex-col">
-                <Image
-                  src="/images/Lelah.svg"
-                  alt="reading-book-image"
-                  layout="fill"
-                />
-              </div>
-              <p
-                color="dark-grey"
-                className="text-center font-semibold text-2xl text-dark-grey"
-              >
-                Peserta Vaksinasi
               </p>
             </Card>
           </div>

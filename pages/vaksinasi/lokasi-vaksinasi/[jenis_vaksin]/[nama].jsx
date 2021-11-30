@@ -88,7 +88,7 @@ export default function LokasiVaksinasi({
 
         <div
           id="contentCard"
-          className="flex flex-col w-full h-full px-52 bg-white pt-8 items-center"
+          className="flex flex-col w-full h-full bg-white pt-8 items-center"
         >
           <Title color="dark-grey" id="judulVaksin" className="uppercase">
             PILIH JADWAL DAN TEMPAT VAKSINASI DI {dataDropdown}
