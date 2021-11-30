@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import style from './avatarDropDown.module.css';
+import { useSession } from 'next-auth/client';
+import ChevronRight from '../icons/ChevronRight';
+import ChevronDown from './../icons/ChevronDown';
 
 export default function AvatarDropDown({ children }) {
   const [show, setShow] = useState(false);
+  const [session] = useSession();
 
   useEffect(() => {
     if (!show) return;
@@ -19,7 +23,9 @@ export default function AvatarDropDown({ children }) {
   return (
     <>
       <button className={`${style.avatar}`} onClick={() => setShow(!show)}>
-        <div className={`bg-white rounded-full ${style.whiteContainer}`}>
+        <div
+          className={`flex items-center gap-4 bg-white rounded-full ${style.whiteContainer}`}
+        >
           <div className="relative w-8 h-8">
             <Image
               src="/images/profile.svg"
@@ -27,6 +33,8 @@ export default function AvatarDropDown({ children }) {
               layout="fill"
             />
           </div>
+          {session.user.name}
+          {show ? <ChevronDown /> : <ChevronRight />}
         </div>
       </button>
       {show && children}

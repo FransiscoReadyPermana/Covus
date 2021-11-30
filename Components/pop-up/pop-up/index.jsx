@@ -5,6 +5,7 @@ import Image from "next/image";
 export default function PopUp({
   open,
   onClickBackground,
+  onClickBatal,
   onClickSimpan,
   pertanyaan1,
   pertanyaan2,
@@ -48,7 +49,7 @@ export default function PopUp({
         >
           <button
             className={`bg-white text-purple py-3 rounded-3xl w-full ${style.button_batal}`}
-            onClick={onClickSimpan}
+            onClick={onClickBatal}
           >
             {button_secondary}
           </button>

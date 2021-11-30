@@ -90,14 +90,14 @@ export default function Navbar() {
               <Link href="/daftar-akun" passHref>
                 <button
                   type="button"
-                  className={`bg-dark-grey py-2 px-10 text-white mr-8 ${style.button_secondary}`}
+                  className={`bg-dark-grey py-3 px-10 text-white mr-8 ${style.button_secondary}`}
                 >
                   Daftar
                 </button>
               </Link>
               <button
                 type="button"
-                className={`bg-purple py-2 px-10 text-white ${style.button}`}
+                className={`bg-purple py-3 px-10 text-white ${style.button}`}
                 onClick={() => setIsOpen(true)}
               >
                 Masuk

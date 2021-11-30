@@ -1,12 +1,16 @@
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import styles from "../../../styles/akun.module.css";
-import Footer from "../../../Components/footer";
-import PopUp from "../../../Components/pop-up/pop-up";
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import styles from '../../../styles/akun.module.css';
+import Footer from '../../../Components/footer';
+import PopUp from '../../../Components/pop-up/pop-up';
+import { signOut } from 'next-auth/client';
+import { useRouter } from 'next/router';
+import { getSession } from 'next-auth/client';
 
-export default function AkunSaya() {
+export default function AkunSaya(user) {
   const [keluar, setKeluar] = useState(false);
+  const router = useRouter();
   return (
     <div className="h-screen w-full">
       <section
@@ -63,7 +67,7 @@ export default function AkunSaya() {
                 <div
                   id="icon"
                   className={
-                    "relative h-7 w-7 flex items-center justify-center"
+                    'relative h-7 w-7 flex items-center justify-center'
                   }
                 >
                   <Image src="/images/Edit.svg" alt="" layout="fill" />
@@ -86,7 +90,7 @@ export default function AkunSaya() {
                 <div
                   id="icon"
                   className={
-                    "relative h-7 w-7 flex items-center justify-center"
+                    'relative h-7 w-7 flex items-center justify-center'
                   }
                 >
                   <Image src="/images/Riwayat.svg" alt="" layout="fill" />
@@ -104,12 +108,17 @@ export default function AkunSaya() {
             <PopUp
               open={keluar}
               onClickBackground={() => setKeluar(false)}
-              onClickSimpan={() => setKeluar(false)}
-              pertanyaan1={"Apakah Anda yakin ingin"}
-              pertanyaan2={"keluar aplikasi?"}
-              gambar={"/images/tutup.svg"}
-              button_primary={"Iya"}
-              button_secondary={"Tidak"}
+              onClickBatal={() => setKeluar(false)}
+              onClickSimpan={() => {
+                signOut({ redirect: false });
+                router.replace('/');
+                setKeluar(false);
+              }}
+              pertanyaan1={'Apakah Anda yakin ingin'}
+              pertanyaan2={'keluar aplikasi?'}
+              gambar={'/images/tutup.svg'}
+              button_primary={'Iya'}
+              button_secondary={'Tidak'}
             />
 
             <button
@@ -237,4 +246,26 @@ export default function AkunSaya() {
       <Footer color="white" />
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  var myHeaders = new Headers();
+  const baseUrl = process.env.BASE_URL;
+  const session = await getSession({ req: context.req });
+  
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+    session: session,
+  };
+  
+  const response = await fetch(`${baseUrl}api/detail-profile`, requestOptions);
+  // const result = await response.json();
+  console.log(response);
+  return {
+    props: {
+      user: "test",
+    },
+  };
 }
