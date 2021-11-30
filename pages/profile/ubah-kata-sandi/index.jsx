@@ -108,6 +108,7 @@ export default function UbahKataSandi() {
               <PopUp
                 open={keluar}
                 onClickBackground={() => setKeluar(false)}
+                onClickBatal={() => setKeluar(false)}
                 onClickSimpan={() => setKeluar(false)}
                 pertanyaan1={'Apakah Anda yakin ingin'}
                 pertanyaan2={'keluar aplikasi?'}
@@ -131,6 +132,7 @@ export default function UbahKataSandi() {
               <PopUp
                 open={isOpen}
                 onClickBackground={() => setIsOpen(false)}
+                onClickBatal={() => setKeluar(false)}
                 onClickSimpan={() => setIsOpen(false)}
                 pertanyaan1={'Apakah Anda yakin ingin'}
                 pertanyaan2={'menyimpan perubahan?'}

@@ -1,13 +1,14 @@
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import Headline from "../Components/Headline";
-import Title from "../Components/title";
-import Iframe from "../Components/iframe";
-import ContainerData from "../Components/containerData";
-import Paragraph from "../Components/paragraph";
-import Button from "../Components/button";
-import Footer from "../Components/footer";
-import formatK from "../utils/format";
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
+import Headline from '../Components/Headline';
+import Title from '../Components/title';
+import Iframe from '../Components/iframe';
+import ContainerData from '../Components/containerData';
+import Paragraph from '../Components/paragraph';
+import Button from '../Components/button';
+import Footer from '../Components/footer';
+import formatK from '../utils/format';
+import Loading from '../Components/loading';
 
 export default function Home({ dataOrang, total }) {
   return (
@@ -21,8 +22,8 @@ export default function Home({ dataOrang, total }) {
         <div className="flex justify-center items-center mt-40 h-20 pb-16">
           <div className="bg-purple w-40 h-2 "></div>
           <Headline className="mx-5 text-dark-purple">
-            HEALTH{" "}
-            <span className={`${styles.span} text-purple text-5xl`}>IS</span>{" "}
+            HEALTH{' '}
+            <span className={`${styles.span} text-purple text-5xl`}>IS</span>{' '}
             PRECIOUS
           </Headline>
           <div className="bg-purple w-40 h-2 "></div>
@@ -191,7 +192,7 @@ export default function Home({ dataOrang, total }) {
 
 export async function getServerSideProps() {
   const response = await fetch(
-    "https://data.covid19.go.id/public/api/update.json"
+    'https://data.covid19.go.id/public/api/update.json'
   );
   const result = await response.json();
   return {
