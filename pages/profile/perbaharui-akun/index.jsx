@@ -1,13 +1,66 @@
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import styles from '../../../styles/edit.module.css';
-import Footer from '../../../Components/footer';
-import PopUp from '../../../Components/pop-up/pop-up';
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import styles from "../../../styles/edit.module.css";
+import Footer from "../../../Components/footer";
+import PopUp from "../../../Components/pop-up/pop-up";
+import { getSession } from "next-auth/client";
+import DropDownEdit from "../../../Components/dropDown";
+import bulan from "../../../data/Bulan";
 
-export default function EditAkun() {
+export default function EditAkun({ user, email }) {
   const [isOpen, setIsOpen] = useState(false);
   const [keluar, setKeluar] = useState(false);
+  const [mountValue, setMountValue] = useState(user.bulan);
+  const [formUser, setFormUser] = useState({
+    nama: user.nama,
+    tanggal: user.tanggal,
+    bulan: user.bulan,
+    tahun: user.tahun,
+    alamat: user.alamat,
+  });
+
+  let placeholderColor;
+  if (mountValue === user.bulan) {
+    placeholderColor = styles.placeHolderDefault;
+  } else {
+    placeholderColor = styles.placeHolder;
+  }
+
+  const handleRegister = async (e) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      nama: formUser.nama,
+      tanggal: formUser.tanggal,
+      bulan: formUser.bulan,
+      tahun: formUser.tahun,
+      alamat: formUser.alamat,
+    });
+    console.log(formUser);
+
+    const requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+    const baseUrl = process.env.BASE_URL;
+    const response = await fetch(
+      `${baseUrl}api/detail-profile/${email}`,
+      requestOptions
+    );
+    const result = await response.json();
+
+    if (result.success) {
+      alert("Berhasil");
+      location.reload();
+    } else {
+      alert(result.message);
+      console.log(result);
+    }
+  };
 
   return (
     <>
@@ -28,7 +81,7 @@ export default function EditAkun() {
                 color="dark-grey"
                 className="text-center font-semibold text-2xl text-dark-grey mt-12"
               >
-                Raihan Kemmy Rachmansyah
+                {user.nama}
               </p>
 
               <hr className="h-1 bg-dark-grey w-full mb-6 mt-6 opacity-25" />
@@ -66,7 +119,7 @@ export default function EditAkun() {
                   <div
                     id="icon"
                     className={
-                      'relative h-7 w-7 flex items-center justify-center'
+                      "relative h-7 w-7 flex items-center justify-center"
                     }
                   >
                     <Image src="/images/Edit.svg" alt="" layout="fill" />
@@ -89,7 +142,7 @@ export default function EditAkun() {
                   <div
                     id="icon"
                     className={
-                      'relative h-7 w-7 flex items-center justify-center'
+                      "relative h-7 w-7 flex items-center justify-center"
                     }
                   >
                     <Image src="/images/Riwayat.svg" alt="" layout="fill" />
@@ -105,32 +158,35 @@ export default function EditAkun() {
               </Link>
 
               <PopUp
-                open={isOpen}
-                onClickBackground={() => setIsOpen(false)}
-                onClickBatal={() => setKeluar(false)}
-                onClickSimpan={() => setIsOpen(false)}
-                pertanyaan1={'Apakah Anda yakin ingin'}
-                pertanyaan2={'keluar aplikasi?'}
-                gambar={'/images/tutup.svg'}
-                button_primary={'Simpan'}
-                button_secondary={'Tidak'}
-              />
-
-              <PopUp
                 open={keluar}
                 onClickBackground={() => setKeluar(false)}
                 onClickBatal={() => setKeluar(false)}
                 onClickSimpan={() => setKeluar(false)}
-                pertanyaan1={'Apakah Anda yakin ingin'}
-                pertanyaan2={'menyimpan perubahan?'}
-                gambar={'/images/pertanyaan.svg'}
-                button_primary={'Iya'}
-                button_secondary={'Tidak'}
+                pertanyaan1={"Apakah Anda yakin ingin"}
+                pertanyaan2={"keluar aplikasi?"}
+                gambar={"/images/tutup.svg"}
+                button_primary={"Simpan"}
+                button_secondary={"Tidak"}
+              />
+
+              <PopUp
+                open={isOpen}
+                onClickBackground={() => setIsOpen(false)}
+                onClickBatal={() => setIsOpen(false)}
+                onClickSimpan={(e) => {
+                  setIsOpen(false);
+                  handleRegister(e);
+                }}
+                pertanyaan1={"Apakah Anda yakin ingin"}
+                pertanyaan2={"menyimpan perubahan?"}
+                gambar={"/images/pertanyaan.svg"}
+                button_primary={"Iya"}
+                button_secondary={"Tidak"}
               />
 
               <button
                 className={`w-full rounded-full py-3 text-xl text-white bg-purple mt-80 mb-12 ${styles.keluar}`}
-                onClick={() => setIsOpen(true)}
+                onClick={() => setKeluar(true)}
               >
                 Keluar
               </button>
@@ -150,6 +206,7 @@ export default function EditAkun() {
                 >
                   Perbaharui Akun
                 </p>
+
                 <div
                   id="button"
                   className="flex flex-row items-center justify-between gap-8 w-1/3"
@@ -162,12 +219,12 @@ export default function EditAkun() {
                     </button>
                   </Link>
 
-                  <button
+                  <input
+                    type="submit"
                     className={`w-full rounded-full py-2 h-full text-l text-white bg-purple ${styles.button}`}
-                    onClick={() => setKeluar(true)}
-                  >
-                    Simpan
-                  </button>
+                    onClick={() => setIsOpen(true)}
+                    value="Simpan"
+                  />
                 </div>
               </div>
 
@@ -175,22 +232,25 @@ export default function EditAkun() {
 
               <form
                 action="#"
-                className={`flex flex-col w-full pr-8 ${styles.form}`}
+                className={`flex flex-col w-full pl-6 pr-10 ${styles.form}`}
               >
                 <div id="email" className="flex flex-col">
-                  <p
-                    color="dark-grey"
+                  <label
+                    htmlFor="email"
                     className="text-left font-semibold text-l flex items-center text-dark-grey"
                   >
                     Email
-                  </p>
+                  </label>
 
-                  <p
-                    color="dark-grey"
-                    className="text-left font-normal text-xl flex items-center mt-2 ml-4 text-dark-grey"
-                  >
-                    raikemmy@upnvj.ac.id
-                  </p>
+                  <input
+                    type="text"
+                    id="email"
+                    defaultValue={user.email}
+                    className={`rounded-full w-full text-xl ml-4 ${styles.input}`}
+                    onChange={(e) =>
+                      setFormUser({ ...formUser, email: e.target.value })
+                    }
+                  />
                 </div>
 
                 <div id="nama" className="flex flex-col mt-6">
@@ -204,25 +264,63 @@ export default function EditAkun() {
                   <input
                     type="text"
                     id="nama-lengkap"
-                    defaultValue="Raihan Kemmy Rachmansyah"
+                    defaultValue={user.nama}
                     className={`rounded-full w-full text-xl ml-4 ${styles.input}`}
+                    onChange={(e) =>
+                      setFormUser({ ...formUser, nama: e.target.value })
+                    }
                   />
                 </div>
 
                 <div id="tanggal-lahir" className="flex flex-col mt-6">
                   <label
-                    htmlFor="tanggal"
+                    htmlFor="tanggal-lahir"
                     className="text-left font-semibold text-l flex items-center text-dark-grey"
                   >
                     Tanggal Lahir
                   </label>
+                  <div className="ml-4 flex flex-row items-end justify-center w-full gap-12">
+                    <div id="tanggal" className="w-1/4">
+                      <input
+                        type="number"
+                        id="tanggal"
+                        defaultValue={user.tanggal}
+                        className={`text-center rounded-full w-full text-xl ${styles.input}`}
+                        onChange={(e) =>
+                          setFormUser({ ...formUser, tanggal: e.target.value })
+                        }
+                      />
+                    </div>
 
-                  <input
-                    type="text"
-                    id="tanggal"
-                    defaultValue="05 Januari 2001"
-                    className={`rounded-full w-full text-xl text-dark-grey ml-4 ${styles.input}`}
-                  />
+                    <div id="bulan" className="w-full">
+                      <DropDownEdit
+                        className={`w-full`}
+                        color="white"
+                        defaultValue={user.bulan}
+                        option={bulan}
+                        value={mountValue}
+                        onChange={(e) => {
+                          setMountValue(e);
+                          setFormUser({ ...formUser, bulan: e });
+                        }}
+                        classNameControl={`${styles.control}`}
+                        classNameArrow={`${styles.arrow}`}
+                        placeholderClassName={`${placeholderColor}`}
+                      />
+                    </div>
+
+                    <div id="tahun" className="w-2/3">
+                      <input
+                        type="number"
+                        id="Tahun"
+                        defaultValue={user.tahun}
+                        className={`rounded-full w-full text-xl text-center ${styles.input}`}
+                        onChange={(e) =>
+                          setFormUser({ ...formUser, tahun: e.target.value })
+                        }
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 <div id="jenis-kelamin" className="flex flex-col mt-6">
@@ -237,7 +335,7 @@ export default function EditAkun() {
                     color="dark-grey"
                     className="text-left font-normal text-xl flex items-center mt-2 ml-4 text-dark-grey"
                   >
-                    Laki-Laki
+                    {user.jenisKelamin}
                   </p>
                 </div>
 
@@ -252,10 +350,11 @@ export default function EditAkun() {
                   <input
                     type="text"
                     id="alamat"
-                    defaultValue="Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptatibus sed vitae maxime illum, repellendus quo qui numquam
-                  in a, et sapiente cumque eum. Quaerat, nesciunt."
+                    defaultValue={user.alamat}
                     className={`rounded-full w-full text-xl text-dark-grey ml-4 ${styles.input}`}
+                    onChange={(e) =>
+                      setFormUser({ ...formUser, alamat: e.target.value })
+                    }
                   />
                 </div>
               </form>
@@ -266,4 +365,19 @@ export default function EditAkun() {
       </div>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const baseUrl = process.env.BASE_URL;
+  const session = await getSession({ req: context.req });
+  const email = session.user.email;
+
+  const response = await fetch(`${baseUrl}api/detail-profile/${email}`);
+  const result = await response.json();
+  return {
+    props: {
+      user: result.data,
+      email: email,
+    },
+  };
 }

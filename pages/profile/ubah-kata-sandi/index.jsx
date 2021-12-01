@@ -176,7 +176,7 @@ export default function UbahKataSandi() {
 
               <form
                 action="#"
-                className={`flex flex-col w-full pr-8 ${styles.form}`}
+                className={`flex flex-col w-full pr-8 pl-6 pr-10 ${styles.form}`}
               >
                 <div id="kata-sandi-lama" className="flex flex-col">
                   <label

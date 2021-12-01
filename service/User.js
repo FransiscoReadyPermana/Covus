@@ -1,9 +1,23 @@
-import bcrypt from 'bcrypt';
-import User from '../models/user';
-import { EXIST_DATA } from '../lib/constantErrorType';
-import InvariantError from '../expecptions/InvariantError';
+import bcrypt from "bcrypt";
+import User from "../models/user";
+import { EXIST_DATA } from "../lib/constantErrorType";
+import InvariantError from "../expecptions/InvariantError";
 
 class UserService {
+  async editUser(email, { nama, tanggal, bulan, tahun, alamat, kataSandi }) {
+    const user = await User.findOne({ email: email });
+
+    user.nama = nama ?? user.nama;
+    user.tanggal = tanggal ?? user.tanggal;
+    user.bulan = bulan ?? user.bulan;
+    user.tahun = tahun ?? user.tahun;
+    user.alamat = alamat ?? user.alamat;
+    user.kataSandi = kataSandi ?? user.kataSandi;
+
+    await user.save();
+    return user;
+  }
+
   async createUser({
     nama,
     email,
@@ -36,7 +50,7 @@ class UserService {
     const user = await User.findOne({ email });
 
     if (user) {
-      throw new InvariantError('Email already exists', EXIST_DATA);
+      throw new InvariantError("Email already exists", EXIST_DATA);
     }
 
     return false;

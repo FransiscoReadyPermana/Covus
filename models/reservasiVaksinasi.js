@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const ReservasiVaksinasiSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
+    ref: "user",
   },
   provinsi: {
     type: String,
@@ -37,8 +37,12 @@ const ReservasiVaksinasiSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  kontradiksiVaksin: {
+    type: Array,
+    required: true,
+  },
 });
 
 module.exports =
   mongoose.models.ReservasiVaksinasiSchema ||
-  mongoose.model('ReservasiVaksinasi', ReservasiVaksinasiSchema);
+  mongoose.model("ReservasiVaksinasi", ReservasiVaksinasiSchema);

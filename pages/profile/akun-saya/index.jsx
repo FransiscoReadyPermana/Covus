@@ -1,14 +1,15 @@
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import styles from '../../../styles/akun.module.css';
-import Footer from '../../../Components/footer';
-import PopUp from '../../../Components/pop-up/pop-up';
-import { signOut } from 'next-auth/client';
-import { useRouter } from 'next/router';
-import { getSession } from 'next-auth/client';
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import styles from "../../../styles/akun.module.css";
+import Footer from "../../../Components/footer";
+import PopUp from "../../../Components/pop-up/pop-up";
+import { signOut } from "next-auth/client";
+import { useRouter } from "next/router";
+import { getSession } from "next-auth/client";
+import { data } from "autoprefixer";
 
-export default function AkunSaya(user) {
+export default function AkunSaya({ user }) {
   const [keluar, setKeluar] = useState(false);
   const router = useRouter();
   return (
@@ -25,12 +26,14 @@ export default function AkunSaya(user) {
             id="kiri"
             className={`bg-white w-1/3 h-full flex flex-col items-start px-8 ${styles.container}`}
           >
-            <p
-              color="dark-grey"
-              className="text-center font-semibold text-2xl text-dark-grey mt-12"
-            >
-              Raihan Kemmy Rachmansyah
-            </p>
+            <div className="flex items-center justify-center w-full">
+              <p
+                color="dark-grey"
+                className="text-center font-semibold text-2xl text-dark-grey mt-12"
+              >
+                {user.nama}
+              </p>
+            </div>
 
             <hr className="h-1 bg-dark-grey w-full mb-6 mt-6 opacity-25" />
 
@@ -67,7 +70,7 @@ export default function AkunSaya(user) {
                 <div
                   id="icon"
                   className={
-                    'relative h-7 w-7 flex items-center justify-center'
+                    "relative h-7 w-7 flex items-center justify-center"
                   }
                 >
                   <Image src="/images/Edit.svg" alt="" layout="fill" />
@@ -90,7 +93,7 @@ export default function AkunSaya(user) {
                 <div
                   id="icon"
                   className={
-                    'relative h-7 w-7 flex items-center justify-center'
+                    "relative h-7 w-7 flex items-center justify-center"
                   }
                 >
                   <Image src="/images/Riwayat.svg" alt="" layout="fill" />
@@ -111,14 +114,14 @@ export default function AkunSaya(user) {
               onClickBatal={() => setKeluar(false)}
               onClickSimpan={() => {
                 signOut({ redirect: false });
-                router.replace('/');
+                router.replace("/");
                 setKeluar(false);
               }}
-              pertanyaan1={'Apakah Anda yakin ingin'}
-              pertanyaan2={'keluar aplikasi?'}
-              gambar={'/images/tutup.svg'}
-              button_primary={'Iya'}
-              button_secondary={'Tidak'}
+              pertanyaan1={"Apakah Anda yakin ingin"}
+              pertanyaan2={"keluar aplikasi?"}
+              gambar={"/images/tutup.svg"}
+              button_primary={"Iya"}
+              button_secondary={"Tidak"}
             />
 
             <button
@@ -158,87 +161,86 @@ export default function AkunSaya(user) {
             </div>
 
             <hr className="h-1 bg-dark-grey w-full mb-6 mt-6 opacity-25" />
+            <div id="container" className="w-full px-6">
+              <div id="email" className="flex flex-col">
+                <p
+                  color="dark-grey"
+                  className="text-left font-semibold text-l flex items-center text-dark-grey"
+                >
+                  Email
+                </p>
 
-            <div id="email" className="flex flex-col">
-              <p
-                color="dark-grey"
-                className="text-left font-semibold text-l flex items-center text-dark-grey"
-              >
-                Email
-              </p>
+                <p
+                  color="dark-grey"
+                  className="text-left font-normal text-xl flex items-center mt-2 ml-4 text-dark-grey"
+                >
+                  {user.email}
+                </p>
+              </div>
 
-              <p
-                color="dark-grey"
-                className="text-left font-normal text-xl flex items-center mt-2 ml-4 text-dark-grey"
-              >
-                raikemmy@upnvj.ac.id
-              </p>
-            </div>
+              <div id="nama" className="flex flex-col mt-6">
+                <p
+                  color="dark-grey"
+                  className="text-left font-semibold text-l flex items-center text-dark-grey"
+                >
+                  Nama Lengkap
+                </p>
 
-            <div id="nama" className="flex flex-col mt-6">
-              <p
-                color="dark-grey"
-                className="text-left font-semibold text-l flex items-center text-dark-grey"
-              >
-                Nama Lengkap
-              </p>
+                <p
+                  color="dark-grey"
+                  className="text-left font-normal text-xl flex items-center mt-2 ml-4 text-dark-grey"
+                >
+                  {user.nama}
+                </p>
+              </div>
 
-              <p
-                color="dark-grey"
-                className="text-left font-normal text-xl flex items-center mt-2 ml-4 text-dark-grey"
-              >
-                Raihan Kemmy Rachmansyah
-              </p>
-            </div>
+              <div id="tanggal-lahir" className="flex flex-col mt-6">
+                <p
+                  color="dark-grey"
+                  className="text-left font-semibold text-l flex items-center text-dark-grey"
+                >
+                  Tanggal Lahir
+                </p>
 
-            <div id="tanggal-lahir" className="flex flex-col mt-6">
-              <p
-                color="dark-grey"
-                className="text-left font-semibold text-l flex items-center text-dark-grey"
-              >
-                Tanggal Lahir
-              </p>
+                <p
+                  color="dark-grey"
+                  className="text-left font-normal text-xl flex items-center mt-2 ml-4 text-dark-grey"
+                >
+                  {user.tanggal} {user.bulan} {user.tahun}
+                </p>
+              </div>
 
-              <p
-                color="dark-grey"
-                className="text-left font-normal text-xl flex items-center mt-2 ml-4 text-dark-grey"
-              >
-                05 Januari 2001
-              </p>
-            </div>
+              <div id="jenis-kelamin" className="flex flex-col mt-6">
+                <p
+                  color="dark-grey"
+                  className="text-left font-semibold text-l flex items-center text-dark-grey"
+                >
+                  Jenis Kelamin
+                </p>
 
-            <div id="jenis-kelamin" className="flex flex-col mt-6">
-              <p
-                color="dark-grey"
-                className="text-left font-semibold text-l flex items-center text-dark-grey"
-              >
-                Jenis Kelamin
-              </p>
+                <p
+                  color="dark-grey"
+                  className="text-left font-normal text-xl flex items-center mt-2 ml-4 text-dark-grey"
+                >
+                  {user.jenisKelamin}
+                </p>
+              </div>
 
-              <p
-                color="dark-grey"
-                className="text-left font-normal text-xl flex items-center mt-2 ml-4 text-dark-grey"
-              >
-                Laki-Laki
-              </p>
-            </div>
+              <div id="alamat" className="flex flex-col mt-6">
+                <p
+                  color="dark-grey"
+                  className="text-left font-semibold text-l flex items-center text-dark-grey"
+                >
+                  Alamat
+                </p>
 
-            <div id="alamat" className="flex flex-col mt-6">
-              <p
-                color="dark-grey"
-                className="text-left font-semibold text-l flex items-center text-dark-grey"
-              >
-                Alamat
-              </p>
-
-              <p
-                color="dark-grey"
-                className="text-left font-normal text-xl flex items-center mt-2 ml-4 mr-8 text-dark-grey text-justify"
-              >
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatibus sed vitae maxime illum, repellendus quo qui numquam
-                in a, et sapiente cumque eum. Quaerat, nesciunt.
-              </p>
+                <p
+                  color="dark-grey"
+                  className="text-left font-normal text-xl flex items-center mt-2 ml-4 mr-8 text-dark-grey text-justify"
+                >
+                  {user.alamat}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -249,23 +251,19 @@ export default function AkunSaya(user) {
 }
 
 export async function getServerSideProps(context) {
-  var myHeaders = new Headers();
+  // var myHeaders = new Headers();
   const baseUrl = process.env.BASE_URL;
   const session = await getSession({ req: context.req });
-  
-  var requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow',
-    session: session,
-  };
-  
-  const response = await fetch(`${baseUrl}api/detail-profile`, requestOptions);
-  // const result = await response.json();
-  console.log(response);
+  const email = session.user.email;
+
+  const response = await fetch(`${baseUrl}api/detail-profile/${email}`);
+  const result = await response.json();
+
+  console.log(result);
+
   return {
     props: {
-      user: "test",
+      user: result.data,
     },
   };
 }
