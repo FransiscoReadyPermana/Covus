@@ -1,12 +1,12 @@
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import styles from '../../../styles/edit.module.css';
-import Footer from '../../../Components/footer';
-import PopUp from '../../../Components/pop-up/pop-up';
-import { getSession } from 'next-auth/client';
-import DropDownEdit from '../../../Components/dropDown';
-import bulan from '../../../data/Bulan';
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import styles from "../../../styles/edit.module.css";
+import Footer from "../../../Components/footer";
+import PopUp from "../../../Components/pop-up/pop-up";
+import { getSession } from "next-auth/client";
+import DropDownEdit from "../../../Components/dropDown";
+import bulan from "../../../data/Bulan";
 
 export default function EditAkun({ user, email }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +19,78 @@ export default function EditAkun({ user, email }) {
     tahun: user.tahun,
     alamat: user.alamat,
   });
+
+  // error
+  const [errorNama, setErrorNama] = useState(null);
+  const [errorTanggal, setErrorTanggal] = useState(null);
+  const [errorBulan, setErrorBulan] = useState(null);
+  const [errorTahun, setErrorTahun] = useState(null);
+  const [errorAlamat, setErrorAlamat] = useState(null);
+
+  const clearError = () => {
+    setErrorNama(null);
+    setErrorTanggal(null);
+    setErrorBulan(null);
+    setErrorTahun(null);
+    setErrorAlamat(null);
+  };
+
+  const namaCheck = () => {
+    if (formUser.nama.length < 3) {
+      setErrorNama("Nama minimal 3 karakter");
+    } else if (!/^[a-zA-Z ][a-zA-Z\\s ]+$/.test(formUser.nama)) {
+      setErrorNama("Nama hanya boleh huruf");
+    } else {
+      setErrorNama(null);
+    }
+  };
+
+  const tanggalCheck = () => {
+    if (formUser.tanggal === "" || formUser.tanggal === null) {
+      setErrorTanggal("Tanggal tidak boleh kosong");
+    } else if (formUser.tanggal < 1 || formUser.tanggal > 31) {
+      setErrorTanggal("Tanggal tidak valid");
+    } else {
+      setErrorTanggal(null);
+    }
+  };
+
+  const bulanCheck = () => {
+    if (formUser.bulan === "" || formUser.bulan === null) {
+      setErrorBulan("Bulan tidak boleh kosong");
+    } else {
+      setErrorBulan(null);
+    }
+  };
+
+  const tahunCheck = () => {
+    if (formUser.tahun === "" || formUser.tahun === null) {
+      setErrorTahun("Tahun tidak boleh kosong");
+    } else if (formUser.tahun < 1900 || formUser.tahun > 2021) {
+      setErrorTahun("Tahun tidak valid");
+    } else {
+      setErrorTahun(null);
+    }
+  };
+
+  const alamatCheck = () => {
+    if (formUser.alamat === "" || formUser.alamat === null) {
+      setErrorAlamat("Alamat tidak boleh kosong");
+    } else if (formUser.alamat.length < 3 || formUser.alamat.length > 100) {
+      setErrorAlamat("Alamat minimal 3 karakter dan maksimal 100 karakter");
+    } else {
+      setErrorAlamat(null);
+    }
+  };
+
+  const checkInput = (e) => {
+    e.preventDefault();
+    namaCheck();
+    tanggalCheck();
+    bulanCheck();
+    tahunCheck();
+    alamatCheck();
+  };
 
   let placeholderColor;
   if (mountValue === user.bulan) {
@@ -48,13 +120,6 @@ export default function EditAkun({ user, email }) {
     placeholderTanggal = styles.placeHolder;
   }
 
-  let placeholderBulan;
-  if (formUser.bulan === user.bulan) {
-    placeholderBulan = styles.placeHolderDefault;
-  } else {
-    placeholderBulan = styles.placeHolder;
-  }
-
   let placeholderTahun;
   if (formUser.tahun === user.tahun) {
     placeholderTahun = styles.placeHolderDefault;
@@ -63,8 +128,9 @@ export default function EditAkun({ user, email }) {
   }
 
   const handleRegister = async (e) => {
+    checkInput(e);
     const myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
       nama: formUser.nama,
@@ -76,10 +142,10 @@ export default function EditAkun({ user, email }) {
     console.log(formUser);
 
     const requestOptions = {
-      method: 'PUT',
+      method: "PUT",
       headers: myHeaders,
       body: raw,
-      redirect: 'follow',
+      redirect: "follow",
     };
     const baseUrl = process.env.BASE_URL;
     const response = await fetch(
@@ -89,7 +155,8 @@ export default function EditAkun({ user, email }) {
     const result = await response.json();
 
     if (result.success) {
-      alert('Berhasil');
+      alert("Berhasil");
+      clearError();
       location.reload();
     } else {
       alert(result.message);
@@ -112,12 +179,14 @@ export default function EditAkun({ user, email }) {
               id="kiri"
               className={`bg-white w-1/3 h-full flex flex-col items-start px-8 ${styles.container}`}
             >
-              <p
-                color="dark-grey"
-                className="text-center font-semibold text-2xl text-dark-grey mt-12"
-              >
-                {user.nama}
-              </p>
+              <div className="flex items-center justify-center w-full">
+                <p
+                  color="dark-grey"
+                  className="text-center font-semibold text-2xl text-dark-grey mt-12"
+                >
+                  {user.nama}
+                </p>
+              </div>
 
               <hr className="h-1 bg-dark-grey w-full mb-6 mt-6 opacity-25" />
 
@@ -154,7 +223,7 @@ export default function EditAkun({ user, email }) {
                   <div
                     id="icon"
                     className={
-                      'relative h-7 w-7 flex items-center justify-center'
+                      "relative h-7 w-7 flex items-center justify-center"
                     }
                   >
                     <Image src="/images/Edit.svg" alt="" layout="fill" />
@@ -177,7 +246,7 @@ export default function EditAkun({ user, email }) {
                   <div
                     id="icon"
                     className={
-                      'relative h-7 w-7 flex items-center justify-center'
+                      "relative h-7 w-7 flex items-center justify-center"
                     }
                   >
                     <Image src="/images/Riwayat.svg" alt="" layout="fill" />
@@ -198,14 +267,14 @@ export default function EditAkun({ user, email }) {
                 onClickBatal={() => setKeluar(false)}
                 onClickSimpan={() => {
                   signOut({ redirect: false });
-                  router.replace('/');
+                  router.replace("/");
                   setKeluar(false);
                 }}
-                pertanyaan1={'Apakah Anda yakin ingin'}
-                pertanyaan2={'keluar aplikasi?'}
-                gambar={'/images/tutup.svg'}
-                button_primary={'Simpan'}
-                button_secondary={'Tidak'}
+                pertanyaan1={"Apakah Anda yakin ingin"}
+                pertanyaan2={"keluar aplikasi?"}
+                gambar={"/images/tutup.svg"}
+                button_primary={"Simpan"}
+                button_secondary={"Tidak"}
               />
 
               <PopUp
@@ -216,11 +285,11 @@ export default function EditAkun({ user, email }) {
                   setIsOpen(false);
                   handleRegister(e);
                 }}
-                pertanyaan1={'Apakah Anda yakin ingin'}
-                pertanyaan2={'menyimpan perubahan?'}
-                gambar={'/images/pertanyaan.svg'}
-                button_primary={'Iya'}
-                button_secondary={'Tidak'}
+                pertanyaan1={"Apakah Anda yakin ingin"}
+                pertanyaan2={"menyimpan perubahan?"}
+                gambar={"/images/pertanyaan.svg"}
+                button_primary={"Iya"}
+                button_secondary={"Tidak"}
               />
 
               <button
@@ -274,22 +343,19 @@ export default function EditAkun({ user, email }) {
                 className={`flex flex-col w-full pl-6 pr-10 ${styles.form}`}
               >
                 <div id="email" className="flex flex-col">
-                  <label
-                    htmlFor="email"
+                  <p
+                    color="dark-grey"
                     className="text-left font-semibold text-l flex items-center text-dark-grey"
                   >
                     Email
-                  </label>
+                  </p>
 
-                  <input
-                    type="text"
-                    id="email"
-                    defaultValue={user.email}
-                    className={`rounded-full w-full text-xl ml-4 ${styles.input}`}
-                    onChange={(e) =>
-                      setFormUser({ ...formUser, email: e.target.value })
-                    }
-                  />
+                  <p
+                    color="dark-grey"
+                    className="text-left font-normal text-xl flex items-center mt-2 ml-4 text-dark-grey"
+                  >
+                    {user.email}
+                  </p>
                 </div>
 
                 <div id="nama" className="flex flex-col mt-6">
@@ -309,6 +375,9 @@ export default function EditAkun({ user, email }) {
                       setFormUser({ ...formUser, nama: e.target.value })
                     }
                   />
+                  {errorNama && (
+                    <p className="mt-2 ml-12 text-red">{errorNama}</p>
+                  )}
                 </div>
 
                 <div id="tanggal-lahir" className="flex flex-col mt-6">
@@ -329,6 +398,9 @@ export default function EditAkun({ user, email }) {
                           setFormUser({ ...formUser, tanggal: e.target.value })
                         }
                       />
+                      {errorTanggal && (
+                        <p className="mt-2 ml-12 text-red">{errorTanggal}</p>
+                      )}
                     </div>
 
                     <div id="bulan" className="w-full">
@@ -346,6 +418,9 @@ export default function EditAkun({ user, email }) {
                         classNameArrow={`${styles.arrow}`}
                         placeholderClassName={`${placeholderColor}`}
                       />
+                      {errorBulan && (
+                        <p className="mt-2 ml-12 text-red">{errorBulan}</p>
+                      )}
                     </div>
 
                     <div id="tahun" className="w-full">
@@ -358,6 +433,9 @@ export default function EditAkun({ user, email }) {
                           setFormUser({ ...formUser, tahun: e.target.value })
                         }
                       />
+                      {errorTahun && (
+                        <p className="mt-2 ml-12 text-red">{errorTahun}</p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -395,6 +473,9 @@ export default function EditAkun({ user, email }) {
                       setFormUser({ ...formUser, alamat: e.target.value })
                     }
                   />
+                  {errorAlamat && (
+                    <p className="mt-2 ml-12 text-red">{errorAlamat}</p>
+                  )}
                 </div>
               </form>
             </div>
