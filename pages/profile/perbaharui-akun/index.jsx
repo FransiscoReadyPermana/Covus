@@ -1,12 +1,12 @@
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import styles from "../../../styles/edit.module.css";
-import Footer from "../../../Components/footer";
-import PopUp from "../../../Components/pop-up/pop-up";
-import { getSession } from "next-auth/client";
-import DropDownEdit from "../../../Components/dropDown";
-import bulan from "../../../data/Bulan";
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import styles from '../../../styles/edit.module.css';
+import Footer from '../../../Components/footer';
+import PopUp from '../../../Components/pop-up/pop-up';
+import { getSession } from 'next-auth/client';
+import DropDownEdit from '../../../Components/dropDown';
+import bulan from '../../../data/Bulan';
 
 export default function EditAkun({ user, email }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,9 +27,44 @@ export default function EditAkun({ user, email }) {
     placeholderColor = styles.placeHolder;
   }
 
+  let placeholderNama;
+  if (formUser.nama === user.nama) {
+    placeholderNama = styles.placeHolderDefault;
+  } else {
+    placeholderNama = styles.placeHolder;
+  }
+
+  let placeholderAlamat;
+  if (formUser.alamat === user.alamat) {
+    placeholderAlamat = styles.placeHolderDefault;
+  } else {
+    placeholderAlamat = styles.placeHolder;
+  }
+
+  let placeholderTanggal;
+  if (formUser.tanggal === user.tanggal) {
+    placeholderTanggal = styles.placeHolderDefault;
+  } else {
+    placeholderTanggal = styles.placeHolder;
+  }
+
+  let placeholderBulan;
+  if (formUser.bulan === user.bulan) {
+    placeholderBulan = styles.placeHolderDefault;
+  } else {
+    placeholderBulan = styles.placeHolder;
+  }
+
+  let placeholderTahun;
+  if (formUser.tahun === user.tahun) {
+    placeholderTahun = styles.placeHolderDefault;
+  } else {
+    placeholderTahun = styles.placeHolder;
+  }
+
   const handleRegister = async (e) => {
     const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append('Content-Type', 'application/json');
 
     const raw = JSON.stringify({
       nama: formUser.nama,
@@ -41,10 +76,10 @@ export default function EditAkun({ user, email }) {
     console.log(formUser);
 
     const requestOptions = {
-      method: "PUT",
+      method: 'PUT',
       headers: myHeaders,
       body: raw,
-      redirect: "follow",
+      redirect: 'follow',
     };
     const baseUrl = process.env.BASE_URL;
     const response = await fetch(
@@ -54,7 +89,7 @@ export default function EditAkun({ user, email }) {
     const result = await response.json();
 
     if (result.success) {
-      alert("Berhasil");
+      alert('Berhasil');
       location.reload();
     } else {
       alert(result.message);
@@ -119,7 +154,7 @@ export default function EditAkun({ user, email }) {
                   <div
                     id="icon"
                     className={
-                      "relative h-7 w-7 flex items-center justify-center"
+                      'relative h-7 w-7 flex items-center justify-center'
                     }
                   >
                     <Image src="/images/Edit.svg" alt="" layout="fill" />
@@ -142,7 +177,7 @@ export default function EditAkun({ user, email }) {
                   <div
                     id="icon"
                     className={
-                      "relative h-7 w-7 flex items-center justify-center"
+                      'relative h-7 w-7 flex items-center justify-center'
                     }
                   >
                     <Image src="/images/Riwayat.svg" alt="" layout="fill" />
@@ -161,12 +196,16 @@ export default function EditAkun({ user, email }) {
                 open={keluar}
                 onClickBackground={() => setKeluar(false)}
                 onClickBatal={() => setKeluar(false)}
-                onClickSimpan={() => setKeluar(false)}
-                pertanyaan1={"Apakah Anda yakin ingin"}
-                pertanyaan2={"keluar aplikasi?"}
-                gambar={"/images/tutup.svg"}
-                button_primary={"Simpan"}
-                button_secondary={"Tidak"}
+                onClickSimpan={() => {
+                  signOut({ redirect: false });
+                  router.replace('/');
+                  setKeluar(false);
+                }}
+                pertanyaan1={'Apakah Anda yakin ingin'}
+                pertanyaan2={'keluar aplikasi?'}
+                gambar={'/images/tutup.svg'}
+                button_primary={'Simpan'}
+                button_secondary={'Tidak'}
               />
 
               <PopUp
@@ -177,11 +216,11 @@ export default function EditAkun({ user, email }) {
                   setIsOpen(false);
                   handleRegister(e);
                 }}
-                pertanyaan1={"Apakah Anda yakin ingin"}
-                pertanyaan2={"menyimpan perubahan?"}
-                gambar={"/images/pertanyaan.svg"}
-                button_primary={"Iya"}
-                button_secondary={"Tidak"}
+                pertanyaan1={'Apakah Anda yakin ingin'}
+                pertanyaan2={'menyimpan perubahan?'}
+                gambar={'/images/pertanyaan.svg'}
+                button_primary={'Iya'}
+                button_secondary={'Tidak'}
               />
 
               <button
@@ -265,7 +304,7 @@ export default function EditAkun({ user, email }) {
                     type="text"
                     id="nama-lengkap"
                     defaultValue={user.nama}
-                    className={`rounded-full w-full text-xl ml-4 ${styles.input}`}
+                    className={`rounded-full w-full text-xl ml-4 ${styles.input} ${placeholderNama}`}
                     onChange={(e) =>
                       setFormUser({ ...formUser, nama: e.target.value })
                     }
@@ -280,12 +319,12 @@ export default function EditAkun({ user, email }) {
                     Tanggal Lahir
                   </label>
                   <div className="ml-4 flex flex-row items-end justify-center w-full gap-12">
-                    <div id="tanggal" className="w-1/4">
+                    <div id="tanggal" className="w-full">
                       <input
                         type="number"
                         id="tanggal"
                         defaultValue={user.tanggal}
-                        className={`text-center rounded-full w-full text-xl ${styles.input}`}
+                        className={`text-center rounded-full w-full text-xl ${styles.input} ${placeholderTanggal}`}
                         onChange={(e) =>
                           setFormUser({ ...formUser, tanggal: e.target.value })
                         }
@@ -309,12 +348,12 @@ export default function EditAkun({ user, email }) {
                       />
                     </div>
 
-                    <div id="tahun" className="w-2/3">
+                    <div id="tahun" className="w-full">
                       <input
                         type="number"
                         id="Tahun"
                         defaultValue={user.tahun}
-                        className={`rounded-full w-full text-xl text-center ${styles.input}`}
+                        className={`rounded-full w-full text-xl text-center ${styles.input} ${placeholderTahun}`}
                         onChange={(e) =>
                           setFormUser({ ...formUser, tahun: e.target.value })
                         }
@@ -351,7 +390,7 @@ export default function EditAkun({ user, email }) {
                     type="text"
                     id="alamat"
                     defaultValue={user.alamat}
-                    className={`rounded-full w-full text-xl text-dark-grey ml-4 ${styles.input}`}
+                    className={`rounded-full w-full text-xl text-dark-grey ml-4 ${styles.input} ${placeholderAlamat}`}
                     onChange={(e) =>
                       setFormUser({ ...formUser, alamat: e.target.value })
                     }

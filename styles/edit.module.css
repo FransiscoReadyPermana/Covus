@@ -74,10 +74,11 @@
 }
 
 .input:focus {
-  outline: 0.2rem solid #494961;
+  outline: 0.2rem solid #000000;
   -webkit-appearance: none;
   margin-top: 0.8rem;
   color: #494961;
+  opacity: 1 !important;
 }
 
 .control {
@@ -104,8 +105,7 @@
 
 .placeHolder {
   font-size: 1.1rem;
-  opacity: 0.5 !important;
-  color: #494961 !important;
+  color: black !important;
 }
 
 .form input::-webkit-outer-spin-button,

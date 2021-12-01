@@ -35,7 +35,6 @@ export default NextAuth({
           throw new AuthenticationError("Email or Password incorrect");
         }
 
-        console.log("sabi bos");
 
         return { name: user.nama, email: user.email };
       },

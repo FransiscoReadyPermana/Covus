@@ -1,18 +1,97 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { getSession } from 'next-auth/client';
 import styles from '../../../styles/edit.module.css';
 import Footer from '../../../Components/footer';
 import PopUp from '../../../Components/pop-up/pop-up';
 import EyeShow from '../../../Components/icons/EyeShow';
 import EyeHide from '../../../Components/icons/EyeHide';
 
-export default function UbahKataSandi() {
+export default function UbahKataSandi({ user, email }) {
   const [isOpen, setIsOpen] = useState(false);
   const [keluar, setKeluar] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
   const [showLPassword, setShowLPassword] = useState(false);
+
+  const [errorKataSandiLama, setErrorKataSandiLama] = useState(null);
+  const [errorKataSandiBaru, setErrorKataSandiBaru] = useState(null);
+  const [errorCKataSandiBaru, setErrorCKataSandiBaru] = useState(null);
+
+  const [formUser, setFormUser] = useState({
+    kataSandiLama: '',
+    kataSandiBaru: '',
+    cKataSandiBaru: '',
+  });
+
+  const kataSandiCheck = () => {
+    const isMatch = bcrypt.compare(formUser.kataSandiLama, user.kataSandi);
+    const isMatchNew = bcrypt.compare(formUser.kataSandiBaru, user.kataSandi);
+
+    if (formUser.kataSandiLama === '' || formUser.kataSandiLama === null) {
+      setErrorKataSandiLama('Kata sandi lama tidak boleh kosong');
+    } else if (
+      formUser.kataSandiBaru.length < 8 ||
+      formUser.kataSandiBaru.length > 20
+    ) {
+      setErrorKataSandiLama(
+        'Kata Sandi minimal 8 karakter dan maksimal 20 karakter'
+      );
+    } else if (isMatch) {
+      setErrorKataSandiLama('Kata sandi lama tidak sesuai');
+    } else if (
+      formUser.cKataSandiBaru === '' ||
+      formUser.cKataSandiBaru === null
+    ) {
+      setErrorCKataSandiBaru('Konfirmasi Kata Sandi tidak boleh kosong');
+    } else if (formUser.cKataSandiBaru !== formUser.kataSandiBaru) {
+      setErrorKataSandiBaru('Kata Sandi tidak sama');
+      setErrorCKataSandiBaru('Kata Sandi tidak sama');
+    } else if (isMatchNew) {
+      setErrorKataSandiBaru(
+        'Kata sandi baru tidak boleh sama dengan kata sandi lama'
+      );
+    } else {
+      setErrorKataSandiLama(null);
+      setErrorKataSandiBaru(null);
+      setErrorCKataSandiBaru(null);
+    }
+  };
+
+  const onSaveHandler = async (e) => {
+    e.preventDefault();
+    kataSandiCheck();
+
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+
+    const raw = JSON.stringify({
+      kataSandi: formUser.kataSandiBaru,
+    });
+    console.log(formUser);
+
+    const requestOptions = {
+      method: 'PUT',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+    };
+    const baseUrl = process.env.BASE_URL;
+    const response = await fetch(
+      `${baseUrl}api/detail-profile/${email}`,
+      requestOptions
+    );
+    const result = await response.json();
+
+    if (result.success) {
+      alert('Berhasil');
+      location.reload();
+    } else {
+      alert(result.message);
+      console.log(result);
+    }
+  };
 
   return (
     <>
@@ -109,7 +188,11 @@ export default function UbahKataSandi() {
                 open={keluar}
                 onClickBackground={() => setKeluar(false)}
                 onClickBatal={() => setKeluar(false)}
-                onClickSimpan={() => setKeluar(false)}
+                onClickSimpan={() => {
+                  signOut({ redirect: false });
+                  router.replace('/');
+                  setKeluar(false);
+                }}
                 pertanyaan1={'Apakah Anda yakin ingin'}
                 pertanyaan2={'keluar aplikasi?'}
                 gambar={'/images/tutup.svg'}
@@ -132,7 +215,7 @@ export default function UbahKataSandi() {
               <PopUp
                 open={isOpen}
                 onClickBackground={() => setIsOpen(false)}
-                onClickBatal={() => setKeluar(false)}
+                onClickBatal={() => setIsOpen(false)}
                 onClickSimpan={() => setIsOpen(false)}
                 pertanyaan1={'Apakah Anda yakin ingin'}
                 pertanyaan2={'menyimpan perubahan?'}
@@ -201,6 +284,9 @@ export default function UbahKataSandi() {
                       {showLPassword ? <EyeHide /> : <EyeShow />}
                     </button>
                   </div>
+                  {errorKataSandiLama && (
+                    <p className="mt-2 ml-2 text-red">{errorKataSandi}</p>
+                  )}
                 </div>
 
                 <div id="kata-sandi-baru" className="flex flex-col mt-6">
@@ -225,6 +311,9 @@ export default function UbahKataSandi() {
                       {showPassword ? <EyeHide /> : <EyeShow />}
                     </button>
                   </div>
+                  {errorKataSandiBaru && (
+                    <p className="mt-2 ml-2 text-red">{errorKataSandi}</p>
+                  )}
                 </div>
 
                 <div
@@ -252,6 +341,9 @@ export default function UbahKataSandi() {
                       {showCPassword ? <EyeHide /> : <EyeShow />}
                     </button>
                   </div>
+                  {errorCKataSandiBaru && (
+                    <p className="mt-2 ml-2 text-red">{errorKataSandi}</p>
+                  )}
                 </div>
               </form>
             </div>
@@ -261,4 +353,19 @@ export default function UbahKataSandi() {
       </div>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const baseUrl = process.env.BASE_URL;
+  const session = await getSession({ req: context.req });
+  const email = session.user.email;
+
+  const response = await fetch(`${baseUrl}api/detail-profile/${email}`);
+  const result = await response.json();
+  return {
+    props: {
+      user: result.data,
+      email: email,
+    },
+  };
 }
