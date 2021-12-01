@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const ReservasiVaksinasiSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
+    ref: "User",
+    required: true,
   },
   provinsi: {
     type: String,

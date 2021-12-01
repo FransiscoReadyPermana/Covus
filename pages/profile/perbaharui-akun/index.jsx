@@ -7,8 +7,11 @@ import PopUp from "../../../Components/pop-up/pop-up";
 import { getSession } from "next-auth/client";
 import DropDownEdit from "../../../Components/dropDown";
 import bulan from "../../../data/Bulan";
+import { signOut } from "next-auth/client";
+import { useRouter } from "next/router";
 
 export default function EditAkun({ user, email }) {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [keluar, setKeluar] = useState(false);
   const [mountValue, setMountValue] = useState(user.bulan);
@@ -36,10 +39,11 @@ export default function EditAkun({ user, email }) {
   };
 
   const namaCheck = () => {
-    if (formUser.nama.length < 3) {
+    if (formUser.nama.length <= 3) {
       setErrorNama("Nama minimal 3 karakter");
     } else if (!/^[a-zA-Z ][a-zA-Z\\s ]+$/.test(formUser.nama)) {
       setErrorNama("Nama hanya boleh huruf");
+      console.log(errorNama);
     } else {
       setErrorNama(null);
     }
@@ -129,38 +133,52 @@ export default function EditAkun({ user, email }) {
 
   const handleRegister = async (e) => {
     checkInput(e);
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
 
-    const raw = JSON.stringify({
-      nama: formUser.nama,
-      tanggal: formUser.tanggal,
-      bulan: formUser.bulan,
-      tahun: formUser.tahun,
-      alamat: formUser.alamat,
-    });
-    console.log(formUser);
+    if (
+      formUser.nama.length > 3 &&
+      !!/^[a-zA-Z ][a-zA-Z\\s ]+$/.test(formUser.nama) &&
+      (!(formUser.tanggal === "") || !(formUser.tanggal === null)) &&
+      (!(formUser.tanggal < 1) || !(formUser.tanggal > 31)) &&
+      (!(formUser.bulan === "") || !(formUser.bulan === null)) &&
+      (!(formUser.tahun === "") || !(formUser.tahun === null)) &&
+      (!(formUser.tahun < 1900) || !(formUser.tahun > 2021)) &&
+      (!(formUser.alamat === "") || !(formUser.alamat === null)) &&
+      (!(formUser.alamat.length < 3) || !(formUser.alamat.length > 100))
+    ) {
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
 
-    const requestOptions = {
-      method: "PUT",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-    const baseUrl = process.env.BASE_URL;
-    const response = await fetch(
-      `${baseUrl}api/detail-profile/${email}`,
-      requestOptions
-    );
-    const result = await response.json();
+      const raw = JSON.stringify({
+        nama: formUser.nama,
+        tanggal: formUser.tanggal,
+        bulan: formUser.bulan,
+        tahun: formUser.tahun,
+        alamat: formUser.alamat,
+      });
 
-    if (result.success) {
-      alert("Berhasil");
-      clearError();
-      location.reload();
+      const requestOptions = {
+        method: "PUT",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
+      const baseUrl = process.env.BASE_URL;
+      const response = await fetch(
+        `${baseUrl}api/detail-profile/${email}`,
+        requestOptions
+      );
+      const result = await response.json();
+
+      if (result.success) {
+        alert("Berhasil");
+        // clearError();
+        location.reload();
+      } else {
+        alert(result.message);
+        console.log(result);
+      }
     } else {
-      alert(result.message);
-      console.log(result);
+      checkInput(e);
     }
   };
 
@@ -273,7 +291,7 @@ export default function EditAkun({ user, email }) {
                 pertanyaan1={"Apakah Anda yakin ingin"}
                 pertanyaan2={"keluar aplikasi?"}
                 gambar={"/images/tutup.svg"}
-                button_primary={"Simpan"}
+                button_primary={"Iya"}
                 button_secondary={"Tidak"}
               />
 
@@ -288,7 +306,7 @@ export default function EditAkun({ user, email }) {
                 pertanyaan1={"Apakah Anda yakin ingin"}
                 pertanyaan2={"menyimpan perubahan?"}
                 gambar={"/images/pertanyaan.svg"}
-                button_primary={"Iya"}
+                button_primary={"Simpan"}
                 button_secondary={"Tidak"}
               />
 
