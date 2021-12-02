@@ -8,10 +8,10 @@ export default function Loading() {
         <Image
           src="/images/loading.gif"
           alt="Loading..."
-          width="200"
-          height="200"
+          width="300"
+          height="300"
         />
-        <p>loading...</p>
+        <p className="font-semibold text-xl">Memuat Halaman</p>
       </div>
     </div>
   );

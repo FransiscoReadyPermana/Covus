@@ -55,6 +55,8 @@
 
 .SK {
   overflow-y: scroll;
+  height: fit-content;
+  max-height: 50%;
 }
 
 .SK::-webkit-scrollbar {

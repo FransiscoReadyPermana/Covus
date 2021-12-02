@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import style from "../profile.module.css";
 import Close from "../../icons/Close";
 
-export default function PopUpPenyakit({ open, onClickBackground, onClick }) {
+export default function PopUpPenyakit({
+  open,
+  onClickBackground,
+  onClick,
+  item,
+}) {
   if (!open) {
     return null;
   }
@@ -16,7 +21,7 @@ export default function PopUpPenyakit({ open, onClickBackground, onClick }) {
       />
       <div
         id="container"
-        className={`fixed bg-white py-10 px-20 h-1/2 flex flex-col items-center ${style.container} ${style.SK}`}
+        className={`fixed bg-white py-10 px-20 flex flex-col items-center ${style.container} ${style.SK}`}
       >
         <button
           className={`absolute right-8 top-8 rounded-full ${style.close}`}
@@ -36,7 +41,7 @@ export default function PopUpPenyakit({ open, onClickBackground, onClick }) {
           <span
             className={`text-l text-white bg-dark-grey rounded-full ml-1 ${style.jenis_vaksin}`}
           >
-            Astrazeneca
+            {item.namaVaksin}
           </span>
           <div className="px-6">
             <hr
@@ -48,21 +53,13 @@ export default function PopUpPenyakit({ open, onClickBackground, onClick }) {
               Saya memiliki kontradiksi Vaksin berupa :
             </b>
           </div>
-          <p
-            className={`text-justify font-normal px-10 mt-1 text-dark-grey ${style.kontradiksi}`}
-          >
-            Menderita COVID-19 selama 3 bulan terakhir
-          </p>
-          <p
-            className={`text-justify font-normal px-10 mt-1 text-dark-grey ${style.kontradiksi}`}
-          >
-            Menderita COVID-19 selama 3 bulan terakhir
-          </p>
-          <p
-            className={`text-justify font-normal px-10 mt-1 text-dark-grey ${style.kontradiksi}`}
-          >
-            Menderita COVID-19 selama 3 bulan terakhir
-          </p>
+          {item.kontradiksi.map((data) => (
+            <p
+              className={`text-justify font-normal px-10 mt-1 text-dark-grey ${style.kontradiksi}`}
+            >
+              {data}
+            </p>
+          ))}
         </p>
       </div>
     </>

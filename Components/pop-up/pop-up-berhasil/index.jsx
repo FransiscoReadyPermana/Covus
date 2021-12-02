@@ -6,7 +6,11 @@ import EyeShow from "../../icons/EyeShow";
 import EyeHide from "../../icons/EyeHide";
 import Image from "next/image";
 
-export default function PopUpBerhasil({ openBerhasil, onClickBackground }) {
+export default function PopUpBerhasil({
+  openBerhasil,
+  onClickBackground,
+  text,
+}) {
   if (!openBerhasil) {
     return null;
   }
@@ -25,7 +29,7 @@ export default function PopUpBerhasil({ openBerhasil, onClickBackground }) {
         <h1
           className={`text-center text-dark-grey mb-4 leading-loose ${style.judul}`}
         >
-          Data Berhasil Diperbaharui!
+          {text}
         </h1>
 
         <div id="illustrasi" className={"relative h-48 w-48"}>

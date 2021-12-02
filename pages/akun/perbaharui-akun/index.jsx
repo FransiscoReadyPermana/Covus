@@ -256,7 +256,7 @@ export default function EditAkun({ user, email }) {
                 </div>
               </Link>
 
-              <Link href={`/profile/riwayat-vaksinasi`} passHref>
+              <Link href={`/profile/riwayat-vaksin`} passHref>
                 <div
                   id="riwayat-vaksin"
                   className={`flex flex-row pl-6 py-3 w-full mt-2 ${styles.container_icon}`}
@@ -274,7 +274,7 @@ export default function EditAkun({ user, email }) {
                     color="dark-grey"
                     className="text-left font-normal text-xl flex items-center ml-4 text-dark-grey"
                   >
-                    Vaksinasi
+                    Riwayat Vaksin
                   </p>
                 </div>
               </Link>

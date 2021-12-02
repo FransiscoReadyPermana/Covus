@@ -6,9 +6,66 @@ import styles from "../../../styles/validasi.module.css";
 import Link from "next/link";
 import uuid from "react-uuid";
 import PopUpSK from "../../../Components/pop-up/pop-up-SK";
+import { useRouter } from "next/router";
+import { getSession } from "next-auth/client";
 
-export default function ValidasiVaksinasi({ data }) {
+export default function ValidasiVaksinasi({ data, user }) {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const [formUser, setFormUser] = useState({
+    namaVaksin: "",
+    kontradiksi: [],
+  });
+
+  const Kontradiksi = (value) => {
+    setFormUser((current) => {
+      const data = current;
+      data.kontradiksi.push(value);
+      return data;
+    });
+  };
+
+  const handleRegister = async (e) => {
+    // checkInput(e);
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      userId: user._id,
+      provinsi: data[0].provinsi,
+      nama: data[0].nama,
+      jenisVaksin: data[0].jenisVaksin,
+      tanggal: data[0].tanggal,
+      waktu: data[0].waktu,
+      lokasi1: data[0].lokasi1,
+      lokasi2: data[0].lokasi2,
+      namaVaksin: formUser.namaVaksin,
+      kontradiksi: formUser.kontradiksi,
+    });
+
+    const requestOptions = {
+      method: "POST",
+      body: raw,
+      headers: myHeaders,
+    };
+
+    const baseUrl = process.env.BASE_URL;
+    const response = await fetch(
+      `${baseUrl}/api/reservasi-vaksinasi`,
+      requestOptions
+    );
+    const result = await response.json();
+    console.log(result);
+
+    if (result.success) {
+      alert("Berhasil");
+      location.reload();
+    } else {
+      alert(result.message);
+      console.log(result);
+    }
+  };
+
   return (
     <div className="h-screen w-full">
       <section
@@ -171,13 +228,20 @@ export default function ValidasiVaksinasi({ data }) {
                   <div
                     id="nama-vaksin"
                     className="flex items-center"
-                    key={uuid}
+                    key={uuid()}
                   >
                     <input
                       type="radio"
                       id={item}
                       name="jenis-vaksin"
                       value={item}
+                      checked={formUser.namaVaksin === item}
+                      onChange={(e) =>
+                        setFormUser({
+                          ...formUser,
+                          namaVaksin: e.target.value,
+                        })
+                      }
                     />
                     <label htmlFor={item}>{item}</label>
                   </div>
@@ -195,8 +259,10 @@ export default function ValidasiVaksinasi({ data }) {
                     type="checkbox"
                     id="riwayat-satu"
                     name="penyakit-vaksin"
-                    value="riwayat-satu"
+                    value="Menderita COVID-19 selama 3 bulan terakhir"
+                    onChange={(e) => Kontradiksi(e.target.value)}
                   />
+
                   <label htmlFor="riwayat-satu">
                     Menderita COVID-19 selama 3 bulan terakhir
                   </label>
@@ -207,7 +273,9 @@ export default function ValidasiVaksinasi({ data }) {
                     type="checkbox"
                     id="riwayat-dua"
                     name="penyakit-vaksin"
-                    value="riwayat-dua"
+                    value="Gejala ISPA seperti Batuk / Pilek / Sesak Napas selama 7
+                    hari terakhir"
+                    onChange={(e) => Kontradiksi(e.target.value)}
                   />
                   <label htmlFor="riwayat-dua">
                     Gejala ISPA seperti Batuk / Pilek / Sesak Napas selama 7
@@ -220,12 +288,14 @@ export default function ValidasiVaksinasi({ data }) {
                     type="checkbox"
                     id="riwayat-tiga"
                     name="penyakit-vaksin"
-                    value="riwayat-tiga"
+                    value="Kontak erat dengan Keluarga Serumah / Suspek / Konfirmasi /
+                    Sedang dalam perawatan penyakit COVID-19"
                     className="absolute h-4"
+                    onChange={(e) => Kontradiksi(e.target.value)}
                   />
 
                   <label htmlFor="riwayat-tiga" className="pl-5">
-                    Kontak erat dengan keluarga Serumah / Suspek / Konfirmasi /
+                    Kontak erat dengan Keluarga Serumah / Suspek / Konfirmasi /
                     Sedang dalam perawatan penyakit COVID-19
                   </label>
                 </div>
@@ -235,7 +305,9 @@ export default function ValidasiVaksinasi({ data }) {
                     type="checkbox"
                     id="riwayat-empat"
                     name="penyakit-vaksin"
-                    value="riwayat-empat"
+                    value="Sedang dalam terapi jangka panjang terhadap penyakit
+                    kelainan darah"
+                    onChange={(e) => Kontradiksi(e.target.value)}
                   />
                   <label htmlFor="riwayat-empat">
                     Sedang dalam terapi jangka panjang terhadap penyakit
@@ -248,7 +320,9 @@ export default function ValidasiVaksinasi({ data }) {
                     type="checkbox"
                     id="riwayat-lima"
                     name="penyakit-vaksin"
-                    value="riwayat-lima"
+                    value="Memiliki penyakit Jantung (Gagal jantung / Penyakit jantung
+                      coroner)"
+                    onChange={(e) => Kontradiksi(e.target.value)}
                   />
                   <label htmlFor="riwayat-lima">
                     Memiliki penyakit Jantung (Gagal jantung / Penyakit jantung
@@ -261,7 +335,9 @@ export default function ValidasiVaksinasi({ data }) {
                     type="checkbox"
                     id="riwayat-enam"
                     name="penyakit-vaksin"
-                    value="riwayat-enam"
+                    value="Memiliki penyakit Autoimun Sistemik (SLE / Lupus / Sjogren /
+                      Vaskulitis)"
+                    onChange={(e) => Kontradiksi(e.target.value)}
                   />
                   <label htmlFor="riwayat-enam">
                     Memiliki penyakit Autoimun Sistemik (SLE / Lupus / Sjogren /
@@ -274,7 +350,8 @@ export default function ValidasiVaksinasi({ data }) {
                     type="checkbox"
                     id="riwayat-tujuh"
                     name="penyakit-vaksin"
-                    value="riwayat-tujuh"
+                    value="Tidak Memiliki Riwayat Penyakit"
+                    onChange={(e) => Kontradiksi(e.target.value)}
                   />
                   <label htmlFor="riwayat-tujuh">
                     Tidak Memiliki Riwayat Penyakit penyerta dan kondisi diatas
@@ -290,7 +367,14 @@ export default function ValidasiVaksinasi({ data }) {
             />
 
             <div id="sk" className="flex items-center mt-4">
-              <input type="checkbox" id="radio" className={`${styles.radio}`} />
+              <input
+                type="checkbox"
+                id="radio"
+                className={`${styles.radio}`}
+                onChange={(e) =>
+                  setFormUser({ ...formUser, setuju: e.target.checked })
+                }
+              />
               <label htmlFor="radio" className={`${styles.sk}`}>
                 Dengan ini saya telah menyetujui
                 <span
@@ -307,6 +391,9 @@ export default function ValidasiVaksinasi({ data }) {
               type="submit"
               value="Daftar Sekarang"
               className="bg-purple text-white py-3 rounded-3xl mt-4"
+              onClick={(e) => {
+                handleRegister(e);
+              }}
             />
           </form>
         </div>
@@ -316,16 +403,23 @@ export default function ValidasiVaksinasi({ data }) {
   );
 }
 
-export async function getServerSideProps(ctx) {
-  const { id_vaksin } = ctx.query;
+export async function getServerSideProps(context) {
+  const { id_vaksin } = context.query;
   const baseUrl = process.env.BASE_URL;
   const lokasiVaksinasi = await fetch(`${baseUrl}api/lokasi-vaksinasi`);
 
   const resultKetiga = await lokasiVaksinasi.json();
   const data = resultKetiga.data.filter((item) => item._id === id_vaksin);
+
+  const session = await getSession({ req: context.req });
+  const email = session.user.email;
+  const response = await fetch(`${baseUrl}api/detail-profile/${email}`);
+  const result = await response.json();
+
   return {
     props: {
       data,
+      user: result.data,
     },
   };
 }

@@ -27,24 +27,24 @@ export default function AvatarDropDownMenu() {
 
   return (
     <div>
-      <div id="container" className={`absolute bg-purple w-96 ${style.menu}`}>
+      <div id="container" className={`absolute bg-purple w-80 ${style.menu}`}>
         <AvatarDropDownItems
           leftIcon={<Profile />}
-          onClick={() => router.push('/profile/akun-saya')}
+          onClick={() => router.push('/akun/akun-saya')}
         >
-          Lihat Profil
+          Akun Saya
         </AvatarDropDownItems>
         <AvatarDropDownItems
           leftIcon={<Edit />}
-          onClick={() => router.push('/profile/ubah-kata-sandi')}
+          onClick={() => router.push('/akun/ubah-kata-sandi')}
         >
           Ubah Kata Sandi
         </AvatarDropDownItems>
         <AvatarDropDownItems
           leftIcon={<Vaksin />}
-          onClick={() => router.push('/profile/riwayat-vaksinasi')}
+          onClick={() => router.push('/akun/riwayat-vaksin')}
         >
-          Riwayat Vaksinasi
+          Riwayat Vaksin
         </AvatarDropDownItems>
       </div>
     </div>

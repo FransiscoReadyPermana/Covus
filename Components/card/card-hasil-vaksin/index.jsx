@@ -3,7 +3,7 @@ import styles from "../hasilvaksin.module.css";
 import Image from "next/image";
 import PopUpPenyakit from "../../../Components/pop-up/pop-up-penyakit";
 
-export default function CardHasilVaksin() {
+export default function CardHasilVaksin({ item }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div
@@ -25,7 +25,7 @@ export default function CardHasilVaksin() {
           color="dark-grey"
           className="text-center font-medium text-xl text-white bg-purple px-10 py-2 rounded-full"
         >
-          Vaksinasi Pertama
+          {item.jenisVaksin}
         </p>
       </div>
 
@@ -49,14 +49,14 @@ export default function CardHasilVaksin() {
             color="dark-grey"
             className="text-left font-semibold text-l text-dark-grey mt-4"
           >
-            Nama
+            {item.nama}
           </p>
 
           <p
             color="dark-grey"
             className="text-left font-light text-l text-dark-grey mt-2"
           >
-            Lokasi2
+            {item.lokasi2}
           </p>
         </div>
 
@@ -80,7 +80,7 @@ export default function CardHasilVaksin() {
               color="dark-grey"
               className="text-left font-light text-l text-dark-grey mt-4 ml-8"
             >
-              Tanggal
+              {item.tanggal}
             </p>
           </div>
 
@@ -97,7 +97,7 @@ export default function CardHasilVaksin() {
               color="dark-grey"
               className="text-left font-light text-l text-dark-grey mt-2 ml-8"
             >
-              Waktu
+              {item.waktu}
             </p>
           </div>
         </div>
@@ -122,7 +122,7 @@ export default function CardHasilVaksin() {
               color="dark-grey"
               className="text-left font-light text-l text-dark-grey mt-4 ml-8"
             >
-              Lokasi1
+              {item.lokasi1}
             </p>
           </div>
         </div>
@@ -132,6 +132,7 @@ export default function CardHasilVaksin() {
         open={isOpen}
         onClickBackground={() => setIsOpen(false)}
         onClick={() => setIsOpen(false)}
+        item={item}
       />
 
       <button onClick={() => setIsOpen(true)}>

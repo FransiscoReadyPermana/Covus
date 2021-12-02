@@ -37,7 +37,7 @@ export default function AkunSaya({ user }) {
 
             <hr className="h-1 bg-dark-grey w-full mb-6 mt-6 opacity-25" />
 
-            <Link href={`/profile/akun-saya`} passHref>
+            <Link href={`/akun/akun-saya`} passHref>
               <div
                 id="akun"
                 className={`flex flex-row pl-6 py-3 w-full ${styles.active}`}
@@ -62,7 +62,7 @@ export default function AkunSaya({ user }) {
               </div>
             </Link>
 
-            <Link href={`/profile/ubah-kata-sandi`} passHref>
+            <Link href={`/akun/ubah-kata-sandi`} passHref>
               <div
                 id="ubah-kata-sandi"
                 className={`flex flex-row pl-6 py-3 w-full mt-2 ${styles.container_icon}`}
@@ -85,7 +85,7 @@ export default function AkunSaya({ user }) {
               </div>
             </Link>
 
-            <Link href={`/profile/riwayat-vaksinasi`} passHref>
+            <Link href={`/akun/riwayat-vaksin`} passHref>
               <div
                 id="riwayat-vaksin"
                 className={`flex flex-row pl-6 py-3 w-full mt-2 ${styles.container_icon}`}
@@ -103,7 +103,7 @@ export default function AkunSaya({ user }) {
                   color="dark-grey"
                   className="text-left font-normal text-xl flex items-center ml-4 text-dark-grey"
                 >
-                  Vaksinasi
+                  Riwayat Vaksin
                 </p>
               </div>
             </Link>
@@ -150,7 +150,7 @@ export default function AkunSaya({ user }) {
                 id="button"
                 className="flex flex-row items-center justify-between gap-8 w-1/3"
               >
-                <Link href={`/profile/perbaharui-akun`} passHref>
+                <Link href={`/akun/perbaharui-akun`} passHref>
                   <button
                     className={`w-full rounded-full py-2 h-full text-l text-white bg-purple ${styles.button}`}
                   >

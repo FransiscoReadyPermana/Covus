@@ -14,6 +14,7 @@ const Akun = async (req, res) => {
       try {
         const { email } = req.query;
         const userr = await User.findOne({ email });
+        // const userrID = await userr.findOne({ _id });
         res.status(200).json({ success: true, data: userr });
       } catch (error) {
         res.status(400).json({ success: false });
@@ -34,7 +35,7 @@ const Akun = async (req, res) => {
           alamat,
           kataSandi,
         });
-        
+
         return res.status(200).json({
           success: true,
           message: "Berhasil Memperbaharui Data",

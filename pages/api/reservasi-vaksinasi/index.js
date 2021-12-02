@@ -1,13 +1,14 @@
-import dbConnect from '../../../utils/dbConnect';
-import ReservasiVaksinasi from '../../../models/reservasiVaksinasi';
-
+import dbConnect from "../../../utils/dbConnect";
+import ReservasiVaksinasi from "../../../models/reservasi";
+import VaksinService from "../../../service/Vaksin";
 dbConnect();
 
-const reservasiVaksin = async (req, res) => {
+const ReservasiVaksin = async (req, res) => {
   const { method } = req;
+  const vaksinService = new VaksinService();
 
   switch (method) {
-    case 'GET':
+    case "GET":
       try {
         const reservasiVaksin = await ReservasiVaksinasi.find({});
         res.status(200).json({ success: true, data: reservasiVaksin });
@@ -16,14 +17,43 @@ const reservasiVaksin = async (req, res) => {
       }
       break;
 
-    case 'POST':
+    case "POST":
       try {
-        const reservasiVaksin = await ReservasiVaksinasi.create(req.body);
-        res.status(201).json({ success: true, data: reservasiVaksin });
+        // get user data from request
+        const {
+          userId,
+          provinsi,
+          nama,
+          namaVaksin,
+          tanggal,
+          waktu,
+          lokasi1,
+          lokasi2,
+          jenisVaksin,
+          kontradiksi,
+        } = req.body;
+
+        // create user
+        const vaksinID = await vaksinService.createVaksin({
+          userId,
+          provinsi,
+          nama,
+          namaVaksin,
+          tanggal,
+          waktu,
+          lokasi1,
+          lokasi2,
+          jenisVaksin,
+          kontradiksi,
+        });
+
+        return res.status(201).json({
+          success: true,
+          message: "berhasil",
+        });
       } catch (error) {
-        res.status(400).json({ success: false });
+        return res.status(400).json({ success: false, message: error.message });
       }
-      break;
 
     default:
       res.status(400).json({ success: false });
@@ -31,4 +61,4 @@ const reservasiVaksin = async (req, res) => {
   }
 };
 
-module.exports = reservasiVaksin;
+module.exports = ReservasiVaksin;

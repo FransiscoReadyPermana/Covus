@@ -5,10 +5,14 @@ import styles from "../../../styles/vaksinProfile.module.css";
 import Footer from "../../../Components/footer";
 import CardHasilVaksin from "../../../Components/card/card-hasil-vaksin";
 import PopUp from "../../../Components/pop-up/pop-up";
+import { signOut } from "next-auth/client";
+import { useRouter } from "next/router";
+import { getSession } from "next-auth/client";
+import uuid from "react-uuid";
 
-export default function UbahKataSandi() {
+export default function UbahKataSandi({ data, user }) {
   const [keluar, setKeluar] = useState(false);
-
+  const router = useRouter();
   return (
     <>
       <div className="h-screen w-full">
@@ -24,16 +28,18 @@ export default function UbahKataSandi() {
               id="kiri"
               className={`bg-white w-1/3 h-full flex flex-col items-start px-8 ${styles.container}`}
             >
-              <p
-                color="dark-grey"
-                className="text-center font-semibold text-2xl text-dark-grey mt-12"
-              >
-                Raihan Kemmy Rachmansyah
-              </p>
+              <div className="flex items-center justify-center w-full">
+                <p
+                  color="dark-grey"
+                  className="text-center font-semibold text-2xl text-dark-grey mt-12"
+                >
+                  {user.nama}
+                </p>
+              </div>
 
               <hr className="h-1 bg-dark-grey w-full mb-6 mt-6 opacity-25" />
 
-              <Link href={`/profile/akun-saya`} passHref>
+              <Link href={`/akun/akun-saya`} passHref>
                 <div
                   id="akun"
                   className={`flex flex-row pl-6 py-3 w-full ${styles.container_icon}`}
@@ -54,7 +60,7 @@ export default function UbahKataSandi() {
                 </div>
               </Link>
 
-              <Link href={`/profile/ubah-kata-sandi`} passHref>
+              <Link href={`/akun/ubah-kata-sandi`} passHref>
                 <div
                   id="ubah-kata-sandi"
                   className={`flex flex-row pl-6 py-3 w-full mt-2 ${styles.container_icon}`}
@@ -62,7 +68,7 @@ export default function UbahKataSandi() {
                   <div
                     id="icon"
                     className={
-                      'relative h-7 w-7 flex items-center justify-center'
+                      "relative h-7 w-7 flex items-center justify-center"
                     }
                   >
                     <Image src="/images/Edit.svg" alt="" layout="fill" />
@@ -77,7 +83,7 @@ export default function UbahKataSandi() {
                 </div>
               </Link>
 
-              <Link href={`/profile/riwayat-vaksinasi`} passHref>
+              <Link href={`/akun/riwayat-vaksin`} passHref>
                 <div
                   id="riwayat-vaksin"
                   className={`flex flex-row pl-6 py-3 w-full mt-2 ${styles.active}`}
@@ -85,7 +91,7 @@ export default function UbahKataSandi() {
                   <div
                     id="icon"
                     className={
-                      'relative h-7 w-7 flex items-center justify-center'
+                      "relative h-7 w-7 flex items-center justify-center"
                     }
                   >
                     <Image
@@ -99,7 +105,7 @@ export default function UbahKataSandi() {
                     color="dark-grey"
                     className="text-left font-normal text-xl flex items-center ml-4 text-white"
                   >
-                    Vaksinasi
+                    Riwayat Vaksin
                   </p>
                 </div>
               </Link>
@@ -110,14 +116,14 @@ export default function UbahKataSandi() {
                 onClickBatal={() => setKeluar(false)}
                 onClickSimpan={() => {
                   signOut({ redirect: false });
-                  router.replace('/');
+                  router.replace("/");
                   setKeluar(false);
                 }}
-                pertanyaan1={'Apakah Anda yakin ingin'}
-                pertanyaan2={'keluar aplikasi?'}
-                gambar={'/images/tutup.svg'}
-                button_primary={'Iya'}
-                button_secondary={'Tidak'}
+                pertanyaan1={"Apakah Anda yakin ingin"}
+                pertanyaan2={"keluar aplikasi?"}
+                gambar={"/images/tutup.svg"}
+                button_primary={"Iya"}
+                button_secondary={"Tidak"}
               />
 
               <button
@@ -140,25 +146,28 @@ export default function UbahKataSandi() {
                   color="dark-grey"
                   className="text-center font-semibold text-2xl text-dark-grey"
                 >
-                  Riwayat Vaksinasi
+                  Riwayat Vaksin
                 </p>
                 <div
                   id="button"
                   className="flex flex-row items-center justify-between gap-8 w-1/3"
                 >
-                  <button
-                    className={`w-full rounded-full py-2 h-full text-l text-purple bg-white ${styles.button}`}
-                  >
-                    Daftar Vaksinasi
-                  </button>
+                  <Link href={`/vaksinasi`} passHref>
+                    <button
+                      className={`w-full rounded-full py-2 h-full text-l text-purple bg-white ${styles.button}`}
+                    >
+                      Daftar Vaksinasi
+                    </button>
+                  </Link>
                 </div>
               </div>
 
               <hr className="h-1 bg-dark-grey w-full mb-6 mt-6 opacity-25" />
 
               <div className="flex flex-col items-center gap-12 w-full mt-4">
-                <CardHasilVaksin />
-                <CardHasilVaksin />
+                {data.map((item) => (
+                  <CardHasilVaksin item={item} key={uuid()} />
+                ))}
               </div>
             </div>
           </div>
@@ -167,4 +176,23 @@ export default function UbahKataSandi() {
       </div>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  // var myHeaders = new Headers();
+  const baseUrl = process.env.BASE_URL;
+  const session = await getSession({ req: context.req });
+  const email = session.user.email;
+  const response = await fetch(`${baseUrl}api/detail-profile/${email}`);
+  const reservasi = await fetch(`${baseUrl}api/reservasi-vaksinasi`);
+  const result = await reservasi.json();
+  const user = await response.json();
+
+  const data = result.data.filter((item) => item.userId === user.data._id);
+  return {
+    props: {
+      data,
+      user: user.data,
+    },
+  };
 }

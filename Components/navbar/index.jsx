@@ -24,7 +24,7 @@ export default function Navbar() {
         onClickBackground={() => setIsOpen(false)}
         onClickDaftar={() => {
           setIsOpen(false);
-          router.push('/daftar-akun');
+          router.push('/daftar');
         }}
       />
       <div
@@ -51,8 +51,8 @@ export default function Navbar() {
           </NavItems>
           <NavItems
             className="ml-4"
-            to="/RsRujukan"
-            isActive={router.pathname === '/RsRujukan'}
+            to="/rs-rujukan"
+            isActive={router.pathname === '/rs-rujukan'}
           >
             RS Rujukan
           </NavItems>
@@ -87,7 +87,7 @@ export default function Navbar() {
             </AvatarDropDown>
           ) : (
             <div className="flex flex-row">
-              <Link href="/daftar-akun" passHref>
+              <Link href="/daftar" passHref>
                 <button
                   type="button"
                   className={`bg-dark-grey py-3 px-10 text-white mr-8 ${style.button_secondary}`}

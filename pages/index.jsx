@@ -134,7 +134,7 @@ export default function Home({ dataOrang, total }) {
                 Rumah Sakit Rujukan COVID-19 di Indonesia.
               </Paragraph>
             </div>
-            <Button to="/RsRujukan" color="dark-grey">
+            <Button to="/rs-rujukan" color="dark-grey">
               Lihat Selengkapnya
             </Button>
           </div>

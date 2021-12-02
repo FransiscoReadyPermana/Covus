@@ -10,11 +10,11 @@ const ReservasiVaksinasiSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  jenisVaksin: {
+  nama: {
     type: String,
     required: true,
   },
-  nama: {
+  jenisVaksin: {
     type: String,
     required: true,
   },
@@ -38,12 +38,14 @@ const ReservasiVaksinasiSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  kontradiksiVaksin: {
-    type: Array,
-    required: true,
-  },
+  kontradiksi: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
 });
 
 module.exports =
-  mongoose.models.ReservasiVaksinasiSchema ||
+  mongoose.models.ReservasiVaksinasi ||
   mongoose.model("ReservasiVaksinasi", ReservasiVaksinasiSchema);
