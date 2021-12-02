@@ -5,9 +5,12 @@ import styles from "../../../styles/vaksinProfile.module.css";
 import Footer from "../../../Components/footer";
 import CardHasilVaksin from "../../../Components/card/card-hasil-vaksin";
 import PopUp from "../../../Components/pop-up/pop-up";
+import { signOut } from 'next-auth/client';
+import { useRouter } from 'next/router';
 
 export default function UbahKataSandi() {
   const [keluar, setKeluar] = useState(false);
+  const router = useRouter();
 
   return (
     <>

@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import stylesGlobal from './tableGlobal.module.css';
 import stylesProvinsi from './tableProvinsi.module.css';
 import stylesHospitals from './tableHospitals.module.css';
+import stylePeserta from './tablePesertaVaksin.module.css';
 import Pagination from '../pagination';
 import Virus from '../icons/virus';
 import DropDownEdit from '../dropDown';
@@ -24,6 +25,13 @@ export default function TableData({ data, type }) {
     []
   );
   const [dataDropdownHospitals, setDataDropdownHospitals] = useState('');
+  const [currentPagePesertaVaksin, setCurrentPagePesertaVaksin] = useState(1);
+  const [filteredDataPesertaVaksin, setFilteredDataPesertaVaksin] = useState(data);
+  const [userInputPesertaVaksin, setUserInputPesertaVaksin] = useState('');
+  const [currentTableDataPesertaVaksin, setCurrentTableDataPesertaVaksin] = useState(
+    []
+  );
+  const [dataDropdownPesertaVaksin, setDataDropdownPesertaVaksin] = useState('');
 
   useEffect(() => {
     const firstPageIndex = (currentPageProvinsi - 1) * PageSize;
@@ -281,6 +289,97 @@ export default function TableData({ data, type }) {
           <div id="virus" className={`${stylesHospitals.containerVirusLeft}`}>
             <Virus className={`absolute ${stylesHospitals.virusBottomLeft}`} />
           </div>
+        </div>
+      </div>
+    );
+  }
+  if (type === 'peserta-vaksinasi') {
+    const onSearchHandler = (e) => {
+      setUserInputPesertaVaksin(e.target.value);
+
+      let filterHospital = null;
+      if (e.target.value.length > 0) {
+        const filterHospitalProv = data.filter((data) =>
+          new RegExp(e.target.value, 'gi').test(data.provinsi)
+        );
+        const filterHospitalNama = data.filter((data) =>
+          new RegExp(e.target.value, 'gi').test(data.nama)
+        );
+        const filterHospitalAlamat = data.filter((data) =>
+          new RegExp(e.target.value, 'gi').test(data.alamat)
+        );
+
+        filterHospital = Array.from(
+          new Set([
+            ...filterHospitalProv,
+            ...filterHospitalNama,
+            ...filterHospitalAlamat,
+          ])
+        );
+      } else {
+        filterHospital = data;
+      }
+      setFilteredDataPesertaVaksin(filterHospital);
+    };
+
+
+    return (
+      <div>
+        <div className="flex flex-col w-full relative">
+
+          <div className="flex gap-12 items-center mb-10">
+            <SearchInput
+              className="w-full"
+              onChangeHandler={(e) => onSearchHandler(e)}
+              value={userInputPesertaVaksin}
+              classNameContainer="w-full px-40"
+              classNameInput={`${stylePeserta.input}`}
+            />
+          </div>
+
+          <div
+            id="table container"
+            className={`${stylePeserta.container} z-10`}
+          >
+            {/* {filteredDataHospitals.length != 0 && ( */}
+            <table className={`w-full ${stylePeserta.table}`}>
+              <thead className="bg-purple text-center text-xl text-white font-bold">
+                <tr>
+                  <th className={`${stylePeserta.head}`}>Nama Peserta</th>
+                  <th className={`${stylePeserta.head}`}>Nama Vaksin</th>
+                  <th>Jenis Vaksin</th>
+                  <th>Tanggal</th>
+                  <th>Waktu</th>
+                  <th>Lokasi</th>
+                  <th>Kontradiksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* {currentTableDataPesertaVaksin.map((item) => {
+                  return ( */}
+                    <tr key={uuid()}>
+                      <td>fransisco ready permana</td>
+                      <td>sinovac</td>
+                      <td>Vaksinasi Pertama</td>
+                      <td>10 september 2001</td>
+                      <td>09.00</td>
+                      <td>Rs Fatmawati Cilandak Banten</td>
+                      <td>keren</td>
+                    </tr>
+                  {/* );
+                })} */}
+              </tbody>
+            </table>
+            {/* )} */}
+          </div>
+
+          <Pagination
+            className="pagination-bar"
+            currentPage={currentPagePesertaVaksin}
+            totalCount={filteredDataPesertaVaksin.length}
+            pageSize={PageSize}
+            onPageChange={(page) => setCurrentPagePesertaVaksin(page)}
+          />
         </div>
       </div>
     );

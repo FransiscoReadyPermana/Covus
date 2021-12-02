@@ -1,0 +1,76 @@
+.container {
+  border: 4px solid #a5afed;
+  border-radius: 2rem;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.table {
+  border-collapse: collapse;
+  border-radius: 1rem;
+  overflow-x: scroll;
+}
+
+.table tbody tr td {
+  border: 8px #f7f8ff solid;
+  border-bottom: none;
+  border-left: none;
+  padding: 2rem;
+}
+
+.table tbody tr:first-child td {
+  border-top: none;
+}
+
+.table tbody tr td:first-child {
+  padding: 1rem;
+  text-align: center;
+}
+
+.containerVirusRight {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.containerVirusLeft {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.virusRightTop {
+  margin-right: -10rem;
+  margin-top: 7rem;
+}
+
+.virusLeftTop {
+  margin-top: 2.5rem;
+  margin-left: -10rem;
+}
+
+.virusPositionBottom {
+  margin-right: -7rem;
+  margin-top: -12rem;
+  z-index: 0;
+}
+
+.virusBottomRight {
+  margin-top: -12rem;
+  width: 20rem;
+}
+
+.virusBottomLeft {
+  margin-top: -14rem;
+  margin-left: -5rem;
+  width: 10rem;
+}
+
+.head {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.input{
+  width: 90% !important;
+}

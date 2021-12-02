@@ -7,8 +7,11 @@ import Footer from '../../../Components/footer';
 import PopUp from '../../../Components/pop-up/pop-up';
 import EyeShow from '../../../Components/icons/EyeShow';
 import EyeHide from '../../../Components/icons/EyeHide';
+import { signOut } from 'next-auth/client';
+import { useRouter } from 'next/router';
 
-export default function UbahKataSandi({ user, email }) {
+export default function UbahKataSandi({ user, nama }) {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [keluar, setKeluar] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -26,20 +29,15 @@ export default function UbahKataSandi({ user, email }) {
   });
 
   const kataSandiCheck = () => {
-    const isMatch = bcrypt.compare(formUser.kataSandiLama, user.kataSandi);
-    const isMatchNew = bcrypt.compare(formUser.kataSandiBaru, user.kataSandi);
-
     if (formUser.kataSandiLama === '' || formUser.kataSandiLama === null) {
       setErrorKataSandiLama('Kata sandi lama tidak boleh kosong');
     } else if (
       formUser.kataSandiBaru.length < 8 ||
       formUser.kataSandiBaru.length > 20
     ) {
-      setErrorKataSandiLama(
+      setErrorKataSandiBaru(
         'Kata Sandi minimal 8 karakter dan maksimal 20 karakter'
       );
-    } else if (isMatch) {
-      setErrorKataSandiLama('Kata sandi lama tidak sesuai');
     } else if (
       formUser.cKataSandiBaru === '' ||
       formUser.cKataSandiBaru === null
@@ -48,10 +46,6 @@ export default function UbahKataSandi({ user, email }) {
     } else if (formUser.cKataSandiBaru !== formUser.kataSandiBaru) {
       setErrorKataSandiBaru('Kata Sandi tidak sama');
       setErrorCKataSandiBaru('Kata Sandi tidak sama');
-    } else if (isMatchNew) {
-      setErrorKataSandiBaru(
-        'Kata sandi baru tidak boleh sama dengan kata sandi lama'
-      );
     } else {
       setErrorKataSandiLama(null);
       setErrorKataSandiBaru(null);
@@ -63,33 +57,45 @@ export default function UbahKataSandi({ user, email }) {
     e.preventDefault();
     kataSandiCheck();
 
-    const myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
+    if (
+      !(formUser.kataSandiLama === '' || formUser.kataSandiLama === null) &&
+      !(
+        formUser.kataSandiBaru.length < 8 || formUser.kataSandiBaru.length > 20
+      ) &&
+      !(formUser.cKataSandiBaru === '' || formUser.cKataSandiBaru === null) &&
+      !(formUser.cKataSandiBaru !== formUser.kataSandiBaru)
+    ) {
+      const myHeaders = new Headers();
+      myHeaders.append('Content-Type', 'application/json');
 
-    const raw = JSON.stringify({
-      kataSandi: formUser.kataSandiBaru,
-    });
-    console.log(formUser);
 
-    const requestOptions = {
-      method: 'PUT',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow',
-    };
-    const baseUrl = process.env.BASE_URL;
-    const response = await fetch(
-      `${baseUrl}api/detail-profile/${email}`,
-      requestOptions
-    );
-    const result = await response.json();
 
-    if (result.success) {
-      alert('Berhasil');
-      location.reload();
-    } else {
-      alert(result.message);
-      console.log(result);
+      var raw = JSON.stringify({
+        kataSandi: formUser.kataSandiLama,
+        kataSandiBaru: formUser.kataSandiBaru,
+      });
+
+      const requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow',
+      };
+
+      const baseUrl = process.env.BASE_URL;
+      const response = await fetch(
+        `${baseUrl}api/ganti-kata-sandi/${nama}`,
+        requestOptions
+      );
+      const result = await response.json();
+
+      if (result.success) {
+        alert('Berhasil');
+        location.reload();
+      } else {
+        alert(result.message);
+        console.log(result);
+      }
     }
   };
 
@@ -110,9 +116,9 @@ export default function UbahKataSandi({ user, email }) {
             >
               <p
                 color="dark-grey"
-                className="text-center font-semibold text-2xl text-dark-grey mt-12"
+                className="text-center font-semibold text-2xl text-dark-grey mt-12 w-full"
               >
-                Raihan Kemmy Rachmansyah
+                {user.nama}
               </p>
 
               <hr className="h-1 bg-dark-grey w-full mb-6 mt-6 opacity-25" />
@@ -216,7 +222,9 @@ export default function UbahKataSandi({ user, email }) {
                 open={isOpen}
                 onClickBackground={() => setIsOpen(false)}
                 onClickBatal={() => setIsOpen(false)}
-                onClickSimpan={() => setIsOpen(false)}
+                onClickSimpan={(e) => {
+                  setIsOpen(false), onSaveHandler(e);
+                }}
                 pertanyaan1={'Apakah Anda yakin ingin'}
                 pertanyaan2={'menyimpan perubahan?'}
                 gambar={'/images/pertanyaan.svg'}
@@ -275,6 +283,12 @@ export default function UbahKataSandi({ user, email }) {
                       id="lama"
                       placeholder="Masukkan kata sandi lama"
                       className={`rounded-full w-full text-xl ml-4 ${styles.input}`}
+                      onChange={(e) =>
+                        setFormUser({
+                          ...formUser,
+                          kataSandiLama: e.target.value,
+                        })
+                      }
                     />
                     <button
                       type="button"
@@ -285,7 +299,7 @@ export default function UbahKataSandi({ user, email }) {
                     </button>
                   </div>
                   {errorKataSandiLama && (
-                    <p className="mt-2 ml-2 text-red">{errorKataSandi}</p>
+                    <p className="mt-2 ml-2 text-red">{errorKataSandiLama}</p>
                   )}
                 </div>
 
@@ -302,6 +316,12 @@ export default function UbahKataSandi({ user, email }) {
                       id="baru"
                       placeholder="Masukkan kata sandi baru"
                       className={`rounded-full w-full text-xl ml-4 ${styles.input}`}
+                      onChange={(e) =>
+                        setFormUser({
+                          ...formUser,
+                          kataSandiBaru: e.target.value,
+                        })
+                      }
                     />
                     <button
                       type="button"
@@ -312,7 +332,7 @@ export default function UbahKataSandi({ user, email }) {
                     </button>
                   </div>
                   {errorKataSandiBaru && (
-                    <p className="mt-2 ml-2 text-red">{errorKataSandi}</p>
+                    <p className="mt-2 ml-2 text-red">{errorKataSandiBaru}</p>
                   )}
                 </div>
 
@@ -332,6 +352,12 @@ export default function UbahKataSandi({ user, email }) {
                       id="konfirmasi-baru"
                       placeholder="Masukkan konfirmasi kata sandi baru"
                       className={`rounded-full w-full text-xl ml-4 ${styles.input}`}
+                      onChange={(e) =>
+                        setFormUser({
+                          ...formUser,
+                          cKataSandiBaru: e.target.value,
+                        })
+                      }
                     />
                     <button
                       type="button"
@@ -342,7 +368,7 @@ export default function UbahKataSandi({ user, email }) {
                     </button>
                   </div>
                   {errorCKataSandiBaru && (
-                    <p className="mt-2 ml-2 text-red">{errorKataSandi}</p>
+                    <p className="mt-2 ml-2 text-red">{errorCKataSandiBaru}</p>
                   )}
                 </div>
               </form>
@@ -359,6 +385,7 @@ export async function getServerSideProps(context) {
   const baseUrl = process.env.BASE_URL;
   const session = await getSession({ req: context.req });
   const email = session.user.email;
+  const nama = session.user.name;
 
   const response = await fetch(`${baseUrl}api/detail-profile/${email}`);
   const result = await response.json();
@@ -366,6 +393,7 @@ export async function getServerSideProps(context) {
     props: {
       user: result.data,
       email: email,
+      nama: nama,
     },
   };
 }

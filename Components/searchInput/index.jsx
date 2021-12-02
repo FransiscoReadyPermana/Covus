@@ -7,9 +7,11 @@ export default function SearchInput({
   onChangeHandler,
   value,
   onClick,
+  classNameContainer,
+  classNameInput,
 }) {
   return (
-    <div className="flex gap-12">
+    <div className={`flex gap-12 ${classNameContainer}`}>
       <form
         className={`${className} ${styles.form} flex rounded-full`}
         action="#"
@@ -26,7 +28,7 @@ export default function SearchInput({
         <input
           type="text"
           placeholder="Cari disini"
-          className={`${styles.input} rounded-xl`}
+          className={`${styles.input} ${classNameInput} rounded-xl`}
           value={value}
           onChange={onChangeHandler}
         />
