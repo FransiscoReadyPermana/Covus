@@ -13,6 +13,7 @@ import uuid from "react-uuid";
 export default function UbahKataSandi({ data, user }) {
   const [keluar, setKeluar] = useState(false);
   const router = useRouter();
+
   return (
     <>
       <div className="h-screen w-full">
