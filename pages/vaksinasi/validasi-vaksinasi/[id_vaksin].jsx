@@ -17,11 +17,16 @@ export default function ValidasiVaksinasi({ data, user }) {
     kontradiksi: [],
   });
 
-  const Kontradiksi = (value) => {
-    setFormUser((current) => {
-      const data = current;
-      data.kontradiksi.push(value);
-      return data;
+  const Kontradiksi = (e) => {
+    let kontradiksi = formUser.kontradiksi;
+    if (e.target.checked) {
+      kontradiksi = [...formUser.kontradiksi, e.target.value];
+    } else {
+      kontradiksi = formUser.kontradiksi.filter((d) => d !== e.target.value);
+    }
+    setFormUser({
+      ...formUser,
+      kontradiksi,
     });
   };
 
@@ -260,7 +265,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     id="riwayat-satu"
                     name="penyakit-vaksin"
                     value="Menderita COVID-19 selama 3 bulan terakhir"
-                    onChange={(e) => Kontradiksi(e.target.value)}
+                    onChange={(e) => Kontradiksi(e)}
                   />
 
                   <label htmlFor="riwayat-satu">
@@ -275,7 +280,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     name="penyakit-vaksin"
                     value="Gejala ISPA seperti Batuk / Pilek / Sesak Napas selama 7
                     hari terakhir"
-                    onChange={(e) => Kontradiksi(e.target.value)}
+                    onChange={(e) => Kontradiksi(e)}
                   />
                   <label htmlFor="riwayat-dua">
                     Gejala ISPA seperti Batuk / Pilek / Sesak Napas selama 7
@@ -291,7 +296,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     value="Kontak erat dengan Keluarga Serumah / Suspek / Konfirmasi /
                     Sedang dalam perawatan penyakit COVID-19"
                     className="absolute h-4"
-                    onChange={(e) => Kontradiksi(e.target.value)}
+                    onChange={(e) => Kontradiksi(e)}
                   />
 
                   <label htmlFor="riwayat-tiga" className="pl-5">
@@ -307,7 +312,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     name="penyakit-vaksin"
                     value="Sedang dalam terapi jangka panjang terhadap penyakit
                     kelainan darah"
-                    onChange={(e) => Kontradiksi(e.target.value)}
+                    onChange={(e) => Kontradiksi(e)}
                   />
                   <label htmlFor="riwayat-empat">
                     Sedang dalam terapi jangka panjang terhadap penyakit
@@ -322,7 +327,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     name="penyakit-vaksin"
                     value="Memiliki penyakit Jantung (Gagal jantung / Penyakit jantung
                       coroner)"
-                    onChange={(e) => Kontradiksi(e.target.value)}
+                    onChange={(e) => Kontradiksi(e)}
                   />
                   <label htmlFor="riwayat-lima">
                     Memiliki penyakit Jantung (Gagal jantung / Penyakit jantung
@@ -337,7 +342,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     name="penyakit-vaksin"
                     value="Memiliki penyakit Autoimun Sistemik (SLE / Lupus / Sjogren /
                       Vaskulitis)"
-                    onChange={(e) => Kontradiksi(e.target.value)}
+                    onChange={(e) => Kontradiksi(e)}
                   />
                   <label htmlFor="riwayat-enam">
                     Memiliki penyakit Autoimun Sistemik (SLE / Lupus / Sjogren /
@@ -351,7 +356,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     id="riwayat-tujuh"
                     name="penyakit-vaksin"
                     value="Tidak Memiliki Riwayat Penyakit"
-                    onChange={(e) => Kontradiksi(e.target.value)}
+                    onChange={(e) => Kontradiksi(e)}
                   />
                   <label htmlFor="riwayat-tujuh">
                     Tidak Memiliki Riwayat Penyakit penyerta dan kondisi diatas
