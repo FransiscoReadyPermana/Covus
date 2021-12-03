@@ -96,11 +96,11 @@ export default function EditAkun({ user, email }) {
     alamatCheck();
   };
 
-  let placeholderColor;
+  let classNameControl;
   if (mountValue === user.bulan) {
-    placeholderColor = styles.placeHolderDefault;
+    classNameControl = styles.controlDefault;
   } else {
-    placeholderColor = styles.placeHolder;
+    classNameControl = styles.control;
   }
 
   let placeholderNama;
@@ -432,9 +432,8 @@ export default function EditAkun({ user, email }) {
                           setMountValue(e);
                           setFormUser({ ...formUser, bulan: e });
                         }}
-                        classNameControl={`${styles.control}`}
+                        classNameControl={`${classNameControl}`}
                         classNameArrow={`${styles.arrow}`}
-                        placeholderClassName={`${placeholderColor}`}
                       />
                       {errorBulan && (
                         <p className="mt-2 ml-12 text-red">{errorBulan}</p>

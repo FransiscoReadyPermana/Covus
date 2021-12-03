@@ -189,7 +189,7 @@ export async function getServerSideProps(context) {
   const result = await reservasi.json();
   const user = await response.json();
 
-  const data = result.data.filter((item) => item.userId === user.data._id);
+  const data = result.data.filter((item) => item.userId._id === user.data._id);
   return {
     props: {
       data,

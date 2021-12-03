@@ -1,6 +1,7 @@
 import dbConnect from "../../../utils/dbConnect";
 import ReservasiVaksinasi from "../../../models/reservasi";
 import VaksinService from "../../../service/Vaksin";
+import User from "../../../models/user";
 dbConnect();
 
 const ReservasiVaksin = async (req, res) => {
@@ -10,7 +11,10 @@ const ReservasiVaksin = async (req, res) => {
   switch (method) {
     case "GET":
       try {
-        const reservasiVaksin = await ReservasiVaksinasi.find({});
+        const reservasiVaksin = await ReservasiVaksinasi.find({}).populate(
+          "userId"
+        );
+        // const reservasiVaksin = await ReservasiVaksinasi.find({});
         res.status(200).json({ success: true, data: reservasiVaksin });
       } catch (error) {
         res.status(400).json({ success: false });

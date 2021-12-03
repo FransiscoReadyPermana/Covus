@@ -3,7 +3,7 @@ import styles from "../cardVaksin.module.css";
 import Image from "next/image";
 import Button from "../../button";
 
-export default function CardVaksin2() {
+export default function CardVaksin2({ item }) {
   return (
     <div
       id="card"
@@ -14,7 +14,7 @@ export default function CardVaksin2() {
         className={`bg-white w-full flex flex-col ${styles.cardImage}`}
       >
         <Image
-          src="https://media.discordapp.net/attachments/900386011585069106/908233952223957002/Rs_UI.jpg"
+          src={item.img}
           alt="reading-book-image"
           layout="fill"
           className={`${styles.cardImage}`}
@@ -29,14 +29,14 @@ export default function CardVaksin2() {
           color="dark-grey"
           className="text-center font-semibold text-m text-white mt-7 text-dark-grey"
         >
-          jenis vaksin
+          {item.jenisVaksin}
         </p>
 
         <p
           color="dark-grey"
           className={`text-center font-light text-xl text-white text-dark-grey ${styles.nama}`}
         >
-          nama
+          {item.nama}
         </p>
 
         <div
@@ -59,7 +59,7 @@ export default function CardVaksin2() {
             color="dark-grey"
             className="text-left font-semibold text-l text-white text-dark-grey w-full ml-4"
           >
-            tanggal
+            {item.tanggal}
           </p>
         </div>
 
@@ -83,7 +83,7 @@ export default function CardVaksin2() {
             color="dark-grey"
             className="text-left font-semibold text-l text-white text-dark-grey w-full ml-4"
           >
-            waktu
+            {item.waktu}
           </p>
         </div>
 
@@ -107,7 +107,7 @@ export default function CardVaksin2() {
             color="dark-grey"
             className="text-left font-semibold text-l text-white text-dark-grey w-full ml-4"
           >
-            lokasi1
+            {item.lokasi1}
           </p>
         </div>
 
@@ -116,7 +116,7 @@ export default function CardVaksin2() {
             color="dark-grey"
             className={`text-center font-semibold text-l text-white text-dark-grey w-full ${styles.lokasi2}`}
           >
-            lokasi2
+            {item.lokasi2}
           </p>
 
           <div

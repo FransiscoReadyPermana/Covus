@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./admin.module.css";
 import Title from "../../Components/title";
-import Button from "../../Components/button";
 import Footer from "../../Components/footer";
 import Card from "../../Components/card";
+import Link from "next/link";
 
 export default function Admin() {
   return (
@@ -27,25 +27,28 @@ export default function Admin() {
             id="card containter"
             className="w-full h-full flex justify-center items-center gap-16 mt-10"
           >
+            <Link href={`/tes/vaksinasi}`} passHref>
+              <Card type="big" className={`${styles.card}`}>
+                <div className="relative h-3/4 w-full flex flex-col">
+                  <Image
+                    src="/images/vaksinasi.svg"
+                    alt="reading-book-image"
+                    layout="fill"
+                  />
+                </div>
+                <p
+                  color="dark-grey"
+                  className="text-center font-semibold text-2xl text-dark-grey"
+                >
+                  Vaksinasi
+                </p>
+              </Card>
+            </Link>
+            <Link href={`/tes/rs-rujukan}`} passHref>
             <Card type="big" className={`${styles.card}`}>
               <div className="relative h-3/4 w-full flex flex-col">
                 <Image
-                  src="/images/SesakNafas.svg"
-                  alt="reading-book-image"
-                  layout="fill"
-                />
-              </div>
-              <p
-                color="dark-grey"
-                className="text-center font-semibold text-2xl text-dark-grey"
-              >
-                Vaksinasi
-              </p>
-            </Card>
-            <Card type="big" className={`${styles.card}`}>
-              <div className="relative h-3/4 w-full flex flex-col">
-                <Image
-                  src="/images/BatukKering.svg"
+                  src="/images/rumah_sakit.svg"
                   alt="reading-book-image"
                   layout="fill"
                 />
@@ -57,6 +60,7 @@ export default function Admin() {
                 RS Rujukan
               </p>
             </Card>
+            </Link>
           </div>
         </div>
       </section>

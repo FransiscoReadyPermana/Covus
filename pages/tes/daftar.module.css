@@ -1,5 +1,5 @@
 .section1 {
-  height: 140vh;
+  height: 160vh;
 }
 
 .bgFirstSection {
@@ -17,4 +17,8 @@
 
 .buttonTambah:hover {
   opacity: 1;
+}
+
+.containerCardVaksin {
+  height: 47rem;
 }
