@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import style from "../profile.module.css";
 import Close from "../../icons/Close";
+import uuid from 'react-uuid';
 
 export default function PopUpPenyakit({
   open,
@@ -55,6 +56,7 @@ export default function PopUpPenyakit({
           </div>
           {item.kontradiksi.map((data) => (
             <p
+            key={uuid()}
               className={`text-justify font-normal px-10 mt-1 text-dark-grey ${style.kontradiksi}`}
             >
               {data}

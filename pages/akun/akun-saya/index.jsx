@@ -7,7 +7,6 @@ import PopUp from "../../../Components/pop-up/pop-up";
 import { signOut } from "next-auth/client";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/client";
-import { data } from "autoprefixer";
 
 export default function AkunSaya({ user }) {
   const [keluar, setKeluar] = useState(false);

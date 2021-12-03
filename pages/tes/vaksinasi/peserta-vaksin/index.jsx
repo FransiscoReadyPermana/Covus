@@ -19,7 +19,7 @@ export default function RSRujukan({ data }) {
         />
         <div
           id="content"
-          className="flex flex-col gap-16 h-full px-52 pt-24 bg-white"
+          className="flex flex-col gap-16 h-full px-24 pt-24 bg-white"
         >
           <Title className="text-center" color="dark-grey">
             DAFTAR PESERTA VAKSIN

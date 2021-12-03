@@ -73,16 +73,24 @@
   width: 90% !important;
 }
 
-.hapus{
-  background: #FA3030;
+.hapus {
+  background: #fa3030;
   color: white;
   padding: 0.25rem;
   border-radius: 0.5rem;
   opacity: 0.5;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.23s ease-in-out;
 }
 
-.hapus:hover{
+.hapus:hover {
   opacity: 1;
 }
 
+.kontradiksi {
+  opacity: 0.5;
+  transition: all 0.23s ease-in-out;
+}
+
+.kontradiksi:hover {
+  opacity: 1;
+}

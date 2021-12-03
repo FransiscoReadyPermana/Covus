@@ -1,18 +1,29 @@
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import styles from "../daftar.module.css";
-import Title from "../../../Components/title";
-import Footer from "../../../Components/footer";
-import DropDownEdit from "../../../Components/dropDown";
-import Button from "../../../Components/button";
-import CardVaksin2 from "../../../Components/cardVaksin/cardVaksin2";
-import uuid from "react-uuid";
-import Pagination from "../../../Components/pagination";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import styles from '../daftar.module.css';
+import Title from '../../../Components/title';
+import Footer from '../../../Components/footer';
+import DropDownEdit from '../../../Components/dropDown';
+import Button from '../../../Components/button';
+import CardVaksin2 from '../../../Components/cardVaksin/cardVaksin2';
+import uuid from 'react-uuid';
+import Pagination from '../../../Components/pagination';
+import jenisVaksinasii from '../../../data/jenisVaksinn';
 
-export default function Admin({ data, dataPertama, dataKedua, namaVaksin }) {
+export default function Admin({
+  data,
+  daerahVaksinKedua,
+  daerahVaksinPertama,
+  defaultProvinsi,
+}) {
+  const [periodeVaksin, setPeriodeVaksin] = useState(defaultProvinsi);
+  console.log(periodeVaksin);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentData, setCurrentData] = useState([]);
   const [filteredData, setFilteredData] = useState(data);
+  const [dataDropdown, setDataDropdown] = useState(data);
+  const [dataDropdownJenisVaksin, setDataDropdownJenisVaksin] = useState(data);
+  const [filteredDataJenisVaksin, setFilteredDataJenisVaksin] = useState(data);
 
   const PageSize = 4;
 
@@ -31,6 +42,25 @@ export default function Admin({ data, dataPertama, dataKedua, namaVaksin }) {
     } else {
       filterData = data;
       setDataDropdown(data);
+    }
+    setFilteredData(filterData);
+    // router.replace(`/vaksinasi/lokasi-vaksinasi/${jenis_vaksin}/${e}`);
+  };
+  const onFilterDropdownJenisVaksin = (e) => {
+    setDataDropdownJenisVaksin(e);
+    let filterData = null;
+
+    if (e.length > 0) {
+      filterData = data.filter((dataBaru) => dataBaru.jenisVaksin === e);
+      if (e === 'Vaksinasi Pertama') {
+        setPeriodeVaksin(daerahVaksinPertama);
+      } else if (e === 'Vaksinasi Kedua') {
+        setPeriodeVaksin(daerahVaksinKedua);
+      }
+    } else {
+      filterData = data;
+      setDataDropdown(data);
+      setPeriodeVaksin(defaultProvinsi);
     }
     setFilteredData(filterData);
     // router.replace(`/vaksinasi/lokasi-vaksinasi/${jenis_vaksin}/${e}`);
@@ -54,19 +84,19 @@ export default function Admin({ data, dataPertama, dataKedua, namaVaksin }) {
               <DropDownEdit
                 className="w-full"
                 color="purple"
-                placeholder={"Pilih Provinsi"}
+                placeholder={'Pilih Provinsi'}
                 onChange={onFilterDropdown}
-                option={namaVaksin}
+                option={periodeVaksin}
               />
             </div>
             <div className="flex items-center justify-center w-full mt-4">
               <DropDownEdit
                 className="w-full"
                 color="white"
-                placeholder={"Jenis Vaksinasi"}
+                placeholder={'Jenis Vaksinasi'}
                 classNameControl={`${styles.classNameControl}`}
-                // onChange={onFilterDropdownJenisVaksin}
-                // option={jenisVaksin}
+                onChange={onFilterDropdownJenisVaksin}
+                option={jenisVaksinasii}
               />
             </div>
           </div>
@@ -115,14 +145,33 @@ export async function getServerSideProps() {
   const resultKedua = await vaksinasiKedua.json();
   const resultKetiga = await lokasiVaksinasi.json();
 
+  console.log(resultKetiga.data);
+  const filterDataPertama = resultKetiga.data.filter(
+    (item) => item.jenisVaksin === 'Vaksinasi Pertama'
+  );
+
+  const filterDataKedua = resultKetiga.data.filter(
+    (item) => item.jenisVaksin === 'Vaksinasi Kedua'
+  );
+
+  const namaVaksinPertama = filterDataPertama.map((item) => item.provinsi);
+
+  const namaVaksinKedua = filterDataKedua.map((item) => item.provinsi);
+
   const namaVaksin = resultKetiga.data.map((item) => item.provinsi);
+  const namaVaksinUnique = [...new Set(namaVaksin)];
+  const namaVaksinMapped = namaVaksinUnique.map((item) => item);
+
+  const namaVaksinPertamaUniqe = [...new Set(namaVaksinPertama)];
+  const namaVaksinKeduaUniqe = [...new Set(namaVaksinKedua)];
+
 
   return {
     props: {
       data: resultKetiga.data,
-      dataPertama: resultPertama.data,
-      dataKedua: resultKedua.data,
-      namaVaksin,
+      daerahVaksinPertama: namaVaksinPertamaUniqe,
+      daerahVaksinKedua: namaVaksinKeduaUniqe,
+      defaultProvinsi: namaVaksinMapped,
     },
   };
 }
