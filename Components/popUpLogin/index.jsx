@@ -100,7 +100,7 @@ export default function PopUpLogin({
         className={`fixed bg-white px-20 ${style.container}`}
       >
         <button
-          className={`absolute right-8 top-8 rounded-full ${style.close}`}
+          className={`fixed right-8 top-8 rounded-full ${style.close}`}
           onClick={onClick}
         >
           <Close />

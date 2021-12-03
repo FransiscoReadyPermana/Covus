@@ -19,7 +19,7 @@ export default function PopUpSK({ open, onClickBackground, onClick }) {
         className={`fixed bg-white py-10 px-20 h-3/4 flex flex-col items-center mt-12 ${style.container} ${style.SK}`}
       >
         <button
-          className={`absolute right-8 top-8 rounded-full ${style.close}`}
+          className={`fixed right-8 top-8 rounded-full ${style.close}`}
           onClick={onClick}
         >
           <Close />

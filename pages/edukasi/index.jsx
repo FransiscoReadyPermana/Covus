@@ -65,7 +65,7 @@ export default function Edukasi() {
         />
         <div
           id="content"
-          className="flex gap-16 h-full px-52  bg-purple items-center"
+          className="flex gap-16 h-full px-52 pt-40 bg-purple items-center"
         >
           <div
             id="text"
@@ -201,10 +201,10 @@ export default function Edukasi() {
         />
         <div
           id="content"
-          className="flex gap-12 h-full px-52 pt-20 bg-purple item-center"
+          className="flex gap-16 h-full px-52 pt-28 bg-purple item-center"
         >
-          <div id="text" className="flex flex-col gap-12 items-center w-full">
-            <div className="flex flex-col gap-4 items-center">
+          <div id="text" className="flex flex-col gap-16 items-center w-full">
+            <div className="flex flex-col gap-8 items-center">
               <Title color="white">
                 BAGAIMANA MELAKUKAN PENCEGAHAN TERHADAP COVID-19
               </Title>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Image from 'next/image';
 
 export default function Loading() {
@@ -11,7 +11,7 @@ export default function Loading() {
           width="300"
           height="300"
         />
-        <p className="font-semibold text-xl">Memuat Halaman</p>
+        <p>Memuat Halaman...</p>
       </div>
     </div>
   );

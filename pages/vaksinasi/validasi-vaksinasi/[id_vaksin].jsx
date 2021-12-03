@@ -1,21 +1,24 @@
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import Footer from "../../../Components/footer";
-import Title from "../../../Components/title";
-import styles from "../../../styles/validasi.module.css";
-import Link from "next/link";
-import uuid from "react-uuid";
-import PopUpSK from "../../../Components/pop-up/pop-up-SK";
-import { useRouter } from "next/router";
-import { getSession } from "next-auth/client";
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import Footer from '../../../Components/footer';
+import Title from '../../../Components/title';
+import styles from '../../../styles/validasi.module.css';
+import Link from 'next/link';
+import uuid from 'react-uuid';
+import PopUpSK from '../../../Components/pop-up/pop-up-SK';
+import { useRouter } from 'next/router';
+import { getSession } from 'next-auth/client';
 
 export default function ValidasiVaksinasi({ data, user }) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [formUser, setFormUser] = useState({
-    namaVaksin: "",
+    namaVaksin: '',
     kontradiksi: [],
+    setuju: false,
   });
+  const [errorSetuju, setErrorSetuju] = useState('');
+  const [errorNamaVaksin, setErrorNamaVaksin] = useState('');
 
   const Kontradiksi = (e) => {
     let kontradiksi = formUser.kontradiksi;
@@ -30,44 +33,73 @@ export default function ValidasiVaksinasi({ data, user }) {
     });
   };
 
-  const handleRegister = async (e) => {
-    // checkInput(e);
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify({
-      userId: user._id,
-      provinsi: data[0].provinsi,
-      nama: data[0].nama,
-      jenisVaksin: data[0].jenisVaksin,
-      tanggal: data[0].tanggal,
-      waktu: data[0].waktu,
-      lokasi1: data[0].lokasi1,
-      lokasi2: data[0].lokasi2,
-      namaVaksin: formUser.namaVaksin,
-      kontradiksi: formUser.kontradiksi,
-    });
-
-    const requestOptions = {
-      method: "POST",
-      body: raw,
-      headers: myHeaders,
-    };
-
-    const baseUrl = process.env.BASE_URL;
-    const response = await fetch(
-      `${baseUrl}/api/reservasi-vaksinasi`,
-      requestOptions
-    );
-    const result = await response.json();
-    console.log(result);
-
-    if (result.success) {
-      alert("Berhasil");
-      location.reload();
+  const setujuCheck = () => {
+    if (formUser.setuju === false) {
+      setErrorSetuju('Anda harus menyetujui syarat dan ketentuan');
     } else {
-      alert(result.message);
+      setErrorSetuju(null);
+    }
+  };
+
+  const namaVaksinCheck = () => {
+    if (formUser.namaVaksin === '' || formUser.namaVaksin === null) {
+      setErrorNamaVaksin('Jenis Vaksin tidak boleh kosong');
+    } else {
+      setErrorNamaVaksin(null);
+    }
+  };
+
+  const checkInput = (e) => {
+    e.preventDefault();
+    namaVaksinCheck();
+    setujuCheck();
+  };
+
+  const handleRegister = async (e) => {
+    checkInput(e);
+    console.log(formUser);
+
+    if (
+      !(formUser.namaVaksin === '' || formUser.namaVaksin === null) &&
+      !(formUser.setuju === false)
+    ) {
+      const myHeaders = new Headers();
+      myHeaders.append('Content-Type', 'application/json');
+
+      const raw = JSON.stringify({
+        userId: user._id,
+        provinsi: data[0].provinsi,
+        nama: data[0].nama,
+        jenisVaksin: data[0].jenisVaksin,
+        tanggal: data[0].tanggal,
+        waktu: data[0].waktu,
+        lokasi1: data[0].lokasi1,
+        lokasi2: data[0].lokasi2,
+        namaVaksin: formUser.namaVaksin,
+        kontradiksi: formUser.kontradiksi,
+      });
+
+      const requestOptions = {
+        method: 'POST',
+        body: raw,
+        headers: myHeaders,
+      };
+
+      const baseUrl = process.env.BASE_URL;
+      const response = await fetch(
+        `${baseUrl}/api/reservasi-vaksinasi`,
+        requestOptions
+      );
+      const result = await response.json();
       console.log(result);
+
+      if (result.success) {
+        alert('Berhasil');
+        location.reload();
+      } else {
+        alert(result.message);
+        console.log(result);
+      }
     }
   };
 
@@ -146,7 +178,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     Tempat dan Waktu
                   </p>
                   <div id="tempat" className="flex flex-row">
-                    <div id="icon" className={"absolute h-6 w-6 mr-2 mt-4"}>
+                    <div id="icon" className={'absolute h-6 w-6 mr-2 mt-4'}>
                       <Image
                         src="/images/Calendar.svg"
                         alt="reading-book-image"
@@ -163,7 +195,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                   </div>
 
                   <div id="waktu" className="flex flex-row">
-                    <div id="icon" className={"absolute h-6 w-6 mr-2 mt-2"}>
+                    <div id="icon" className={'absolute h-6 w-6 mr-2 mt-2'}>
                       <Image
                         src="/images/Time.svg"
                         alt="reading-book-image"
@@ -188,7 +220,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     Lokasi Vaksinasi
                   </p>
                   <div id="lokasi" className="flex flex-row">
-                    <div id="icon" className={"absolute h-6 w-6 mr-2 mt-4"}>
+                    <div id="icon" className={'absolute h-6 w-6 mr-2 mt-4'}>
                       <Image
                         src="/images/Location.svg"
                         alt="reading-book-image"
@@ -252,6 +284,9 @@ export default function ValidasiVaksinasi({ data, user }) {
                   </div>
                 ))}
               </div>
+              {errorNamaVaksin && (
+                <p className="mt-2 ml-8 text-red">{errorNamaVaksin}</p>
+              )}
             </div>
 
             <div id="checkbox-penyakit" className="mt-4">
@@ -370,26 +405,30 @@ export default function ValidasiVaksinasi({ data, user }) {
               onClickBackground={() => setIsOpen(false)}
               onClick={() => setIsOpen(false)}
             />
-
-            <div id="sk" className="flex items-center mt-4">
-              <input
-                type="checkbox"
-                id="radio"
-                className={`${styles.radio}`}
-                onChange={(e) =>
-                  setFormUser({ ...formUser, setuju: e.target.checked })
-                }
-              />
-              <label htmlFor="radio" className={`${styles.sk}`}>
-                Dengan ini saya telah menyetujui
-                <span
-                  className="text-purple mx-2"
-                  onClick={() => setIsOpen(true)}
-                >
-                  Syarat dan Ketentuan
-                </span>
-                yang berlaku
-              </label>
+            <div id="sk2">
+              <div id="sk" className="flex items-center mt-4">
+                <input
+                  type="checkbox"
+                  id="radio"
+                  className={`${styles.radio}`}
+                  onChange={(e) =>
+                    setFormUser({ ...formUser, setuju: e.target.checked })
+                  }
+                />
+                <label htmlFor="radio" className={`${styles.sk}`}>
+                  Dengan ini saya telah menyetujui
+                  <span
+                    className="text-purple mx-2"
+                    onClick={() => setIsOpen(true)}
+                  >
+                    Syarat dan Ketentuan
+                  </span>
+                  yang berlaku
+                </label>
+              </div>
+              {errorSetuju && (
+                <p className="mt-2 ml-8 text-red">{errorSetuju}</p>
+              )}
             </div>
 
             <input

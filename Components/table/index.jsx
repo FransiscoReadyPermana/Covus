@@ -26,12 +26,13 @@ export default function TableData({ data, type }) {
   );
   const [dataDropdownHospitals, setDataDropdownHospitals] = useState('');
   const [currentPagePesertaVaksin, setCurrentPagePesertaVaksin] = useState(1);
-  const [filteredDataPesertaVaksin, setFilteredDataPesertaVaksin] = useState(data);
+  const [filteredDataPesertaVaksin, setFilteredDataPesertaVaksin] =
+    useState(data);
   const [userInputPesertaVaksin, setUserInputPesertaVaksin] = useState('');
-  const [currentTableDataPesertaVaksin, setCurrentTableDataPesertaVaksin] = useState(
-    []
-  );
-  const [dataDropdownPesertaVaksin, setDataDropdownPesertaVaksin] = useState('');
+  const [currentTableDataPesertaVaksin, setCurrentTableDataPesertaVaksin] =
+    useState([]);
+  const [dataDropdownPesertaVaksin, setDataDropdownPesertaVaksin] =
+    useState('');
 
   useEffect(() => {
     const firstPageIndex = (currentPageProvinsi - 1) * PageSize;
@@ -49,6 +50,15 @@ export default function TableData({ data, type }) {
     );
     // return filteredDataHospitals.slice(firstPageIndex, lastPageIndex);
   }, [currentPageHospitals, filteredDataHospitals]);
+
+  useEffect(() => {
+    const firstPageIndex = (currentPagePesertaVaksin - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    setCurrentTableDataPesertaVaksin(
+      filteredDataPesertaVaksin.slice(firstPageIndex, lastPageIndex)
+    );
+    // return filteredDataPesertaVaksin.slice(firstPageIndex, lastPageIndex);
+  }, [currentPagePesertaVaksin, filteredDataPesertaVaksin]);
 
   let PageSize = 10;
   if (type === 'Global') {
@@ -297,36 +307,50 @@ export default function TableData({ data, type }) {
     const onSearchHandler = (e) => {
       setUserInputPesertaVaksin(e.target.value);
 
-      let filterHospital = null;
+      let filterPesertaVaksin = null;
       if (e.target.value.length > 0) {
-        const filterHospitalProv = data.filter((data) =>
-          new RegExp(e.target.value, 'gi').test(data.provinsi)
-        );
-        const filterHospitalNama = data.filter((data) =>
+        const filterPesertaVaksinNamaPeserta = data.filter((data) =>
           new RegExp(e.target.value, 'gi').test(data.nama)
         );
-        const filterHospitalAlamat = data.filter((data) =>
+        const filterPesertaVaksinNamaVaksin = data.filter((data) =>
+          new RegExp(e.target.value, 'gi').test(data.provinsi)
+        );
+        const filterPesertaVaksinJenisVaksin = data.filter((data) =>
+          new RegExp(e.target.value, 'gi').test(data.alamat)
+        );
+        const filterPesertaVaksinTanggalVaksin = data.filter((data) =>
+          new RegExp(e.target.value, 'gi').test(data.alamat)
+        );
+        const filterPesertaVaksinWaktuVaksin = data.filter((data) =>
+          new RegExp(e.target.value, 'gi').test(data.alamat)
+        );
+        const filterPesertaVaksinLokasiVaksin = data.filter((data) =>
+          new RegExp(e.target.value, 'gi').test(data.alamat)
+        );
+        const filterPesertaVaksinKontradiksiVakasin = data.filter((data) =>
           new RegExp(e.target.value, 'gi').test(data.alamat)
         );
 
-        filterHospital = Array.from(
+        filterPesertaVaksin = Array.from(
           new Set([
-            ...filterHospitalProv,
-            ...filterHospitalNama,
-            ...filterHospitalAlamat,
+            ...filterPesertaVaksinNamaPeserta,
+            ...filterPesertaVaksinNamaVaksin,
+            ...filterPesertaVaksinJenisVaksin,
+            ...filterPesertaVaksinTanggalVaksin,
+            ...filterPesertaVaksinWaktuVaksin,
+            ...filterPesertaVaksinLokasiVaksin,
+            ...filterPesertaVaksinKontradiksiVakasin,
           ])
         );
       } else {
-        filterHospital = data;
+        filterPesertaVaksin = data;
       }
-      setFilteredDataPesertaVaksin(filterHospital);
+      setFilteredDataPesertaVaksin(filterPesertaVaksin);
     };
-
 
     return (
       <div>
         <div className="flex flex-col w-full relative">
-
           <div className="flex gap-12 items-center mb-10">
             <SearchInput
               className="w-full"
@@ -347,27 +371,33 @@ export default function TableData({ data, type }) {
                 <tr>
                   <th className={`${stylePeserta.head}`}>Nama Peserta</th>
                   <th className={`${stylePeserta.head}`}>Nama Vaksin</th>
-                  <th>Jenis Vaksin</th>
-                  <th>Tanggal</th>
-                  <th>Waktu</th>
-                  <th>Lokasi</th>
-                  <th>Kontradiksi</th>
+                  <th className={`${stylePeserta.head}`}>Jenis Vaksin</th>
+                  <th className={`${stylePeserta.head}`}>Tanggal</th>
+                  <th className={`${stylePeserta.head}`}>Waktu</th>
+                  <th className={`${stylePeserta.head}`}>Penyelenggara</th>
+                  <th className={`${stylePeserta.head}`}>Lokasi</th>
+                  <th className={`${stylePeserta.head}`}>Kontradiksi</th>
+                  <th className={`${stylePeserta.head}`}>Hapus Data</th>
                 </tr>
               </thead>
               <tbody>
-                {/* {currentTableDataPesertaVaksin.map((item) => {
-                  return ( */}
+                {currentTableDataPesertaVaksin.map((item) => {
+                  return (
                     <tr key={uuid()}>
                       <td>fransisco ready permana</td>
                       <td>sinovac</td>
                       <td>Vaksinasi Pertama</td>
                       <td>10 september 2001</td>
                       <td>09.00</td>
-                      <td>Rs Fatmawati Cilandak Banten</td>
-                      <td>keren</td>
+                      <td>UPN Veteran Jakarta</td>
+                      <td>RS Fatmawati cilandak Jakarta Selatan</td>
+                      <td>test</td>
+                      <td>
+                        <button className={`${stylePeserta.hapus}`}>Hapus</button>
+                      </td>
                     </tr>
-                  {/* );
-                })} */}
+                  );
+                })}
               </tbody>
             </table>
             {/* )} */}
@@ -380,6 +410,7 @@ export default function TableData({ data, type }) {
             pageSize={PageSize}
             onPageChange={(page) => setCurrentPagePesertaVaksin(page)}
           />
+          {/* <p>{filteredDataPesertaVaksin}</p> */}
         </div>
       </div>
     );

@@ -16,6 +16,7 @@
   border-bottom: none;
   border-left: none;
   padding: 2rem;
+  text-align: center;
 }
 
 .table tbody tr:first-child td {
@@ -65,12 +66,23 @@
 }
 
 .head {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  padding: 1.25rem;
 }
 
-.input{
+.input {
   width: 90% !important;
 }
+
+.hapus{
+  background: #FA3030;
+  color: white;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  opacity: 0.5;
+  transition: all 0.1s ease-in-out;
+}
+
+.hapus:hover{
+  opacity: 1;
+}
+
