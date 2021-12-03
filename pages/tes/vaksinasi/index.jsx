@@ -13,8 +13,7 @@ export default function Admin({ data, dataPertama, dataKedua, namaVaksin }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentData, setCurrentData] = useState([]);
   const [filteredData, setFilteredData] = useState(data);
-  const [namaProvinsi, setNamaProvinsi] = useState("");
-  const [dataDropdown, setDataDropdown] = useState(namaProvinsi);
+
   const PageSize = 4;
 
   useEffect(() => {
@@ -38,10 +37,7 @@ export default function Admin({ data, dataPertama, dataKedua, namaVaksin }) {
   };
   return (
     <div className="h-screen w-full">
-      <section
-        id="first"
-        className={`${styles.section1} w-full relative mb-20`}
-      >
+      <section id="first" className={`${styles.section1} w-full relative`}>
         <div
           id="divider"
           className={`${styles.bgFirstSection} h-40 w-full absolute -top-40 transform rotate-180 mt-60`}
@@ -68,6 +64,7 @@ export default function Admin({ data, dataPertama, dataKedua, namaVaksin }) {
                 className="w-full"
                 color="white"
                 placeholder={"Jenis Vaksinasi"}
+                classNameControl={`${styles.classNameControl}`}
                 // onChange={onFilterDropdownJenisVaksin}
                 // option={jenisVaksin}
               />
@@ -85,7 +82,7 @@ export default function Admin({ data, dataPertama, dataKedua, namaVaksin }) {
 
           <div
             id="pagination"
-            className="flex bg-white pb-20 mt-16 justify-center items-center"
+            className="flex bg-white pb-8 mt-8 justify-center items-center"
           >
             <Pagination
               className="pagination-bar"

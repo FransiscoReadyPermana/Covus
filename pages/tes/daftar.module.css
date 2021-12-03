@@ -1,5 +1,5 @@
 .section1 {
-  height: 160vh;
+  height: fit-content;
 }
 
 .bgFirstSection {
@@ -21,4 +21,8 @@
 
 .containerCardVaksin {
   height: 47rem;
+}
+
+.classNameControl {
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25) !important;
 }
