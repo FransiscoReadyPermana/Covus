@@ -1,24 +1,23 @@
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import Footer from '../../../Components/footer';
-import Title from '../../../Components/title';
-import styles from '../../../styles/validasi.module.css';
-import Link from 'next/link';
-import uuid from 'react-uuid';
-import PopUpSK from '../../../Components/pop-up/pop-up-SK';
-import { useRouter } from 'next/router';
-import { getSession } from 'next-auth/client';
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import Footer from "../../../Components/footer";
+import Title from "../../../Components/title";
+import styles from "../../../styles/validasi.module.css";
+import uuid from "react-uuid";
+import PopUpSK from "../../../Components/pop-up/pop-up-SK";
+import { useRouter } from "next/router";
+import { getSession } from "next-auth/client";
 
 export default function ValidasiVaksinasi({ data, user }) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [formUser, setFormUser] = useState({
-    namaVaksin: '',
+    namaVaksin: "",
     kontradiksi: [],
     setuju: false,
   });
-  const [errorSetuju, setErrorSetuju] = useState('');
-  const [errorNamaVaksin, setErrorNamaVaksin] = useState('');
+  const [errorSetuju, setErrorSetuju] = useState("");
+  const [errorNamaVaksin, setErrorNamaVaksin] = useState("");
 
   const Kontradiksi = (e) => {
     let kontradiksi = formUser.kontradiksi;
@@ -35,15 +34,15 @@ export default function ValidasiVaksinasi({ data, user }) {
 
   const setujuCheck = () => {
     if (formUser.setuju === false) {
-      setErrorSetuju('Anda harus menyetujui syarat dan ketentuan');
+      setErrorSetuju("Anda harus menyetujui syarat dan ketentuan");
     } else {
       setErrorSetuju(null);
     }
   };
 
   const namaVaksinCheck = () => {
-    if (formUser.namaVaksin === '' || formUser.namaVaksin === null) {
-      setErrorNamaVaksin('Jenis Vaksin tidak boleh kosong');
+    if (formUser.namaVaksin === "" || formUser.namaVaksin === null) {
+      setErrorNamaVaksin("Jenis Vaksin tidak boleh kosong");
     } else {
       setErrorNamaVaksin(null);
     }
@@ -57,17 +56,18 @@ export default function ValidasiVaksinasi({ data, user }) {
 
   const handleRegister = async (e) => {
     checkInput(e);
-    console.log(formUser);
+
 
     if (
-      !(formUser.namaVaksin === '' || formUser.namaVaksin === null) &&
+      !(formUser.namaVaksin === "" || formUser.namaVaksin === null) &&
       !(formUser.setuju === false)
     ) {
       const myHeaders = new Headers();
-      myHeaders.append('Content-Type', 'application/json');
+      myHeaders.append("Content-Type", "application/json");
 
       const raw = JSON.stringify({
         userId: user._id,
+        vaksinId: data[0]._id,
         provinsi: data[0].provinsi,
         nama: data[0].nama,
         jenisVaksin: data[0].jenisVaksin,
@@ -80,7 +80,7 @@ export default function ValidasiVaksinasi({ data, user }) {
       });
 
       const requestOptions = {
-        method: 'POST',
+        method: "POST",
         body: raw,
         headers: myHeaders,
       };
@@ -91,14 +91,14 @@ export default function ValidasiVaksinasi({ data, user }) {
         requestOptions
       );
       const result = await response.json();
-      console.log(result);
+
 
       if (result.success) {
-        alert('Berhasil');
+        alert("Berhasil");
         location.reload();
       } else {
         alert(result.message);
-        console.log(result);
+       
       }
     }
   };
@@ -178,7 +178,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     Tempat dan Waktu
                   </p>
                   <div id="tempat" className="flex flex-row">
-                    <div id="icon" className={'absolute h-6 w-6 mr-2 mt-4'}>
+                    <div id="icon" className={"absolute h-6 w-6 mr-2 mt-4"}>
                       <Image
                         src="/images/Calendar.svg"
                         alt="reading-book-image"
@@ -195,7 +195,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                   </div>
 
                   <div id="waktu" className="flex flex-row">
-                    <div id="icon" className={'absolute h-6 w-6 mr-2 mt-2'}>
+                    <div id="icon" className={"absolute h-6 w-6 mr-2 mt-2"}>
                       <Image
                         src="/images/Time.svg"
                         alt="reading-book-image"
@@ -220,7 +220,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     Lokasi Vaksinasi
                   </p>
                   <div id="lokasi" className="flex flex-row">
-                    <div id="icon" className={'absolute h-6 w-6 mr-2 mt-4'}>
+                    <div id="icon" className={"absolute h-6 w-6 mr-2 mt-4"}>
                       <Image
                         src="/images/Location.svg"
                         alt="reading-book-image"

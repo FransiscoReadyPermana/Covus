@@ -6,6 +6,11 @@ const ReservasiVaksinasiSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  vaksinId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "LokasiVaksinasi",
+    required: true,
+  },
   provinsi: {
     type: String,
     required: true,

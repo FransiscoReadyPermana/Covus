@@ -29,7 +29,6 @@ export default function PopUpLogin({
     });
     setErrorEmail(null);
     setErrorKataSandi(null);
-    console.log('clear');
   };
 
   const inputCheck = () => {
@@ -59,9 +58,7 @@ export default function PopUpLogin({
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-    console.log(formUser);
     const isValid = inputCheck();
-    console.log(isValid);
 
     if (isValid) {
       const response = await signIn('credentials', {
@@ -69,7 +66,6 @@ export default function PopUpLogin({
         email: formUser.email,
         kataSandi: formUser.kataSandi,
       });
-      console.log(response);
 
       if (!response.error) {
         router.replace('/');

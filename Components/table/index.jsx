@@ -38,7 +38,6 @@ export default function TableData({ data, type }) {
       location.reload();
     } else {
       alert(result.message);
-      console.log(result);
     }
   };
   const [isOpen, setIsOpen] = useState(false);

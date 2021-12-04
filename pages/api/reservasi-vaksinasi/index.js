@@ -1,8 +1,8 @@
-import dbConnect from '../../../utils/dbConnect';
-import ReservasiVaksinasi from '../../../models/reservasi';
-import VaksinService from '../../../service/Vaksin';
-import User from '../../../models/user';
-import ClientError from '../../../expecptions/ClientError';
+import dbConnect from "../../../utils/dbConnect";
+import ReservasiVaksinasi from "../../../models/reservasi";
+import VaksinService from "../../../service/Vaksin";
+import User from "../../../models/user";
+import ClientError from "../../../expecptions/ClientError";
 
 dbConnect();
 
@@ -11,23 +11,25 @@ const ReservasiVaksin = async (req, res) => {
   const vaksinService = new VaksinService();
 
   switch (method) {
-    case 'GET':
+    case "GET":
       try {
-        const reservasiVaksin = await ReservasiVaksinasi.find({}).populate(
-          'userId'
-        );
+        const reservasiVaksin = await ReservasiVaksinasi.find()
+          .populate("userId")
+          .populate("vaksinId");
+
         // const reservasiVaksin = await ReservasiVaksinasi.find({});
         res.status(200).json({ success: true, data: reservasiVaksin });
       } catch (error) {
-        res.status(400).json({ success: false });
+        res.status(400).json({ success: false, message: error.message });
       }
       break;
 
-    case 'POST':
+    case "POST":
       try {
         // get user data from request
         const {
           userId,
+          vaksinId,
           provinsi,
           nama,
           namaVaksin,
@@ -42,6 +44,7 @@ const ReservasiVaksin = async (req, res) => {
         // create user
         const vaksinID = await vaksinService.createVaksin({
           userId,
+          vaksinId,
           provinsi,
           nama,
           namaVaksin,
@@ -55,7 +58,7 @@ const ReservasiVaksin = async (req, res) => {
 
         return res.status(201).json({
           success: true,
-          message: 'berhasil',
+          message: "berhasil",
         });
       } catch (error) {
         return res.status(400).json({ success: false, message: error.message });

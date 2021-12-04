@@ -159,7 +159,7 @@ export default function SignUp() {
 
   const checkInput = (e) => {
     e.preventDefault();
-    console.log(formUser);
+
     namaCheck();
     emailCheck();
     tanggalCheck();

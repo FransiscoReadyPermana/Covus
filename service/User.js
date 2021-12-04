@@ -1,7 +1,7 @@
-import bcrypt from 'bcrypt';
-import User from '../models/user';
-import { EXIST_DATA } from '../lib/constantErrorType';
-import InvariantError from '../expecptions/InvariantError';
+import bcrypt from "bcrypt";
+import User from "../models/user";
+import { EXIST_DATA } from "../lib/constantErrorType";
+import InvariantError from "../expecptions/InvariantError";
 
 class UserService {
   async editPassword(nama, { kataSandi, kataSandiBaru }) {
@@ -10,12 +10,10 @@ class UserService {
     const isPasswordMatch = await bcrypt.compare(kataSandi, user.kataSandi);
 
     if (!isPasswordMatch) {
-      throw new InvariantError('Password not match', EXIST_DATA);
+      throw new InvariantError("Password not match", EXIST_DATA);
     }
 
     const hashedPassword = await bcrypt.hash(kataSandiBaru, 10);
-
-    console.log(hashedPassword);
 
     user.kataSandi = hashedPassword ?? user.kataSandi;
 
@@ -69,7 +67,7 @@ class UserService {
     const user = await User.findOne({ email });
 
     if (user) {
-      throw new InvariantError('Email already exists', EXIST_DATA);
+      throw new InvariantError("Email already exists", EXIST_DATA);
     }
 
     return false;

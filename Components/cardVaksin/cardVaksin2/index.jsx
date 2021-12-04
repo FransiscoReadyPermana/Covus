@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../cardVaksin.module.css";
 import Image from "next/image";
 import Button from "../../button";
+import uuid from "react-uuid";
 
 export default function CardVaksin2({ item }) {
   return (
@@ -122,7 +123,11 @@ export default function CardVaksin2({ item }) {
           <div
             className={`flex items-center pb-6 flex-row justify-center w-5/6 items-center ${styles.buttonContainer}`}
           >
-            <Button to={`/`} color="purple">
+            <Button
+              to={`/tes/vaksinasi/peserta-vaksinasi/${item._id}`}
+              color="purple"
+              key={uuid()}
+            >
               Peserta Vaksin
             </Button>
           </div>

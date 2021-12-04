@@ -258,7 +258,6 @@ export async function getServerSideProps(context) {
   const response = await fetch(`${baseUrl}api/detail-profile/${email}`);
   const result = await response.json();
 
-  console.log(result);
 
   return {
     props: {

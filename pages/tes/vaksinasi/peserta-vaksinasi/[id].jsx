@@ -32,14 +32,15 @@ export default function RSRujukan({ data }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const { id } = context.query;
   const baseUrl = process.env.BASE_URL;
   const reservasi = await fetch(`${baseUrl}api/reservasi-vaksinasi`);
   const result = await reservasi.json();
-
+  const data = result.data.filter((item) => item.vaksinId._id === id);
   return {
     props: {
-      data: result.data,
+      data,
     },
   };
 }

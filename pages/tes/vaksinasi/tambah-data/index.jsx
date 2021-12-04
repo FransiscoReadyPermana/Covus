@@ -157,7 +157,6 @@ export default function TambahData() {
 
   const checkInput = (e) => {
     e.preventDefault();
-    console.log(formUser);
     namaCheck();
     emailCheck();
     tanggalCheck();
@@ -204,7 +203,7 @@ export default function TambahData() {
       location.reload();
     } else {
       alert(result.message);
-      console.log(result);
+
     }
   };
 

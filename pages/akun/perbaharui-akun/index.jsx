@@ -43,7 +43,6 @@ export default function EditAkun({ user, email }) {
       setErrorNama("Nama minimal 3 karakter");
     } else if (!/^[a-zA-Z ][a-zA-Z\\s ]+$/.test(formUser.nama)) {
       setErrorNama("Nama hanya boleh huruf");
-      console.log(errorNama);
     } else {
       setErrorNama(null);
     }
@@ -175,7 +174,6 @@ export default function EditAkun({ user, email }) {
         location.reload();
       } else {
         alert(result.message);
-        console.log(result);
       }
     } else {
       checkInput(e);
