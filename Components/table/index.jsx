@@ -25,11 +25,19 @@ export default function TableData({ data, type }) {
       headers: myHeaders,
       redirect: "follow",
     };
+    let response;
 
-    const response = await fetch(
-      `${baseUrl}api/detail-reservasi/${id}`,
-      requestOptions
-    );
+    if (type === "peserta-vaksinasi") {
+      response = await fetch(
+        `${baseUrl}api/detail-reservasi/${id}`,
+        requestOptions
+      );
+    } else if (type === "rs-rujukan") {
+      response = await fetch(
+        `${baseUrl}api/detail-rs-rujukan/${id}`,
+        requestOptions
+      );
+    }
     const result = await response.json();
 
     if (result.success) {

@@ -1,15 +1,15 @@
-import { useRouter } from 'next/dist/client/router';
-import React, { useEffect, useState } from 'react';
-import AvatarDropDown from '../avatarDropDown';
-import AvatarDropDownMenu from '../avatarDropDownMenu';
-import Brand from '../brand';
-import Button from '../button';
-import NavItems from '../navItems';
-import PopUpLogin from '../popUpLogin';
-import style from './navbar.module.css';
-import Session from '../session';
-import { useSession } from 'next-auth/client';
-import Link from 'next/link';
+import { useRouter } from "next/dist/client/router";
+import React, { useEffect, useState } from "react";
+import AvatarDropDown from "../avatarDropDown";
+import AvatarDropDownMenu from "../avatarDropDownMenu";
+import Brand from "../brand";
+import Button from "../button";
+import NavItems from "../navItems";
+import PopUpLogin from "../popUpLogin";
+import style from "./navbar.module.css";
+import Session from "../session";
+import { useSession } from "next-auth/client";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +24,7 @@ export default function Navbar() {
         onClickBackground={() => setIsOpen(false)}
         onClickDaftar={() => {
           setIsOpen(false);
-          router.push('/daftar');
+          router.push("/daftar");
         }}
       />
       <div
@@ -32,27 +32,27 @@ export default function Navbar() {
       >
         <div id="left" className="flex items-center gap-12">
           <Brand />
-          <NavItems className="ml-4" to="/" isActive={router.pathname === '/'}>
+          <NavItems className="ml-4" to="/" isActive={router.pathname === "/"}>
             Beranda
           </NavItems>
           <NavItems
             className="ml-4"
             to="/informasi"
-            isActive={router.pathname === '/informasi'}
+            isActive={router.pathname === "/informasi"}
           >
             Informasi
           </NavItems>
           <NavItems
             className="ml-4"
             to="/edukasi"
-            isActive={router.pathname === '/edukasi'}
+            isActive={router.pathname === "/edukasi"}
           >
             Edukasi
           </NavItems>
           <NavItems
             className="ml-4"
             to="/rs-rujukan"
-            isActive={router.pathname === '/rs-rujukan'}
+            isActive={router.pathname === "/rs-rujukan"}
           >
             RS Rujukan
           </NavItems>
@@ -61,10 +61,10 @@ export default function Navbar() {
               className="ml-4"
               to="/vaksinasi"
               isActive={
-                router.pathname == '/vaksinasi' ||
+                router.pathname == "/vaksinasi" ||
                 router.pathname ==
-                  '/vaksinasi/lokasi-vaksinasi/[jenis_vaksin]/[nama]' ||
-                router.pathname == '/vaksinasi/validasi-vaksinasi/[id_vaksin]'
+                  "/vaksinasi/lokasi-vaksinasi/[jenis_vaksin]/[nama]" ||
+                router.pathname == "/vaksinasi/validasi-vaksinasi/[id_vaksin]"
               }
             >
               Vaksinasi
@@ -72,10 +72,28 @@ export default function Navbar() {
           ) : (
             <></>
           )}
+      
+          {/* {session.nama === "Admin" ? (
+            <NavItems
+              className="ml-4"
+              to="/vaksinasi"
+              isActive={
+                router.pathname == "/vaksinasi" ||
+                router.pathname ==
+                  "/vaksinasi/lokasi-vaksinasi/[jenis_vaksin]/[nama]" ||
+                router.pathname == "/vaksinasi/validasi-vaksinasi/[id_vaksin]"
+              }
+            >
+              Vaksinasi
+            </NavItems>
+          ) : (
+            <></>
+          )} */}
+
           <NavItems
             className="ml-4"
             to="/tentang-kami"
-            isActive={router.pathname == '/tentang-kami'}
+            isActive={router.pathname == "/tentang-kami"}
           >
             Tentang Kami
           </NavItems>

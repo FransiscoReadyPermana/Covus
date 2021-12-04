@@ -3,7 +3,7 @@ import { getSession } from 'next-auth/client';
 export default function Admin({ user }) {
   console.log('ini dari session ' + user);
   if (
-    user.name !== "admin" &&
+    user.name !== "Admin" &&
     user.email !== process.env.ADMIN_EMAIL
   ) {
     return (
