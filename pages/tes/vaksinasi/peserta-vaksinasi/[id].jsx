@@ -1,13 +1,16 @@
 import React from "react";
 import Title from "../../../../Components/title";
-import styles from "../../../../styles/pesertaVaksin.module.css";
+import styles from "../../rsrujukanadmin.module.css";
 import Footer from "../../../../Components/footer";
 import TableData from "../../../../Components/table";
 
 export default function RSRujukan({ data }) {
   return (
     <div className="h-screen w-full">
-      <section id="first" className={`w-full relative h-full mb-32`}>
+      <section
+        id="first"
+        className={`w-full relative h-full mb-36 ${styles.section1}`}
+      >
         <div
           id="divider"
           className={`${styles.bgFirstSection} h-40 w-full absolute -top-40 transform rotate-180 mt-60`}
@@ -33,7 +36,8 @@ export async function getServerSideProps(context) {
   const baseUrl = process.env.BASE_URL;
   const reservasi = await fetch(`${baseUrl}api/reservasi-vaksinasi`);
   const result = await reservasi.json();
-  const data = result.data.filter((item) => item.vaksinId._id === id);
+ 
+  const data = result.data.filter((item) => item.vaksinId?._id === id);
   return {
     props: {
       data,

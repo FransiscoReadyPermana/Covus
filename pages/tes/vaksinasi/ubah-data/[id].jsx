@@ -149,7 +149,7 @@ export default function TambahData({ data, id }) {
                     id="vaksin-pertama"
                     name="Jenis Vaksin"
                     value="Vaksinasi Pertama"
-                    checked={data[0].jenisVaksin === "Vaksinasi Pertama"}
+                    defaultChecked={data[0].jenisVaksin === "Vaksinasi Pertama"}
                     onChange={(e) =>
                       setFormUser({ ...formUser, jenisVaksin: e.target.value })
                     }
@@ -163,7 +163,7 @@ export default function TambahData({ data, id }) {
                     id="vaksin-kedua"
                     name="Jenis Vaksin"
                     value="Vaksinasi Kedua"
-                    checked={data[0].jenisVaksin === "Vaksinasi Kedua"}
+                    defaultChecked={data[0].jenisVaksin === "Vaksinasi Kedua"}
                     onChange={(e) =>
                       setFormUser({ ...formUser, jenisVaksin: e.target.value })
                     }
@@ -259,7 +259,7 @@ export default function TambahData({ data, id }) {
                     id="Astrazeneca"
                     name="namaVaksin"
                     value="Astrazeneca"
-                    checked={data[0].namaVaksin.includes("Astrazeneca")}
+                    defaultChecked={data[0].namaVaksin.includes("Astrazeneca")}
                     onChange={(e) => NamaVaksin(e)}
                   />
                   <label htmlFor="Astrazeneca">Astrazeneca</label>
@@ -270,7 +270,7 @@ export default function TambahData({ data, id }) {
                     id="Pfizer"
                     name="namaVaksin"
                     value="Pfizer"
-                    checked={data[0].namaVaksin.includes("Pfizer")}
+                    defaultChecked={data[0].namaVaksin.includes("Pfizer")}
                     onChange={(e) => NamaVaksin(e)}
                   />
                   <label htmlFor="Pfizer">Pfizer</label>
@@ -282,7 +282,7 @@ export default function TambahData({ data, id }) {
                     id="Sinovac"
                     name="namaVaksin"
                     value="Sinovac"
-                    checked={data[0].namaVaksin.includes("Sinovac")}
+                    defaultChecked={data[0].namaVaksin.includes("Sinovac")}
                     onChange={(e) => NamaVaksin(e)}
                   />
                   <label htmlFor="Sinovac">Sinovac</label>
@@ -294,7 +294,7 @@ export default function TambahData({ data, id }) {
                     id="Moderna"
                     name="namaVaksin"
                     value="Moderna"
-                    checked={data[0].namaVaksin.includes("Moderna")}
+                    defaultChecked={data[0].namaVaksin.includes("Moderna")}
                     onChange={(e) => NamaVaksin(e)}
                   />
                   <label htmlFor="Moderna">Moderna</label>

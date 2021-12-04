@@ -1,0 +1,20 @@
+.section1 {
+  height: fit-content;
+}
+
+.bgFirstSection {
+  background-image: url("../../public/images/fifthDivider.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.buttonTambah {
+  opacity: 0.5;
+  transition: 0.23s ease-in-out;
+  cursor: pointer;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
+}
+
+.buttonTambah:hover {
+  opacity: 1;
+}

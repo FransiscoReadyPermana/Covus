@@ -51,7 +51,7 @@ export default function Admin() {
             </button>
 
             <button
-              onClick={() => router.push("/tes/vaksinasi")}
+              onClick={() => router.push("/tes/rs-rujukan")}
               className="w-1/4"
             >
               <Card type="big" className={`w-full h-full ${styles.card}`}>
