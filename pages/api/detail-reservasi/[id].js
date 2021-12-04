@@ -1,5 +1,5 @@
 import dbConnect from '../../../utils/dbConnect';
-import ReservasiVaksinDelete from '../../../models/reservasi';
+import ReservasiVaksin from '../../../models/reservasi';
 import VaksinService from '../../../service/Vaksin';
 import User from '../../../models/user';
 import ClientError from '../../../expecptions/ClientError';

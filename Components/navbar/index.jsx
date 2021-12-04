@@ -73,7 +73,7 @@ export default function Navbar() {
             <></>
           )}
       
-          {/* {session.nama === "Admin" ? (
+          {/* {session.user.name === "Admin" ? (
             <NavItems
               className="ml-4"
               to="/vaksinasi"

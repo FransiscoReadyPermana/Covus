@@ -452,7 +452,7 @@ export default function TableData({ data, type }) {
                 {currentTableDataPesertaVaksin.map((item) => {
                   return (
                     <tr key={uuid()}>
-                      <td>{item.userId.nama}</td>
+                      <td>{item.userId?.nama}</td>
                       <td>{item.namaVaksin}</td>
                       <td>{item.jenisVaksin}</td>
                       <td>{item.tanggal}</td>
