@@ -1,171 +1,25 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Headline from "../../../../Components/Headline";
 import Title from "../../../../Components/title";
 import styles from "../../tambah.module.css";
-import EyeShow from "../../../../Components/icons/EyeShow";
-import EyeHide from "../../../../Components/icons/EyeHide";
-import Link from "next/link";
-import DropDownEdit from "../../../../Components/dropDown";
-import bulan from "../../../../data/Bulan";
 import Footer from "../../../../Components/footer";
+import PopUp from "../../../../Components/pop-up/pop-up";
+import { useRouter } from "next/router";
 
-export default function TambahData() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showPassword2, setShowPassword2] = useState(false);
-  const [mountValue, setMountValue] = useState("");
-  const [errorNama, setErrorNama] = useState(null);
-  const [errorEmail, setErrorEmail] = useState(null);
-  const [errorTanggal, setErrorTanggal] = useState(null);
-  const [errorBulan, setErrorBulan] = useState(null);
-  const [errorTahun, setErrorTahun] = useState(null);
-  const [errorJenisKelamin, setErrorJenisKelamin] = useState(null);
-  const [errorAlamat, setErrorAlamat] = useState(null);
-  const [errorKataSandi, setErrorKataSandi] = useState(null);
-  const [errorCKataSandi, setErrorCKataSandi] = useState(null);
-  const [errorSetuju, setErrorSetuju] = useState(null);
-
-  let placeholderColor;
-  if (mountValue === "") {
-    placeholderColor = styles.placeHolderDefault;
-  } else {
-    placeholderColor = styles.placeHolder;
-  }
-
+export default function TambahData({ data, id }) {
+  const router = useRouter();
+  const [keluar, setKeluar] = useState(false);
   const [formUser, setFormUser] = useState({
-    provinsi: "",
-    img: "",
-    jenisVaksin: "",
-    penyelenggara: "",
-    tanggal: "",
-    waktu: "",
-    lokasi1: "",
-    lokasi2: "",
-    namaVaksin: [],
+    provinsi: data[0].provinsi,
+    img: data[0].img,
+    jenisVaksin: data[0].jenisVaksin,
+    penyelenggara: data[0].nama,
+    tanggal: data[0].tanggal,
+    waktu: data[0].waktu,
+    lokasi1: data[0].lokasi1,
+    lokasi2: data[0].lokasi2,
+    namaVaksin: data[0].namaVaksin,
   });
-
-  // const clearError = () => {
-  //   setErrorNama(null);
-  //   setErrorEmail(null);
-  //   setErrorTanggal(null);
-  //   setErrorBulan(null);
-  //   setErrorTahun(null);
-  //   setErrorJenisKelamin(null);
-  //   setErrorAlamat(null);
-  //   setErrorKataSandi(null);
-  //   setErrorCKataSandi(null);
-  //   setErrorSetuju(null);
-  // };
-
-  // const namaCheck = () => {
-  //   if (formUser.nama.length < 3) {
-  //     setErrorNama("Nama minimal 3 karakter");
-  //   } else if (!/^[a-zA-Z ][a-zA-Z\\s ]+$/.test(formUser.nama)) {
-  //     setErrorNama("Nama hanya boleh huruf");
-  //   } else {
-  //     setErrorNama(null);
-  //   }
-  // };
-
-  // const emailCheck = () => {
-  //   if (formUser.email === "" || formUser.email === null) {
-  //     setErrorEmail("Email tidak boleh kosong");
-  //   } else if (
-  //     !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formUser.email)
-  //   ) {
-  //     setErrorEmail("Email tidak valid");
-  //   } else {
-  //     setErrorEmail(null);
-  //   }
-  // };
-
-  // const tanggalCheck = () => {
-  //   if (formUser.tanggal === "" || formUser.tanggal === null) {
-  //     setErrorTanggal("Tanggal tidak boleh kosong");
-  //   } else if (formUser.tanggal < 1 || formUser.tanggal > 31) {
-  //     setErrorTanggal("Tanggal tidak valid");
-  //   } else {
-  //     setErrorTanggal(null);
-  //   }
-  // };
-
-  // const bulanCheck = () => {
-  //   if (formUser.bulan === "" || formUser.bulan === null) {
-  //     setErrorBulan("Bulan tidak boleh kosong");
-  //   } else {
-  //     setErrorBulan(null);
-  //   }
-  // };
-
-  // const tahunCheck = () => {
-  //   if (formUser.tahun === "" || formUser.tahun === null) {
-  //     setErrorTahun("Tahun tidak boleh kosong");
-  //   } else if (formUser.tahun < 1900 || formUser.tahun > 2021) {
-  //     setErrorTahun("Tahun tidak valid");
-  //   } else {
-  //     setErrorTahun(null);
-  //   }
-  // };
-
-  // const jenisKelaminCheck = () => {
-  //   if (formUser.jenisKelamin === "" || formUser.jenisKelamin === null) {
-  //     setErrorJenisKelamin("Jenis Kelamin tidak boleh kosong");
-  //   } else {
-  //     setErrorJenisKelamin(null);
-  //   }
-  // };
-
-  // const alamatCheck = () => {
-  //   if (formUser.alamat === "" || formUser.alamat === null) {
-  //     setErrorAlamat("Alamat tidak boleh kosong");
-  //   } else if (formUser.alamat.length < 3 || formUser.alamat.length > 100) {
-  //     setErrorAlamat("Alamat minimal 3 karakter dan maksimal 100 karakter");
-  //   } else {
-  //     setErrorAlamat(null);
-  //   }
-  // };
-
-  // const kataSandiCheck = () => {
-  //   if (formUser.kataSandi === "" || formUser.kataSandi === null) {
-  //     setErrorKataSandi("Kata Sandi tidak boleh kosong");
-  //   } else if (
-  //     formUser.kataSandi.length < 8 ||
-  //     formUser.kataSandi.length > 20
-  //   ) {
-  //     setErrorKataSandi(
-  //       "Kata Sandi minimal 8 karakter dan maksimal 20 karakter"
-  //     );
-  //   } else if (formUser.CKataSandi === "" || formUser.CKataSandi === null) {
-  //     setErrorCKataSandi("Konfirmasi Kata Sandi tidak boleh kosong");
-  //   } else if (formUser.CKataSandi !== formUser.kataSandi) {
-  //     setErrorKataSandi("Kata Sandi tidak sama");
-  //     setErrorCKataSandi("Kata Sandi tidak sama");
-  //   } else {
-  //     setErrorKataSandi(null);
-  //     setErrorCKataSandi(null);
-  //   }
-  // };
-
-  // const setujuCheck = () => {
-  //   if (formUser.setuju === false) {
-  //     setErrorSetuju("Anda harus menyetujui syarat dan ketentuan");
-  //   } else {
-  //     setErrorSetuju(null);
-  //   }
-  // };
-
-  // const checkInput = (e) => {
-  //   e.preventDefault();
-  //   namaCheck();
-  //   emailCheck();
-  //   tanggalCheck();
-  //   bulanCheck();
-  //   tahunCheck();
-  //   jenisKelaminCheck();
-  //   alamatCheck();
-  //   kataSandiCheck();
-  //   setujuCheck();
-  // };
 
   const NamaVaksin = (e) => {
     let namaVaksin = formUser.namaVaksin;
@@ -180,12 +34,38 @@ export default function TambahData() {
     });
   };
 
+  const deleteHandler = async (id) => {
+    var myHeaders = new Headers();
+    const baseUrl = process.env.BASE_URL;
+
+    var requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    const response = await fetch(
+      `${baseUrl}api/detail-lokasi-vaksinasi/${id}`,
+      requestOptions
+    );
+    const result = await response.json();
+
+    if (result.success) {
+      alert("Berhasil");
+      // clearError();
+      router.push("/tes/vaksinasi");
+    } else {
+      alert(result.message);
+    }
+  };
+
   const handleRegister = async (e) => {
     // checkInput(e);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
+      _id: id,
       provinsi: formUser.provinsi,
       img: formUser.img,
       jenisVaksin: formUser.jenisVaksin,
@@ -198,10 +78,9 @@ export default function TambahData() {
     });
 
     const requestOptions = {
-      method: "POST",
+      method: "PUT",
       headers: myHeaders,
       body: raw,
-      redirect: "follow",
     };
 
     const baseUrl = process.env.BASE_URL;
@@ -234,14 +113,14 @@ export default function TambahData() {
           id="content"
           className="w-full flex flex-col items-center h-full pt-80 bg-white pb-20"
         >
-          <Title color="dark-grey">TAMBAH DATA LOKASI VAKSINASI</Title>
+          <Title color="dark-grey">UBAH DATA LOKASI VAKSINASI</Title>
           <form action="#" className={`flex flex-col gap-8 ${styles.form}`}>
             <div id="provinsi">
               <label htmlFor="provinsi">Nama Provinsi</label>
               <input
                 type="text"
                 id="provinsi"
-                placeholder="Masukkan Provinsi"
+                defaultValue={data[0].provinsi}
                 onChange={(e) =>
                   setFormUser({ ...formUser, provinsi: e.target.value })
                 }
@@ -253,7 +132,7 @@ export default function TambahData() {
               <input
                 type="text"
                 id="img"
-                placeholder="Masukkan Link Gambar"
+                defaultValue={data[0].img}
                 onChange={(e) =>
                   setFormUser({ ...formUser, img: e.target.value })
                 }
@@ -270,6 +149,7 @@ export default function TambahData() {
                     id="vaksin-pertama"
                     name="Jenis Vaksin"
                     value="Vaksinasi Pertama"
+                    checked={data[0].jenisVaksin === "Vaksinasi Pertama"}
                     onChange={(e) =>
                       setFormUser({ ...formUser, jenisVaksin: e.target.value })
                     }
@@ -283,6 +163,7 @@ export default function TambahData() {
                     id="vaksin-kedua"
                     name="Jenis Vaksin"
                     value="Vaksinasi Kedua"
+                    checked={data[0].jenisVaksin === "Vaksinasi Kedua"}
                     onChange={(e) =>
                       setFormUser({ ...formUser, jenisVaksin: e.target.value })
                     }
@@ -299,7 +180,7 @@ export default function TambahData() {
               <input
                 type="text"
                 id="nama-penyelenggara"
-                placeholder="Masukkan Nama Penyelenggara"
+                defaultValue={data[0].nama}
                 onChange={(e) =>
                   setFormUser({ ...formUser, penyelenggara: e.target.value })
                 }
@@ -314,7 +195,7 @@ export default function TambahData() {
               <input
                 type="text"
                 id="tanggal"
-                placeholder="Masukkan Tanggal Dilaksanakan"
+                defaultValue={data[0].tanggal}
                 onChange={(e) =>
                   setFormUser({ ...formUser, tanggal: e.target.value })
                 }
@@ -329,7 +210,7 @@ export default function TambahData() {
               <input
                 type="text"
                 id="waktu"
-                placeholder="Masukkan Waktu Dilaksanakan"
+                defaultValue={data[0].waktu}
                 onChange={(e) =>
                   setFormUser({ ...formUser, waktu: e.target.value })
                 }
@@ -344,7 +225,7 @@ export default function TambahData() {
               <input
                 type="text"
                 id="lokasi1"
-                placeholder="Masukkan Tempat Vaksinasi"
+                defaultValue={data[0].lokasi1}
                 onChange={(e) =>
                   setFormUser({ ...formUser, lokasi1: e.target.value })
                 }
@@ -359,7 +240,7 @@ export default function TambahData() {
               <input
                 type="text"
                 id="lokasi2"
-                placeholder="Masukkan Lokasi Vaksinasi"
+                defaultValue={data[0].lokasi2}
                 onChange={(e) =>
                   setFormUser({ ...formUser, lokasi2: e.target.value })
                 }
@@ -378,6 +259,7 @@ export default function TambahData() {
                     id="Astrazeneca"
                     name="namaVaksin"
                     value="Astrazeneca"
+                    checked={data[0].namaVaksin.includes("Astrazeneca")}
                     onChange={(e) => NamaVaksin(e)}
                   />
                   <label htmlFor="Astrazeneca">Astrazeneca</label>
@@ -388,6 +270,7 @@ export default function TambahData() {
                     id="Pfizer"
                     name="namaVaksin"
                     value="Pfizer"
+                    checked={data[0].namaVaksin.includes("Pfizer")}
                     onChange={(e) => NamaVaksin(e)}
                   />
                   <label htmlFor="Pfizer">Pfizer</label>
@@ -399,6 +282,7 @@ export default function TambahData() {
                     id="Sinovac"
                     name="namaVaksin"
                     value="Sinovac"
+                    checked={data[0].namaVaksin.includes("Sinovac")}
                     onChange={(e) => NamaVaksin(e)}
                   />
                   <label htmlFor="Sinovac">Sinovac</label>
@@ -410,6 +294,7 @@ export default function TambahData() {
                     id="Moderna"
                     name="namaVaksin"
                     value="Moderna"
+                    checked={data[0].namaVaksin.includes("Moderna")}
                     onChange={(e) => NamaVaksin(e)}
                   />
                   <label htmlFor="Moderna">Moderna</label>
@@ -429,9 +314,46 @@ export default function TambahData() {
               }}
             />
           </form>
+
+          <PopUp
+            open={keluar}
+            onClickBackground={() => setKeluar(false)}
+            onClickBatal={() => setKeluar(false)}
+            onClickSimpan={() => {
+              deleteHandler(id);
+              setKeluar(false);
+            }}
+            pertanyaan1={"Apakah Anda yakin ingin"}
+            pertanyaan2={"hapus data vaksin?"}
+            gambar={"/images/tutup.svg"}
+            button_primary={"Iya"}
+            button_secondary={"Tidak"}
+          />
+
+          <button
+            className={`absolute text-white py-3 rounded-3xl w-72 mt-24 right-0 top-0 mt-56 mr-20 ${styles.buttonHapus}`}
+            onClick={() => setKeluar(true)}
+          >
+            Hapus Data
+          </button>
         </div>
       </section>
       <Footer color="purple" />
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { id } = context.query;
+  const baseUrl = process.env.BASE_URL;
+  const reservasi = await fetch(`${baseUrl}api/lokasi-vaksinasi`);
+  const result = await reservasi.json();
+  const data = result.data.filter((item) => item._id === id);
+
+  return {
+    props: {
+      data,
+      id,
+    },
+  };
 }

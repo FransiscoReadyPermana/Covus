@@ -9,3 +9,6 @@
   transition: all 0.1s ease-in-out;
 }
 
+.whiteContainer:hover {
+  background-color: #a5afed;
+}

@@ -1,8 +1,6 @@
 import dbConnect from "../../../utils/dbConnect";
 import ReservasiVaksinasi from "../../../models/reservasi";
 import VaksinService from "../../../service/Vaksin";
-import User from "../../../models/user";
-import ClientError from "../../../expecptions/ClientError";
 
 dbConnect();
 

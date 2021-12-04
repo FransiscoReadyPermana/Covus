@@ -12,7 +12,7 @@ export default function CardVaksin2({ item }) {
     >
       <div
         id="image"
-        className={`bg-white w-full flex flex-col ${styles.cardImage}`}
+        className={`absolute bg-white w-full flex flex-col ${styles.cardImage}`}
       >
         <Image
           src={item.img}
@@ -135,7 +135,11 @@ export default function CardVaksin2({ item }) {
           <div
             className={`flex items-center pb-24 flex-row justify-center w-5/6 gap-12 items-center ${styles.buttonContainer}`}
           >
-            <Button to={`/`} color="secondary">
+            <Button
+              to={`/tes/vaksinasi/ubah-data/${item._id}`}
+              color="secondary"
+              key={uuid()}
+            >
               Ubah Data
             </Button>
           </div>

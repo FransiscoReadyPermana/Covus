@@ -74,25 +74,24 @@
 }
 
 .hapus {
-  background: #fa3030;
+  background: #F178B6;
   color: white;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  opacity: 0.5;
   transition: all 0.23s ease-in-out;
 }
 
 .hapus:hover {
   opacity: 1;
+  background: #f150a3;
 }
 
 .kontradiksi {
-  opacity: 0.5;
   transition: all 0.23s ease-in-out;
 }
 
 .kontradiksi:hover {
-  opacity: 1;
+  background: #7080ec;
 }
 
 .list {

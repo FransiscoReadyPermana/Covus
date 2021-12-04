@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import styles from '../daftar.module.css';
-import Title from '../../../Components/title';
-import Footer from '../../../Components/footer';
-import DropDownEdit from '../../../Components/dropDown';
-import Button from '../../../Components/button';
-import CardVaksin2 from '../../../Components/cardVaksin/cardVaksin2';
-import uuid from 'react-uuid';
-import Pagination from '../../../Components/pagination';
-import jenisVaksinasii from '../../../data/jenisVaksinn';
+import React, { useEffect, useState } from "react";
+import styles from "../daftar.module.css";
+import Title from "../../../Components/title";
+import Footer from "../../../Components/footer";
+import DropDownEdit from "../../../Components/dropDown";
+import CardVaksin2 from "../../../Components/cardVaksin/cardVaksin2";
+import uuid from "react-uuid";
+import Pagination from "../../../Components/pagination";
+import jenisVaksinasii from "../../../data/jenisVaksinn";
+import { useRouter } from "next/router";
 
 export default function Admin({
   data,
@@ -16,6 +15,7 @@ export default function Admin({
   daerahVaksinPertama,
   defaultProvinsi,
 }) {
+  const router = useRouter();
   const [periodeVaksin, setPeriodeVaksin] = useState(defaultProvinsi);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentData, setCurrentData] = useState([]);
@@ -51,9 +51,9 @@ export default function Admin({
 
     if (e.length > 0) {
       filterData = data.filter((dataBaru) => dataBaru.jenisVaksin === e);
-      if (e === 'Vaksinasi Pertama') {
+      if (e === "Vaksinasi Pertama") {
         setPeriodeVaksin(daerahVaksinPertama);
-      } else if (e === 'Vaksinasi Kedua') {
+      } else if (e === "Vaksinasi Kedua") {
         setPeriodeVaksin(daerahVaksinKedua);
       }
     } else {
@@ -74,25 +74,25 @@ export default function Admin({
 
         <div
           id="content"
-          className="w-full flex flex-col items-center h-full pt-72 bg-white pb-16"
+          className="w-full flex flex-col items-center h-full pt-80 bg-white pb-28"
         >
           <Title color="dark-grey">DAFTAR VAKSINASI</Title>
 
           <div className="flex flex-row gap-12 w-1/2 items-center justify-center">
-            <div className="flex items-center justify-center w-full mt-4">
+            <div className="flex items-center justify-center w-full mt-12">
               <DropDownEdit
                 className="w-full"
                 color="purple"
-                placeholder={'Pilih Provinsi'}
+                placeholder={"Pilih Provinsi"}
                 onChange={onFilterDropdown}
                 option={periodeVaksin}
               />
             </div>
-            <div className="flex items-center justify-center w-full mt-4">
+            <div className="flex items-center justify-center w-full mt-12">
               <DropDownEdit
                 className="w-full"
                 color="white"
-                placeholder={'Jenis Vaksinasi'}
+                placeholder={"Jenis Vaksinasi"}
                 classNameControl={`${styles.classNameControl}`}
                 onChange={onFilterDropdownJenisVaksin}
                 option={jenisVaksinasii}
@@ -124,8 +124,18 @@ export default function Admin({
 
           <button
             className={`absolute bg-purple text-white py-3 rounded-3xl w-72 mt-24 right-0 top-0 mt-56 mr-20 ${styles.buttonTambah}`}
+            onClick={() => router.push("/tes/vaksinasi/tambah-data")}
           >
             Tambah Data
+          </button>
+
+          <button
+            className={`absolute bg-white text-purple py-3 rounded-3xl w-72 mt-24 right-0 top-0 mr-20 ${styles.buttonPeserta}`}
+            onClick={() =>
+              router.push("/tes/vaksinasi/peserta-vaksinasi/keseluruhan")
+            }
+          >
+            Peserta Vaksinasi
           </button>
         </div>
       </section>
@@ -145,11 +155,11 @@ export async function getServerSideProps() {
   const resultKetiga = await lokasiVaksinasi.json();
 
   const filterDataPertama = resultKetiga.data.filter(
-    (item) => item.jenisVaksin === 'Vaksinasi Pertama'
+    (item) => item.jenisVaksin === "Vaksinasi Pertama"
   );
 
   const filterDataKedua = resultKetiga.data.filter(
-    (item) => item.jenisVaksin === 'Vaksinasi Kedua'
+    (item) => item.jenisVaksin === "Vaksinasi Kedua"
   );
 
   const namaVaksinPertama = filterDataPertama.map((item) => item.provinsi);
@@ -162,7 +172,6 @@ export async function getServerSideProps() {
 
   const namaVaksinPertamaUniqe = [...new Set(namaVaksinPertama)];
   const namaVaksinKeduaUniqe = [...new Set(namaVaksinKedua)];
-
 
   return {
     props: {

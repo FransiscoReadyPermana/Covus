@@ -1,8 +1,8 @@
 import React from "react";
-import Title from "../../../../Components/title";
-import styles from "../../../../styles/pesertaVaksin.module.css";
-import Footer from "../../../../Components/footer";
-import TableData from "../../../../Components/table";
+import Title from "../../../../../Components/title";
+import styles from "../../../../../styles/pesertaVaksin.module.css";
+import Footer from "../../../../../Components/footer";
+import TableData from "../../../../../Components/table";
 
 export default function RSRujukan({ data }) {
   return (
@@ -33,10 +33,10 @@ export async function getServerSideProps(context) {
   const baseUrl = process.env.BASE_URL;
   const reservasi = await fetch(`${baseUrl}api/reservasi-vaksinasi`);
   const result = await reservasi.json();
-  const data = result.data.filter((item) => item.vaksinId._id === id);
+
   return {
     props: {
-      data,
+      data: result.data,
     },
   };
 }

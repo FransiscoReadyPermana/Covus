@@ -57,7 +57,6 @@ export default function ValidasiVaksinasi({ data, user }) {
   const handleRegister = async (e) => {
     checkInput(e);
 
-
     if (
       !(formUser.namaVaksin === "" || formUser.namaVaksin === null) &&
       !(formUser.setuju === false)
@@ -92,13 +91,11 @@ export default function ValidasiVaksinasi({ data, user }) {
       );
       const result = await response.json();
 
-
       if (result.success) {
         alert("Berhasil");
         location.reload();
       } else {
         alert(result.message);
-       
       }
     }
   };
