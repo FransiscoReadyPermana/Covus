@@ -8,7 +8,7 @@ export default function PopUpKontradiksi({
   onClickBackground,
   onClick,
   item,
-  children
+  children,
 }) {
   if (!open) {
     return null;
@@ -33,13 +33,13 @@ export default function PopUpKontradiksi({
         </button>
 
         <h1
-          className={`text-center text-dark-grey mb-4 leading-loose ${style.judul}`}
+          className={`text-center text-dark-grey mb-2 leading-loose ${style.judul}`}
         >
           Kontradiksi Vaksin
         </h1>
 
         <div className="text-center font-normal text-dark-grey">
-          Kontradiksi yang dimiliki oleh pasien
+          <p className="mb-5">Kontradiksi yang dimiliki oleh pasien:</p>
           {children}
           {/* <ul>
             <li className={`text-left ${style.list}`}>{item}</li>

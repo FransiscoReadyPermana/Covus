@@ -1,4 +1,5 @@
-import ReservasiVaksinasi from "../models/reservasi";
+import NotFoundError from '../expecptions/NotFoundError';
+import ReservasiVaksinasi from '../models/reservasi';
 
 class VaksinService {
   async createVaksin({
@@ -28,6 +29,17 @@ class VaksinService {
 
     const vaksin = await newVaksin.save();
     return vaksin._id;
+  }
+  async deleteReservasi(id) {
+    const reservasi = await ReservasiVaksinasi.findById(id);
+
+    if (!reservasi) {
+      throw new NotFoundError('Failed delete reservasi. Id not found');
+    }
+
+    const result = await ReservasiVaksinasi.deleteOne({ _id: id });
+
+    return result;
   }
 }
 

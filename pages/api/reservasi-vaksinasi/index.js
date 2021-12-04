@@ -1,7 +1,9 @@
-import dbConnect from "../../../utils/dbConnect";
-import ReservasiVaksinasi from "../../../models/reservasi";
-import VaksinService from "../../../service/Vaksin";
-import User from "../../../models/user";
+import dbConnect from '../../../utils/dbConnect';
+import ReservasiVaksinasi from '../../../models/reservasi';
+import VaksinService from '../../../service/Vaksin';
+import User from '../../../models/user';
+import ClientError from '../../../expecptions/ClientError';
+
 dbConnect();
 
 const ReservasiVaksin = async (req, res) => {
@@ -9,10 +11,10 @@ const ReservasiVaksin = async (req, res) => {
   const vaksinService = new VaksinService();
 
   switch (method) {
-    case "GET":
+    case 'GET':
       try {
         const reservasiVaksin = await ReservasiVaksinasi.find({}).populate(
-          "userId"
+          'userId'
         );
         // const reservasiVaksin = await ReservasiVaksinasi.find({});
         res.status(200).json({ success: true, data: reservasiVaksin });
@@ -21,7 +23,7 @@ const ReservasiVaksin = async (req, res) => {
       }
       break;
 
-    case "POST":
+    case 'POST':
       try {
         // get user data from request
         const {
@@ -53,7 +55,7 @@ const ReservasiVaksin = async (req, res) => {
 
         return res.status(201).json({
           success: true,
-          message: "berhasil",
+          message: 'berhasil',
         });
       } catch (error) {
         return res.status(400).json({ success: false, message: error.message });

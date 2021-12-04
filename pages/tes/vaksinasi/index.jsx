@@ -17,7 +17,6 @@ export default function Admin({
   defaultProvinsi,
 }) {
   const [periodeVaksin, setPeriodeVaksin] = useState(defaultProvinsi);
-  console.log(periodeVaksin);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentData, setCurrentData] = useState([]);
   const [filteredData, setFilteredData] = useState(data);
@@ -145,7 +144,6 @@ export async function getServerSideProps() {
   const resultKedua = await vaksinasiKedua.json();
   const resultKetiga = await lokasiVaksinasi.json();
 
-  console.log(resultKetiga.data);
   const filterDataPertama = resultKetiga.data.filter(
     (item) => item.jenisVaksin === 'Vaksinasi Pertama'
   );

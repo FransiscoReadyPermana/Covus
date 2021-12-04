@@ -76,7 +76,7 @@
 .hapus {
   background: #fa3030;
   color: white;
-  padding: 0.25rem;
+  padding: 0.5rem;
   border-radius: 0.5rem;
   opacity: 0.5;
   transition: all 0.23s ease-in-out;
@@ -93,4 +93,8 @@
 
 .kontradiksi:hover {
   opacity: 1;
+}
+
+.list {
+  list-style-type: circle;
 }

@@ -13,8 +13,34 @@ import uuid from 'react-uuid';
 import kota from '../dropDown/dataKota';
 import Vaksin from './../icons/Vaksin';
 import PopUpKontradiksi from './../pop-up/pop-up-kontradiksi/index';
+import Trash from '../icons/Trash';
 
 export default function TableData({ data, type }) {
+  const pesertaDeleteHandler = async (id) => {
+    var myHeaders = new Headers();
+    const baseUrl = process.env.BASE_URL;
+
+    var requestOptions = {
+      method: 'DELETE',
+      headers: myHeaders,
+      redirect: 'follow',
+    };
+
+    const response = await fetch(
+      `${baseUrl}api/detail-reservasi/${id}`,
+      requestOptions
+    );
+    const result = await response.json();
+
+    if (result.success) {
+      alert('Berhasil');
+      // clearError();
+      location.reload();
+    } else {
+      alert(result.message);
+      console.log(result);
+    }
+  };
   const [isOpen, setIsOpen] = useState(false);
   const [kontradiksi, setKontradiksi] = useState([]);
   const [currentPageProvinsi, setCurrentPageProvinsi] = useState(1);
@@ -32,7 +58,6 @@ export default function TableData({ data, type }) {
   const [currentPagePesertaVaksin, setCurrentPagePesertaVaksin] = useState(1);
   const [filteredDataPesertaVaksin, setFilteredDataPesertaVaksin] =
     useState(data);
-  console.log(filteredDataPesertaVaksin);
   const [userInputPesertaVaksin, setUserInputPesertaVaksin] = useState('');
   const [currentTableDataPesertaVaksin, setCurrentTableDataPesertaVaksin] =
     useState([]);
@@ -430,22 +455,6 @@ export default function TableData({ data, type }) {
                         {item.lokasi1} <br /> {item.lokasi2}
                       </td>
                       <td>
-                        <ul>
-                          {item.kontradiksi.map((item) => {
-                            return (
-                              <li
-                                key={uuid()}
-                                className={`text-left ${stylePeserta.list}`}
-                              >
-                                {item}
-                              </li>
-                            );
-                          })}
-                        </ul>
-                        {/* {item.kontradiksi.map((item) => {
-                            return (
-                              );
-                            })} */}
                         <button
                           className={`bg-purple p-2 rounded-xl ${stylePeserta.kontradiksi}`}
                           type="button"
@@ -455,8 +464,12 @@ export default function TableData({ data, type }) {
                         </button>
                       </td>
                       <td>
-                        <button className={`${stylePeserta.hapus}`}>
-                          Hapus
+                        <button
+                          type="button"
+                          className={`${stylePeserta.hapus}`}
+                          onClick={() => pesertaDeleteHandler(item._id)}
+                        >
+                          <Trash />
                         </button>
                       </td>
                     </tr>
