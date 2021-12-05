@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import styles from '../admin.module.css';
+import styles from '../../admin.module.css';
 import Title from '../../Components/title';
 import Footer from '../../Components/footer';
 import Card from '../../Components/card';
