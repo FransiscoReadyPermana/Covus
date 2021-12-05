@@ -1,42 +1,29 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Headline from "../../../../Components/Headline";
 import Title from "../../../../Components/title";
 import styles from "../../tambah.module.css";
-import EyeShow from "../../../../Components/icons/EyeShow";
-import EyeHide from "../../../../Components/icons/EyeHide";
-import Link from "next/link";
-import DropDownEdit from "../../../../Components/dropDown";
-import bulan from "../../../../data/Bulan";
+import { useRouter } from "next/router";
+import { getSession } from "next-auth/client";
+import AdminOnly from "../../../../Components/adminOnly";
 import Footer from "../../../../Components/footer";
 
-export default function TambahData() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showPassword2, setShowPassword2] = useState(false);
-  const [mountValue, setMountValue] = useState("");
-  const [errorNama, setErrorNama] = useState(null);
-  const [errorEmail, setErrorEmail] = useState(null);
-  const [errorTanggal, setErrorTanggal] = useState(null);
-  const [errorBulan, setErrorBulan] = useState(null);
-  const [errorTahun, setErrorTahun] = useState(null);
-  const [errorJenisKelamin, setErrorJenisKelamin] = useState(null);
-  const [errorAlamat, setErrorAlamat] = useState(null);
-  const [errorKataSandi, setErrorKataSandi] = useState(null);
-  const [errorCKataSandi, setErrorCKataSandi] = useState(null);
-  const [errorSetuju, setErrorSetuju] = useState(null);
+export default function UbahData({ data, id, user }) {
+  const router = useRouter();
+  const emailAdmin = process.env.ADMIN;
 
-  let placeholderColor;
-  if (mountValue === "") {
-    placeholderColor = styles.placeHolderDefault;
-  } else {
-    placeholderColor = styles.placeHolder;
+  if (user.name !== "admin" && user.email !== emailAdmin) {
+    return (
+      <div>
+        <AdminOnly />
+      </div>
+    );
   }
 
   const [formUser, setFormUser] = useState({
-    provinsi: "",
-    nama: "",
-    alamat: "",
-    telp: "",
+    provinsi: data[0].provinsi,
+    nama: data[0].nama,
+    alamat: data[0].alamat,
+    telp: data[0].telp,
   });
 
   const handleRegister = async (e) => {
@@ -45,6 +32,7 @@ export default function TambahData() {
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
+      _id: id,
       provinsi: formUser.provinsi,
       nama: formUser.nama,
       alamat: formUser.alamat,
@@ -52,7 +40,7 @@ export default function TambahData() {
     });
 
     const requestOptions = {
-      method: "POST",
+      method: "PUT",
       headers: myHeaders,
       body: raw,
       redirect: "follow",
@@ -65,6 +53,7 @@ export default function TambahData() {
 
     if (result.success) {
       alert("Berhasil");
+      router.push("/admin/rs-rujukan");
     } else {
       alert(result.message);
     }
@@ -89,7 +78,7 @@ export default function TambahData() {
               <input
                 type="text"
                 id="provinsi"
-                placeholder="Masukkan Provinsi"
+                defaultValue={data[0].provinsi}
                 onChange={(e) =>
                   setFormUser({ ...formUser, provinsi: e.target.value })
                 }
@@ -101,7 +90,7 @@ export default function TambahData() {
               <input
                 type="text"
                 id="nama"
-                placeholder="Masukkan Nama Rumah Sakit"
+                defaultValue={data[0].nama}
                 onChange={(e) =>
                   setFormUser({ ...formUser, nama: e.target.value })
                 }
@@ -115,6 +104,7 @@ export default function TambahData() {
                 type="text"
                 id="alamat"
                 placeholder="Masukkan Alamat"
+                defaultValue={data[0].alamat}
                 onChange={(e) =>
                   setFormUser({ ...formUser, alamat: e.target.value })
                 }
@@ -130,6 +120,7 @@ export default function TambahData() {
                 type="text"
                 id="telpon"
                 placeholder="Masukkan Nomor Telepon"
+                defaultValue={data[0].telp}
                 onChange={(e) =>
                   setFormUser({ ...formUser, telp: e.target.value })
                 }
@@ -153,4 +144,31 @@ export default function TambahData() {
       <Footer color="purple" />
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { id } = context.query;
+  const baseUrl = process.env.BASE_URL;
+
+  const response = await fetch(`${baseUrl}api/rs-rujukan`);
+  const result = await response.json();
+  const data = result.data.filter((item) => item._id === id);
+  const session = await getSession({ req: context.req });
+  const user = session.user;
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      data,
+      id,
+      user,
+    },
+  };
 }

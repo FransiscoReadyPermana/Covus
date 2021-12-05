@@ -12,7 +12,6 @@ import AdminOnly from '../../Components/adminOnly';
 export default function Admin({ user }) {
   const router = useRouter();
   const emailAdmin = process.env.ADMIN;
-  console.log(emailAdmin);
 
   if (user.name !== 'admin' && user.email !== emailAdmin) {
     return (

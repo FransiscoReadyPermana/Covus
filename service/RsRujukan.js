@@ -13,6 +13,29 @@ class RsService {
 
     return result;
   }
+
+  async createRs({ provinsi, nama, alamat, telp }) {
+    const newRs = new RsRujukan({
+      provinsi,
+      nama: nama.trim(),
+      alamat,
+      telp,
+    });
+    const rsakit = await newRs.save();
+    return rsakit._id;
+  }
+
+  async editRs(_id, { provinsi, nama, alamat, telp }) {
+    const data = await RsRujukan.findOne({ _id });
+
+    data.provinsi = provinsi ?? data.provinsi;
+    data.nama = nama ?? data.nama;
+    data.alamat = alamat ?? data.alamat;
+    data.telp = telp ?? data.telp;
+
+    await data.save();
+    return data;
+  }
 }
 
 export default RsService;

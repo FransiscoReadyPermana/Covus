@@ -3,8 +3,10 @@ import Title from "../../../Components/title";
 import styles from "../rsrujukanadmin.module.css";
 import Footer from "../../../Components/footer";
 import TableData from "../../../Components/table";
+import { useRouter } from "next/router";
 
 export default function RSRujukan({ data }) {
+  const router = useRouter();
   return (
     <div className="h-full w-full">
       <section id="first" className={`w-full relative h-full mb-36`}>
@@ -24,7 +26,7 @@ export default function RSRujukan({ data }) {
         </div>
         <button
           className={`absolute bg-purple text-white py-3 rounded-3xl w-72 mt-24 right-0 top-0 mt-56 mr-20 ${styles.buttonTambah}`}
-          onClick={() => router.push("/tes/vaksinasi/tambah-data")}
+          onClick={() => router.push("/admin/rs-rujukan/tambah-data")}
         >
           Tambah Data
         </button>
@@ -40,7 +42,10 @@ export async function getServerSideProps() {
   const response = await fetch(`${baseUrl}api/rs-rujukan`);
   const result = await response.json();
 
-  const sortdata = result.data.sort((a, b) => a.no - b.no);
+  const sortdata = result.data.sort((a, b) =>
+    a.provinsi.localeCompare(b.provinsi)
+  );
+
   return {
     props: {
       data: sortdata,
