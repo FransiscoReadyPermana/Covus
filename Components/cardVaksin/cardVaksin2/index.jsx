@@ -120,8 +120,11 @@ export default function CardVaksin2({ item }) {
             {item.lokasi2}
           </p>
 
+          <div>
+
+          </div>
           <div
-            className={`flex items-center pb-6 flex-row justify-center w-5/6 items-center ${styles.buttonContainer}`}
+            className={`flex items-center flex-row justify-center w-5/6 items-center ${styles.buttonContainer}`}
           >
             <Button
               to={`/admin/vaksinasi/peserta-vaksinasi/${item._id}`}
@@ -133,7 +136,7 @@ export default function CardVaksin2({ item }) {
           </div>
 
           <div
-            className={`flex items-center pb-24 flex-row justify-center w-5/6 gap-12 items-center ${styles.buttonContainer}`}
+            className={`flex items-center pb-24 flex-row justify-center w-5/6 gap-12 items-center pt-4 ${styles.buttonContainer}`}
           >
             <Button
               to={`/admin/vaksinasi/ubah-data/${item._id}`}
@@ -143,6 +146,7 @@ export default function CardVaksin2({ item }) {
               Ubah Data
             </Button>
           </div>
+
         </div>
       </div>
     </div>

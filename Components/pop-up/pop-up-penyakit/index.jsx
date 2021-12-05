@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import style from "../profile.module.css";
-import Close from "../../icons/Close";
+import React, { useState } from 'react';
+import style from '../profile.module.css';
+import Close from '../../icons/Close';
 import uuid from 'react-uuid';
 
 export default function PopUpPenyakit({
@@ -38,7 +38,7 @@ export default function PopUpPenyakit({
         </h1>
 
         <p className="text-center font-normal text-dark-grey">
-          Jenis Vaksin yang diambil adalah{" "}
+          Jenis Vaksin yang diambil adalah{' '}
           <span
             className={`text-l text-white bg-dark-grey rounded-full ml-1 ${style.jenis_vaksin}`}
           >
@@ -54,14 +54,16 @@ export default function PopUpPenyakit({
               Saya memiliki kontradiksi Vaksin berupa :
             </b>
           </div>
-          {item.kontradiksi.map((data) => (
-            <p
-            key={uuid()}
-              className={`text-justify font-normal px-10 mt-1 text-dark-grey ${style.kontradiksi}`}
-            >
-              {data}
-            </p>
-          ))}
+          <ul>
+            {item.kontradiksi.map((data) => (
+              <li
+                key={uuid()}
+                className={`text-justify font-normal px-10 mt-1 text-dark-grey ${style.kontradiksi}`}
+              >
+                {data}
+              </li>
+            ))}
+          </ul>
         </p>
       </div>
     </>

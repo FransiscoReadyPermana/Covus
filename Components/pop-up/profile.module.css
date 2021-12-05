@@ -73,7 +73,7 @@
 }
 
 .divider2 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .jenis_vaksin {
@@ -88,8 +88,5 @@
   margin-left: 2.5rem;
   margin-right: 2.5rem;
   margin-top: 0.25rem;
-}
-
-.list {
   list-style-type: circle;
 }
