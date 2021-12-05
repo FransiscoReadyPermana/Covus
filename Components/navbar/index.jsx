@@ -1,19 +1,19 @@
-import { useRouter } from 'next/dist/client/router';
-import React, { useEffect, useState } from 'react';
-import AvatarDropDown from '../avatarDropDown';
-import AvatarDropDownMenu from '../avatarDropDownMenu';
-import Brand from '../brand';
-import NavItems from '../navItems';
-import PopUpLogin from '../popUpLogin';
-import style from './navbar.module.css';
-import { useSession } from 'next-auth/client';
-import Link from 'next/link';
+import { useRouter } from "next/dist/client/router";
+import React, { useEffect, useState } from "react";
+import AvatarDropDown from "../avatarDropDown";
+import AvatarDropDownMenu from "../avatarDropDownMenu";
+import Brand from "../brand";
+import NavItems from "../navItems";
+import PopUpLogin from "../popUpLogin";
+import style from "./navbar.module.css";
+import { useSession } from "next-auth/client";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const [session] = useSession();
-  const [adminEmailSession, setAdminEmailSession] = useState('');
+  const [adminEmailSession, setAdminEmailSession] = useState("");
 
   useEffect(() => {
     if (session) {
@@ -84,13 +84,16 @@ export default function Navbar() {
               className="ml-4"
               to="/admin"
               isActive={
-                router.pathname == '/admin' ||
-                router.pathname == '/admin/vaksinasi' ||
-                router.pathname == '/admin/vaksinasi/tambah-data' ||
+                router.pathname == "/admin" ||
+                router.pathname == "/admin/vaksinasi" ||
+                router.pathname == "/admin/vaksinasi/tambah-data" ||
                 router.pathname ==
-                  '/admin/vaksinasi/peserta-vaksinasi/keseluruhan' ||
-                router.pathname == '/admin/vaksinasi/peserta-vaksinasi/[id]' ||
-                router.pathname == '/admin/vaksinasi/ubah-data/[id]'
+                  "/admin/vaksinasi/peserta-vaksinasi/keseluruhan" ||
+                router.pathname == "/admin/vaksinasi/peserta-vaksinasi/[id]" ||
+                router.pathname == "/admin/vaksinasi/ubah-data/[id]" ||
+                router.pathname == "/admin/rs-rujukan" ||
+                router.pathname == "/admin/rs-rujukan/tambah-data" ||
+                router.pathname == "/admin/rs-rujukan/ubah-data/[id]"
               }
             >
               Admin
