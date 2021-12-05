@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
 const LokasiVaksinasiSchema = new mongoose.Schema({
+  vaksinId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "VaksinasiProvinsi",
+    required: true,
+  },
   provinsi: {
     type: String,
     required: true,

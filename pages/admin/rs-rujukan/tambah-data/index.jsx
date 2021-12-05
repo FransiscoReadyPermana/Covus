@@ -1,37 +1,21 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Headline from "../../../../Components/Headline";
 import Title from "../../../../Components/title";
 import styles from "../../tambah.module.css";
-import EyeShow from "../../../../Components/icons/EyeShow";
-import EyeHide from "../../../../Components/icons/EyeHide";
-import Link from "next/link";
-import DropDownEdit from "../../../../Components/dropDown";
-import bulan from "../../../../data/Bulan";
 import Footer from "../../../../Components/footer";
+import { getSession } from "next-auth/client";
+import AdminOnly from "../../../../Components/adminOnly";
 
-export default function TambahData() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showPassword2, setShowPassword2] = useState(false);
-  const [mountValue, setMountValue] = useState("");
-  const [errorNama, setErrorNama] = useState(null);
-  const [errorEmail, setErrorEmail] = useState(null);
-  const [errorTanggal, setErrorTanggal] = useState(null);
-  const [errorBulan, setErrorBulan] = useState(null);
-  const [errorTahun, setErrorTahun] = useState(null);
-  const [errorJenisKelamin, setErrorJenisKelamin] = useState(null);
-  const [errorAlamat, setErrorAlamat] = useState(null);
-  const [errorKataSandi, setErrorKataSandi] = useState(null);
-  const [errorCKataSandi, setErrorCKataSandi] = useState(null);
-  const [errorSetuju, setErrorSetuju] = useState(null);
+export default function TambahData({ user }) {
+  const emailAdmin = process.env.ADMIN;
 
-  let placeholderColor;
-  if (mountValue === "") {
-    placeholderColor = styles.placeHolderDefault;
-  } else {
-    placeholderColor = styles.placeHolder;
+  if (user.name !== "admin" && user.email !== emailAdmin) {
+    return (
+      <div>
+        <AdminOnly />
+      </div>
+    );
   }
-
   const [formUser, setFormUser] = useState({
     provinsi: "",
     nama: "",
@@ -153,4 +137,22 @@ export default function TambahData() {
       <Footer color="purple" />
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req });
+  const user = session.user;
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { user },
+  };
 }

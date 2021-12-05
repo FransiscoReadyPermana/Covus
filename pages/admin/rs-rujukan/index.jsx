@@ -4,9 +4,20 @@ import styles from "../rsrujukanadmin.module.css";
 import Footer from "../../../Components/footer";
 import TableData from "../../../Components/table";
 import { useRouter } from "next/router";
+import { getSession } from "next-auth/client";
+import AdminOnly from "../../../Components/adminOnly";
 
-export default function RSRujukan({ data }) {
+export default function RSRujukan({ data, user }) {
   const router = useRouter();
+  const emailAdmin = process.env.ADMIN;
+
+  if (user.name !== "admin" && user.email !== emailAdmin) {
+    return (
+      <div>
+        <AdminOnly />
+      </div>
+    );
+  }
   return (
     <div className="h-full w-full">
       <section id="first" className={`w-full relative h-full mb-36`}>
@@ -36,7 +47,7 @@ export default function RSRujukan({ data }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   const baseUrl = process.env.BASE_URL;
 
   const response = await fetch(`${baseUrl}api/rs-rujukan`);
@@ -46,9 +57,22 @@ export async function getServerSideProps() {
     a.provinsi.localeCompare(b.provinsi)
   );
 
+  const session = await getSession({ req: context.req });
+  const user = session.user;
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: {
       data: sortdata,
+      user,
     },
   };
 }
