@@ -318,7 +318,7 @@ export default function TambahData({ data, id, user }) {
 
             <input
               type="submit"
-              value="Tambah Data Vaksinasi"
+              value="Ubah Data Vaksinasi"
               className="bg-purple text-white py-3 rounded-3xl mt-4"
               onClick={(e) => {
                 handleRegister(e);
