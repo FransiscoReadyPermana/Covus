@@ -1,23 +1,32 @@
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import Footer from "../../../Components/footer";
-import Title from "../../../Components/title";
-import styles from "../../../styles/validasi.module.css";
-import uuid from "react-uuid";
-import PopUpSK from "../../../Components/pop-up/pop-up-SK";
-import { useRouter } from "next/router";
-import { getSession } from "next-auth/client";
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import Footer from '../../../Components/footer';
+import Title from '../../../Components/title';
+import styles from '../../../styles/validasi.module.css';
+import uuid from 'react-uuid';
+import PopUpSK from '../../../Components/pop-up/pop-up-SK';
+import { useRouter } from 'next/router';
+import { getSession } from 'next-auth/client';
 
 export default function ValidasiVaksinasi({ data, user }) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [formUser, setFormUser] = useState({
-    namaVaksin: "",
+    namaVaksin: '',
     kontradiksi: [],
     setuju: false,
   });
-  const [errorSetuju, setErrorSetuju] = useState("");
-  const [errorNamaVaksin, setErrorNamaVaksin] = useState("");
+  const [tidakMemiliki, setTidakMemiliki] = useState(false);
+  const [kontradiksi, setKontradiksi] = useState({
+    kontradiksi1: false,
+    kontradiksi2: false,
+    kontradiksi3: false,
+    kontradiksi4: false,
+    kontradiksi5: false,
+    kontradiksi6: false,
+  });
+  const [errorSetuju, setErrorSetuju] = useState('');
+  const [errorNamaVaksin, setErrorNamaVaksin] = useState('');
 
   const Kontradiksi = (e) => {
     let kontradiksi = formUser.kontradiksi;
@@ -34,15 +43,42 @@ export default function ValidasiVaksinasi({ data, user }) {
 
   const setujuCheck = () => {
     if (formUser.setuju === false) {
-      setErrorSetuju("Anda harus menyetujui syarat dan ketentuan");
+      setErrorSetuju('Anda harus menyetujui syarat dan ketentuan');
     } else {
       setErrorSetuju(null);
     }
   };
 
+  const kontradiksiTidakMemiliki = () => {
+    if (tidakMemiliki !== true) {
+      setKontradiksi({
+        kontradiksi1: false,
+        kontradiksi2: false,
+        kontradiksi3: false,
+        kontradiksi4: false,
+        kontradiksi5: false,
+        kontradiksi6: false,
+      });
+    }
+  };
+  const kontradiksii = () => {
+    if (
+      !(
+        kontradiksi.kontradiksi1 === true &&
+        kontradiksi.kontradiksi2 === true &&
+        kontradiksi.kontradiksi3 === true &&
+        kontradiksi.kontradiksi4 === true &&
+        kontradiksi.kontradiksi5 === true &&
+        kontradiksi.kontradiksi6 === true
+      )
+    ) {
+      setTidakMemiliki(false);
+    }
+  };
+
   const namaVaksinCheck = () => {
-    if (formUser.namaVaksin === "" || formUser.namaVaksin === null) {
-      setErrorNamaVaksin("Jenis Vaksin tidak boleh kosong");
+    if (formUser.namaVaksin === '' || formUser.namaVaksin === null) {
+      setErrorNamaVaksin('Jenis Vaksin tidak boleh kosong');
     } else {
       setErrorNamaVaksin(null);
     }
@@ -58,11 +94,11 @@ export default function ValidasiVaksinasi({ data, user }) {
     checkInput(e);
 
     if (
-      !(formUser.namaVaksin === "" || formUser.namaVaksin === null) &&
+      !(formUser.namaVaksin === '' || formUser.namaVaksin === null) &&
       !(formUser.setuju === false)
     ) {
       const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append('Content-Type', 'application/json');
 
       const raw = JSON.stringify({
         userId: user._id,
@@ -79,7 +115,7 @@ export default function ValidasiVaksinasi({ data, user }) {
       });
 
       const requestOptions = {
-        method: "POST",
+        method: 'POST',
         body: raw,
         headers: myHeaders,
       };
@@ -92,7 +128,7 @@ export default function ValidasiVaksinasi({ data, user }) {
       const result = await response.json();
 
       if (result.success) {
-        alert("Berhasil");
+        alert('Berhasil');
         location.reload();
       } else {
         alert(result.message);
@@ -175,7 +211,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     Tempat dan Waktu
                   </p>
                   <div id="tempat" className="flex flex-row">
-                    <div id="icon" className={"absolute h-6 w-6 mr-2 mt-4"}>
+                    <div id="icon" className={'absolute h-6 w-6 mr-2 mt-4'}>
                       <Image
                         src="/images/Calendar.svg"
                         alt="reading-book-image"
@@ -192,7 +228,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                   </div>
 
                   <div id="waktu" className="flex flex-row">
-                    <div id="icon" className={"absolute h-6 w-6 mr-2 mt-2"}>
+                    <div id="icon" className={'absolute h-6 w-6 mr-2 mt-2'}>
                       <Image
                         src="/images/Time.svg"
                         alt="reading-book-image"
@@ -217,7 +253,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     Lokasi Vaksinasi
                   </p>
                   <div id="lokasi" className="flex flex-row">
-                    <div id="icon" className={"absolute h-6 w-6 mr-2 mt-4"}>
+                    <div id="icon" className={'absolute h-6 w-6 mr-2 mt-4'}>
                       <Image
                         src="/images/Location.svg"
                         alt="reading-book-image"
@@ -297,7 +333,12 @@ export default function ValidasiVaksinasi({ data, user }) {
                     id="riwayat-satu"
                     name="penyakit-vaksin"
                     value="Menderita COVID-19 selama 3 bulan terakhir"
-                    onChange={(e) => Kontradiksi(e)}
+                    checked={kontradiksi.kontradiksi1}
+                    onChange={(e) => {
+                      Kontradiksi(e);
+                      kontradiksii();
+                      setKontradiksi(!{ ...kontradiksi, kontradiksi1: true });
+                    }}
                   />
 
                   <label htmlFor="riwayat-satu">
@@ -312,7 +353,12 @@ export default function ValidasiVaksinasi({ data, user }) {
                     name="penyakit-vaksin"
                     value="Gejala ISPA seperti Batuk / Pilek / Sesak Napas selama 7
                     hari terakhir"
-                    onChange={(e) => Kontradiksi(e)}
+                    checked={kontradiksi.kontradiksi2}
+                    onChange={(e) => {
+                      Kontradiksi(e);
+                      kontradiksii();
+                      setKontradiksi(!{ ...kontradiksi, kontradiksi2: true });
+                    }}
                   />
                   <label htmlFor="riwayat-dua">
                     Gejala ISPA seperti Batuk / Pilek / Sesak Napas selama 7
@@ -328,7 +374,12 @@ export default function ValidasiVaksinasi({ data, user }) {
                     value="Kontak erat dengan Keluarga Serumah / Suspek / Konfirmasi /
                     Sedang dalam perawatan penyakit COVID-19"
                     className="absolute h-4"
-                    onChange={(e) => Kontradiksi(e)}
+                    checked={kontradiksi.kontradiksi3}
+                    onChange={(e) => {
+                      Kontradiksi(e);
+                      kontradiksii();
+                      setKontradiksi(!{ ...kontradiksi, kontradiksi3: true });
+                    }}
                   />
 
                   <label htmlFor="riwayat-tiga" className="pl-5">
@@ -344,7 +395,12 @@ export default function ValidasiVaksinasi({ data, user }) {
                     name="penyakit-vaksin"
                     value="Sedang dalam terapi jangka panjang terhadap penyakit
                     kelainan darah"
-                    onChange={(e) => Kontradiksi(e)}
+                    checked={kontradiksi.kontradiksi4}
+                    onChange={(e) => {
+                      Kontradiksi(e);
+                      kontradiksii();
+                      setKontradiksi(!{ ...kontradiksi, kontradiksi4: true });
+                    }}
                   />
                   <label htmlFor="riwayat-empat">
                     Sedang dalam terapi jangka panjang terhadap penyakit
@@ -359,7 +415,12 @@ export default function ValidasiVaksinasi({ data, user }) {
                     name="penyakit-vaksin"
                     value="Memiliki penyakit Jantung (Gagal jantung / Penyakit jantung
                       coroner)"
-                    onChange={(e) => Kontradiksi(e)}
+                    checked={kontradiksi.kontradiksi5}
+                    onChange={(e) => {
+                      Kontradiksi(e);
+                      kontradiksii();
+                      setKontradiksi(!{ ...kontradiksi, kontradiksi5: true });
+                    }}
                   />
                   <label htmlFor="riwayat-lima">
                     Memiliki penyakit Jantung (Gagal jantung / Penyakit jantung
@@ -374,7 +435,12 @@ export default function ValidasiVaksinasi({ data, user }) {
                     name="penyakit-vaksin"
                     value="Memiliki penyakit Autoimun Sistemik (SLE / Lupus / Sjogren /
                       Vaskulitis)"
-                    onChange={(e) => Kontradiksi(e)}
+                    checked={kontradiksi.kontradiksi6}
+                    onChange={(e) => {
+                      Kontradiksi(e);
+                      kontradiksii();
+                      setKontradiksi(!{ ...kontradiksi, kontradiksi6: true });
+                    }}
                   />
                   <label htmlFor="riwayat-enam">
                     Memiliki penyakit Autoimun Sistemik (SLE / Lupus / Sjogren /
@@ -387,8 +453,14 @@ export default function ValidasiVaksinasi({ data, user }) {
                     type="checkbox"
                     id="riwayat-tujuh"
                     name="penyakit-vaksin"
+                    // disabled={tidakMemiliki}
                     value="Tidak Memiliki Riwayat Penyakit"
-                    onChange={(e) => Kontradiksi(e)}
+                    onChange={(e) => {
+                      Kontradiksi(e);
+                      setTidakMemiliki(e.target.checked);
+                      kontradiksiTidakMemiliki();
+                    }}
+                    checked={tidakMemiliki}
                   />
                   <label htmlFor="riwayat-tujuh">
                     Tidak Memiliki Riwayat Penyakit penyerta dan kondisi diatas

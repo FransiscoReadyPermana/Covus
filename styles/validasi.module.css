@@ -36,18 +36,42 @@
   cursor: pointer;
 }
 
+.form input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+
 .radio {
   box-shadow: none;
   outline: 1px solid #a5afed;
   cursor: pointer;
 }
 
-.form input[type="radio"]::before,
-.form input[type="checkbox"]::before {
+.form input[type="radio"]::before {
   content: "";
   width: 0.8em;
   height: 0.8em;
   border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em #a5afed;
+}
+
+.form input[type="checkbox"]::before {
+  content: "";
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 3px;
   transform: scale(0);
   transition: 120ms transform ease-in-out;
   box-shadow: inset 1em 1em #a5afed;

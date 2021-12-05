@@ -160,9 +160,9 @@ export default function TableData({ data, type }) {
     return (
       <div>
         <div className="flex flex-col w-full relative">
-          <div className="flex gap-12 items-center mb-10 flex-row justify-center">
+          <div className="flex gap-16 items-center mb-10 flex-row justify-center">
             <DropDownEdit
-              className="w-1/3"
+              className="w-9/12"
               value={dataDropdownProvinsi}
               onChange={onFilterDropdown}
               color="purple"

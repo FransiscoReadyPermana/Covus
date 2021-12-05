@@ -18,7 +18,7 @@ export default function Card({ children, type, className, gap }) {
   if (type === 'big') {
     return (
       <div
-        className={`flex flex-col justify-center bg-white w-1/4 ${Styles.card} ${className} ${gapp}  pt-2`}
+        className={`flex flex-col justify-center bg-white w-1/4 ${Styles.card} ${className} ${gapp}  pt-4`}
       >
         {children}
       </div>
