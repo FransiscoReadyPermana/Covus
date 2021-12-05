@@ -160,8 +160,10 @@
 .buttonHapus {
   transition: all 0.23s ease-out;
   background-color: #f178b6;
+  opacity: 0.5;
 }
 
 .buttonHapus:hover {
   background-color: #f150a3;
+  opacity: 1;
 }

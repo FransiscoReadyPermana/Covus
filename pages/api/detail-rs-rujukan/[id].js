@@ -1,25 +1,23 @@
-import dbConnect from '../../../utils/dbConnect';
-import ReservasiVaksin from '../../../models/reservasi';
-import VaksinService from '../../../service/Vaksin';
-import User from '../../../models/user';
-import ClientError from '../../../expecptions/ClientError';
+import dbConnect from "../../../utils/dbConnect";
+import RsService from "../../../service/RsRujukan";
+import ClientError from "../../../expecptions/ClientError";
 
 dbConnect();
 
-const ReservasiVaksinDelete = async (req, res) => {
+const RsRujukan = async (req, res) => {
   const { method } = req;
-  const vaksinService = new VaksinService();
+  const rsService = new RsService();
 
   switch (method) {
-    case 'DELETE':
+    case "DELETE":
       try {
         const { id } = req.query;
 
-        await vaksinService.deleteReservasi(id);
+        await rsService.deleteRs(id);
 
         return res.status(200).json({
           success: true,
-          message: 'Success delete Reservation',
+          message: "Success delete Reservation",
         });
       } catch (error) {
         if (error instanceof ClientError) {
@@ -41,4 +39,4 @@ const ReservasiVaksinDelete = async (req, res) => {
   }
 };
 
-module.exports = ReservasiVaksinDelete;
+module.exports = RsRujukan;

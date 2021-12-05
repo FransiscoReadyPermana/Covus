@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
 
 const HospitalSchema = new mongoose.Schema({
-  no: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
   provinsi: {
     type: String,
     required: true,

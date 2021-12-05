@@ -206,7 +206,7 @@ export default function EditAkun({ user, email }) {
 
               <hr className="h-1 bg-dark-grey w-full mb-6 mt-6 opacity-25" />
 
-              <Link href={`/profile/akun-saya`} passHref>
+              <Link href={`/akun/akun-saya`} passHref>
                 <div
                   id="akun"
                   className={`flex flex-row pl-6 py-3 w-full ${styles.active}`}
@@ -231,7 +231,7 @@ export default function EditAkun({ user, email }) {
                 </div>
               </Link>
 
-              <Link href={`/profile/ubah-kata-sandi`} passHref>
+              <Link href={`/akun/ubah-kata-sandi`} passHref>
                 <div
                   id="ubah-kata-sandi"
                   className={`flex flex-row pl-6 py-3 w-full mt-2 ${styles.container_icon}`}
@@ -254,7 +254,7 @@ export default function EditAkun({ user, email }) {
                 </div>
               </Link>
 
-              <Link href={`/profile/riwayat-vaksin`} passHref>
+              <Link href={`/akun/riwayat-vaksin`} passHref>
                 <div
                   id="riwayat-vaksin"
                   className={`flex flex-row pl-6 py-3 w-full mt-2 ${styles.container_icon}`}
@@ -335,7 +335,7 @@ export default function EditAkun({ user, email }) {
                   id="button"
                   className="flex flex-row items-center justify-between gap-8 w-1/3"
                 >
-                  <Link href={`/profile/akun-saya`} passHref>
+                  <Link href={`/akun/akun-saya`} passHref>
                     <button
                       className={`w-full rounded-full py-2 h-full text-l bg-white ${styles.button_batal}`}
                     >

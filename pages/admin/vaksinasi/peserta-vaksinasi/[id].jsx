@@ -17,7 +17,10 @@ export default function RSRujukan({ data, user }) {
   }
   return (
     <div className="h-screen w-full">
-      <section id="first" className={`w-full relative h-full mb-32`}>
+      <section
+        id="first"
+        className={`w-full relative h-full mb-36 ${styles.section1}`}
+      >
         <div
           id="divider"
           className={`${styles.bgFirstSection} h-40 w-full absolute -top-40 transform rotate-180 mt-60`}
@@ -43,7 +46,7 @@ export async function getServerSideProps(context) {
   const baseUrl = process.env.BASE_URL;
   const reservasi = await fetch(`${baseUrl}api/reservasi-vaksinasi`);
   const result = await reservasi.json();
-  const data = result.data.filter((item) => item.vaksinId._id === id);
+  const data = result.data.filter((item) => item.vaksinId?._id === id);
   const session = await getSession({ req: context.req });
   const user = session.user;
 
@@ -55,7 +58,6 @@ export async function getServerSideProps(context) {
       },
     };
   }
-
   return {
     props: {
       data,

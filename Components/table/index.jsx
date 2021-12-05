@@ -25,11 +25,19 @@ export default function TableData({ data, type }) {
       headers: myHeaders,
       redirect: 'follow',
     };
+    let response;
 
-    const response = await fetch(
-      `${baseUrl}api/detail-reservasi/${id}`,
-      requestOptions
-    );
+    if (type === "peserta-vaksinasi") {
+      response = await fetch(
+        `${baseUrl}api/detail-reservasi/${id}`,
+        requestOptions
+      );
+    } else if (type === "rs-rujukan") {
+      response = await fetch(
+        `${baseUrl}api/detail-rs-rujukan/${id}`,
+        requestOptions
+      );
+    }
     const result = await response.json();
 
     if (result.success) {
@@ -444,7 +452,7 @@ export default function TableData({ data, type }) {
                 {currentTableDataPesertaVaksin.map((item) => {
                   return (
                     <tr key={uuid()}>
-                      <td>{item.userId.nama}</td>
+                      <td>{item.userId?.nama}</td>
                       <td>{item.namaVaksin}</td>
                       <td>{item.jenisVaksin}</td>
                       <td>{item.tanggal}</td>
@@ -489,6 +497,100 @@ export default function TableData({ data, type }) {
           {/* <p>{filteredDataPesertaVaksin}</p> */}
         </div>
       </>
+    );
+  }
+
+  if (type === "rs-rujukan") {
+    const onSearchHandler = (e) => {
+      setUserInputPesertaVaksin(e.target.value);
+
+      let filterHospital = null;
+      if (e.target.value.length > 0) {
+        const filterHospitalProv = data.filter((data) =>
+          new RegExp(e.target.value, "gi").test(data.provinsi)
+        );
+        const filterHospitalNama = data.filter((data) =>
+          new RegExp(e.target.value, "gi").test(data.nama)
+        );
+        const filterHospitalAlamat = data.filter((data) =>
+          new RegExp(e.target.value, "gi").test(data.alamat)
+        );
+
+        filterHospital = Array.from(
+          new Set([
+            ...filterHospitalProv,
+            ...filterHospitalNama,
+            ...filterHospitalAlamat,
+          ])
+        );
+      } else {
+        filterHospital = data;
+      }
+      setFilteredDataHospitals(filterHospital);
+    };
+
+    return (
+      <div>
+        <div className="flex flex-col w-full relative items-center justify-center">
+          <div className="flex gap-12 items-center mb-10 w-full px-48">
+            <SearchInput
+              className="w-full"
+              onChangeHandler={(e) => onSearchHandler(e)}
+              value={userInputPesertaVaksin}
+              classNameContainer="w-full px-40"
+              classNameInput={`${stylePeserta.input}`}
+            />
+          </div>
+
+          <div
+            id="table container"
+            className={`${stylePeserta.container} z-10`}
+          >
+            {/* {filteredDataHospitals.length != 0 && ( */}
+            <table className={`w-full ${stylePeserta.table}`}>
+              <thead className="bg-purple text-center text-xl text-white font-bold">
+                <tr>
+                  <th className={`${stylePeserta.head}`}>Provinsi</th>
+                  <th className={`${stylePeserta.head}`}>Nama Rumah Sakit</th>
+                  <th className={`${stylePeserta.head}`}>Alamat</th>
+                  <th className={`${stylePeserta.head}`}>Telepon</th>
+                  <th className={`${stylePeserta.head}`}>Hapus Data</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentTableDataHospitals.map((item) => {
+                  return (
+                    <tr key={uuid()}>
+                      <td className="w-64">{item.provinsi}</td>
+                      <td className="w-80">{item.nama}</td>
+                      <td>{item.alamat}</td>
+                      <td className="w-48">{item.telp}</td>
+                      <td className="w-44">
+                        <button
+                          type="button"
+                          className={`${stylePeserta.hapus}`}
+                          onClick={() => pesertaDeleteHandler(item._id)}
+                        >
+                          <Trash />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            {/* )} */}
+          </div>
+
+          <Pagination
+            className="pagination-bar"
+            currentPage={currentPageHospitals}
+            totalCount={filteredDataHospitals.length}
+            pageSize={PageSize}
+            onPageChange={(page) => setCurrentPageHospitals(page)}
+          />
+        </div>
+      </div>
     );
   }
 }
