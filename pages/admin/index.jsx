@@ -9,9 +9,10 @@ import { useRouter } from 'next/router';
 import { getSession } from 'next-auth/client';
 import AdminOnly from '../../Components/adminOnly';
 
-export default function Admin({user}) {
+export default function Admin({ user }) {
   const router = useRouter();
   const emailAdmin = process.env.ADMIN;
+  console.log(emailAdmin);
 
   if (user.name !== 'admin' && user.email !== emailAdmin) {
     return (
