@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from "react";
-import styles from "../daftar.module.css";
-import Title from "../../../Components/title";
-import Footer from "../../../Components/footer";
-import DropDownEdit from "../../../Components/dropDown";
-import CardVaksin2 from "../../../Components/cardVaksin/cardVaksin2";
-import uuid from "react-uuid";
-import Pagination from "../../../Components/pagination";
-import jenisVaksinasii from "../../../data/jenisVaksinn";
-import { useRouter } from "next/router";
+import React, { useEffect, useState } from 'react';
+import styles from '../daftar.module.css';
+import Title from '../../../Components/title';
+import Footer from '../../../Components/footer';
+import DropDownEdit from '../../../Components/dropDown';
+import CardVaksin2 from '../../../Components/cardVaksin/cardVaksin2';
+import uuid from 'react-uuid';
+import Pagination from '../../../Components/pagination';
+import jenisVaksinasii from '../../../data/jenisVaksinn';
+import { useRouter } from 'next/router';
+import { getSession } from 'next-auth/client';
 
 export default function Admin({
   data,
   daerahVaksinKedua,
   daerahVaksinPertama,
   defaultProvinsi,
+  user,
 }) {
   const router = useRouter();
   const [periodeVaksin, setPeriodeVaksin] = useState(defaultProvinsi);
@@ -25,6 +27,7 @@ export default function Admin({
   const [filteredDataJenisVaksin, setFilteredDataJenisVaksin] = useState(data);
 
   const PageSize = 4;
+  const emailAdmin = process.env.ADMIN;
 
   useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -51,9 +54,9 @@ export default function Admin({
 
     if (e.length > 0) {
       filterData = data.filter((dataBaru) => dataBaru.jenisVaksin === e);
-      if (e === "Vaksinasi Pertama") {
+      if (e === 'Vaksinasi Pertama') {
         setPeriodeVaksin(daerahVaksinPertama);
-      } else if (e === "Vaksinasi Kedua") {
+      } else if (e === 'Vaksinasi Kedua') {
         setPeriodeVaksin(daerahVaksinKedua);
       }
     } else {
@@ -64,6 +67,14 @@ export default function Admin({
     setFilteredData(filterData);
     // router.replace(`/vaksinasi/lokasi-vaksinasi/${jenis_vaksin}/${e}`);
   };
+
+  if (user.name !== 'admin' && user.email !== emailAdmin) {
+    return (
+      <div className="pt-40">
+        <p>You are not authorized to access this page;</p>
+      </div>
+    );
+  }
   return (
     <div className="h-screen w-full">
       <section id="first" className={`${styles.section1} w-full relative`}>
@@ -83,7 +94,7 @@ export default function Admin({
               <DropDownEdit
                 className="w-full"
                 color="purple"
-                placeholder={"Pilih Provinsi"}
+                placeholder={'Pilih Provinsi'}
                 onChange={onFilterDropdown}
                 option={periodeVaksin}
               />
@@ -92,7 +103,7 @@ export default function Admin({
               <DropDownEdit
                 className="w-full"
                 color="white"
-                placeholder={"Jenis Vaksinasi"}
+                placeholder={'Jenis Vaksinasi'}
                 classNameControl={`${styles.classNameControl}`}
                 onChange={onFilterDropdownJenisVaksin}
                 option={jenisVaksinasii}
@@ -124,7 +135,7 @@ export default function Admin({
 
           <button
             className={`absolute bg-purple text-white py-3 rounded-3xl w-72 mt-24 right-0 top-0 mt-56 mr-20 ${styles.buttonTambah}`}
-            onClick={() => router.push("/tes/vaksinasi/tambah-data")}
+            onClick={() => router.push('/admin/vaksinasi/tambah-data')}
           >
             Tambah Data
           </button>
@@ -132,7 +143,7 @@ export default function Admin({
           <button
             className={`absolute bg-white text-purple py-3 rounded-3xl w-72 mt-24 right-0 top-0 mr-20 ${styles.buttonPeserta}`}
             onClick={() =>
-              router.push("/tes/vaksinasi/peserta-vaksinasi/keseluruhan")
+              router.push('/admin/vaksinasi/peserta-vaksinasi/keseluruhan')
             }
           >
             Peserta Vaksinasi
@@ -144,7 +155,7 @@ export default function Admin({
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   const baseUrl = process.env.BASE_URL;
   const lokasiVaksinasi = await fetch(`${baseUrl}api/lokasi-vaksinasi`);
   const vaksinasiPertama = await fetch(`${baseUrl}api/vaksinasi-provinsi`);
@@ -155,11 +166,11 @@ export async function getServerSideProps() {
   const resultKetiga = await lokasiVaksinasi.json();
 
   const filterDataPertama = resultKetiga.data.filter(
-    (item) => item.jenisVaksin === "Vaksinasi Pertama"
+    (item) => item.jenisVaksin === 'Vaksinasi Pertama'
   );
 
   const filterDataKedua = resultKetiga.data.filter(
-    (item) => item.jenisVaksin === "Vaksinasi Kedua"
+    (item) => item.jenisVaksin === 'Vaksinasi Kedua'
   );
 
   const namaVaksinPertama = filterDataPertama.map((item) => item.provinsi);
@@ -173,12 +184,25 @@ export async function getServerSideProps() {
   const namaVaksinPertamaUniqe = [...new Set(namaVaksinPertama)];
   const namaVaksinKeduaUniqe = [...new Set(namaVaksinKedua)];
 
+  const session = await getSession({ req: context.req });
+  const user = session.user;
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: {
       data: resultKetiga.data,
       daerahVaksinPertama: namaVaksinPertamaUniqe,
       daerahVaksinKedua: namaVaksinKeduaUniqe,
       defaultProvinsi: namaVaksinMapped,
+      user,
     },
   };
 }

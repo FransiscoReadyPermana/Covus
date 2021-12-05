@@ -1,19 +1,22 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import Headline from "../../../../Components/Headline";
-import Title from "../../../../Components/title";
-import styles from "../../tambah.module.css";
-import EyeShow from "../../../../Components/icons/EyeShow";
-import EyeHide from "../../../../Components/icons/EyeHide";
-import Link from "next/link";
-import DropDownEdit from "../../../../Components/dropDown";
-import bulan from "../../../../data/Bulan";
-import Footer from "../../../../Components/footer";
+import React from 'react';
+import { useState, useEffect } from 'react';
+import Headline from '../../../../Components/Headline';
+import Title from '../../../../Components/title';
+import styles from '../../tambah.module.css';
+import EyeShow from '../../../../Components/icons/EyeShow';
+import EyeHide from '../../../../Components/icons/EyeHide';
+import Link from 'next/link';
+import DropDownEdit from '../../../../Components/dropDown';
+import bulan from '../../../../data/Bulan';
+import Footer from '../../../../Components/footer';
+import AdminOnly from '../../../../Components/adminOnly';
+import { getSession } from 'next-auth/client';
 
-export default function TambahData() {
+export default function TambahData({ user }) {
+  const emailAdmin = process.env.ADMIN;
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
-  const [mountValue, setMountValue] = useState("");
+  const [mountValue, setMountValue] = useState('');
   const [errorNama, setErrorNama] = useState(null);
   const [errorEmail, setErrorEmail] = useState(null);
   const [errorTanggal, setErrorTanggal] = useState(null);
@@ -26,21 +29,21 @@ export default function TambahData() {
   const [errorSetuju, setErrorSetuju] = useState(null);
 
   let placeholderColor;
-  if (mountValue === "") {
+  if (mountValue === '') {
     placeholderColor = styles.placeHolderDefault;
   } else {
     placeholderColor = styles.placeHolder;
   }
 
   const [formUser, setFormUser] = useState({
-    provinsi: "",
-    img: "",
-    jenisVaksin: "",
-    penyelenggara: "",
-    tanggal: "",
-    waktu: "",
-    lokasi1: "",
-    lokasi2: "",
+    provinsi: '',
+    img: '',
+    jenisVaksin: '',
+    penyelenggara: '',
+    tanggal: '',
+    waktu: '',
+    lokasi1: '',
+    lokasi2: '',
     namaVaksin: [],
   });
 
@@ -183,7 +186,7 @@ export default function TambahData() {
   const handleRegister = async (e) => {
     // checkInput(e);
     const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append('Content-Type', 'application/json');
 
     const raw = JSON.stringify({
       provinsi: formUser.provinsi,
@@ -198,10 +201,10 @@ export default function TambahData() {
     });
 
     const requestOptions = {
-      method: "POST",
+      method: 'POST',
       headers: myHeaders,
       body: raw,
-      redirect: "follow",
+      redirect: 'follow',
     };
 
     const baseUrl = process.env.BASE_URL;
@@ -213,7 +216,7 @@ export default function TambahData() {
     const result = await response.json();
 
     if (result.success) {
-      alert("Berhasil");
+      alert('Berhasil');
       // clearError();
       // eslint-disable-next-line no-restricted-globals
       // location.reload();
@@ -221,6 +224,14 @@ export default function TambahData() {
       alert(result.message);
     }
   };
+
+  if (user.name !== 'admin' && user.email !== emailAdmin) {
+    return (
+      <div className="pt-40">
+        <AdminOnly />
+      </div>
+    );
+  }
 
   return (
     <div className="h-screen w-full">
@@ -434,4 +445,22 @@ export default function TambahData() {
       <Footer color="purple" />
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req });
+  const user = session.user;
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { user },
+  };
 }

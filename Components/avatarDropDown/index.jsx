@@ -26,7 +26,7 @@ export default function AvatarDropDown({ children }) {
         <div
           className={`flex items-center bg-white rounded-full ${style.whiteContainer}`}
         >
-          <div className={`relative w-7 h-8`}>
+          <div className={`relative w-8 h-8`}>
             <Image
               src="/images/profile.svg"
               alt="reading-book-image"

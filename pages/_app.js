@@ -9,6 +9,7 @@ import Layout from '../Components/layout';
 import { Provider as AuthProvider } from 'next-auth/client';
 import Loading from '../Components/loading';
 
+
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [loading, setLoading] = useState(false);
   let content;

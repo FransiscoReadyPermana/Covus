@@ -3,11 +3,9 @@ import React, { useEffect, useState } from 'react';
 import AvatarDropDown from '../avatarDropDown';
 import AvatarDropDownMenu from '../avatarDropDownMenu';
 import Brand from '../brand';
-import Button from '../button';
 import NavItems from '../navItems';
 import PopUpLogin from '../popUpLogin';
 import style from './navbar.module.css';
-import Session from '../session';
 import { useSession } from 'next-auth/client';
 import Link from 'next/link';
 
@@ -15,6 +13,15 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const [session] = useSession();
+  const [adminEmailSession, setAdminEmailSession] = useState('');
+
+  useEffect(() => {
+    if (session) {
+      setAdminEmailSession(session.user.email);
+    }
+  }, [session]);
+
+  const emailAdmin = process.env.ADMIN;
 
   return (
     <>
@@ -68,6 +75,25 @@ export default function Navbar() {
               }
             >
               Vaksinasi
+            </NavItems>
+          ) : (
+            <></>
+          )}
+          {adminEmailSession === emailAdmin ? (
+            <NavItems
+              className="ml-4"
+              to="/admin"
+              isActive={
+                router.pathname == '/admin' ||
+                router.pathname == '/admin/vaksinasi' ||
+                router.pathname == '/admin/vaksinasi/tambah-data' ||
+                router.pathname ==
+                  '/admin/vaksinasi/peserta-vaksinasi/keseluruhan' ||
+                router.pathname == '/admin/vaksinasi/peserta-vaksinasi/[id]' ||
+                router.pathname == '/admin/vaksinasi/ubah-data/[id]'
+              }
+            >
+              Admin
             </NavItems>
           ) : (
             <></>

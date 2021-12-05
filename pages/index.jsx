@@ -8,8 +8,6 @@ import Paragraph from '../Components/paragraph';
 import Button from '../Components/button';
 import Footer from '../Components/footer';
 import formatK from '../utils/format';
-import Loading from '../Components/loading';
-
 export default function Home({ dataOrang, total }) {
   return (
     <div className="h-screen w-full">

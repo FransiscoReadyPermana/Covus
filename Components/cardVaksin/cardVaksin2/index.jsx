@@ -124,7 +124,7 @@ export default function CardVaksin2({ item }) {
             className={`flex items-center pb-6 flex-row justify-center w-5/6 items-center ${styles.buttonContainer}`}
           >
             <Button
-              to={`/tes/vaksinasi/peserta-vaksinasi/${item._id}`}
+              to={`/admin/vaksinasi/peserta-vaksinasi/${item._id}`}
               color="purple"
               key={uuid()}
             >
@@ -136,7 +136,7 @@ export default function CardVaksin2({ item }) {
             className={`flex items-center pb-24 flex-row justify-center w-5/6 gap-12 items-center ${styles.buttonContainer}`}
           >
             <Button
-              to={`/tes/vaksinasi/ubah-data/${item._id}`}
+              to={`/admin/vaksinasi/ubah-data/${item._id}`}
               color="secondary"
               key={uuid()}
             >

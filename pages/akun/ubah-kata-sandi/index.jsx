@@ -28,6 +28,7 @@ export default function UbahKataSandi({ user, nama }) {
     cKataSandiBaru: '',
   });
 
+
   const kataSandiCheck = () => {
     if (formUser.kataSandiLama === '' || formUser.kataSandiLama === null) {
       setErrorKataSandiLama('Kata sandi lama tidak boleh kosong');
@@ -67,8 +68,6 @@ export default function UbahKataSandi({ user, nama }) {
     ) {
       const myHeaders = new Headers();
       myHeaders.append('Content-Type', 'application/json');
-
-
 
       var raw = JSON.stringify({
         kataSandi: formUser.kataSandiLama,

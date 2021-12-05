@@ -1,6 +1,6 @@
-.section1 {
+/* .section1 {
   height: 100vh;
-}
+} */
 
 .bgFirstSection {
   background-image: url("../../public/images/fifthDivider.svg");
@@ -15,5 +15,9 @@
 
 .card:hover {
   outline: 0.5rem solid #7080ec;
+}
+
+.content{
+  margin-bottom: 4.25rem;
 }
 

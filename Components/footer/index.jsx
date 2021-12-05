@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./footer.module.css";
 
-export default function Footer({ color }) {
+export default function Footer({ color, className }) {
   if (color === "purple") {
     return (
-      <footer className={`relative bg-purple`}>
+      <footer className={`relative bg-purple ${className}`}>
         <div
           id="divider"
           className={`${styles.footerDividerPurple} h-10  w-full absolute -top-10`}
@@ -17,7 +17,7 @@ export default function Footer({ color }) {
   }
   if (color === "white") {
     return (
-      <footer className={`relative bg-white h-40`}>
+      <footer className={`relative bg-white h-40 ${className}`}>
         <div
           id="divider"
           className={`${styles.footerDividerWhite} h-52  w-full absolute`}

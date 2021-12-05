@@ -4,8 +4,8 @@
 
 .whiteContainer {
   padding: 0.5rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   transition: all 0.1s ease-in-out;
 }
 
