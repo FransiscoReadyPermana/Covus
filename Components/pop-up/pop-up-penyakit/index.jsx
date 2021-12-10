@@ -37,7 +37,7 @@ export default function PopUpPenyakit({
           Catatan Vaksinasi
         </h1>
 
-        <p className="text-center font-normal text-dark-grey">
+        <div className="text-center font-normal text-dark-grey">
           Jenis Vaksin yang diambil adalah{' '}
           <span
             className={`text-l text-white bg-dark-grey rounded-full ml-1 ${style.jenis_vaksin}`}
@@ -64,7 +64,7 @@ export default function PopUpPenyakit({
               </li>
             ))}
           </ul>
-        </p>
+        </div>
       </div>
     </>
   );

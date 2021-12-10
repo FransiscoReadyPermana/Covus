@@ -20,6 +20,8 @@ const DetailLokasiVaksin = async (req, res) => {
           success: true,
           message: "Success delete Location Vaccine",
         });
+
+        
       } catch (error) {
         if (error instanceof ClientError) {
           return res.status(error.codeStatus).json({

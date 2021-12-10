@@ -49,8 +49,8 @@ export default function ValidasiVaksinasi({ data, user }) {
     }
   };
 
-  const kontradiksiTidakMemiliki = () => {
-    if (tidakMemiliki !== true) {
+  const kontradiksiTidakMemiliki = (e) => {
+    if (e.target.checked) {
       setKontradiksi({
         kontradiksi1: false,
         kontradiksi2: false,
@@ -59,9 +59,13 @@ export default function ValidasiVaksinasi({ data, user }) {
         kontradiksi5: false,
         kontradiksi6: false,
       });
+      setFormUser({
+        ...formUser,
+        kontradiksi: [e.target.value],
+      });
     }
   };
-  const kontradiksii = () => {
+  const kontradiksii = (e) => {
     if (
       !(
         kontradiksi.kontradiksi1 === true &&
@@ -72,6 +76,23 @@ export default function ValidasiVaksinasi({ data, user }) {
         kontradiksi.kontradiksi6 === true
       )
     ) {
+      let selectedData = formUser.kontradiksi;
+      if (e.target.checked) {
+        selectedData = [...formUser.kontradiksi, e.target.value];
+      } else {
+        selectedData = formUser.kontradiksi.filter((d) => d !== e.target.value);
+      }
+
+      const kontradiksi = selectedData.filter(
+        (d) => d !== 'Tidak Memiliki Riwayat Penyakit'
+      );
+
+      console.log(kontradiksi);
+
+      setFormUser({
+        ...formUser,
+        kontradiksi,
+      });
       setTidakMemiliki(false);
     }
   };
@@ -335,8 +356,8 @@ export default function ValidasiVaksinasi({ data, user }) {
                     value="Menderita COVID-19 selama 3 bulan terakhir"
                     checked={kontradiksi.kontradiksi1}
                     onChange={(e) => {
-                      Kontradiksi(e);
-                      kontradiksii();
+                      // Kontradiksi(e);
+                      kontradiksii(e);
                       setKontradiksi(!{ ...kontradiksi, kontradiksi1: true });
                     }}
                   />
@@ -355,8 +376,8 @@ export default function ValidasiVaksinasi({ data, user }) {
                     hari terakhir"
                     checked={kontradiksi.kontradiksi2}
                     onChange={(e) => {
-                      Kontradiksi(e);
-                      kontradiksii();
+                      // Kontradiksi(e);
+                      kontradiksii(e);
                       setKontradiksi(!{ ...kontradiksi, kontradiksi2: true });
                     }}
                   />
@@ -377,7 +398,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     checked={kontradiksi.kontradiksi3}
                     onChange={(e) => {
                       Kontradiksi(e);
-                      kontradiksii();
+                      kontradiksii(e);
                       setKontradiksi(!{ ...kontradiksi, kontradiksi3: true });
                     }}
                   />
@@ -398,7 +419,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     checked={kontradiksi.kontradiksi4}
                     onChange={(e) => {
                       Kontradiksi(e);
-                      kontradiksii();
+                      kontradiksii(e);
                       setKontradiksi(!{ ...kontradiksi, kontradiksi4: true });
                     }}
                   />
@@ -418,7 +439,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     checked={kontradiksi.kontradiksi5}
                     onChange={(e) => {
                       Kontradiksi(e);
-                      kontradiksii();
+                      kontradiksii(e);
                       setKontradiksi(!{ ...kontradiksi, kontradiksi5: true });
                     }}
                   />
@@ -438,7 +459,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     checked={kontradiksi.kontradiksi6}
                     onChange={(e) => {
                       Kontradiksi(e);
-                      kontradiksii();
+                      kontradiksii(e);
                       setKontradiksi(!{ ...kontradiksi, kontradiksi6: true });
                     }}
                   />
@@ -458,7 +479,7 @@ export default function ValidasiVaksinasi({ data, user }) {
                     onChange={(e) => {
                       Kontradiksi(e);
                       setTidakMemiliki(e.target.checked);
-                      kontradiksiTidakMemiliki();
+                      kontradiksiTidakMemiliki(e);
                     }}
                     checked={tidakMemiliki}
                   />

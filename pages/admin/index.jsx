@@ -85,7 +85,7 @@ export default function Admin({ user }) {
           </div>
         </div>
       </section>
-      <Footer color="purple" />
+      <Footer color="purple" className="bottom-0"/>
     </div>
   );
 }

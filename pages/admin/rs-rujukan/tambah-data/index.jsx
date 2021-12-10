@@ -9,6 +9,44 @@ import AdminOnly from "../../../../Components/adminOnly";
 export default function TambahData({ user }) {
   const emailAdmin = process.env.ADMIN;
 
+  const [formUser, setFormUser] = useState({
+    provinsi: "",
+    nama: "",
+    alamat: "",
+    telp: "",
+  });
+  
+  const handleRegister = async (e) => {
+    // checkInput(e);
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    const raw = JSON.stringify({
+      provinsi: formUser.provinsi,
+      nama: formUser.nama,
+      alamat: formUser.alamat,
+      telp: formUser.telp,
+    });
+    
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+    
+    const baseUrl = process.env.BASE_URL;
+    
+    const response = await fetch(`${baseUrl}api/rs-rujukan`, requestOptions);
+    const result = await response.json();
+    
+    if (result.success) {
+      alert("Berhasil");
+    } else {
+      alert(result.message);
+    }
+  };
+  
   if (user.name !== "admin" && user.email !== emailAdmin) {
     return (
       <div>
@@ -16,43 +54,6 @@ export default function TambahData({ user }) {
       </div>
     );
   }
-  const [formUser, setFormUser] = useState({
-    provinsi: "",
-    nama: "",
-    alamat: "",
-    telp: "",
-  });
-
-  const handleRegister = async (e) => {
-    // checkInput(e);
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify({
-      provinsi: formUser.provinsi,
-      nama: formUser.nama,
-      alamat: formUser.alamat,
-      telp: formUser.telp,
-    });
-
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-
-    const baseUrl = process.env.BASE_URL;
-
-    const response = await fetch(`${baseUrl}api/rs-rujukan`, requestOptions);
-    const result = await response.json();
-
-    if (result.success) {
-      alert("Berhasil");
-    } else {
-      alert(result.message);
-    }
-  };
 
   return (
     <div className="h-screen w-full">

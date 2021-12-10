@@ -1,21 +1,21 @@
-import React, { useState, useMemo, useEffect } from "react";
-import stylesGlobal from "./tableGlobal.module.css";
-import stylesProvinsi from "./tableProvinsi.module.css";
-import stylesHospitals from "./tableHospitals.module.css";
-import stylePeserta from "./tablePesertaVaksin.module.css";
-import Pagination from "../pagination";
-import Virus from "../icons/virus";
-import DropDownEdit from "../dropDown";
-import formatK from "../../utils/format";
-import Image from "next/image";
-import SearchInput from "../searchInput";
-import uuid from "react-uuid";
-import kota from "../dropDown/dataKota";
-import Vaksin from "./../icons/Vaksin";
-import PopUpKontradiksi from "./../pop-up/pop-up-kontradiksi/index";
-import Trash from "../icons/Trash";
-import Edit from "../icons/Edit";
-import Link from "next/link";
+import React, { useState, useMemo, useEffect } from 'react';
+import stylesGlobal from './tableGlobal.module.css';
+import stylesProvinsi from './tableProvinsi.module.css';
+import stylesHospitals from './tableHospitals.module.css';
+import stylePeserta from './tablePesertaVaksin.module.css';
+import Pagination from '../pagination';
+import Virus from '../icons/virus';
+import DropDownEdit from '../dropDown';
+import formatK from '../../utils/format';
+import Image from 'next/image';
+import SearchInput from '../searchInput';
+import uuid from 'react-uuid';
+import kota from '../dropDown/dataKota';
+import Vaksin from './../icons/Vaksin';
+import PopUpKontradiksi from './../pop-up/pop-up-kontradiksi/index';
+import Trash from '../icons/Trash';
+import Edit from '../icons/Edit';
+import Link from 'next/link';
 
 export default function TableData({ data, type }) {
   const pesertaDeleteHandler = async (id) => {
@@ -23,18 +23,18 @@ export default function TableData({ data, type }) {
     const baseUrl = process.env.BASE_URL;
 
     var requestOptions = {
-      method: "DELETE",
+      method: 'DELETE',
       headers: myHeaders,
-      redirect: "follow",
+      redirect: 'follow',
     };
     let response;
 
-    if (type === "peserta-vaksinasi") {
+    if (type === 'peserta-vaksinasi') {
       response = await fetch(
         `${baseUrl}api/detail-reservasi/${id}`,
         requestOptions
       );
-    } else if (type === "rs-rujukan") {
+    } else if (type === 'rs-rujukan') {
       response = await fetch(
         `${baseUrl}api/detail-rs-rujukan/${id}`,
         requestOptions
@@ -43,7 +43,7 @@ export default function TableData({ data, type }) {
     const result = await response.json();
 
     if (result.success) {
-      alert("Berhasil");
+      alert('Berhasil');
       // clearError();
       location.reload();
     } else {
@@ -55,23 +55,23 @@ export default function TableData({ data, type }) {
   const [currentPageProvinsi, setCurrentPageProvinsi] = useState(1);
   const [filteredDataProvinsi, setFilteredDataProvinsi] = useState(data);
   const [currentTableDataProvinsi, setCurrentTableDataProvinsi] = useState([]);
-  const [dataDropdownProvinsi, setDataDropdownProvinsi] = useState("");
+  const [dataDropdownProvinsi, setDataDropdownProvinsi] = useState('');
 
   const [currentPageHospitals, setCurrentPageHospitals] = useState(1);
   const [filteredDataHospitals, setFilteredDataHospitals] = useState(data);
-  const [userInputHospitals, setUserInputHospitals] = useState("");
+  const [userInputHospitals, setUserInputHospitals] = useState('');
   const [currentTableDataHospitals, setCurrentTableDataHospitals] = useState(
     []
   );
-  const [dataDropdownHospitals, setDataDropdownHospitals] = useState("");
+  const [dataDropdownHospitals, setDataDropdownHospitals] = useState('');
   const [currentPagePesertaVaksin, setCurrentPagePesertaVaksin] = useState(1);
   const [filteredDataPesertaVaksin, setFilteredDataPesertaVaksin] =
     useState(data);
-  const [userInputPesertaVaksin, setUserInputPesertaVaksin] = useState("");
+  const [userInputPesertaVaksin, setUserInputPesertaVaksin] = useState('');
   const [currentTableDataPesertaVaksin, setCurrentTableDataPesertaVaksin] =
     useState([]);
   const [dataDropdownPesertaVaksin, setDataDropdownPesertaVaksin] =
-    useState("");
+    useState('');
 
   useEffect(() => {
     const firstPageIndex = (currentPageProvinsi - 1) * PageSize;
@@ -105,7 +105,7 @@ export default function TableData({ data, type }) {
   };
 
   let PageSize = 10;
-  if (type === "Global") {
+  if (type === 'Global') {
     return (
       <div id="table container" className={`${stylesGlobal.container} z-10`}>
         <table className={`w-full h-80 text-center ${stylesGlobal.table}`}>
@@ -121,7 +121,7 @@ export default function TableData({ data, type }) {
           <tbody>
             {data.map((item) => {
               let indonesia;
-              if (item.country === "Indonesia") {
+              if (item.country === 'Indonesia') {
                 indonesia = stylesGlobal.indonesia;
               }
               return (
@@ -142,18 +142,18 @@ export default function TableData({ data, type }) {
     );
   }
 
-  if (type === "Provinsi") {
+  if (type === 'Provinsi') {
     const onFilterDropdown = (e) => {
       setDataDropdownProvinsi(e);
       let filterProvinsi = null;
 
       if (e.length > 0) {
         filterProvinsi = data.filter((data) =>
-          new RegExp(e, "gi").test(data.key)
+          new RegExp(e, 'gi').test(data.key)
         );
       } else {
         filterProvinsi = data;
-        setDataDropdownProvinsi("Pilih Provinsi");
+        setDataDropdownProvinsi('Pilih Provinsi');
       }
       setFilteredDataProvinsi(filterProvinsi);
     };
@@ -226,20 +226,20 @@ export default function TableData({ data, type }) {
       </div>
     );
   }
-  if (type === "Hospitals") {
+  if (type === 'Hospitals') {
     const onSearchHandler = (e) => {
       setUserInputHospitals(e.target.value);
 
       let filterHospital = null;
       if (e.target.value.length > 0) {
         const filterHospitalProv = data.filter((data) =>
-          new RegExp(e.target.value, "gi").test(data.provinsi)
+          new RegExp(e.target.value, 'gi').test(data.provinsi)
         );
         const filterHospitalNama = data.filter((data) =>
-          new RegExp(e.target.value, "gi").test(data.nama)
+          new RegExp(e.target.value, 'gi').test(data.nama)
         );
         const filterHospitalAlamat = data.filter((data) =>
-          new RegExp(e.target.value, "gi").test(data.alamat)
+          new RegExp(e.target.value, 'gi').test(data.alamat)
         );
 
         filterHospital = Array.from(
@@ -261,11 +261,11 @@ export default function TableData({ data, type }) {
       let filterProvinsi = null;
       if (e.length > 0) {
         filterProvinsi = data.filter((data) =>
-          new RegExp(e, "gi").test(data.provinsi)
+          new RegExp(e, 'gi').test(data.provinsi)
         );
       } else {
         filterProvinsi = data;
-        setDataDropdownHospitals("Pilih Provinsi");
+        setDataDropdownHospitals('Pilih Provinsi');
       }
       setFilteredDataHospitals(filterProvinsi);
     };
@@ -347,31 +347,31 @@ export default function TableData({ data, type }) {
       </div>
     );
   }
-  if (type === "peserta-vaksinasi") {
+  if (type === 'peserta-vaksinasi') {
     const onSearchHandler = (e) => {
       setUserInputPesertaVaksin(e.target.value);
 
       let filterPesertaVaksin = null;
       if (e.target.value.length > 0) {
         const filterPesertaVaksinNamaPeserta = data.filter((data) =>
-          new RegExp(e.target.value, "gi").test(data.userId.nama)
+          new RegExp(e.target.value, 'gi').test(data.userId.nama)
         );
         const filterPesertaVaksinNamaVaksin = data.filter((data) =>
-          new RegExp(e.target.value, "gi").test(data.namaVaksin)
+          new RegExp(e.target.value, 'gi').test(data.namaVaksin)
         );
         const filterPesertaVaksinJenisVaksin = data.filter((data) =>
-          new RegExp(e.target.value, "gi").test(data.jenisVaksin)
+          new RegExp(e.target.value, 'gi').test(data.vaksinId.jenisVaksin)
         );
         const filterPesertaVaksinTanggalVaksin = data.filter((data) =>
-          new RegExp(e.target.value, "gi").test(data.tanggal)
+          new RegExp(e.target.value, 'gi').test(data.vaksinId.tanggal)
         );
         const filterPesertaVaksinWaktuVaksin = data.filter((data) =>
-          new RegExp(e.target.value, "gi").test(data.waktu)
+          new RegExp(e.target.value, 'gi').test(data.vaksinId.waktu)
         );
         const filterPesertaVaksinLokasiVaksin = data.filter((data) => {
-          new RegExp(e.target.value, "gi").test(data.lokasi1);
-          new RegExp(e.target.value, "gi").test(data.lokasi2);
-          new RegExp(e.target.value, "gi").test(data.provinsi);
+          new RegExp(e.target.value, 'gi').test(data.vaksinId.lokasi1);
+          new RegExp(e.target.value, 'gi').test(data.vaksinId.lokasi2);
+          new RegExp(e.target.value, 'gi').test(data.vaksinId.provinsi);
         });
         // const filterPesertaVaksinKontradiksiVakasin = data.filter((data) =>
         //   new RegExp(e.target.value, 'gi').test(data.alamat)
@@ -411,6 +411,30 @@ export default function TableData({ data, type }) {
             id="table container"
             className={`${stylePeserta.container} z-10`}
           >
+            <PopUpKontradiksi
+              open={isOpen}
+              onClick={() => {
+                setIsOpen(false);
+                setKontradiksi([]);
+              }}
+              onClickBackground={() => {
+                setIsOpen(false);
+                setKontradiksi([]);
+              }}
+            >
+              <ul>
+                {kontradiksi.map((item) => {
+                  return (
+                    <li
+                      key={uuid()}
+                      className={`text-left ${stylePeserta.list}`}
+                    >
+                      {item}
+                    </li>
+                  );
+                })}
+              </ul>
+            </PopUpKontradiksi>
             {/* {filteredDataHospitals.length != 0 && ( */}
             <table className={`w-full ${stylePeserta.table}`}>
               <thead className="bg-purple text-center text-xl text-white font-bold">
@@ -427,41 +451,18 @@ export default function TableData({ data, type }) {
                 </tr>
               </thead>
               <tbody>
-                <PopUpKontradiksi
-                  open={isOpen}
-                  onClick={() => {
-                    setIsOpen(false);
-                    setKontradiksi([]);
-                  }}
-                  onClickBackground={() => {
-                    setIsOpen(false);
-                    setKontradiksi([]);
-                  }}
-                >
-                  <ul>
-                    {kontradiksi.map((item) => {
-                      return (
-                        <li
-                          key={uuid()}
-                          className={`text-left ${stylePeserta.list}`}
-                        >
-                          {item}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </PopUpKontradiksi>
                 {currentTableDataPesertaVaksin.map((item) => {
                   return (
                     <tr key={uuid()}>
                       <td>{item.userId?.nama}</td>
                       <td>{item.namaVaksin}</td>
-                      <td>{item.jenisVaksin}</td>
-                      <td>{item.tanggal}</td>
-                      <td>{item.waktu}</td>
-                      <td>{item.nama}</td>
+                      <td>{item.vaksinId?.jenisVaksin}</td>
+                      <td>{item.vaksinId?.tanggal}</td>
+                      <td>{item.vaksinId?.waktu}</td>
+                      <td>{item.vaksinId?.nama}</td>
                       <td>
-                        {item.lokasi1} <br /> <br /> {item.lokasi2}
+                        {item.vaksinId?.lokasi1} <br /> <br />
+                        {item.vaksinId?.lokasi2}
                       </td>
                       <td>
                         <button
@@ -502,20 +503,20 @@ export default function TableData({ data, type }) {
     );
   }
 
-  if (type === "rs-rujukan") {
+  if (type === 'rs-rujukan') {
     const onSearchHandler = (e) => {
       setUserInputPesertaVaksin(e.target.value);
 
       let filterHospital = null;
       if (e.target.value.length > 0) {
         const filterHospitalProv = data.filter((data) =>
-          new RegExp(e.target.value, "gi").test(data.provinsi)
+          new RegExp(e.target.value, 'gi').test(data.provinsi)
         );
         const filterHospitalNama = data.filter((data) =>
-          new RegExp(e.target.value, "gi").test(data.nama)
+          new RegExp(e.target.value, 'gi').test(data.nama)
         );
         const filterHospitalAlamat = data.filter((data) =>
-          new RegExp(e.target.value, "gi").test(data.alamat)
+          new RegExp(e.target.value, 'gi').test(data.alamat)
         );
 
         filterHospital = Array.from(

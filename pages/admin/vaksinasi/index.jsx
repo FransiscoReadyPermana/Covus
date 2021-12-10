@@ -78,6 +78,7 @@ export default function Admin({
       </div>
     );
   }
+  
   return (
     <div className="h-screen w-full">
       <section id="first" className={`${styles.section1} w-full relative`}>

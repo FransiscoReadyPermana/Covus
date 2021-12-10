@@ -1,13 +1,13 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import Title from "../../../../Components/title";
-import styles from "../../tambah.module.css";
-import Footer from "../../../../Components/footer";
-import PopUp from "../../../../Components/pop-up/pop-up";
-import { useRouter } from "next/router";
-import AdminOnly from "../../../../Components/adminOnly";
-import { getSession } from "next-auth/client";
-import DropDownEdit from "../../../../Components/dropDown";
+import React from 'react';
+import { useState, useEffect } from 'react';
+import Title from '../../../../Components/title';
+import styles from '../../tambah.module.css';
+import Footer from '../../../../Components/footer';
+import PopUp from '../../../../Components/pop-up/pop-up';
+import { useRouter } from 'next/router';
+import AdminOnly from '../../../../Components/adminOnly';
+import { getSession } from 'next-auth/client';
+import DropDownEdit from '../../../../Components/dropDown';
 
 export default function TambahData({ data, id, user, namaProvinsi }) {
   const emailAdmin = process.env.ADMIN;
@@ -44,11 +44,11 @@ export default function TambahData({ data, id, user, namaProvinsi }) {
 
     if (e.length > 0) {
       filterProvinsi = data.filter((data) =>
-        new RegExp(e, "gi").test(data.key)
+        new RegExp(e, 'gi').test(data.key)
       );
     } else {
       filterProvinsi = data;
-      setDataDropdownProvinsi("Pilih Provinsi");
+      setDataDropdownProvinsi('Pilih Provinsi');
     }
     setFilteredDataProvinsi(filterProvinsi);
   };
@@ -58,9 +58,9 @@ export default function TambahData({ data, id, user, namaProvinsi }) {
     const baseUrl = process.env.BASE_URL;
 
     var requestOptions = {
-      method: "DELETE",
+      method: 'DELETE',
       headers: myHeaders,
-      redirect: "follow",
+      redirect: 'follow',
     };
 
     const response = await fetch(
@@ -70,9 +70,9 @@ export default function TambahData({ data, id, user, namaProvinsi }) {
     const result = await response.json();
 
     if (result.success) {
-      alert("Berhasil");
+      alert('Berhasil');
 
-      router.push("/admin/vaksinasi");
+      router.push('/admin/vaksinasi');
     } else {
       alert(result.message);
     }
@@ -81,7 +81,7 @@ export default function TambahData({ data, id, user, namaProvinsi }) {
   const handleRegister = async (e) => {
     // checkInput(e);
     const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append('Content-Type', 'application/json');
 
     const raw = JSON.stringify({
       _id: id,
@@ -97,7 +97,7 @@ export default function TambahData({ data, id, user, namaProvinsi }) {
     });
 
     const requestOptions = {
-      method: "PUT",
+      method: 'PUT',
       headers: myHeaders,
       body: raw,
     };
@@ -111,14 +111,14 @@ export default function TambahData({ data, id, user, namaProvinsi }) {
     const result = await response.json();
 
     if (result.success) {
-      alert("Berhasil");
+      alert('Berhasil');
       router.push();
     } else {
       alert(result.message);
     }
   };
 
-  if (user.name !== "admin" && user.email !== emailAdmin) {
+  if (user.name !== 'admin' && user.email !== emailAdmin) {
     return (
       <div className="pt-40">
         <AdminOnly />
@@ -144,13 +144,13 @@ export default function TambahData({ data, id, user, namaProvinsi }) {
               <label htmlFor="provinsi">Nama Provinsi</label>
               <DropDownEdit
                 className="w-full"
-                onChange={onFilterDropdown}
                 value={data[0].vaksinId.nama}
                 color="purple"
                 placeholder="Pilih Provinsi"
                 option={namaProvinsi}
                 onChange={(e) => {
                   setFormUser({ ...formUser, provinsi: e });
+                  onFilterDropdown;
                 }}
               />
               {/* <input
@@ -185,7 +185,7 @@ export default function TambahData({ data, id, user, namaProvinsi }) {
                     id="vaksin-pertama"
                     name="Jenis Vaksin"
                     value="Vaksinasi Pertama"
-                    defaultChecked={data[0].jenisVaksin === "Vaksinasi Pertama"}
+                    defaultChecked={data[0].jenisVaksin === 'Vaksinasi Pertama'}
                     onChange={(e) =>
                       setFormUser({ ...formUser, jenisVaksin: e.target.value })
                     }
@@ -199,7 +199,7 @@ export default function TambahData({ data, id, user, namaProvinsi }) {
                     id="vaksin-kedua"
                     name="Jenis Vaksin"
                     value="Vaksinasi Kedua"
-                    defaultChecked={data[0].jenisVaksin === "Vaksinasi Kedua"}
+                    defaultChecked={data[0].jenisVaksin === 'Vaksinasi Kedua'}
                     onChange={(e) =>
                       setFormUser({ ...formUser, jenisVaksin: e.target.value })
                     }
@@ -295,7 +295,7 @@ export default function TambahData({ data, id, user, namaProvinsi }) {
                     id="Astrazeneca"
                     name="namaVaksin"
                     value="Astrazeneca"
-                    defaultChecked={data[0].namaVaksin.includes("Astrazeneca")}
+                    defaultChecked={data[0].namaVaksin.includes('Astrazeneca')}
                     onChange={(e) => NamaVaksin(e)}
                   />
                   <label htmlFor="Astrazeneca">Astrazeneca</label>
@@ -306,7 +306,7 @@ export default function TambahData({ data, id, user, namaProvinsi }) {
                     id="Pfizer"
                     name="namaVaksin"
                     value="Pfizer"
-                    defaultChecked={data[0].namaVaksin.includes("Pfizer")}
+                    defaultChecked={data[0].namaVaksin.includes('Pfizer')}
                     onChange={(e) => NamaVaksin(e)}
                   />
                   <label htmlFor="Pfizer">Pfizer</label>
@@ -318,7 +318,7 @@ export default function TambahData({ data, id, user, namaProvinsi }) {
                     id="Sinovac"
                     name="namaVaksin"
                     value="Sinovac"
-                    defaultChecked={data[0].namaVaksin.includes("Sinovac")}
+                    defaultChecked={data[0].namaVaksin.includes('Sinovac')}
                     onChange={(e) => NamaVaksin(e)}
                   />
                   <label htmlFor="Sinovac">Sinovac</label>
@@ -330,7 +330,7 @@ export default function TambahData({ data, id, user, namaProvinsi }) {
                     id="Moderna"
                     name="namaVaksin"
                     value="Moderna"
-                    defaultChecked={data[0].namaVaksin.includes("Moderna")}
+                    defaultChecked={data[0].namaVaksin.includes('Moderna')}
                     onChange={(e) => NamaVaksin(e)}
                   />
                   <label htmlFor="Moderna">Moderna</label>
@@ -359,11 +359,11 @@ export default function TambahData({ data, id, user, namaProvinsi }) {
               deleteHandler(id);
               setKeluar(false);
             }}
-            pertanyaan1={"Apakah Anda yakin ingin"}
-            pertanyaan2={"hapus data vaksin?"}
-            gambar={"/images/tutup.svg"}
-            button_primary={"Iya"}
-            button_secondary={"Tidak"}
+            pertanyaan1={'Apakah Anda yakin ingin'}
+            pertanyaan2={'hapus data vaksin?'}
+            gambar={'/images/tutup.svg'}
+            button_primary={'Iya'}
+            button_secondary={'Tidak'}
           />
 
           <button
@@ -395,7 +395,7 @@ export async function getServerSideProps(context) {
   if (!session) {
     return {
       redirect: {
-        destination: "/",
+        destination: '/',
         permanent: false,
       },
     };

@@ -13,15 +13,6 @@ import { getSession } from "next-auth/client";
 
 export default function TambahData({ user, data, namaProvinsi }) {
   const emailAdmin = process.env.ADMIN;
-
-  if (user.name !== "admin" && user.email !== emailAdmin) {
-    return (
-      <div>
-        <AdminOnly />
-      </div>
-    );
-  }
-
   const [formUser, setFormUser] = useState({
     provinsi: "",
     img: "",
@@ -33,7 +24,7 @@ export default function TambahData({ user, data, namaProvinsi }) {
     lokasi2: "",
     namaVaksin: [],
   });
-
+  
   const NamaVaksin = (e) => {
     let namaVaksin = formUser.namaVaksin;
     if (e.target.checked) {
@@ -46,7 +37,14 @@ export default function TambahData({ user, data, namaProvinsi }) {
       namaVaksin,
     });
   };
-
+  
+  if (user.name !== "admin" && user.email !== emailAdmin) {
+    return (
+      <div>
+        <AdminOnly />
+      </div>
+    );
+  }
   const handleRegister = async (e) => {
     // checkInput(e);
     const myHeaders = new Headers();

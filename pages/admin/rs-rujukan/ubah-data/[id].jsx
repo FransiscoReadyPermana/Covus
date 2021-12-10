@@ -11,26 +11,19 @@ export default function UbahData({ data, id, user }) {
   const router = useRouter();
   const emailAdmin = process.env.ADMIN;
 
-  if (user.name !== "admin" && user.email !== emailAdmin) {
-    return (
-      <div>
-        <AdminOnly />
-      </div>
-    );
-  }
-
+  
   const [formUser, setFormUser] = useState({
     provinsi: data[0].provinsi,
     nama: data[0].nama,
     alamat: data[0].alamat,
     telp: data[0].telp,
   });
-
-  const handleRegister = async (e) => {
+  
+  const handleRegister = async () => {
     // checkInput(e);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-
+    
     const raw = JSON.stringify({
       _id: id,
       provinsi: formUser.provinsi,
@@ -38,19 +31,19 @@ export default function UbahData({ data, id, user }) {
       alamat: formUser.alamat,
       telp: formUser.telp,
     });
-
+    
     const requestOptions = {
       method: "PUT",
       headers: myHeaders,
       body: raw,
       redirect: "follow",
     };
-
+    
     const baseUrl = process.env.BASE_URL;
-
+    
     const response = await fetch(`${baseUrl}api/rs-rujukan`, requestOptions);
     const result = await response.json();
-
+    
     if (result.success) {
       alert("Berhasil");
       router.push("/admin/rs-rujukan");
@@ -58,7 +51,15 @@ export default function UbahData({ data, id, user }) {
       alert(result.message);
     }
   };
-
+  
+  if (user.name !== "admin" && user.email !== emailAdmin) {
+    return (
+      <div>
+        <AdminOnly />
+      </div>
+    );
+  }
+  
   return (
     <div className="h-screen w-full">
       <section id="first" className={`${styles.section1} w-full relative`}>
