@@ -313,10 +313,10 @@ export default function TableData({ data, type }) {
                 </tr>
               </thead>
               <tbody>
-                {currentTableDataHospitals.map((item) => {
+                {currentTableDataHospitals.map((item, count) => {
                   return (
                     <tr key={uuid()}>
-                      <td>{item.no}</td>
+                      <td>{count+1}</td>
                       <td>{item.provinsi}</td>
                       <td>{item.nama}</td>
                       <td>{item.alamat}</td>
