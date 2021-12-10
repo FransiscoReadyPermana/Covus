@@ -401,12 +401,12 @@ export default function TableData({ data, type }) {
     return (
       <>
         <div className="flex flex-col w-full items-center justify-center">
-          <div className="flex gap-12 items-center mb-10 w-full px-48">
+          <div className={`flex gap-12 items-center mb-10 w-full  ${stylePeserta.searchInputContainer}`}>
             <SearchInput
               className="w-full"
               onChangeHandler={(e) => onSearchHandler(e)}
               value={userInputPesertaVaksin}
-              classNameContainer="w-full px-40"
+              classNameContainer="w-full"
               classNameInput={`${stylePeserta.input}`}
             />
           </div>
