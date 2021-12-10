@@ -74,7 +74,7 @@
 }
 
 .hapus {
-  background: #F178B6;
+  background: #f178b6;
   color: white;
   padding: 0.5rem;
   border-radius: 0.5rem;
@@ -89,6 +89,8 @@
 
 .kontradiksi {
   transition: all 0.23s ease-in-out;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
 }
 
 .kontradiksi:hover {
@@ -97,4 +99,18 @@
 
 .list {
   list-style-type: circle;
+}
+
+.inputContainer {
+  width: 100%;
+  padding-right: 10rem;
+  padding-left: 10rem;
+}
+
+.provinsi {
+  width: 16rem;
+}
+
+.nama {
+  width: 20rem;
 }

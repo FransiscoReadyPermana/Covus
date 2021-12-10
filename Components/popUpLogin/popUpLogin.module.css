@@ -48,7 +48,7 @@
 
 .form input[type='text']:focus,
 .form input[type='password']:focus {
-  outline: 0.2rem solid #494961;
+  outline: 0.2rem solid #a5afed;
 }
 
 .form input[type='submit'] {

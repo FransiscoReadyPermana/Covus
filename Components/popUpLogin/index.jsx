@@ -145,7 +145,7 @@ export default function PopUpLogin({
           <input
             type="submit"
             value="Masuk"
-            className="bg-purple text-white py-3 rounded-3xl"
+            className={`bg-purple text-white py-3 rounded-3xl`}
             onClick={(e) => {
               handleSignIn(e);
             }}

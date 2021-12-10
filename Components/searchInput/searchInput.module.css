@@ -8,6 +8,8 @@
   width: 40rem;
   padding-left: 5rem;
   padding-right: 1rem;
+  padding-top: -0.5rem;
+  height: 100%;
 }
 
 .input:focus {
@@ -17,6 +19,7 @@
 .search {
   width: 5rem;
   margin-left: -0.25rem;
+  outline: 4px solid #a5afed;
 }
 
 .reset {

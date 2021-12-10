@@ -89,7 +89,7 @@ export default function Admin({
 
         <div
           id="content"
-          className="w-full flex flex-col items-center h-full pt-80 bg-white pb-28"
+          className={`w-full flex flex-col items-center h-full bg-white pb-28 ${styles.content}`}
         >
           <Title color="dark-grey">DAFTAR VAKSINASI</Title>
 

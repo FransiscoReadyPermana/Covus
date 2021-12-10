@@ -1,11 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Headline from "../../../../Components/Headline";
 import Title from "../../../../Components/title";
 import styles from "../../tambah.module.css";
-import EyeShow from "../../../../Components/icons/EyeShow";
-import EyeHide from "../../../../Components/icons/EyeHide";
-import Link from "next/link";
 import DropDownEdit from "../../../../Components/dropDown";
 import Footer from "../../../../Components/footer";
 import AdminOnly from "../../../../Components/adminOnly";
@@ -109,7 +105,7 @@ export default function TambahData({ user, data, namaProvinsi }) {
           className="w-full flex flex-col items-center h-full pt-80 bg-white pb-20"
         >
           <Title color="dark-grey">TAMBAH DATA LOKASI VAKSINASI</Title>
-          <form action="#" className={`flex flex-col gap-8 ${styles.form}`}>
+          <form action="#" className={`flex flex-col gap-10 ${styles.form}`}>
             <div id="provinsi">
               <label htmlFor="provinsi">Nama Provinsi</label>
 

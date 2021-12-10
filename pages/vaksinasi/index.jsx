@@ -131,7 +131,7 @@ export default function Vaksinasi({ data }) {
                 <Title color="white">PROSES VAKSINASI COVUS</Title>
 
                 <div className="w-full h-full flex justify-center gap-12 mt-12">
-                  <Card type="big" gap="3">
+                  <Card type="big" gap="3" className={`${styles.card}`}>
                     <div className="abosolute">
                       <div
                         id="image"
@@ -155,13 +155,13 @@ export default function Vaksinasi({ data }) {
                     </div>
                     <p
                       color="dark-grey"
-                      className="text-center font-semibold text-2xl text-dark-grey"
+                      className={`text-center font-semibold text-2xl text-dark-grey ${styles.textCard}`}
                     >
                       Datang ke Lokasi
                     </p>
                   </Card>
 
-                  <Card type="big" gap="3">
+                  <Card type="big" gap="3" className={`${styles.card}`}>
                     <div className="abosolute">
                       <div
                         id="image"
@@ -185,13 +185,13 @@ export default function Vaksinasi({ data }) {
                     </div>
                     <p
                       color="dark-grey"
-                      className="text-center font-semibold text-2xl text-dark-grey"
+                      className={`text-center font-semibold text-2xl text-dark-grey ${styles.textCard}`}
                     >
                       Pendataan Ulang
                     </p>
                   </Card>
 
-                  <Card type="big" gap="3">
+                  <Card type="big" gap="3" className={`${styles.card}`}>
                     <div className="abosolute">
                       <div
                         id="image"
@@ -215,7 +215,7 @@ export default function Vaksinasi({ data }) {
                     </div>
                     <p
                       color="dark-grey"
-                      className="text-center font-semibold text-2xl text-dark-grey"
+                      className={`text-center font-semibold text-2xl text-dark-grey ${styles.textCard}`}
                     >
                       Check Kesehatan
                     </p>
@@ -226,7 +226,7 @@ export default function Vaksinasi({ data }) {
                   id="content2"
                   className="w-full h-full flex justify-center gap-12 mt-12 mb-28"
                 >
-                  <Card type="big" gap="3">
+                  <Card type="big" gap="3" className={`${styles.card}`}>
                     <div className="abosolute">
                       <div
                         id="image"
@@ -250,13 +250,13 @@ export default function Vaksinasi({ data }) {
                     </div>
                     <p
                       color="dark-grey"
-                      className="text-center font-semibold text-2xl text-dark-grey"
+                      className={`text-center font-semibold text-2xl text-dark-grey ${styles.textCard}`}
                     >
                       Penyuntikan Vaksin
                     </p>
                   </Card>
 
-                  <Card type="big" gap="3">
+                  <Card type="big" gap="3" className={`${styles.card}`}>
                     <div className="abosolute">
                       <div
                         id="image"
@@ -280,13 +280,13 @@ export default function Vaksinasi({ data }) {
                     </div>
                     <p
                       color="dark-grey"
-                      className="text-center font-semibold text-2xl text-dark-grey"
+                      className={`text-center font-semibold text-2xl text-dark-grey ${styles.textCard}`}
                     >
                       Observasi Kesehatan
                     </p>
                   </Card>
 
-                  <Card type="big" gap="3">
+                  <Card type="big" gap="3" className={`${styles.card}`}>
                     <div className="abosolute">
                       <div
                         id="image"
@@ -310,7 +310,7 @@ export default function Vaksinasi({ data }) {
                     </div>
                     <p
                       color="dark-grey"
-                      className="text-center font-semibold text-2xl text-dark-grey"
+                      className={`text-center font-semibold text-2xl text-dark-grey ${styles.textCard}`}
                     >
                       Vaksinasi Selesai
                     </p>

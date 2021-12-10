@@ -26,24 +26,6 @@
   text-align: center;
 }
 
-/* .virusPositionTop {
-    margin-right: -7rem;
-    margin-top: -5rem;
-  } */
-
-/* .virusPositionBottom {
-    margin-right: -7rem;
-    margin-top: -12rem;
-    z-index: 0;
-  }
-  
-  .virusPositionBottomRight {
-    margin-right: 8rem;
-    margin-top: -12rem;
-    z-index: 0;
-  }
-   */
-
 .last {
   border-right: none !important;
 }
@@ -51,6 +33,7 @@
 .head {
   padding-top: 1rem;
   padding-bottom: 1rem;
+  width: 25rem;
 }
 
 .reset {
@@ -63,4 +46,8 @@
 .reset:hover {
   outline: 0.2rem solid #a5afed;
   opacity: 1;
+}
+
+.DropDownEdit{
+  width: 75%;
 }

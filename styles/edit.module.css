@@ -76,7 +76,6 @@
 .input:focus {
   outline: 0.2rem solid #a5afed;
   -webkit-appearance: none;
-  margin-top: 0.8rem;
   color: #494961;
   opacity: 1 !important;
 }

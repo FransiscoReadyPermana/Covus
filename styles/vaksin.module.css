@@ -52,3 +52,12 @@
   margin-top: 0.2rem;
   margin-left: 0.2rem;
 }
+
+.textCard{
+  margin-top: 0.75rem;
+}
+
+.card{
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}

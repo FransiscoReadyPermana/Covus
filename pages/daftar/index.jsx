@@ -251,7 +251,7 @@ export default function SignUp() {
           <Title className={`text-center text-dark-grey mt-7 ${styles.title}`}>
             Buat Akun Covus untuk Pendaftaran Vaksinasi Covid-19
           </Title>
-          <form action="#" className={`flex flex-col gap-8 ${styles.form}`}>
+          <form action="#" className={`flex flex-col gap-10 ${styles.form}`}>
             <div id="nama">
               <label htmlFor="nama">Nama Lengkap</label>
               <input
@@ -338,7 +338,7 @@ export default function SignUp() {
                     type="radio"
                     id="laki"
                     name="jenis kelamin"
-                    value="laki-laki"
+                    value="Laki-laki"
                     onChange={(e) =>
                       setFormUser({ ...formUser, jenisKelamin: e.target.value })
                     }
@@ -350,7 +350,7 @@ export default function SignUp() {
                     type="radio"
                     id="perempuan"
                     name="jenis kelamin"
-                    value="perempuan"
+                    value="Perempuan"
                     onChange={(e) =>
                       setFormUser({ ...formUser, jenisKelamin: e.target.value })
                     }
@@ -362,7 +362,7 @@ export default function SignUp() {
                     type="radio"
                     id="lainnya"
                     name="jenis kelamin"
-                    value="lainnya"
+                    value="Lainnya"
                     onChange={(e) =>
                       setFormUser({ ...formUser, jenisKelamin: e.target.value })
                     }
@@ -459,7 +459,7 @@ export default function SignUp() {
             <input
               type="submit"
               value="Daftar Sekarang"
-              className="bg-purple text-white py-3 rounded-3xl"
+              className={`bg-purple text-white py-3 rounded-3xl ${styles.btn}`}
               onClick={(e) => {
                 handleRegister(e);
               }}

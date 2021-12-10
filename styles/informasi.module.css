@@ -4,6 +4,7 @@
 
 .section2 {
   height: 140vh;
+  padding-top: 2rem;
 }
 
 .section3 {
@@ -14,6 +15,7 @@
   background-image: url("../public/images/sixDivider.svg");
   background-repeat: no-repeat;
   background-size: cover;
+  margin-top: -2rem;
 }
 
 .bgSecondSection {
@@ -30,4 +32,8 @@
   background-size: cover;
   -webkit-transform: scaley(-1);
   transform: scaley(-1);
+}
+
+.content{
+  margin-top: 3rem;
 }

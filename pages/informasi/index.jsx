@@ -21,9 +21,9 @@ export default function Informasi({
       >
         <div
           id="content"
-          className="flex gap-16 h-full px-52 bg-purple items-center"
+          className={`flex gap-16 h-full px-52 bg-purple items-center `}
         >
-          <div id="text" className="flex flex-col items-center w-full mt-8">
+          <div id="text" className={`flex flex-col items-center w-full mt-8`}>
             <Title color="white" className="mb-6">
               LACAK KASUS COVID-19
             </Title>
@@ -48,7 +48,7 @@ export default function Informasi({
         > */}
         <div
           id="content"
-          className="flex flex-col gap-10 h-full px-60 bg-white"
+          className={`flex flex-col gap-10 h-full px-60 bg-white ${styles.content}`}
         >
           <Title className="text-center" color="dark-grey">
             NEGARA DENGAN KASUS COVID-19 TERTINGGI

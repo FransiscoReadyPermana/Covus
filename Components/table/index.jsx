@@ -162,7 +162,7 @@ export default function TableData({ data, type }) {
         <div className="flex flex-col w-full relative">
           <div className="flex gap-16 items-center mb-10 flex-row justify-center">
             <DropDownEdit
-              className="w-9/12"
+              className={`${stylesProvinsi.DropDownEdit}`}
               value={dataDropdownProvinsi}
               onChange={onFilterDropdown}
               color="purple"
@@ -191,10 +191,16 @@ export default function TableData({ data, type }) {
               <thead className="bg-purple text-center text-xl text-white font-bold">
                 <tr>
                   <th className={`px-28 ${stylesProvinsi.head}`}>Provinsi</th>
-                  <th className="px-12">Total Kasus</th>
-                  <th className="px-12">Total Sembuh</th>
-                  <th className="px-12">Total Meninggal</th>
-                  <th className="px-12">Dirawat</th>
+                  <th className={`${stylesProvinsi.head}`}>
+                    Total Kasus
+                  </th>
+                  <th className={`${stylesProvinsi.head}`}>
+                    Total Sembuh
+                  </th>
+                  <th className={`${stylesProvinsi.head}`}>
+                    Total Meninggal
+                  </th>
+                  <th className={`${stylesProvinsi.head}`}>Dirawat</th>
                 </tr>
               </thead>
               <tbody>
@@ -305,7 +311,6 @@ export default function TableData({ data, type }) {
             <table className={`w-full ${stylesHospitals.table}`}>
               <thead className="bg-purple text-center text-xl text-white font-bold">
                 <tr>
-                  <th className={`${stylesHospitals.head}`}>No</th>
                   <th className={`${stylesHospitals.head}`}>Provinsi</th>
                   <th>Nama Rumah Sakit</th>
                   <th>Alamat</th>
@@ -316,7 +321,6 @@ export default function TableData({ data, type }) {
                 {currentTableDataHospitals.map((item, count) => {
                   return (
                     <tr key={uuid()}>
-                      <td>{count+1}</td>
                       <td>{item.provinsi}</td>
                       <td>{item.nama}</td>
                       <td>{item.alamat}</td>
@@ -466,7 +470,7 @@ export default function TableData({ data, type }) {
                       </td>
                       <td>
                         <button
-                          className={`bg-purple p-2 rounded-xl ${stylePeserta.kontradiksi}`}
+                          className={`bg-purple ${stylePeserta.kontradiksi}`}
                           type="button"
                           onClick={() => kontradiksiHandler(item.kontradiksi)}
                         >
@@ -540,7 +544,7 @@ export default function TableData({ data, type }) {
               className="w-full"
               onChangeHandler={(e) => onSearchHandler(e)}
               value={userInputPesertaVaksin}
-              classNameContainer="w-full px-40"
+              classNameContainer={`${stylePeserta.inputContainer}`}
               classNameInput={`${stylePeserta.input}`}
             />
           </div>
@@ -565,8 +569,12 @@ export default function TableData({ data, type }) {
                 {currentTableDataHospitals.map((item) => {
                   return (
                     <tr key={uuid()}>
-                      <td className="w-64">{item.provinsi}</td>
-                      <td className="w-80">{item.nama}</td>
+                      <td className={`${stylePeserta.provinsi}`}>
+                        {item.provinsi}
+                      </td>
+                      <td className={`${stylePeserta.nama}`}>
+                        {item.nama}
+                      </td>
                       <td>{item.alamat}</td>
                       <td className="w-48">{item.telp}</td>
                       <td className="w-44">
@@ -575,7 +583,7 @@ export default function TableData({ data, type }) {
                           passHref={true}
                         >
                           <button
-                            className={`bg-purple p-2 rounded-xl ${stylePeserta.kontradiksi}`}
+                            className={`bg-purple rounded-xl ${stylePeserta.kontradiksi}`}
                             type="button"
                             onClick={() => kontradiksiHandler(item.kontradiksi)}
                           >
