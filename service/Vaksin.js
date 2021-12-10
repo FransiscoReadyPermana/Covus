@@ -1,6 +1,7 @@
 import NotFoundError from "../expecptions/NotFoundError";
 import ReservasiVaksinasi from "../models/reservasi";
 import LokasiVaksinasi from "../models/lokasivaksinasi";
+import VaksinasiProvinsi from "../models/vaksinasiprovinsi";
 
 class VaksinService {
   async createVaksin({
@@ -87,8 +88,8 @@ class VaksinService {
 
   async editVaksin(
     _id,
+    provinsi,
     {
-      provinsi,
       img,
       jenisVaksin,
       nama,
@@ -100,8 +101,9 @@ class VaksinService {
     }
   ) {
     const data = await LokasiVaksinasi.findOne({ _id });
+    const dataProvinsi = await VaksinasiProvinsi.findOne({ nama: provinsi });
 
-    data.provinsi = provinsi ?? data.provinsi;
+    data.vaksinId = dataProvinsi._id ?? dataProvinsi._id;
     data.img = img ?? data.img;
     data.jenisVaksin = jenisVaksin ?? data.jenisVaksin;
     data.nama = nama ?? data.nama;
@@ -113,6 +115,40 @@ class VaksinService {
 
     await data.save();
     return data;
+  }
+
+  // comment
+
+  async tambahLokasiVaksin(
+    provinsi,
+    {
+      vaksinId,
+      img,
+      jenisVaksin,
+      nama,
+      tanggal,
+      waktu,
+      lokasi1,
+      lokasi2,
+      namaVaksin,
+    }
+  ) {
+    const data = await VaksinasiProvinsi.findOne({ nama: provinsi });
+
+    const newLokasiVaksinasi = new LokasiVaksinasi({
+      vaksinId: data._id,
+      img,
+      jenisVaksin,
+      nama,
+      tanggal,
+      waktu,
+      lokasi1,
+      lokasi2,
+      namaVaksin,
+    });
+
+    const lokasiVaksinasii = await newLokasiVaksinasi.save();
+    return lokasiVaksinasii._id;
   }
 }
 

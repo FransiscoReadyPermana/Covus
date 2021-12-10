@@ -1,14 +1,15 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import Title from '../../../../Components/title';
-import styles from '../../tambah.module.css';
-import Footer from '../../../../Components/footer';
-import PopUp from '../../../../Components/pop-up/pop-up';
-import { useRouter } from 'next/router';
-import AdminOnly from '../../../../Components/adminOnly';
-import { getSession } from 'next-auth/client';
+import React from "react";
+import { useState, useEffect } from "react";
+import Title from "../../../../Components/title";
+import styles from "../../tambah.module.css";
+import Footer from "../../../../Components/footer";
+import PopUp from "../../../../Components/pop-up/pop-up";
+import { useRouter } from "next/router";
+import AdminOnly from "../../../../Components/adminOnly";
+import { getSession } from "next-auth/client";
+import DropDownEdit from "../../../../Components/dropDown";
 
-export default function TambahData({ data, id, user }) {
+export default function TambahData({ data, id, user, namaProvinsi }) {
   const emailAdmin = process.env.ADMIN;
   const router = useRouter();
   const [keluar, setKeluar] = useState(false);
@@ -37,14 +38,29 @@ export default function TambahData({ data, id, user }) {
     });
   };
 
+  const onFilterDropdown = (e) => {
+    setDataDropdownProvinsi(e);
+    let filterProvinsi = null;
+
+    if (e.length > 0) {
+      filterProvinsi = data.filter((data) =>
+        new RegExp(e, "gi").test(data.key)
+      );
+    } else {
+      filterProvinsi = data;
+      setDataDropdownProvinsi("Pilih Provinsi");
+    }
+    setFilteredDataProvinsi(filterProvinsi);
+  };
+
   const deleteHandler = async (id) => {
     var myHeaders = new Headers();
     const baseUrl = process.env.BASE_URL;
 
     var requestOptions = {
-      method: 'DELETE',
+      method: "DELETE",
       headers: myHeaders,
-      redirect: 'follow',
+      redirect: "follow",
     };
 
     const response = await fetch(
@@ -54,9 +70,9 @@ export default function TambahData({ data, id, user }) {
     const result = await response.json();
 
     if (result.success) {
-      alert('Berhasil');
-      // clearError();
-      router.push('/tes/vaksinasi');
+      alert("Berhasil");
+
+      router.push("/admin/vaksinasi");
     } else {
       alert(result.message);
     }
@@ -65,11 +81,11 @@ export default function TambahData({ data, id, user }) {
   const handleRegister = async (e) => {
     // checkInput(e);
     const myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
       _id: id,
-      provinsi: formUser.provinsi,
+      // provinsi: formUser.provinsi,
       img: formUser.img,
       jenisVaksin: formUser.jenisVaksin,
       nama: formUser.penyelenggara,
@@ -81,7 +97,7 @@ export default function TambahData({ data, id, user }) {
     });
 
     const requestOptions = {
-      method: 'PUT',
+      method: "PUT",
       headers: myHeaders,
       body: raw,
     };
@@ -89,22 +105,20 @@ export default function TambahData({ data, id, user }) {
     const baseUrl = process.env.BASE_URL;
 
     const response = await fetch(
-      `${baseUrl}api/lokasi-vaksinasi`,
+      `${baseUrl}api/tambah-lokasi-vaksinasi/${formUser.provinsi}`,
       requestOptions
     );
     const result = await response.json();
 
     if (result.success) {
-      alert('Berhasil');
-      // clearError();
-      // eslint-disable-next-line no-restricted-globals
-      // location.reload();
+      alert("Berhasil");
+      router.push();
     } else {
       alert(result.message);
     }
   };
 
-  if (user.name !== 'admin' && user.email !== emailAdmin) {
+  if (user.name !== "admin" && user.email !== emailAdmin) {
     return (
       <div className="pt-40">
         <AdminOnly />
@@ -128,7 +142,18 @@ export default function TambahData({ data, id, user }) {
           <form action="#" className={`flex flex-col gap-8 ${styles.form}`}>
             <div id="provinsi">
               <label htmlFor="provinsi">Nama Provinsi</label>
-              <input
+              <DropDownEdit
+                className="w-full"
+                onChange={onFilterDropdown}
+                value={data[0].vaksinId.nama}
+                color="purple"
+                placeholder="Pilih Provinsi"
+                option={namaProvinsi}
+                onChange={(e) => {
+                  setFormUser({ ...formUser, provinsi: e });
+                }}
+              />
+              {/* <input
                 type="text"
                 id="provinsi"
                 defaultValue={data[0].provinsi}
@@ -136,7 +161,7 @@ export default function TambahData({ data, id, user }) {
                   setFormUser({ ...formUser, provinsi: e.target.value })
                 }
               />
-              {/* {errorNama && <p className="mt-2 ml-2 text-red">{errorNama}</p>} */}
+              {errorNama && <p className="mt-2 ml-2 text-red">{errorNama}</p>} */}
             </div>
             <div id="img">
               <label htmlFor="email">Gambar Rumah Sakit</label>
@@ -334,11 +359,11 @@ export default function TambahData({ data, id, user }) {
               deleteHandler(id);
               setKeluar(false);
             }}
-            pertanyaan1={'Apakah Anda yakin ingin'}
-            pertanyaan2={'hapus data vaksin?'}
-            gambar={'/images/tutup.svg'}
-            button_primary={'Iya'}
-            button_secondary={'Tidak'}
+            pertanyaan1={"Apakah Anda yakin ingin"}
+            pertanyaan2={"hapus data vaksin?"}
+            gambar={"/images/tutup.svg"}
+            button_primary={"Iya"}
+            button_secondary={"Tidak"}
           />
 
           <button
@@ -362,11 +387,15 @@ export async function getServerSideProps(context) {
   const data = result.data.filter((item) => item._id === id);
   const session = await getSession({ req: context.req });
   const user = session.user;
+  const vaksinasiPertama = await fetch(`${baseUrl}api/vaksinasi-provinsi`);
+  const resultPertama = await vaksinasiPertama.json();
 
+  const namaProvinsi = resultPertama.data.map((item) => item.nama);
+  console.log(data);
   if (!session) {
     return {
       redirect: {
-        destination: '/',
+        destination: "/",
         permanent: false,
       },
     };
@@ -377,6 +406,7 @@ export async function getServerSideProps(context) {
       data,
       id,
       user,
+      namaProvinsi,
     },
   };
 }

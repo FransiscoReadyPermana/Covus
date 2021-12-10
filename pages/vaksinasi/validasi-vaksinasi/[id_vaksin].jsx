@@ -103,7 +103,7 @@ export default function ValidasiVaksinasi({ data, user }) {
       const raw = JSON.stringify({
         userId: user._id,
         vaksinId: data[0]._id,
-        provinsi: data[0].provinsi,
+        provinsi: data[0].vaksinId.nama,
         nama: data[0].nama,
         jenisVaksin: data[0].jenisVaksin,
         tanggal: data[0].tanggal,

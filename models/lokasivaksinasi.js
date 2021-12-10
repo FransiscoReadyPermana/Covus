@@ -6,10 +6,10 @@ const LokasiVaksinasiSchema = new mongoose.Schema({
     ref: "VaksinasiProvinsi",
     required: true,
   },
-  provinsi: {
-    type: String,
-    required: true,
-  },
+  // provinsi: {
+  //   type: String,
+  //   required: false,
+  // },
   img: {
     type: String,
     required: true,

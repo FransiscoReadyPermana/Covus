@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import styles from '../daftar.module.css';
-import Title from '../../../Components/title';
-import Footer from '../../../Components/footer';
-import DropDownEdit from '../../../Components/dropDown';
-import CardVaksin2 from '../../../Components/cardVaksin/cardVaksin2';
-import uuid from 'react-uuid';
-import Pagination from '../../../Components/pagination';
-import jenisVaksinasii from '../../../data/jenisVaksinn';
-import { useRouter } from 'next/router';
-import { getSession } from 'next-auth/client';
+import React, { useEffect, useState } from "react";
+import styles from "../daftar.module.css";
+import Title from "../../../Components/title";
+import Footer from "../../../Components/footer";
+import DropDownEdit from "../../../Components/dropDown";
+import CardVaksin2 from "../../../Components/cardVaksin/cardVaksin2";
+import uuid from "react-uuid";
+import Pagination from "../../../Components/pagination";
+import jenisVaksinasii from "../../../data/jenisVaksinn";
+import { useRouter } from "next/router";
+import { getSession } from "next-auth/client";
 
 export default function Admin({
   data,
@@ -24,7 +24,6 @@ export default function Admin({
   const [filteredData, setFilteredData] = useState(data);
   const [dataDropdown, setDataDropdown] = useState(data);
   const [dataDropdownJenisVaksin, setDataDropdownJenisVaksin] = useState(data);
-  const [filteredDataJenisVaksin, setFilteredDataJenisVaksin] = useState(data);
 
   const PageSize = 4;
   const emailAdmin = process.env.ADMIN;
@@ -37,10 +36,14 @@ export default function Admin({
 
   const onFilterDropdown = (e) => {
     setDataDropdown(e);
+    let filter = null;
     let filterData = null;
 
     if (e.length > 0) {
-      filterData = data.filter((dataBaru) => dataBaru.provinsi === e);
+      filterData = data.filter((dataBaru) => dataBaru.vaksinId.nama === e);
+      // if (periodeVaksin === "Vaksinasi Pertama") {
+      //   filterData = filter.filter((dataBaru) => dataBaru.jenisVaksin === e);
+      // }
     } else {
       filterData = data;
       setDataDropdown(data);
@@ -54,9 +57,9 @@ export default function Admin({
 
     if (e.length > 0) {
       filterData = data.filter((dataBaru) => dataBaru.jenisVaksin === e);
-      if (e === 'Vaksinasi Pertama') {
+      if (e === "Vaksinasi Pertama") {
         setPeriodeVaksin(daerahVaksinPertama);
-      } else if (e === 'Vaksinasi Kedua') {
+      } else if (e === "Vaksinasi Kedua") {
         setPeriodeVaksin(daerahVaksinKedua);
       }
     } else {
@@ -68,7 +71,7 @@ export default function Admin({
     // router.replace(`/vaksinasi/lokasi-vaksinasi/${jenis_vaksin}/${e}`);
   };
 
-  if (user.name !== 'admin' && user.email !== emailAdmin) {
+  if (user.name !== "admin" && user.email !== emailAdmin) {
     return (
       <div className="pt-40">
         <p>You are not authorized to access this page;</p>
@@ -94,7 +97,7 @@ export default function Admin({
               <DropDownEdit
                 className="w-full"
                 color="purple"
-                placeholder={'Pilih Provinsi'}
+                placeholder={"Pilih Provinsi"}
                 onChange={onFilterDropdown}
                 option={periodeVaksin}
               />
@@ -103,7 +106,7 @@ export default function Admin({
               <DropDownEdit
                 className="w-full"
                 color="white"
-                placeholder={'Jenis Vaksinasi'}
+                placeholder={"Jenis Vaksinasi"}
                 classNameControl={`${styles.classNameControl}`}
                 onChange={onFilterDropdownJenisVaksin}
                 option={jenisVaksinasii}
@@ -135,7 +138,7 @@ export default function Admin({
 
           <button
             className={`absolute bg-purple text-white py-3 rounded-3xl w-72 mt-24 right-0 top-0 mt-56 mr-20 ${styles.buttonTambah}`}
-            onClick={() => router.push('/admin/vaksinasi/tambah-data')}
+            onClick={() => router.push("/admin/vaksinasi/tambah-data")}
           >
             Tambah Data
           </button>
@@ -143,7 +146,7 @@ export default function Admin({
           <button
             className={`absolute bg-white text-purple py-3 rounded-3xl w-72 mt-24 right-0 top-0 mr-20 ${styles.buttonPeserta}`}
             onClick={() =>
-              router.push('/admin/vaksinasi/peserta-vaksinasi/keseluruhan')
+              router.push("/admin/vaksinasi/peserta-vaksinasi/keseluruhan")
             }
           >
             Peserta Vaksinasi
@@ -158,26 +161,21 @@ export default function Admin({
 export async function getServerSideProps(context) {
   const baseUrl = process.env.BASE_URL;
   const lokasiVaksinasi = await fetch(`${baseUrl}api/lokasi-vaksinasi`);
-  const vaksinasiPertama = await fetch(`${baseUrl}api/vaksinasi-provinsi`);
-  const vaksinasiKedua = await fetch(`${baseUrl}api/vaksinasi-provinsi-kedua`);
 
-  const resultPertama = await vaksinasiPertama.json();
-  const resultKedua = await vaksinasiKedua.json();
   const resultKetiga = await lokasiVaksinasi.json();
 
   const filterDataPertama = resultKetiga.data.filter(
-    (item) => item.jenisVaksin === 'Vaksinasi Pertama'
+    (item) => item.jenisVaksin === "Vaksinasi Pertama"
   );
 
   const filterDataKedua = resultKetiga.data.filter(
-    (item) => item.jenisVaksin === 'Vaksinasi Kedua'
+    (item) => item.jenisVaksin === "Vaksinasi Kedua"
   );
 
-  const namaVaksinPertama = filterDataPertama.map((item) => item.provinsi);
+  const namaVaksinPertama = filterDataPertama.map((item) => item.vaksinId.nama);
+  const namaVaksinKedua = filterDataKedua.map((item) => item.vaksinId.nama);
+  const namaVaksin = resultKetiga.data.map((item) => item.vaksinId.nama);
 
-  const namaVaksinKedua = filterDataKedua.map((item) => item.provinsi);
-
-  const namaVaksin = resultKetiga.data.map((item) => item.provinsi);
   const namaVaksinUnique = [...new Set(namaVaksin)];
   const namaVaksinMapped = namaVaksinUnique.map((item) => item);
 
@@ -190,7 +188,7 @@ export async function getServerSideProps(context) {
   if (!session) {
     return {
       redirect: {
-        destination: '/',
+        destination: "/",
         permanent: false,
       },
     };

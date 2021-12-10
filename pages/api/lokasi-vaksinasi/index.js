@@ -11,48 +11,15 @@ const lokasiVaksin = async (req, res) => {
   switch (method) {
     case "GET":
       try {
-        const lokasivaksin = await LokasiVaksinasi.find({});
-        res.status(200).json({ success: true, data: lokasivaksin });
+        const provinsiVaksin = await LokasiVaksinasi.find().populate(
+          "vaksinId"
+        );
+
+        res.status(200).json({ success: true, data: provinsiVaksin });
       } catch (error) {
         res.status(400).json({ success: false });
       }
       break;
-
-    case "POST":
-      try {
-        // get user data from request
-        const {
-          provinsi,
-          img,
-          jenisVaksin,
-          nama,
-          tanggal,
-          waktu,
-          lokasi1,
-          lokasi2,
-          namaVaksin,
-        } = req.body;
-
-        // create user
-        const vaksinID = await vaksinService.createLokasiVaksin({
-          provinsi,
-          img,
-          jenisVaksin,
-          nama,
-          tanggal,
-          waktu,
-          lokasi1,
-          lokasi2,
-          namaVaksin,
-        });
-
-        return res.status(201).json({
-          success: true,
-          message: "berhasil",
-        });
-      } catch (error) {
-        return res.status(400).json({ success: false, message: error.message });
-      }
 
     case "PUT":
       try {

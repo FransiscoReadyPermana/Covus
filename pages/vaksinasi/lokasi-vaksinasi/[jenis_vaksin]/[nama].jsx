@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import styles from '../../../../styles/lokasi.module.css';
-import Title from '../../../../Components/title';
-import Paragraph from '../../../../Components/paragraph';
-import Footer from '../../../../Components/footer';
-import uuid from 'react-uuid';
-import Pagination from '../../../../Components/pagination';
-import DropDownEdit from '../../../../Components/dropDown';
-import { useRouter } from 'next/router';
-import CardVaksin from '../../../../Components/cardVaksin';
-import PopUpSK from '../../../../Components/pop-up/pop-up-SK';
-import Image from 'next/image';
+import React, { useEffect, useState } from "react";
+import styles from "../../../../styles/lokasi.module.css";
+import Title from "../../../../Components/title";
+import Paragraph from "../../../../Components/paragraph";
+import Footer from "../../../../Components/footer";
+import uuid from "react-uuid";
+import Pagination from "../../../../Components/pagination";
+import DropDownEdit from "../../../../Components/dropDown";
+import { useRouter } from "next/router";
+import CardVaksin from "../../../../Components/cardVaksin";
+import PopUpSK from "../../../../Components/pop-up/pop-up-SK";
+import Image from "next/image";
 
 export default function LokasiVaksinasi({
   data,
@@ -21,7 +21,7 @@ export default function LokasiVaksinasi({
   const [currentData, setCurrentData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredData, setFilteredData] = useState(
-    data.filter((namaData) => namaData.provinsi === nama)
+    data.filter((namaData) => namaData.vaksinId.nama === nama)
   );
   const [dataDropdown, setDataDropdown] = useState(nama);
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +38,7 @@ export default function LokasiVaksinasi({
     let filterData = null;
 
     if (e.length > 0) {
-      filterData = data.filter((dataBaru) => dataBaru.provinsi === e);
+      filterData = data.filter((dataBaru) => dataBaru.vaksinId.nama === e);
     } else {
       filterData = data;
       setDataDropdown(nama);
@@ -155,15 +155,18 @@ export async function getServerSideProps(ctx) {
   );
 
   let namaVaksin = [];
-  if (jenis_vaksin === 'Vaksinasi Pertama') {
-    namaVaksin = resultPertama.data.map((item) => item.nama);
-  } else if (jenis_vaksin === 'Vaksinasi Kedua') {
-    namaVaksin = resultKedua.data.map((item) => item.nama);
+  if (jenis_vaksin === "Vaksinasi Pertama") {
+    namaVaksin = data.map((item) => item.vaksinId.nama);
+  } else if (jenis_vaksin === "Vaksinasi Kedua") {
+    namaVaksin = data.map((item) => item.vaksinId.nama);
   }
+
+  const namaVaksinUnik = [...new Set(namaVaksin)];
+
   return {
     props: {
       data,
-      dataVaksin: namaVaksin,
+      dataVaksin: namaVaksinUnik,
       nama,
       jenis_vaksin,
     },

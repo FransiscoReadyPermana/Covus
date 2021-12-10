@@ -1,26 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import styles from '../../styles/vaksin.module.css';
-import Title from '../../Components/title';
-import Paragraph from '../../Components/paragraph';
-import Button from '../../Components/button';
-import Footer from '../../Components/footer';
-import Card from '../../Components/card';
-import Link from 'next/link';
-import uuid from 'react-uuid';
-import Pagination from '../../Components/pagination';
-import PopUpSK from '../../Components/pop-up/pop-up-SK';
-import { useSession } from 'next-auth/client';
-import NeedToLogin from '../../Components/needToLogin';
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import styles from "../../styles/vaksin.module.css";
+import Title from "../../Components/title";
+import Paragraph from "../../Components/paragraph";
+import Button from "../../Components/button";
+import Footer from "../../Components/footer";
+import Card from "../../Components/card";
+import Link from "next/link";
+import uuid from "react-uuid";
+import Pagination from "../../Components/pagination";
+import PopUpSK from "../../Components/pop-up/pop-up-SK";
+import { useSession } from "next-auth/client";
+import NeedToLogin from "../../Components/needToLogin";
 
-export default function Vaksinasi({ data, dataKedua }) {
+export default function Vaksinasi({ data }) {
+  const dataVaksinPertama = data.filter(
+    (item) => item.jenisVaksin === "Vaksinasi Pertama"
+  );
+  const vaksinIdPertama = dataVaksinPertama.map((item) => item.vaksinId);
+  const dataPertama = [...new Set(vaksinIdPertama.map(JSON.stringify))].map(JSON.parse);
+
+  const dataVaksinKedua = data.filter((item) => item.jenisVaksin === "Vaksinasi Kedua");
+  const vaksinIdKedua = dataVaksinKedua.map((item) => item.vaksinId);
+  const dataKedua = [...new Set(vaksinIdKedua.map(JSON.stringify))].map(JSON.parse);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [currentTableData, setCurrentTableData] = useState([]);
-  const [dataVaksin, setDataVaksin] = useState(data);
-  const [color, setColor] = useState('purple');
-  const [colorSecondary, setColorSecondary] = useState('secondary');
-  const [vaksin, setVaksin] = useState('PERTAMA');
-  const [jenisVaksin, setJenisVaksin] = useState('Vaksinasi Pertama');
+  const [dataVaksin, setDataVaksin] = useState(dataPertama);
+  const [color, setColor] = useState("purple");
+  const [colorSecondary, setColorSecondary] = useState("secondary");
+  const [vaksin, setVaksin] = useState("PERTAMA");
+  const [jenisVaksin, setJenisVaksin] = useState("Vaksinasi Pertama");
   const [isOpen, setIsOpen] = useState(false);
   const [session] = useSession();
   const PageSize = 4;
@@ -37,21 +47,21 @@ export default function Vaksinasi({ data, dataKedua }) {
   }, [currentPage, dataVaksin, color, colorSecondary, vaksin]);
 
   const VaksinPertama = () => {
-    setDataVaksin(data);
-    setJenisVaksin('Vaksinasi Pertama');
+    setDataVaksin(dataPertama);
+    setJenisVaksin("Vaksinasi Pertama");
     setCurrentPage(1);
-    setColorSecondary('secondary');
-    setColor('purple');
-    setVaksin('PERTAMA');
+    setColorSecondary("secondary");
+    setColor("purple");
+    setVaksin("PERTAMA");
   };
 
   function VaksinKedua() {
     setDataVaksin(dataKedua);
-    setJenisVaksin('Vaksinasi Kedua');
+    setJenisVaksin("Vaksinasi Kedua");
     setCurrentPage(1);
-    setColorSecondary('purple');
-    setColor('secondary');
-    setVaksin('KEDUA');
+    setColorSecondary("purple");
+    setColor("secondary");
+    setVaksin("KEDUA");
   }
 
   return (
@@ -397,14 +407,12 @@ export default function Vaksinasi({ data, dataKedua }) {
 
 export async function getServerSideProps() {
   const baseUrl = process.env.BASE_URL;
-  const vaksinasiPertama = await fetch(`${baseUrl}api/vaksinasi-provinsi`);
-  const vaksinasiKedua = await fetch(`${baseUrl}api/vaksinasi-provinsi-kedua`);
-  const resultPertama = await vaksinasiPertama.json();
-  const resultKedua = await vaksinasiKedua.json();
+  const pertama = await fetch(`${baseUrl}api/lokasi-vaksinasi`);
+  const result = await pertama.json();
+  const namaVaksin = result.data.map((item) => item.vaksinId.nama);
   return {
     props: {
-      data: resultPertama.data,
-      dataKedua: resultKedua.data,
+      data: result.data,
     },
   };
 }
