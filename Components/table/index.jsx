@@ -190,7 +190,7 @@ export default function TableData({ data, type }) {
             <table className={`w-full ${stylesProvinsi.table}`}>
               <thead className="bg-purple text-center text-xl text-white font-bold">
                 <tr>
-                  <th className={`px-28 ${stylesProvinsi.head}`}>Provinsi</th>
+                  <th className={`${stylesProvinsi.headProvinsi}`}>Provinsi</th>
                   <th className={`${stylesProvinsi.head}`}>
                     Total Kasus
                   </th>
@@ -539,12 +539,14 @@ export default function TableData({ data, type }) {
     return (
       <div>
         <div className="flex flex-col w-full relative items-center justify-center">
-          <div className="flex gap-12 items-center mb-10 w-full px-48">
+          <div
+            className={`flex gap-12 items-center mb-10 w-full ${stylePeserta.searchInputContainer}`}
+          >
             <SearchInput
               className="w-full"
               onChangeHandler={(e) => onSearchHandler(e)}
               value={userInputPesertaVaksin}
-              classNameContainer={`${stylePeserta.inputContainer}`}
+              classNameContainer={`w-full`}
               classNameInput={`${stylePeserta.input}`}
             />
           </div>
@@ -572,12 +574,10 @@ export default function TableData({ data, type }) {
                       <td className={`${stylePeserta.provinsi}`}>
                         {item.provinsi}
                       </td>
-                      <td className={`${stylePeserta.nama}`}>
-                        {item.nama}
-                      </td>
+                      <td className={`${stylePeserta.nama}`}>{item.nama}</td>
                       <td>{item.alamat}</td>
-                      <td className="w-48">{item.telp}</td>
-                      <td className="w-44">
+                      <td className={` ${stylePeserta.kolomTelp}`}>{item.telp}</td>
+                      <td className={`${stylePeserta.kolomKontradiksi}`}>
                         <Link
                           href={`/admin/rs-rujukan/ubah-data/${item._id}`}
                           passHref={true}

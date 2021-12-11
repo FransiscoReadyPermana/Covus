@@ -20,6 +20,7 @@
   border-bottom: none;
   border-left: none;
   padding: 2rem;
+  text-align: center;
 }
 
 /* .table tbody tr:first-child td {
