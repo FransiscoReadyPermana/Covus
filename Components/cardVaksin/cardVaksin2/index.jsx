@@ -136,7 +136,7 @@ export default function CardVaksin2({ item }) {
           </div>
 
           <div
-            className={`flex items-center pb-24 flex-row justify-center w-5/6 gap-12 items-center ${styles.buttonContainer}`}
+            className={`flex items-center pb-24 flex-row justify-center w-5/6 gap-12 items-center ${styles.buttonContainer2}`}
           >
             <Button
               to={`/admin/vaksinasi/ubah-data/${item._id}`}
