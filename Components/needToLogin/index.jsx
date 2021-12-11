@@ -14,7 +14,7 @@ export default function NeedToLogin() {
         test
         <div
           id="content"
-          className="flex justify-center items-center h-full pr-48 pl-48 pt-32 bg-white"
+          className={`flex justify-center items-center h-full pt-32 bg-white ${styles.content}`}
         >
           <Headline className={styles.headline}>
             Mohon Maaf, untuk bisa mengakses halaman ini anda perlu melakukan

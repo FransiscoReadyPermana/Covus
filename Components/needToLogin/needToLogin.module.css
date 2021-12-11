@@ -56,3 +56,8 @@
   line-height: 5rem;
   text-align: center;
 }
+
+.content{
+  padding-right: 12rem;
+  padding-left: 12rem;
+}
